@@ -1,0 +1,41 @@
+.header {
+  display: flex;
+  font-family: Inconsolata;
+  align-items: top;
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 125px;
+  z-index: 100;
+  transition: color 0.15s;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 48px;
+}
+
+.header:hover{
+  color:rgb(105, 179, 231); 
+}
+
+.meals-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  margin: 10px 50px 0px 50px;
+  flex-wrap: wrap;
+  text-decoration: none;
+  font-size: 28px;
+  transition: color 0.15s;
+  color:rgb(105, 179, 231); 
+}
+.meals-container:hover{
+  color:rgb(105, 179, 231); 
+}
+
+.footer {
+  position: relative;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+}
