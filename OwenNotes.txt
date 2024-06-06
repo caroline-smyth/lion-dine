@@ -1,1 +1,7 @@
 this is me trying to figure stuff out 
+what i need to do:
+- figure out how github works
+  - figure out the folder problem
+- read through the files here and understand what they do
+- add comments to all existing code
+- start contributing
