@@ -9,6 +9,7 @@ Short term:
   - not sure what the best design will be for this, I've been looking around at other sites that do upvotes
   - When we actually have scraped text content, that will be filled in in the place of what now says "food name" or sm, but I think we can do this upvote stuff before
 - fix the scraping thing so it shows "no content" when dining halls are closed
+- I don't rly get how github works/git fits into it
 
 Later:
 - make the breakfast/lunch/dinner pages match the home page. As we work out the formatting, it's probably not worth updating all of them
