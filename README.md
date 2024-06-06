@@ -17,6 +17,7 @@ Later:
 - better understand Javascript (C)
 - put scraped food items into the item names
 - only show currently available items on main page (timing based on hours listed on site, figure out how to get site to be aware of time, p sure this is not that hard)
+- set up automatic scraping 
 
 Thoughts from a past work session:
 Intro page
