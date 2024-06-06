@@ -14,6 +14,8 @@ Later:
 - make the breakfast/lunch/dinner pages match the home page. As we work out the formatting, it's probably not worth updating all of them
 - figure out how to get Github to run app.py, which does the scraping. Rn we can do HTML/CSS/Js stuff without any variables but these will have to be merged
 - better understand Javascript (C)
+- put scraped food items into the item names
+- only show currently available items on main page (timing based on hours listed on site, figure out how to get site to be aware of time, p sure this is not that hard)
 
 Thoughts from a past work session:
 Intro page
