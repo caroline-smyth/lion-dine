@@ -19,7 +19,7 @@ not married to any of these
 
 questions:
 - what resources have you been using to figure out how to do this stuff?
-   - (C) supersimpledev free Youtube courses (videos) about HTML/CSS/Js. He's great at explaining stuff but it does take a while. Honestly I think getting a solid background in the languages is worth the time investment. On web scraping, I've used a hodge podge of resources and honestly learned through doing for legal tech guy so I would just look up BeautifulSoup and Selenium practice scraping exercises. 
+   - supersimpledev free Youtube courses (videos) about HTML/CSS/Js. He's great at explaining stuff but it does take a while. Honestly I think getting a solid background in the languages is worth the time investment. On web scraping, I've used a hodge podge of resources and honestly learned through doing for legal tech guy so I would just look up BeautifulSoup and Selenium practice scraping exercises. 
   which of these would help me quickly understand all this code?
 - what have you already tried wrt the folder problem? like where should i 
   not waste my time
