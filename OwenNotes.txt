@@ -12,4 +12,4 @@ other ideas i have:
 not married to any of these
 - draw out what we want each page of this website to look like
   by hand and commit to it, at least for the site's full 1st draft
-
+- use the readme to explain what's going on file by file
