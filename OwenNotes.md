@@ -14,8 +14,10 @@ not married to any of these
   by hand and commit to it, at least for the site's full 1st draft
   - feel like this would be much more efficient than verbally ideating
     and then experimenting with actual code - drawing is fast and shows
-    us whether the ideas look good or bad 
+    us whether the ideas look good or bad
+      - yes agree, we can also maybe use Figma for this 
 - use the readme to explain what's going on file by file (for my own sake)
+  - ok yeah I'll change mine to notes and then make the readme more sensical
 
 questions:
 - what resources have you been using to figure out how to do this stuff?
