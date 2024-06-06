@@ -1,7 +1,7 @@
 this is me trying to figure stuff out 
 what i need to do:
 - figure out how github works
-  - figure out the folder problem
+  - solve the folder problem
 - read through the files here and understand what they do
 - add comments to all existing code
 - start writing code
@@ -12,4 +12,13 @@ other ideas i have:
 not married to any of these
 - draw out what we want each page of this website to look like
   by hand and commit to it, at least for the site's full 1st draft
-- use the readme to explain what's going on file by file
+  - feel like this would be much more efficient than verbally ideating
+    and then experimenting with actual code - drawing is fast and shows
+    us whether the ideas look good or bad 
+- use the readme to explain what's going on file by file (for my own sake)
+
+questions:
+- what resources have you been using to figure out how to do this stuff?
+  which of these would help me quickly understand all this code?
+- what have you already tried wrt the folder problem? like where should i 
+  not waste my time?
