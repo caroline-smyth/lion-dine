@@ -39,3 +39,5 @@ currently, as there are no menu items, need to do an error catch for that. When 
 The issue rn is that 1- the sites, when I scrape them as of 5/24 require me to verify that I'm human, which takes a long ass time, and 2- only appends John Jay and "Just a moment..." to the halls dictionary
 
 I think that second problem is bc I'm using a dictionary that overwrites repeated titles. "Just a moment" is the title when the site requires you to verify your identity, so it's just being overwritten for every dining hall that isn't John Jay
+
+And I'm Owen!
