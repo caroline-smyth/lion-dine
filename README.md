@@ -2,12 +2,14 @@ After many failed attempts to have things in folders etc, I've given up and deci
 - Originally, the .js and .css files were in a folder called "static" and the linking from the html files reflected that. The html files were in a folder called "templates"
 
 Things to do:
+
 Short term:
 - Upvotes functionality that counts upvotes and reorders the menu items
   - this will be done in Javascript for now
   - not sure what the best design will be for this, I've been looking around at other sites that do upvotes
   - When we actually have scraped text content, that will be filled in in the place of what now says "food name" or sm, but I think we can do this upvote stuff before
 - fix the scraping thing so it shows "no content" when dining halls are closed
+
 Later:
 - make the breakfast/lunch/dinner pages match the home page. As we work out the formatting, it's probably not worth updating all of them
 - figure out how to get Github to run app.py, which does the scraping. Rn we can do HTML/CSS/Js stuff without any variables but these will have to be merged
