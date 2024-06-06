@@ -4,4 +4,12 @@ what i need to do:
   - figure out the folder problem
 - read through the files here and understand what they do
 - add comments to all existing code
-- start contributing
+- start writing code
+  - upvote system
+  - fix for the case of no content
+
+other ideas i have:
+not married to any of these
+- draw out what we want each page of this website to look like
+  by hand and commit to it, at least for the site's full 1st draft
+
