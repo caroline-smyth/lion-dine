@@ -3,7 +3,7 @@ what i need to do:
 - figure out how github works
   - solve the folder problem
 - read through the files here and understand what they do
-- add comments to all existing code
+- add comments to all existing code. BRUH you are a nerd
 - start writing code
   - upvote system
   - fix for the case of no content
@@ -19,6 +19,9 @@ not married to any of these
 
 questions:
 - what resources have you been using to figure out how to do this stuff?
+   - (C) supersimpledev free Youtube courses (videos) about HTML/CSS/Js. He's great at explaining stuff but it does take a while. Honestly I think getting a solid background in the languages is worth the time investment. On web scraping, I've used a hodge podge of resources and honestly learned through doing for legal tech guy so I would just look up BeautifulSoup and Selenium practice scraping exercises. 
   which of these would help me quickly understand all this code?
 - what have you already tried wrt the folder problem? like where should i 
-  not waste my time?
+  not waste my time
+  - I think you have to have index.html in the outer directory or possibly create a dummy index.html that's in the outer directory that links to the real one if it's in a folder
+  - I haven't really tried much but will play with it and update. You'll have to update the paths between the html files and css files if you change the folders (go to the head section of index.html and look for <link rel="stylesheet">. The paths are done similarly to ones from AP, ../ works for going back a folder etc 
