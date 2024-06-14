@@ -1,3 +1,4 @@
+/*
 var dict = {
   JohnJay: [], JJs: [], Ferris: [], FacHouse: [], Mikes: [], Dons: [], GraceDodge: [], FacShack: [], Diana: [], Hewitt: []
 };
@@ -11,3 +12,4 @@ for (var key in dict) {
 console.log(dict);
 
 document.getElementById('output').innerHTML = "hello";
+*/
