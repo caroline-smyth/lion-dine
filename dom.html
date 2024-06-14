@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOM Practice</title>
+  </head>
+  <body>
+    <button>hello</button>
+    <button class="js-button">second button</button> <!--typical to start elements that will be used in js with js- -->
+    <script>
+      console.log(document.querySelector('button').innerHTML); // select the HTML element, convert it to a Js object. Only takes the first button originally
+      // document.querySelector('button').innerHTML = 'Changed'; // alter the HTML using Js
+      const buttonElement = document.querySelector('.js-button');
+      console.log(buttonElement)
+      /*
+      document.title = "Changed";
+      console.log(document.body); // shows exactly the code available. DOM combines HTML and Js, gives Js control of the HTML. Converts HTMl element to a Js object
+      console.log(typeof document.body);
+      console.log(document.body.innerHTML);
+      document.body.innerHTML = "Changed";
+      
+      document.body.innerHTML = 'hello';
+      document.title = 'Good Job';
+      */
+    </script>
+  </body>
+</html>
