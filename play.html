@@ -34,29 +34,51 @@
           <div class="menu">
             <div class="item">
               <div class="votes">
-                <button id="upvote" class="fa fa-solid fa-circle-arrow-up" style="font-size: 25px"></button>
-                <p id="vote-amount">1</p>
-                <button id="downvote" class="fa fa-solid fa-circle-arrow-down" style="font-size: 25px"></button>
+                <button class="fa fa-solid fa-circle-arrow-up" style="font-size: 25px"></button>
+                <p class="vote-amount">1</p>
+                <button class="fa fa-solid fa-circle-arrow-down" style="font-size: 25px"></button>
               </div>
-              <p>food name</p>
+              <p>first food name</p>
             </div>
-            
+            <div class="item">
+              <div class="votes">
+                <button class="fa fa-solid fa-circle-arrow-up" style="font-size: 25px"></button>
+                <p class="vote-amount">1</p>
+                <button class="fa fa-solid fa-circle-arrow-down" style="font-size: 25px"></button>
+              </div>
+              <p>second food name</p>
+            </div>
           </div>
         </div>
         <script>
           document.addEventListener('DOMContentLoaded', function() {
-            const upvoteButton = document.getElementById('upvote');
-            const downvoteButton = document.getElementById('downvote');
-            let votesElement = document.getElementById('vote-amount');
-            upvoteButton.addEventListener('click', function() {
-              let votes = parseInt(votesElement.innerHTML);
-              votes += 1;
-              votesElement.innerHTML = votes;
+            const upvoteButtons = document.querySelectorAll('.fa.fa-solid.fa-circle-arrow-up');
+            const downvoteButtons = document.querySelectorAll('.fa.fa-solid.fa-circle-arrow-down');
+            upvoteButtons.forEach(function(button){
+              button.addEventListener('click', function() {
+                const votesElement = this.parentElement.querySelector('.vote-amount');
+                if (votesElement) {
+                  let votes = parseInt(votesElement.innerHTML);
+                  votes += 1;
+                  votesElement.innerHTML = votes;
+                }
+                else {
+                  alert('error')
+                }
+              });
             });
-            downvoteButton.addEventListener('click', function() {
-              let votes = parseInt(votesElement.innerHTML);
-              votes -= 1;
-              votesElement.innerHTML = votes;
+            downvoteButtons.forEach(function(button){
+              button.addEventListener('click', function() {
+                const votesElement = this.parentElement.querySelector('.vote-amount');
+                if (votesElement) {
+                  let votes = parseInt(votesElement.innerHTML);
+                  votes -= 1;
+                  votesElement.innerHTML = votes;
+                }
+                else {
+                  alert('error')
+                }
+              });
             });
           });
         </script>
