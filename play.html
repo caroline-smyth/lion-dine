@@ -34,25 +34,9 @@
           <div class="menu">
             <div class="item">
               <div class="votes">
-                <button class="fa fa-solid fa-circle-arrow-up" style="font-size: 25px"></button>
-                <div class="number"></div>
-                <button class="fa fa-solid fa-circle-arrow-down" style="font-size: 25px"></button>
-              </div>
-              <p>food name</p>
-            </div>
-            <div class="item">
-              <div class="votes">
-                <button class="fa fa-solid fa-circle-arrow-up" style="font-size: 25px"></button>
-                <div class="number"></div>
-                <button class="fa fa-solid fa-circle-arrow-down" style="font-size: 25px"></button>
-              </div>
-              <p>food name</p>
-            </div>
-            <div class="item">
-              <div class="votes">
-                <button class="fa fa-solid fa-circle-arrow-up" style="font-size: 25px"></button>
-                <div class="number"></div>
-                <button class="fa fa-solid fa-circle-arrow-down" style="font-size: 25px"></button>
+                <button id="upvote" class="fa fa-solid fa-circle-arrow-up" style="font-size: 25px"></button>
+                <p id="vote-amount">1</p>
+                <button id="downvote" class="fa fa-solid fa-circle-arrow-down" style="font-size: 25px"></button>
               </div>
               <p>food name</p>
             </div>
@@ -60,10 +44,21 @@
           </div>
         </div>
         <script>
-          function setCount() {
-            let count = 0;
-            console.log(count)
-          }
+          document.addEventListener('DOMContentLoaded', function() {
+            const upvoteButton = document.getElementById('upvote');
+            const downvoteButton = document.getElementById('downvote');
+            let votesElement = document.getElementById('vote-amount');
+            upvoteButton.addEventListener('click', function() {
+              let votes = parseInt(votesElement.innerHTML);
+              votes += 1;
+              votesElement.innerHTML = votes;
+            });
+            downvoteButton.addEventListener('click', function() {
+              let votes = parseInt(votesElement.innerHTML);
+              votes -= 1;
+              votesElement.innerHTML = votes;
+            });
+          });
         </script>
     </body>
   </main>

@@ -28,7 +28,6 @@ a:hover{
   transition: color 0.15s;
   font-size: 24px;
   align-items: center;
-  
 }
 
 .item {
@@ -52,4 +51,5 @@ button {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 3px;
 }
