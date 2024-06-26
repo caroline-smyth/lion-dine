@@ -38,7 +38,7 @@
                 <p class="vote-amount">1</p>
                 <button class="fa fa-solid fa-circle-arrow-down" style="font-size: 25px"></button>
               </div>
-              <p>first food name</p>
+              <p class="food-name">first food name</p>
             </div>
             <div class="item">
               <div class="votes">
@@ -46,42 +46,10 @@
                 <p class="vote-amount">1</p>
                 <button class="fa fa-solid fa-circle-arrow-down" style="font-size: 25px"></button>
               </div>
-              <p>second food name</p>
+              <p class="food-name">second food name</p>
             </div>
           </div>
         </div>
-        <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            const upvoteButtons = document.querySelectorAll('.fa.fa-solid.fa-circle-arrow-up');
-            const downvoteButtons = document.querySelectorAll('.fa.fa-solid.fa-circle-arrow-down');
-            upvoteButtons.forEach(function(button){
-              button.addEventListener('click', function() {
-                const votesElement = this.parentElement.querySelector('.vote-amount');
-                if (votesElement) {
-                  let votes = parseInt(votesElement.innerHTML);
-                  votes += 1;
-                  votesElement.innerHTML = votes;
-                }
-                else {
-                  alert('error')
-                }
-              });
-            });
-            downvoteButtons.forEach(function(button){
-              button.addEventListener('click', function() {
-                const votesElement = this.parentElement.querySelector('.vote-amount');
-                if (votesElement) {
-                  let votes = parseInt(votesElement.innerHTML);
-                  votes -= 1;
-                  votesElement.innerHTML = votes;
-                }
-                else {
-                  alert('error')
-                }
-              });
-            });
-          });
-        </script>
     </body>
   </main>
 </html>
