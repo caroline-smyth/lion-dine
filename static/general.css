@@ -19,6 +19,7 @@ a:hover{
   justify-content: center;
   margin-right: 10px;
   margin-left: 10px;
+  column-gap: 100px;
 }
 
 .col {
