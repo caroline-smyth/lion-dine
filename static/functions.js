@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let votes = parseInt(votesElement.innerHTML);
         votes += 1;
         votesElement.innerHTML = votes;
+        reorder();
       }
       else {
         alert('error')
@@ -37,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let votes = parseInt(votesElement.innerHTML);
         votes -= 1;
         votesElement.innerHTML = votes;
+        reorder();
       }
       else {
         alert('error')
@@ -46,7 +48,23 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function reorder() {
-  const menu = document.querySelector('.menu');
-  const items = Array.from(menu.querySelectorAll('.item'));
+  cols = document.querySelectorAll('.col');
+  cols.forEach(function(col){
+    const menu = col.querySelector('.menu');
+    const items = Array.from(menu.querySelectorAll('.item'));
+    items.sort(function(a, b) {
+      const votesA = parseInt(a.querySelector('.vote-amount').innerHTML);
+      const votesB = parseInt(b.querySelector('.vote-amount').innerHTML);
+      return votesB - votesA;
+    });
+
+    while(menu.firstChild) {
+      menu.removeChild(menu.firstChild);
+    }
+
+    items.forEach(function(item) {
+      menu.appendChild(item);
+    });
+  });
   
 }
