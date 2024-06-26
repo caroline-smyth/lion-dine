@@ -1,9 +1,8 @@
-After many failed attempts to have things in folders etc, I've given up and decided to just take them out of the folders. This likely needs to be resolved in the future because I'm pretty sure Flask needs them to be in specific folders to work. This may be wrong but I'm not sure. If you go to Settings and then Pages, you should be able to see what the site looks like right now. 
-- Originally, the .js and .css files were in a folder called "static" and the linking from the html files reflected that. The html files were in a folder called "templates"
+6/26/24:
+- I've worked out a bit of the upvotes functionality (just counting up and down) but have realized that the votes, in order to be displayed across shared browsers, will need to be stored in Flask or MongoDB or Node.js 
+- going to figure out how to convert each menu list into an array that reorders itself so the highest item has the most votes. Although maybe it's better to keep items sorted by category? 
 
-Things to do:
-
-Short term:
+Sometime in May:
 - Upvotes functionality that counts upvotes and reorders the menu items
   - this will be done in Javascript for now
   - not sure what the best design will be for this, I've been looking around at other sites that do upvotes

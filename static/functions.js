@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
   upvoteButtons.forEach(function(button){
     button.addEventListener('click', function() {
       const votesElement = this.parentElement.querySelector('.vote-amount');
+      //localStorage.setItem('votesElement', votesElement);
       if (votesElement) {
         let votes = parseInt(votesElement.innerHTML);
         votes += 1;
