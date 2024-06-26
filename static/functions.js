@@ -43,3 +43,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+function reorder() {
+  const menu = document.querySelector('.menu');
+  const items = Array.from(menu.querySelectorAll('.item'));
+  
+}
