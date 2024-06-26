@@ -1,6 +1,7 @@
 6/26/24:
 - I've worked out a bit of the upvotes functionality (just counting up and down) but have realized that the votes, in order to be displayed across shared browsers, will need to be stored in Flask or MongoDB or Node.js 
 - going to figure out how to convert each menu list into an array that reorders itself so the highest item has the most votes. Although maybe it's better to keep items sorted by category? 
+- working on index.html, need to add better spacing btwn the halls/items
 
 Sometime in May:
 - Upvotes functionality that counts upvotes and reorders the menu items
