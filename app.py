@@ -25,8 +25,16 @@ def index():
 
   for url in cu_urls:
     driver.get(url)
-    wait = WebDriverWait(driver, 60)
-    
+    wait = WebDriverWait(driver, 20)
+    title = driver.title
+
+    try:
+        closed_div = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'div[data-ng-repeat="displayed_hours in hours.displayed_hours"][data-ng-bind="displayed_hours.title"]')))
+        if "Closed" or "closed" in closed_div.text.strip():
+            halls[title] = "Closed"
+            continue
+    except:
+        pass
     items = wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'meal-items')))
     title = driver.title 
     
