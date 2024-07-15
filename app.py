@@ -38,10 +38,6 @@ def index():
     items = wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'meal-items')))
     title = driver.title 
     
-    #title = driver.title
-    #halls[title] = "No items"
-    #print(f"Error processing {url}")
-    #continue
     stations = driver.find_elements(By.CSS_SELECTOR, 'h2.station-title.ng-binding')
     # n = 0
     food_items = {}
@@ -54,11 +50,6 @@ def index():
         meals = item.find_elements(By.CSS_SELECTOR, 'h5.meal-title.ng-binding')
         food_items[station] = [m.text for m in meals]
         
-        # for m in meal:
-        #  print(m.text)
-        #  halls.append(m.text)
-
-        #print("\n")
     halls[title] = food_items
 
   driver.quit()

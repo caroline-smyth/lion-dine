@@ -22,12 +22,19 @@
       </header>
       <div class="var" id="halls"></div>
       <div class="meals-container">
-        <a href="..\templates\breakfast.html">Breakfast</a>
-        <a href="..\templates\lunch.html">Lunch</a>
-        <a href="..\templates\dinner.html">Dinner</a>
+        <a href="breakfast.html">Breakfast</a>
+        <a href="lunch.html">Lunch</a>
+        <a href="dinner.html">Dinner</a>
       </div>
         <div class="container">
-          <!--<div>{{halls}}</div>-->
+          <div>{{halls}}</div>
+          <ul id="halls">
+            {% for key, value in halls.items() %}
+              <p>{{ value 
+              }}
+            </p>
+            {% endfor %}
+          </ul>
           <div class="col">
             <a href="https://dining.columbia.edu/content/john-jay-dining-hall" target="_blank">
               <h3>John Jay</h3>
