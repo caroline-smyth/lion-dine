@@ -27,14 +27,16 @@
         <a href="dinner.html">Dinner</a>
       </div>
         <div class="container">
-          <div>{{halls}}</div>
-          <ul id="halls">
+          <div class="halls">
             {% for key, value in halls.items() %}
-              <p>{{ value 
-              }}
-            </p>
+              <a href="https://dining.columbia.edu/"> 
+                <h3>
+                  {{ key }} 
+                </h3>
+              </a> 
+              <div class="menu"> {{ value }} </div>
             {% endfor %}
-          </ul>
+          </div>
           <div class="col">
             <a href="https://dining.columbia.edu/content/john-jay-dining-hall" target="_blank">
               <h3>John Jay</h3>
