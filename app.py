@@ -15,7 +15,7 @@ app = Flask(__name__)
 # Barnard pages need to be scraped separately. Those sites are shit, so need to figure out sm else 
 
 def index():
-  options = webdriver.ChromeOptions()
+  # options = webdriver.ChromeOptions()
   # options.headless = True
   driver = webdriver.Chrome(service=ChromeService( 
     ChromeDriverManager().install())) 

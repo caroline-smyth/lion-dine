@@ -17,8 +17,8 @@ a:hover{
   flex-wrap: wrap;
   text-decoration: none;
   justify-content: center;
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-right: 100px;
+  margin-left: 100px;
   column-gap: 100px;
 }
 
@@ -55,4 +55,9 @@ button {
 h3 {
   margin-bottom: 20px;
   margin-top: 40px;
+}
+
+.food-type {
+  font-weight: bold;
+  margin-top: 10px;
 }
