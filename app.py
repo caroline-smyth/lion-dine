@@ -10,7 +10,7 @@ import random
 
 app = Flask(__name__)
 @app.route('/')
-
+# owen testing if committing works
 # this does the scraping and converts what is scraped into variables that can be displayed using HTML/CSS/Js
 # Barnard pages need to be scraped separately. Those sites are shit, so need to figure out sm else 
 
