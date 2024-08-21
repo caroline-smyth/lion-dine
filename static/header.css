@@ -4,7 +4,7 @@
   align-items: top;
   font-size: 32px;
   font-weight: bold;
-  margin-top: 125px;
+  margin-top: 100px;
   z-index: 100;
   transition: color 0.15s;
   flex-direction: row;
@@ -14,6 +14,7 @@
 
 #index-header:hover{
   color:rgb(105, 179, 231); 
+
 }
 
 .meals-container{
