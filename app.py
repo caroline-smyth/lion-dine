@@ -10,6 +10,7 @@ import random
 
 app = Flask(__name__)
 @app.route('/')
+
 # this does the scraping and converts what is scraped into variables that can be displayed using HTML/CSS/Js
 # Barnard pages need to be scraped separately. Those sites are shit, so need to figure out sm else 
 
@@ -21,9 +22,24 @@ def index():
   driver = webdriver.Chrome()
 
   cu_urls = ["https://dining.columbia.edu/content/john-jay-dining-hall","https://dining.columbia.edu/content/jjs-place-0", "https://dining.columbia.edu/content/ferris-booth-commons-0", "https://dining.columbia.edu/content/faculty-house-0", "https://dining.columbia.edu/chef-mikes", "https://dining.columbia.edu/content/chef-dons-pizza-pi", "https://dining.columbia.edu/content/grace-dodge-dining-hall-0", "https://dining.columbia.edu/content/fac-shack"]
-
+  halls = {}
+  """
+  url = "https://dining.columbia.edu/content/john-jay-dining-hall"
+  driver.get(url)
+  wait = WebDriverWait(driver, 10)
+  title = driver.title
+  print(title)
   halls = {}
 
+  url2 = "https://dining.columbia.edu/content/jjs-place-0"
+  driver.get(url2)
+  wait = WebDriverWait(driver, 10)
+  title = driver.title
+  print(title)
+
+  driver.quit()
+  return render_template('index.html', halls=halls)
+"""
   for url in cu_urls:
     driver.get(url)
     wait = WebDriverWait(driver, 10)
@@ -34,6 +50,19 @@ def index():
 
   driver.quit()
   return render_template('index.html', halls=halls)
+    
+
+@app.route('/breakfast')
+def breakfast():
+  return render_template('breakfast.html')
+
+@app.route('/lunch')
+def lunch():
+  return render_template('lunch.html')
+
+@app.route('/dinner')
+def dinner():
+  return render_template('dinner.html')
 
 if __name__ == '__main__':
    app.run(debug=True)
