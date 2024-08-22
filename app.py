@@ -16,8 +16,9 @@ app = Flask(__name__)
 def index():
   # options = webdriver.ChromeOptions()
   # options.headless = True
-  driver = webdriver.Chrome(service=ChromeService( 
-    ChromeDriverManager().install())) 
+  # driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install())) 
+
+  driver = webdriver.Chrome()
 
   cu_urls = ["https://dining.columbia.edu/content/john-jay-dining-hall","https://dining.columbia.edu/content/jjs-place-0", "https://dining.columbia.edu/content/ferris-booth-commons-0", "https://dining.columbia.edu/content/faculty-house-0", "https://dining.columbia.edu/chef-mikes", "https://dining.columbia.edu/content/chef-dons-pizza-pi", "https://dining.columbia.edu/content/grace-dodge-dining-hall-0", "https://dining.columbia.edu/content/fac-shack"]
 
@@ -27,6 +28,7 @@ def index():
     driver.get(url)
     wait = WebDriverWait(driver, 10)
     title = driver.title
+
     print(title)
     time.sleep(random.uniform(2,5))
 
