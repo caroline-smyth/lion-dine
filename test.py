@@ -15,7 +15,7 @@ cache = Cache(app, config={'CACHE_TYPE': 'simple'}) #sets up a cache for daily s
 
 #dining hall URLs
 cu_urls = [
-  "https://dining.columbia.edu/content/john-jay-dining-hall"]
+  "https://dining.columbia.edu/content/john-jay-dining-hall", "https://dining.columbia.edu/content/jjs-place-0"]
 """ 
   "https://dining.columbia.edu/content/jjs-place-0",
   "https://dining.columbia.edu/content/ferris-booth-commons-0",
