@@ -15,8 +15,7 @@ cache = Cache(app, config={'CACHE_TYPE': 'simple'}) #sets up a cache for daily s
 
 #dining hall URLs
 cu_urls = [
-  "https://dining.columbia.edu/content/john-jay-dining-hall", "https://dining.columbia.edu/content/jjs-place-0"]
-""" 
+  "https://dining.columbia.edu/content/john-jay-dining-hall",
   "https://dining.columbia.edu/content/jjs-place-0",
   "https://dining.columbia.edu/content/ferris-booth-commons-0",
   "https://dining.columbia.edu/content/faculty-house-0", 
@@ -24,36 +23,37 @@ cu_urls = [
   "https://dining.columbia.edu/content/chef-dons-pizza-pi", 
   "https://dining.columbia.edu/content/grace-dodge-dining-hall-0", 
   "https://dining.columbia.edu/content/fac-shack"
-  """
+]
   
 
 # this does the scraping and converts what is scraped into variables that can be displayed using HTML/CSS/Js
 # Barnard pages need to be scraped separately. Those sites are shit, so need to figure out sm else 
-def scrape_data():
+def scrape_data(url):
   driver = webdriver.Chrome()
   halls = {}
  
-  for url in cu_urls:
+  #for url in cu_urls:
 
-    # open a URL, let it load, and find the name of the dining hall
-    driver.get(url)
-    wait = WebDriverWait(driver, 60)
-    title = driver.title
+  # open a URL, let it load, and find the name of the dining hall
+  driver.get(url)
+  wait = WebDriverWait(driver, 60)
+  title = driver.title
 
-    # check if it's closed. this logic will have to change now that we're
-    #doing one daily scraping, but i'm leaving it as placeholder for now.
-    try:
-      print("entered try")
-      # playing with text element that's already on the screen
+  # check if it's closed. this logic will have to change now that we're
+  #doing one daily scraping, but i'm leaving it as placeholder for now.
+  try:
+    print("entered try")
+    # playing with text element that's already on the screen
+    
+    random_text = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "node-title.ng-binding")))
+    print(random_text.text)
       
-      random_text = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "node-title.ng-binding")))
-      print(random_text.text)
-        
 
-    except:
-      pass
+  except Exception as e:
+    print("entered except")
+    #print(f"An exception of type {type(e).__name__} occurred. Arguments:\n{e.args}")
 
-    time.sleep(random.uniform(2,10)) #random sleep for anti-detection
+  time.sleep(random.uniform(2,10)) #random sleep for anti-detection
 
   driver.quit()
   cache.set('halls_data', halls)
@@ -63,7 +63,8 @@ def scrape_data():
 def index():
   halls = cache.get('halls_data') #get the already-scraped data
   if not halls: #if the scraping didn't work, scrape now
-    scrape_data()
+    for url in cu_urls:
+      scrape_data(url)
     halls = cache.get('halls_data')
   return render_template('index.html', halls=halls)
     
@@ -82,7 +83,8 @@ def dinner():
 #this schedules scraping to happen at midnight
 def schedule_scraping():
   scheduler = BackgroundScheduler()
-  scheduler.add_job(scrape_data, trigger='cron', hour=0, minute=0)
+  for url in cu_urls:
+    scheduler.add_job(scrape_data, trigger='cron', hour=0, minute=0, args=[url])
   scheduler.start()
 
 if __name__ == '__main__':
