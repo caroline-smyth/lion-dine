@@ -7,8 +7,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from flask_caching import Cache
 from apscheduler.schedulers.background import BackgroundScheduler
-from datetime import datetime, time as dt_time
-import time
+from datetime import datetime, time 
+import time as time_module
 import random
 
 app = Flask(__name__) #sets up a flask application
@@ -84,7 +84,7 @@ def scrape_data(url):
   #record the dictionary of all stations and items for this dining hall
   halls[title] = food_items
   """
-  time.sleep(random.uniform(2,5)) #random sleep for anti-detection
+  time_module.sleep(random.uniform(2,5)) #random sleep for anti-detection
 
   driver.quit()
   cache.set('halls_data', halls)
