@@ -7,7 +7,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from flask_caching import Cache
 from apscheduler.schedulers.background import BackgroundScheduler
-from datetime import datetime, time
+from datetime import datetime, time as dt_time
+import time
 import random
 
 app = Flask(__name__) #sets up a flask application
