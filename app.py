@@ -173,7 +173,21 @@ def index():
       (now.weekday() == 3 and (now.hour < 11 or now.hour >= 23 or now.hour in [14,15,16,17,18]))):
     filtered_halls["Fac Shack"] = "Closed"
 
-  return render_template('index.html', halls=halls)
+  #filter to only the available stations
+  for hall_name, stations in dummy_halls.items():
+    if hall_name in filtered_halls and filtered_halls[hall_name] == "Closed":
+      continue
+    filtered_stations = {}
+    for station_name, station_info in stations.items():
+      open_time, close_time = station_info["hours"]
+      if open_time <= now.time() <= close_time:
+        filtered_stations[station_name] = station_info["items"]
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "missing data"
+
+  return render_template('index.html', halls=filtered_halls)
     
 @app.route('/breakfast')
 def breakfast():
