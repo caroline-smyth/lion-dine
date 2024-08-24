@@ -99,36 +99,37 @@ def index():
       scrape_data(url)
     halls = cache.get('halls_data')
 
+
   #filling a dictionary to look like what a real halls dictionary would be.
   #using this to populate index.html
   johnjayfood={
-    "grill": ["pancakes", "waffles"],
-    "pasta station": ["pasta 1", "pasta 2"],
-    "main line": ["entree", "vegetable", "rice"]
+    "grill": {"items": ["pancakes", "waffles"], "hours":(time(9,30), time(14,0))},
+    "pasta station": {"items": ["pasta 1", "pasta 2"], "hours": (time(14,0), time(21,0))},
+    "main line": {"items":["entree", "vegetable", "rice"], "hours":(time(14,0), time(21,0))}
   }
   jjsfood={
-    "burger station": ["burgers", "grilled cheese"], 
-    "fried slop station": ["fried slop"]
+    "burger station": {"items":["burgers", "grilled cheese"],"hours":(time(0,0), time(23,59))},
+    "fried slop station": {"items":["fried slop"],"hours":(time(0,0),time(23,59))}
   }
   ferrisfood={
-    "action station": ["chunky monkey dinner waffles"],
-    "main line": ["entree", "vegetable", "rice"]
+    "action station": {"items":["chunky monkey dinner waffles"],"hours":(time(17,0),time(20,0))},
+    "main line": {"items":["entree", "vegetable", "rice"],"hours":(time(17,0),time(20,0))}
   }
   fachousefood={
-    "food": ["salmon", "rice", "cookies"]
+    "food": {"items":["salmon", "rice", "cookies"],"hours":(time(11,0),time(14,30))}
   }
   mikesfood={
-    "sandwiches": ["hot", "hot vegan", "cold", "cold vegan"]
+    "sandwiches": {"items":["hot", "hot vegan", "cold", "cold vegan"],"hours":(time(10,30),time(22,0))}
   }
   donsfood={
-    "breakfast": ["breakfast sandwich"],
-    "pizza": ["pizza 1", "pizza 2"]
+    "breakfast": {"items":["breakfast sandwich"],"hours":(time(8,0),time(11,0))},
+    "pizza": {"items":["pizza 1", "pizza 2"],"hours":(time(11,0),time(18,0))}
   }
   dodgefood={
-    "food": ["what do they even serve here"]
+    "food": {"items":["what do they even serve here"],"hours":(time(11,0),time(18,0))}
   }
   facshackfood={
-    "food": ["chicken masala", "chana masala"]
+    "food": {"items":["chicken masala", "chana masala"],"hours":(time(11,0),time(14,30))}
   }
   dummy_halls = {
     "John Jay": johnjayfood,
@@ -140,8 +141,6 @@ def index():
     "Grace Dodge": dodgefood,
     "Fac Shack": facshackfood
   }
-
-
 
   filtered_halls = {}
   #CHECKS FOR CLOSED
