@@ -99,6 +99,50 @@ def index():
       scrape_data(url)
     halls = cache.get('halls_data')
 
+  #filling a dictionary to look like what a real halls dictionary would be.
+  #using this to populate index.html
+  johnjayfood={
+    "grill": ["pancakes", "waffles"],
+    "pasta station": ["pasta 1", "pasta 2"],
+    "main line": ["entree", "vegetable", "rice"]
+  }
+  jjsfood={
+    "burger station": ["burgers", "grilled cheese"], 
+    "fried slop station": ["fried slop"]
+  }
+  ferrisfood={
+    "action station": ["chunky monkey dinner waffles"],
+    "main line": ["entree", "vegetable", "rice"]
+  }
+  fachousefood={
+    "food": ["salmon", "rice", "cookies"]
+  }
+  mikesfood={
+    "sandwiches": ["hot", "hot vegan", "cold", "cold vegan"]
+  }
+  donsfood={
+    "breakfast": ["breakfast sandwich"],
+    "pizza": ["pizza 1", "pizza 2"]
+  }
+  dodgefood={
+    "food": ["what do they even serve here"]
+  }
+  facshackfood={
+    "food": ["chicken masala", "chana masala"]
+  }
+  dummy_halls = {
+    "John Jay": johnjayfood,
+    "JJs": jjsfood,
+    "Ferris": ferrisfood,
+    "Faculty House": fachousefood,
+    "Chef Mike's": mikesfood,
+    "Chef Don's": donsfood,
+    "Grace Dodge": dodgefood,
+    "Fac Shack": facshackfood
+  }
+
+
+
   filtered_halls = {}
   #CHECKS FOR CLOSED
   #john jay
