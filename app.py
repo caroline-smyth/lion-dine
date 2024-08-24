@@ -7,6 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from flask_caching import Cache
 from apscheduler.schedulers.background import BackgroundScheduler
+from datetime import datetime
 import time 
 import random
 
@@ -91,11 +92,44 @@ def scrape_data(url):
 
 @app.route('/') #maps the URL / to index()
 def index():
+  now = datetime.now()
   halls = cache.get('halls_data') #get the already-scraped data
   if not halls: #if the scraping didn't work, scrape now
     for url in cu_urls:
       scrape_data(url)
     halls = cache.get('halls_data')
+
+  filtered_halls = {}
+  #CHECKS FOR CLOSED
+  #john jay
+  if now.weekday() in [4,5] or now.hour < 9 or now.hour >= 21 or (now.hour == 9 and now.minute < 30):
+    filtered_halls["John Jay"] = "Closed"
+  #jjs
+  if now.hour in [10,11]:
+    filtered_halls["JJs"] = "Closed"
+  #ferris
+  if ((now.weekday() in [0,4] and (now.hour < 7 or now.hour >= 20 or (now.hour == 7 and now.minute < 30))) or
+      (now.weekday() == 5 and (now.hour < 9 or now.hour >= 20)) or
+      (now.weekday() == 6 and (now.hour < 10 or now.hour >= 20 or now.hour in [15,16]))):
+    filtered_halls["Ferris"] = "Closed"
+  #fac house
+  if now.weekday() > 2 or now.hour < 11 or now.hour > 14 or (now.hour == 14 and now.minute > 30):
+    filtered_halls["Faculty House"] = "Closed"
+  #mikes
+  if now.weekday() in [5,6] or now.hour < 10 or now.hour >= 22 or (now.hour == 10 and now.minute < 30):
+    filtered_halls["Chef Mike's"] = "Closed"
+  #dons
+  if now.weekday() in [5,6] or now.hour < 8 or now.hour >= 18:
+    filtered_halls["Chef Don's"] = "Closed"
+  #grace dodge
+  if now.weekday() in [4,5,6] or now.hour < 11 or now.hour >= 19:
+    filtered_halls["Grace Dodge"] = "Closed"
+  #fac shack
+  if (now.weekday() == 6) or (now.weekday() in [0,1,2] and (now.hour < 11 or now.hour >= 14) or
+      (now.weekday() in [4,5] and (now.hour < 19 or now.hour >= 23)) or
+      (now.weekday() == 3 and (now.hour < 11 or now.hour >= 23 or now.hour in [14,15,16,17,18]))):
+    filtered_halls["Fac Shack"] = "Closed"
+
   return render_template('index.html', halls=halls)
     
 @app.route('/breakfast')
