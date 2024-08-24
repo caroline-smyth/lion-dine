@@ -50,7 +50,7 @@ def scrape_data(url):
       
 
   except Exception as e:
-    pass
+    print("entered except")
     #print(f"An exception of type {type(e).__name__} occurred. Arguments:\n{e.args}")
 
   time.sleep(random.uniform(2,10)) #random sleep for anti-detection

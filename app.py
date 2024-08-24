@@ -65,7 +65,7 @@ def scrape_data(url):
       continue
     """
   except:
-    pass
+    print("entered except")
   """
   #i think items and stations holds all the data?
   items = wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'meal-items')))
