@@ -42,20 +42,24 @@ def scrape_data(url):
   driver.get(url)
   wait = WebDriverWait(driver, 60)
   title = driver.title
-  print(title)
 
   #check if it's closed. this logic will have to change now that we're
   #doing one daily scraping, but i'm leaving it as placeholder for now.
   try:
-    print("entered try")
-    """
-    closed_div = wait.until(EC.visibility_of_element_located(
-      (By.CSS_SELECTOR, 'div[data-ng-repeat="displayed_hours in hours.displayed_hours"][data-ng-bind="displayed_hours.title"]')
-    ))
-    if "Closed" in closed_div.text.strip():
-      halls[title] = {"breakfast": [], "lunch": [], "dinner": []}
-      continue
-    """
+
+    hall_name = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "node-title.ng-binding")))
+    name = hall_name.text.strip()
+
+    print(name)
+    div_element = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "cu-dining-location-description.ng-binding")))
+
+    p_elements = div_element.find_elements(By.TAG_NAME, "p")
+
+    p_texts = [p.text.strip() for p in p_elements]
+    print(p_texts)
+
+    #halls[name] = p_texts
+
   except:
     print("entered except")
   """
@@ -94,6 +98,7 @@ def dummy_food():
     "fried slop station": {"items":["fried slop"],"hours":(time(0,0),time(23,59))}
   }
   ferrisfood={
+    "action station":{"items":["apple pancakes", "beyond sausage", "bacon", "scrambled eggs"], "hours":(time(7,30),time(14,0))},
     "action station": {"items":["chunky monkey dinner waffles"],"hours":(time(17,0),time(20,0))},
     "main line": {"items":["entree", "vegetable", "rice"],"hours":(time(17,0),time(20,0))}
   }
@@ -129,7 +134,11 @@ def dummy_food():
 
 def closed_missing_filter():
   now = datetime.now()
-
+  halls = cache.get('halls_data') #get the already-scraped data
+  if not halls: #if the scraping didn't work, scrape now
+    for url in cu_urls:
+      scrape_data(url)
+    halls = cache.get('halls_data')
   filtered_halls = {}
   # CHECKS FOR CLOSED
   # john jay
@@ -162,6 +171,7 @@ def closed_missing_filter():
     filtered_halls["Fac Shack"] = "Closed"
   
   dummy_halls = dummy_food()
+
   for hall_name, stations in dummy_halls.items():
     if hall_name in filtered_halls and filtered_halls[hall_name] == "Closed":
       continue
@@ -173,34 +183,30 @@ def closed_missing_filter():
       if filtered_stations:
         filtered_halls[hall_name] = filtered_stations
       else:
-        filtered_halls[hall_name] = "missing data"
+        filtered_halls[hall_name] = "Missing Data"
   
   return filtered_halls
 
 @app.route('/') #maps the URL / to index()
 def index():
-  now = datetime.now()
-  halls = cache.get('halls_data') #get the already-scraped data
-  if not halls: #if the scraping didn't work, scrape now
-    for url in cu_urls:
-      scrape_data(url)
-    halls = cache.get('halls_data')
-
-  filtered_halls = closed_missing_filter() # returns closed/open but missing/meal info for each dining hall
+  filtered_halls = closed_missing_filter() # returns closed/missing data/meal info for each dining hall
     
   return render_template('index.html', halls=filtered_halls)
     
 @app.route('/breakfast')
 def breakfast():
-  return render_template('breakfast.html')
+  filtered_halls = closed_missing_filter()
+  return render_template('breakfast.html', halls=filtered_halls)
 
 @app.route('/lunch')
 def lunch():
-  return render_template('lunch.html')
+  filtered_halls = closed_missing_filter()
+  return render_template('lunch.html', halls=filtered_halls)
 
 @app.route('/dinner')
 def dinner():
-  return render_template('dinner.html')
+  filtered_halls = closed_missing_filter()
+  return render_template('dinner.html', halls=filtered_halls)
 
 # this schedules scraping to happen at midnight
 def schedule_scraping():
