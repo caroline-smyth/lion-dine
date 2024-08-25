@@ -45,12 +45,22 @@ def scrape_data(url):
     print("entered try")
     # playing with text element that's already on the screen
     
-    random_text = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "node-title.ng-binding")))
-    print(random_text.text)
-      
+    hall_name = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "node-title.ng-binding")))
+    name = hall_name.text.strip()
+
+    print(name)
+    div_element = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "cu-dining-location-description.ng-binding")))
+
+    p_elements = div_element.find_elements(By.TAG_NAME, "p")
+
+    p_texts = [p.text.strip() for p in p_elements]
+    print(p_texts)
+
+    halls[name] = p_texts
+    
 
   except Exception as e:
-    print("entered except")
+    print("entered except: {e}")
     #print(f"An exception of type {type(e).__name__} occurred. Arguments:\n{e.args}")
 
   time.sleep(random.uniform(2,10)) #random sleep for anti-detection
@@ -66,7 +76,7 @@ def index():
     for url in cu_urls:
       scrape_data(url)
     halls = cache.get('halls_data')
-  return render_template('index.html', halls=halls)
+  return render_template('index.html', halls_data=halls)
     
 @app.route('/breakfast')
 def breakfast():
