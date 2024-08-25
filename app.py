@@ -89,62 +89,12 @@ def scrape_data(url):
   driver.quit()
   cache.set('halls_data', halls)
 
-
-@app.route('/') #maps the URL / to index()
-def index():
+def closed():
   now = datetime.now()
-  halls = cache.get('halls_data') #get the already-scraped data
-  if not halls: #if the scraping didn't work, scrape now
-    for url in cu_urls:
-      scrape_data(url)
-    halls = cache.get('halls_data')
-
-
-  #filling a dictionary to look like what a real halls dictionary would be.
-  #using this to populate index.html
-  johnjayfood={
-    "grill": {"items": ["pancakes", "waffles"], "hours":(time(9,30), time(14,0))},
-    "pasta station": {"items": ["pasta 1", "pasta 2"], "hours": (time(14,0), time(21,0))},
-    "main line": {"items":["entree", "vegetable", "rice"], "hours":(time(14,0), time(21,0))}
-  }
-  jjsfood={
-    "burger station": {"items":["burgers", "grilled cheese"],"hours":(time(0,0), time(23,59))},
-    "fried slop station": {"items":["fried slop"],"hours":(time(0,0),time(23,59))}
-  }
-  ferrisfood={
-    "action station": {"items":["chunky monkey dinner waffles"],"hours":(time(17,0),time(20,0))},
-    "main line": {"items":["entree", "vegetable", "rice"],"hours":(time(17,0),time(20,0))}
-  }
-  fachousefood={
-    "food": {"items":["salmon", "rice", "cookies"],"hours":(time(11,0),time(14,30))}
-  }
-  mikesfood={
-    "sandwiches": {"items":["hot", "hot vegan", "cold", "cold vegan"],"hours":(time(10,30),time(22,0))}
-  }
-  donsfood={
-    "breakfast": {"items":["breakfast sandwich"],"hours":(time(8,0),time(11,0))},
-    "pizza": {"items":["pizza 1", "pizza 2"],"hours":(time(11,0),time(18,0))}
-  }
-  dodgefood={
-    "food": {"items":["what do they even serve here"],"hours":(time(11,0),time(18,0))}
-  }
-  facshackfood={
-    "food": {"items":["chicken masala", "chana masala"],"hours":(time(11,0),time(14,30))}
-  }
-  dummy_halls = {
-    "John Jay": johnjayfood,
-    "JJs": jjsfood,
-    "Ferris": ferrisfood,
-    "Faculty House": fachousefood,
-    "Chef Mike's": mikesfood,
-    "Chef Don's": donsfood,
-    "Grace Dodge": dodgefood,
-    "Fac Shack": facshackfood
-  }
 
   filtered_halls = {}
-  #CHECKS FOR CLOSED
-  #john jay
+  # CHECKS FOR CLOSED
+  # john jay
   if now.weekday() in [4,5] or now.hour < 9 or now.hour >= 21 or (now.hour == 9 and now.minute < 30):
     filtered_halls["John Jay"] = "Closed"
   #jjs
@@ -173,6 +123,67 @@ def index():
       (now.weekday() == 3 and (now.hour < 11 or now.hour >= 23 or now.hour in [14,15,16,17,18]))):
     filtered_halls["Fac Shack"] = "Closed"
 
+    return filtered_halls
+
+def dummy_food():
+  #filling a dictionary to look like what a real halls dictionary would be.
+  #using this to populate index.html
+  
+  johnjayfood={ 
+    "grill": {"items": ["pancakes", "waffles"], "hours":(time(9,30), time(14,0))},
+    "pasta station": {"items": ["pasta 1", "pasta 2"], "hours": (time(14,0), time(21,0))},
+    "main line": {"items":["entree", "vegetable", "rice"], "hours":(time(14,0), time(21,0))}
+  }
+  jjsfood={
+    "burger station": {"items":["burgers", "grilled cheese"],"hours":(time(0,0), time(23,59))},
+    "fried slop station": {"items":["fried slop"],"hours":(time(0,0),time(23,59))}
+  }
+  ferrisfood={
+    "action station": {"items":["chunky monkey dinner waffles"],"hours":(time(17,0),time(20,0))},
+    "main line": {"items":["entree", "vegetable", "rice"],"hours":(time(17,0),time(20,0))}
+  }
+  fachousefood={
+    "food": {"items":["salmon", "rice", "cookies"],"hours":(time(11,0),time(14,30))}
+  }
+  mikesfood={
+    "sandwiches": {"items":["hot", "hot vegan", "cold", "cold vegan"],"hours":(time(10,30),time(22,0))}
+  }
+  donsfood={
+    "breakfast": {"items":["breakfast sandwich"],"hours":(time(8,0),time(11,0))},
+    "pizza": {"items":["pizza 1", "pizza 2"],"hours":(time(11,0),time(18,0))}
+  }
+  dodgefood={
+    "food": {"items":["what do they even serve here"],"hours":(time(11,0),time(18,0))}
+  }
+  facshackfood={
+    "food": {"items":["chicken masala", "chana masala"],"hours":(time(11,0),time(14,30))}
+  }
+  
+  dummy_halls = {
+    "John Jay": johnjayfood,
+    "JJs": jjsfood,
+    "Ferris": ferrisfood,
+    "Faculty House": fachousefood,
+    "Chef Mike's": mikesfood,
+    "Chef Don's": donsfood,
+    "Grace Dodge": dodgefood,
+    "Fac Shack": facshackfood
+  }
+
+  return dummy_halls
+
+@app.route('/') #maps the URL / to index()
+def index():
+  now = datetime.now()
+  halls = cache.get('halls_data') #get the already-scraped data
+  if not halls: #if the scraping didn't work, scrape now
+    for url in cu_urls:
+      scrape_data(url)
+    halls = cache.get('halls_data')
+
+  dummy_halls = dummy_food()
+
+  filtered_halls = closed()
   #filter to only the available stations
   for hall_name, stations in dummy_halls.items():
     if hall_name in filtered_halls and filtered_halls[hall_name] == "Closed":
@@ -186,6 +197,8 @@ def index():
         filtered_halls[hall_name] = filtered_stations
       else:
         filtered_halls[hall_name] = "missing data"
+    
+  # filtered_halls = dummy()
 
   return render_template('index.html', halls=filtered_halls)
     
