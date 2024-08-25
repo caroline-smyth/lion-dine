@@ -48,15 +48,6 @@ def scrape_data(url):
   #doing one daily scraping, but i'm leaving it as placeholder for now.
   try:
     print("entered try")
-    # playing with text element that's already on the screen
-    random_text = driver.find_element(By.XPATH, "//*[@id=cu_dining_locations-182]/div[2]/div[2]/div/div[3]")
-
-    if random_text: 
-      print("Food found!")
-    else:
-      halls[title] = {"breakfast": [], "lunch": [], "dinner": []}
-      print("Missing data")
-
     """
     closed_div = wait.until(EC.visibility_of_element_located(
       (By.CSS_SELECTOR, 'div[data-ng-repeat="displayed_hours in hours.displayed_hours"][data-ng-bind="displayed_hours.title"]')
@@ -89,46 +80,10 @@ def scrape_data(url):
   driver.quit()
   cache.set('halls_data', halls)
 
-def closed():
-  now = datetime.now()
-
-  filtered_halls = {}
-  # CHECKS FOR CLOSED
-  # john jay
-  if now.weekday() in [4,5] or now.hour < 9 or now.hour >= 21 or (now.hour == 9 and now.minute < 30):
-    filtered_halls["John Jay"] = "Closed"
-  #jjs
-  if now.hour in [10,11]:
-    filtered_halls["JJs"] = "Closed"
-  #ferris
-  if ((now.weekday() in [0,4] and (now.hour < 7 or now.hour >= 20 or (now.hour == 7 and now.minute < 30))) or
-      (now.weekday() == 5 and (now.hour < 9 or now.hour >= 20)) or
-      (now.weekday() == 6 and (now.hour < 10 or now.hour >= 20 or now.hour in [15,16]))):
-    filtered_halls["Ferris"] = "Closed"
-  #fac house
-  if now.weekday() > 2 or now.hour < 11 or now.hour > 14 or (now.hour == 14 and now.minute > 30):
-    filtered_halls["Faculty House"] = "Closed"
-  #mikes
-  if now.weekday() in [5,6] or now.hour < 10 or now.hour >= 22 or (now.hour == 10 and now.minute < 30):
-    filtered_halls["Chef Mike's"] = "Closed"
-  #dons
-  if now.weekday() in [5,6] or now.hour < 8 or now.hour >= 18:
-    filtered_halls["Chef Don's"] = "Closed"
-  #grace dodge
-  if now.weekday() in [4,5,6] or now.hour < 11 or now.hour >= 19:
-    filtered_halls["Grace Dodge"] = "Closed"
-  #fac shack
-  if (now.weekday() == 6) or (now.weekday() in [0,1,2] and (now.hour < 11 or now.hour >= 14) or
-      (now.weekday() in [4,5] and (now.hour < 19 or now.hour >= 23)) or
-      (now.weekday() == 3 and (now.hour < 11 or now.hour >= 23 or now.hour in [14,15,16,17,18]))):
-    filtered_halls["Fac Shack"] = "Closed"
-
-    return filtered_halls
-
 def dummy_food():
   #filling a dictionary to look like what a real halls dictionary would be.
   #using this to populate index.html
-  
+
   johnjayfood={ 
     "grill": {"items": ["pancakes", "waffles"], "hours":(time(9,30), time(14,0))},
     "pasta station": {"items": ["pasta 1", "pasta 2"], "hours": (time(14,0), time(21,0))},
@@ -172,19 +127,41 @@ def dummy_food():
 
   return dummy_halls
 
-@app.route('/') #maps the URL / to index()
-def index():
+def closed_missing_filter():
   now = datetime.now()
-  halls = cache.get('halls_data') #get the already-scraped data
-  if not halls: #if the scraping didn't work, scrape now
-    for url in cu_urls:
-      scrape_data(url)
-    halls = cache.get('halls_data')
 
+  filtered_halls = {}
+  # CHECKS FOR CLOSED
+  # john jay
+  if now.weekday() in [4,5] or now.hour < 9 or now.hour >= 21 or (now.hour == 9 and now.minute < 30):
+    filtered_halls["John Jay"] = "Closed"
+  #jjs
+  if now.hour in [10,11]:
+    filtered_halls["JJs"] = "Closed"
+  #ferris
+  if ((now.weekday() in [0,4] and (now.hour < 7 or now.hour >= 20 or (now.hour == 7 and now.minute < 30))) or
+      (now.weekday() == 5 and (now.hour < 9 or now.hour >= 20)) or
+      (now.weekday() == 6 and (now.hour < 10 or now.hour >= 20 or now.hour in [15,16]))):
+    filtered_halls["Ferris"] = "Closed"
+  #fac house
+  if now.weekday() > 2 or now.hour < 11 or now.hour > 14 or (now.hour == 14 and now.minute > 30):
+    filtered_halls["Faculty House"] = "Closed"
+  #mikes
+  if now.weekday() in [5,6] or now.hour < 10 or now.hour >= 22 or (now.hour == 10 and now.minute < 30):
+    filtered_halls["Chef Mike's"] = "Closed"
+  #dons
+  if now.weekday() in [5,6] or now.hour < 8 or now.hour >= 18:
+    filtered_halls["Chef Don's"] = "Closed"
+  #grace dodge
+  if now.weekday() in [4,5,6] or now.hour < 11 or now.hour >= 19:
+    filtered_halls["Grace Dodge"] = "Closed"
+  #fac shack
+  if (now.weekday() == 6) or (now.weekday() in [0,1,2] and (now.hour < 11 or now.hour >= 14) or
+      (now.weekday() in [4,5] and (now.hour < 19 or now.hour >= 23)) or
+      (now.weekday() == 3 and (now.hour < 11 or now.hour >= 23 or now.hour in [14,15,16,17,18]))):
+    filtered_halls["Fac Shack"] = "Closed"
+  
   dummy_halls = dummy_food()
-
-  filtered_halls = closed()
-  #filter to only the available stations
   for hall_name, stations in dummy_halls.items():
     if hall_name in filtered_halls and filtered_halls[hall_name] == "Closed":
       continue
@@ -197,9 +174,22 @@ def index():
         filtered_halls[hall_name] = filtered_stations
       else:
         filtered_halls[hall_name] = "missing data"
-    
-  # filtered_halls = dummy()
+  
+  return filtered_halls
 
+@app.route('/') #maps the URL / to index()
+def index():
+  now = datetime.now()
+  halls = cache.get('halls_data') #get the already-scraped data
+  if not halls: #if the scraping didn't work, scrape now
+    for url in cu_urls:
+      scrape_data(url)
+    halls = cache.get('halls_data')
+
+  dummy_halls = dummy_food() # returns dictionary of dummy food items
+
+  filtered_halls = closed_missing_filter() # returns closed/open but missing/meal info for each dining hall
+    
   return render_template('index.html', halls=filtered_halls)
     
 @app.route('/breakfast')
@@ -214,7 +204,7 @@ def lunch():
 def dinner():
   return render_template('dinner.html')
 
-#this schedules scraping to happen at midnight
+# this schedules scraping to happen at midnight
 def schedule_scraping():
   scheduler = BackgroundScheduler()
   for url in cu_urls:
