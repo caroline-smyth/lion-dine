@@ -20,58 +20,28 @@
       <a href="/dinner">Dinner</a>
     </div>
     <div class="container">
-      <a href="https://dining.columbia.edu/content/john-jay-dining-hall" target="_blank">
-        <div class="col">
-          <h3>John Jay</h3>
-          
-        </div>
-      </a>
-      <a href="https://dining.columbia.edu/content/jjs-place-0" target="_blank">
-        <div class="col">
-          <h3>JJs</h3>
-        </div>
-      </a>
-      <a href="https://dining.columbia.edu/content/ferris-booth-commons-0" target="_blank">
-        <div class="col">
-          <h3>Ferris</h3>
-        </div>
-      </a>
-      <a href="https://dining.columbia.edu/content/faculty-house-0" target="_blank">
-        <div class="col">
-          <h3>Fac House</h3>
-        </div>
-      </a>
-      <a href="https://dining.columbia.edu/chef-mikes" target="_blank">
-        <div class="col">
-          <h3>Chef Mike's</h3>
-        </div>
-      </a>
-      <a href="https://dining.columbia.edu/content/chef-dons-pizza-pi" target="_blank">
-        <div class="col">
-          <h3>Chef Don's</h3>
-        </div>
-      </a>
-      <a href="https://dining.columbia.edu/content/grace-dodge-dining-hall-0" target="_blank">
-        <div class="col">
-          <h3>Grace Dodge</h3>
-        </div>
-      </a>
-      <a href="https://dining.columbia.edu/content/fac-shack" target="_blank">
-        <div class="col">
-          <h3>Fac Shack</h3>
-        </div>
-      </a>
-      <a href="https://dineoncampus.com/barnard" target="_blank">
-        <div class="col">
-          <h3>Diana</h3>
-        </div>
-      </a>
-      <a href="https://dineoncampus.com/barnard/whats-on-the-menu" target="_blank">
-        <div class="col">
-          <h3>Hewitt</h3>
-        </div>
-      </a>
-      <!--<div>{{halls}} </div>-->
-    </div>
+      {% for hall_name, stations in halls.items() %}
+      <div class="col">
+        <a href="https://dining.columbia.edu/">
+          <h3>{{ hall_name }}</h3>
+        </a>
+        {% if stations == "Closed" or stations == "Missing Data" %}
+          <div class="menu">
+            {{ stations }}
+          </div>
+        
+        {% else %}
+          <div class="menu">
+            {% for station_name, items in stations.items() %}
+              <div class="food-type">{{ station_name }}</div>
+              {% for item in items %}
+                <div class="food-name">{{ item }}</div>
+              {% endfor %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+  </div>
   </body>
 </html>

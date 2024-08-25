@@ -56,7 +56,7 @@ def scrape_data(url):
     p_texts = [p.text.strip() for p in p_elements]
     print(p_texts)
 
-    halls[name] = p_texts
+    # halls[name] = p_texts
     
 
   except Exception as e:
@@ -66,16 +66,16 @@ def scrape_data(url):
   time.sleep(random.uniform(2,10)) #random sleep for anti-detection
 
   driver.quit()
-  cache.set('halls_data', halls)
+  cache.set('halls', halls)
 
 
 @app.route('/') #maps the URL / to index()
 def index():
-  halls = cache.get('halls_data') #get the already-scraped data
+  halls = cache.get('halls') #get the already-scraped data
   if not halls: #if the scraping didn't work, scrape now
     for url in cu_urls:
       scrape_data(url)
-    halls = cache.get('halls_data')
+    halls = cache.get('halls')
   return render_template('index.html', halls_data=halls)
     
 @app.route('/breakfast')
