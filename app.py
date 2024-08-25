@@ -186,8 +186,6 @@ def index():
       scrape_data(url)
     halls = cache.get('halls_data')
 
-  dummy_halls = dummy_food() # returns dictionary of dummy food items
-
   filtered_halls = closed_missing_filter() # returns closed/open but missing/meal info for each dining hall
     
   return render_template('index.html', halls=filtered_halls)
