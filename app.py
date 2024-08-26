@@ -102,8 +102,8 @@ def dummy_food():
     "Main Line":{"items":["Apple Pancakes", "Bacon", "Scrambled Eggs", "Hash Browns", "Gravy"], "hours":(time(7,30),time(14,0)),"meals":["breakfast","lunch"]},
     "Vegan Station":{"items":["Beyond Sausage", "JustEgg", "Beets"], "hours":(time(7,30),time(14,0)),"meals":["breakfast","lunch"]}, 
     "Fusion Station":{"items":["Tuna Poke Bowl", "Chives", "Carrots", "Steamed Vegetables"], "hours":(time(14,0),time(17,0)),"meals":["lunch"]},
-    "action station": {"items":["chunky monkey dinner waffles"],"hours":(time(17,0),time(20,0)),"meals":["dinner"]},
-    "main line": {"items":["entree", "vegetable", "rice"],"hours":(time(17,0),time(20,0)),"meals":["dinner"]}
+    "Action Station": {"items":["Chunky Monkey Dinner Waffles"],"hours":(time(17,0),time(20,0)),"meals":["dinner"]},
+    "Main Line": {"items":["Chicken", "Green Beans", "Cornbread", "Rice"],"hours":(time(17,0),time(20,0)),"meals":["dinner"]}
   }
   fachousefood={
     "Main Line": {"items":["Salmon", "Corn Nuggets", "Rice", "Greek Salad"],"hours":(time(11,0),time(14,30)),"meals":["lunch"]},
@@ -198,9 +198,6 @@ def current_open_stations():
   
   return filtered_halls
 
-
-
-
 def open_at_meal(meal):
   now = datetime.now()
   halls = cache.get('halls_data') #get the already-scraped data
@@ -259,8 +256,6 @@ def open_at_meal(meal):
       filtered_halls[hall_name] = "Missing Data"
   
   return filtered_halls
-
-
 
 @app.route('/') #maps the URL / to index()
 def index():
