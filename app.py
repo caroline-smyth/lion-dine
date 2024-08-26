@@ -137,15 +137,17 @@ def dummy_food():
 
   return dummy_halls
 
-def closed_missing_filter():
+def open_stations():
   now = datetime.now()
   halls = cache.get('halls_data') #get the already-scraped data
   #if not halls: #if the scraping didn't work, scrape now
     #for url in cu_urls:
       #scrape_data(url)
     #halls = cache.get('halls_data')
-  filtered_halls = {}
+  filtered_halls = {} #to be filled
+
   # CHECKS FOR CLOSED
+
   # john jay
   if now.weekday() in [4,5] or now.hour < 9 or now.hour >= 21 or (now.hour == 9 and now.minute < 30):
     filtered_halls["John Jay"] = "Closed"
@@ -177,6 +179,8 @@ def closed_missing_filter():
   
   dummy_halls = dummy_food()
 
+  #for each dining hall, skipping the closed ones, find each
+  #station that's currently open and add it to the filtered dictionary
   for hall_name, stations in dummy_halls.items():
     if hall_name in filtered_halls and filtered_halls[hall_name] == "Closed":
       continue
@@ -194,23 +198,23 @@ def closed_missing_filter():
 
 @app.route('/') #maps the URL / to index()
 def index():
-  filtered_halls = closed_missing_filter() # returns closed/missing data/meal info for each dining hall
+  filtered_halls = open_stations() # returns closed/missing data/meal info for each dining hall
     
   return render_template('index.html', halls=filtered_halls)
     
 @app.route('/breakfast')
 def breakfast():
-  filtered_halls = closed_missing_filter()
+  filtered_halls = open_stations()
   return render_template('breakfast.html', halls=filtered_halls)
 
 @app.route('/lunch')
 def lunch():
-  filtered_halls = closed_missing_filter()
+  filtered_halls = open_stations()
   return render_template('lunch.html', halls=filtered_halls)
 
 @app.route('/dinner')
 def dinner():
-  filtered_halls = closed_missing_filter()
+  filtered_halls = open_stations()
   return render_template('dinner.html', halls=filtered_halls)
 
 # this schedules scraping to happen at midnight
