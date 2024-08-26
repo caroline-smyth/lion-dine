@@ -63,6 +63,7 @@ def scrape_data(url):
   except:
     print("entered except")
   """
+  this should go in try 
   #i think items and stations holds all the data?
   items = wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'meal-items')))
   
@@ -89,34 +90,40 @@ def dummy_food():
   #using this to populate index.html
 
   johnjayfood={ 
-    "grill": {"items": ["pancakes", "waffles"], "hours":(time(9,30), time(14,0))},
-    "pasta station": {"items": ["pasta 1", "pasta 2"], "hours": (time(14,0), time(21,0))},
-    "main line": {"items":["entree", "vegetable", "rice"], "hours":(time(14,0), time(21,0))}
+    "Wilma's Grill": {"items": ["Pancakes", "Waffles", "Omelettes"], "hours":(time(9,30), time(14,0))},
+    "Pasta Station": {"items": ["Cavatappi", "Whole Wheat Penne", "Marinara Sauce", "Parmesan Cheese"], "hours": (time(14,0), time(21,0))},
+    "Main Line": {"items":["Chicken", "Asparagus", "Wild Rice"], "hours":(time(14,0), time(21,0))},
+    "Dessert": {"items":["Lemon Pie", "Assorted Cookies", "Chocolate Pudding"], "hours":(time(14,0), time(21,0))}
   }
   jjsfood={
-    "burger station": {"items":["burgers", "grilled cheese"],"hours":(time(0,0), time(23,59))},
-    "fried slop station": {"items":["fried slop"],"hours":(time(0,0),time(23,59))}
+    "Grill Station": {"items":["Burgers", "Grilled Cheese"],"hours":(time(0,0), time(23,59))},
+    "Custom Line": {"items":["Pancakes", "French Toast", "Eggs"],"hours":(time(0,0), time(23,59))},
+    "Grab and Go": {"items":["Mozzerella Sticks", "Dino Nuggets", "Onion Rings"],"hours":(time(0,0),time(23,59))}
   }
   ferrisfood={
-    "action station":{"items":["apple pancakes", "beyond sausage", "bacon", "scrambled eggs"], "hours":(time(7,30),time(14,0))},
+    "Main Line":{"items":["Apple Pancakes", "Bacon", "Scrambled Eggs", "Hash Browns", "Gravy"], "hours":(time(7,30),time(14,0))},"Vegan Station":{"items":["Beyond Sausage", "JustEgg", "Beets"], "hours":(time(7,30),time(14,0))},
     "action station": {"items":["chunky monkey dinner waffles"],"hours":(time(17,0),time(20,0))},
     "main line": {"items":["entree", "vegetable", "rice"],"hours":(time(17,0),time(20,0))}
   }
   fachousefood={
-    "food": {"items":["salmon", "rice", "cookies"],"hours":(time(11,0),time(14,30))}
+    "Main Line": {"items":["Salmon", "Corn Nuggets", "Rice", "Greek Salad"],"hours":(time(11,0),time(14,30))},
+    "Dessert": {"items":["Chocolate Chip Cookies", "Brownies"],"hours":(time(11,0),time(14,30))}
   }
   mikesfood={
-    "sandwiches": {"items":["hot", "hot vegan", "cold", "cold vegan"],"hours":(time(10,30),time(22,0))}
+    "Hot": {"items":["Buffalo Chicken"],"hours":(time(10,30),time(22,0))},
+    "Hot Vegan": {"items":["Vegan Buffalo Chicken"],"hours":(time(10,30),time(22,0))},
+    "Cold": {"items":["Prosciutto and Fig"],"hours":(time(10,30),time(22,0))},
+    "Cold Vegan": {"items":["Portobello Mushroom"],"hours":(time(10,30),time(22,0))},
   }
   donsfood={
-    "breakfast": {"items":["breakfast sandwich"],"hours":(time(8,0),time(11,0))},
-    "pizza": {"items":["pizza 1", "pizza 2"],"hours":(time(11,0),time(18,0))}
+    "Breakfast": {"items":["Bacon Egg and Cheese Sandwich"],"hours":(time(8,0),time(11,0))},
+    "Pizza": {"items":["Margarita", "Pepperoni"],"hours":(time(11,0),time(18,0))}
   }
   dodgefood={
-    "food": {"items":["what do they even serve here"],"hours":(time(11,0),time(18,0))}
+    "Grab and Go": {"items":["Ramen Bowl"],"hours":(time(11,0),time(18,0))}
   }
   facshackfood={
-    "food": {"items":["chicken masala", "chana masala"],"hours":(time(11,0),time(14,30))}
+    "Food": {"items":["Chicken Tikka Masala", "Chana Masala"],"hours":(time(11,0),time(14,30))}
   }
   
   dummy_halls = {
