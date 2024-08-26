@@ -88,40 +88,42 @@ def dummy_food():
   #using this to populate index.html
 
   johnjayfood={ 
-    "Wilma's Grill": {"items": ["Pancakes", "Waffles", "Omelettes"], "hours":(time(9,30), time(14,0))},
-    "Pasta Station": {"items": ["Cavatappi", "Whole Wheat Penne", "Marinara Sauce", "Parmesan Cheese"], "hours": (time(14,0), time(21,0))},
-    "Main Line": {"items":["Chicken", "Asparagus", "Wild Rice"], "hours":(time(14,0), time(21,0))},
-    "Dessert": {"items":["Lemon Pie", "Assorted Cookies", "Chocolate Pudding"], "hours":(time(14,0), time(21,0))}
+    "Wilma's Grill": {"items": ["Pancakes", "Waffles", "Omelettes"], "hours":(time(9,30), time(14,0)), "meals":["breakfast"]},
+    "Pasta Station": {"items": ["Cavatappi", "Whole Wheat Penne", "Marinara Sauce", "Parmesan Cheese"], "hours": (time(14,0), time(21,0)),"meals":["lunch","dinner"]},
+    "Main Line": {"items":["Chicken", "Asparagus", "Wild Rice"], "hours":(time(14,0), time(21,0)), "meals":["lunch","dinner"]},
+    "Dessert": {"items":["Lemon Pie", "Assorted Cookies", "Chocolate Pudding"], "hours":(time(14,0), time(21,0)), "meals":["lunch","dinner"]}
   }
   jjsfood={
-    "Grill Station": {"items":["Burgers", "Grilled Cheese"],"hours":(time(0,0), time(23,59))},
-    "Custom Line": {"items":["Pancakes", "French Toast", "Eggs"],"hours":(time(0,0), time(23,59))},
-    "Grab and Go": {"items":["Mozzerella Sticks", "Dino Nuggets", "Onion Rings"],"hours":(time(0,0),time(23,59))}
+    "Grill Station": {"items":["Burgers", "Grilled Cheese"],"hours":(time(0,0), time(23,59)),"meals":["breakfast","lunch","dinner"]},
+    "Custom Line": {"items":["Pancakes", "French Toast", "Eggs"],"hours":(time(0,0), time(23,59)),"meals":["breakfast","lunch","dinner"]},
+    "Grab and Go": {"items":["Mozzerella Sticks", "Dino Nuggets", "Onion Rings"],"hours":(time(0,0),time(23,59)),"meals":["breakfast","lunch","dinner"]}
   }
   ferrisfood={
-    "Main Line":{"items":["Apple Pancakes", "Bacon", "Scrambled Eggs", "Hash Browns", "Gravy"], "hours":(time(7,30),time(14,0))},"Vegan Station":{"items":["Beyond Sausage", "JustEgg", "Beets"], "hours":(time(7,30),time(14,0))}, "Fusion Station":{"items":["Tuna Poke Bowl", "Chives", "Carrots", "Steamed Vegetables"], "hours":(time(14,0),time(17,0))},
-    "action station": {"items":["chunky monkey dinner waffles"],"hours":(time(17,0),time(20,0))},
-    "main line": {"items":["entree", "vegetable", "rice"],"hours":(time(17,0),time(20,0))}
+    "Main Line":{"items":["Apple Pancakes", "Bacon", "Scrambled Eggs", "Hash Browns", "Gravy"], "hours":(time(7,30),time(14,0)),"meals":["breakfast","lunch"]},
+    "Vegan Station":{"items":["Beyond Sausage", "JustEgg", "Beets"], "hours":(time(7,30),time(14,0)),"meals":["breakfast","lunch"]}, 
+    "Fusion Station":{"items":["Tuna Poke Bowl", "Chives", "Carrots", "Steamed Vegetables"], "hours":(time(14,0),time(17,0)),"meals":["lunch"]},
+    "action station": {"items":["chunky monkey dinner waffles"],"hours":(time(17,0),time(20,0)),"meals":["dinner"]},
+    "main line": {"items":["entree", "vegetable", "rice"],"hours":(time(17,0),time(20,0)),"meals":["dinner"]}
   }
   fachousefood={
-    "Main Line": {"items":["Salmon", "Corn Nuggets", "Rice", "Greek Salad"],"hours":(time(11,0),time(14,30))},
-    "Dessert": {"items":["Chocolate Chip Cookies", "Brownies"],"hours":(time(11,0),time(14,30))}
+    "Main Line": {"items":["Salmon", "Corn Nuggets", "Rice", "Greek Salad"],"hours":(time(11,0),time(14,30)),"meals":["lunch"]},
+    "Dessert": {"items":["Chocolate Chip Cookies", "Brownies"],"hours":(time(11,0),time(14,30)),"meals":["lunch"]}
   }
   mikesfood={
-    "Hot": {"items":["Buffalo Chicken"],"hours":(time(10,30),time(22,0))},
-    "Hot Vegan": {"items":["Vegan Buffalo Chicken"],"hours":(time(10,30),time(22,0))},
-    "Cold": {"items":["Prosciutto and Fig"],"hours":(time(10,30),time(22,0))},
-    "Cold Vegan": {"items":["Portobello Mushroom"],"hours":(time(10,30),time(22,0))},
+    "Hot": {"items":["Buffalo Chicken"],"hours":(time(10,30),time(22,0)),"meals":["lunch"]},
+    "Hot Vegan": {"items":["Vegan Buffalo Chicken"],"hours":(time(10,30),time(22,0)),"meals":["lunch"]},
+    "Cold": {"items":["Prosciutto and Fig"],"hours":(time(10,30),time(22,0)),"meals":["lunch"]},
+    "Cold Vegan": {"items":["Portobello Mushroom"],"hours":(time(10,30),time(22,0)),"meals":["lunch"]},
   }
   donsfood={
-    "Breakfast": {"items":["Bacon Egg and Cheese Sandwich"],"hours":(time(8,0),time(11,0))},
-    "Pizza": {"items":["Margarita", "Pepperoni"],"hours":(time(11,0),time(18,0))}
+    "Breakfast": {"items":["Bacon Egg and Cheese Sandwich"],"hours":(time(8,0),time(11,0)),"meals":["breakfast"]},
+    "Pizza": {"items":["Margarita", "Pepperoni"],"hours":(time(11,0),time(18,0)),"meals":["lunch","dinner"]}
   }
   dodgefood={
-    "Grab and Go": {"items":["Ramen Bowl"],"hours":(time(11,0),time(18,0))}
+    "Grab and Go": {"items":["Ramen Bowl"],"hours":(time(11,0),time(18,0)),"meals":["lunch","dinner"]}
   }
   facshackfood={
-    "Food": {"items":["Chicken Tikka Masala", "Chana Masala"],"hours":(time(11,0),time(14,30))}
+    "Lunch": {"items":["Chicken Tikka Masala", "Chana Masala"],"hours":(time(11,0),time(14,30)),"meals":["lunch"]}
   }
   
   dummy_halls = {
