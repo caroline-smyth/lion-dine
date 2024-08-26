@@ -61,3 +61,15 @@ h3 {
   font-weight: bold;
   margin-top: 10px;
 }
+
+.meal-name{
+  color: black;
+  font-size: 28px;
+  cursor: pointer;
+  font-style: normal;
+  transition: color 0.15s;
+}
+
+.meal-name:hover{
+  color: rgb(105, 179, 231);
+}
