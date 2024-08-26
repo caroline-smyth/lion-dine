@@ -139,7 +139,7 @@ def dummy_food():
 
   return dummy_halls
 
-def open_stations():
+def current_open_stations():
   now = datetime.now()
   halls = cache.get('halls_data') #get the already-scraped data
   #if not halls: #if the scraping didn't work, scrape now
@@ -191,33 +191,97 @@ def open_stations():
       open_time, close_time = station_info["hours"]
       if open_time <= now.time() <= close_time:
         filtered_stations[station_name] = station_info["items"]
-      if filtered_stations:
-        filtered_halls[hall_name] = filtered_stations
-      else:
-        filtered_halls[hall_name] = "Missing Data"
+    if filtered_stations:
+      filtered_halls[hall_name] = filtered_stations
+    else:
+      filtered_halls[hall_name] = "Missing Data"
   
   return filtered_halls
 
+
+
+
+def open_at_meal(meal):
+  now = datetime.now()
+  halls = cache.get('halls_data') #get the already-scraped data
+  #if not halls: #if the scraping didn't work, scrape now
+    #for url in cu_urls:
+      #scrape_data(url)
+    #halls = cache.get('halls_data')
+  filtered_halls = {} #to be filled
+
+  # CHECKS FOR CLOSED
+
+  # john jay
+  if now.weekday() in [4,5] or now.hour < 9 or now.hour >= 21 or (now.hour == 9 and now.minute < 30):
+    filtered_halls["John Jay"] = "Closed"
+  #jjs
+  if now.hour in [10,11]:
+    filtered_halls["JJ's"] = "Closed"
+  #ferris
+  if ((now.weekday() in [0,4] and (now.hour < 7 or now.hour >= 20 or (now.hour == 7 and now.minute < 30))) or
+      (now.weekday() == 5 and (now.hour < 9 or now.hour >= 20)) or
+      (now.weekday() == 6 and (now.hour < 10 or now.hour >= 20 or now.hour in [15,16]))):
+    filtered_halls["Ferris"] = "Closed"
+  #fac house
+  if now.weekday() > 2 or now.hour < 11 or now.hour > 14 or (now.hour == 14 and now.minute > 30):
+    filtered_halls["Faculty House"] = "Closed"
+  #mikes
+  if now.weekday() in [5,6] or now.hour < 10 or now.hour >= 22 or (now.hour == 10 and now.minute < 30):
+    filtered_halls["Chef Mike's"] = "Closed"
+  #dons
+  if now.weekday() in [5,6] or now.hour < 8 or now.hour >= 18:
+    filtered_halls["Chef Don's"] = "Closed"
+  #grace dodge
+  if now.weekday() in [4,5,6] or now.hour < 11 or now.hour >= 19:
+    filtered_halls["Grace Dodge"] = "Closed"
+  #fac shack
+  if (now.weekday() == 6) or (now.weekday() in [0,1,2] and (now.hour < 11 or now.hour >= 14) or
+      (now.weekday() in [4,5] and (now.hour < 19 or now.hour >= 23)) or
+      (now.weekday() == 3 and (now.hour < 11 or now.hour >= 23 or now.hour in [14,15,16,17,18]))):
+    filtered_halls["Fac Shack"] = "Closed"
+  
+  dummy_halls = dummy_food()
+
+  #for each dining hall, skipping the closed ones, find each
+  #station that's currently open and add it to the filtered dictionary
+  for hall_name, stations in dummy_halls.items():
+    if hall_name in filtered_halls and filtered_halls[hall_name] == "Closed":
+      continue
+    filtered_stations = {}
+    for station_name, station_info in stations.items():
+      meals = station_info["meals"]
+      if meal in meals:
+        filtered_stations[station_name] = station_info["items"]
+    if filtered_stations:
+      filtered_halls[hall_name] = filtered_stations
+    else:
+      filtered_halls[hall_name] = "Missing Data"
+  
+  return filtered_halls
+
+
+
 @app.route('/') #maps the URL / to index()
 def index():
-  filtered_halls = open_stations() # returns closed/missing data/meal info for each dining hall
+  filtered_halls = current_open_stations() # returns closed/missing data/meal info for each dining hall
     
   return render_template('index.html', halls=filtered_halls)
     
 @app.route('/breakfast')
 def breakfast():
-  filtered_halls = open_stations()
-  return render_template('breakfast.html', halls=filtered_halls)
+  filtered_halls = open_at_meal("breakfast")
+  return render_template('index.html', halls=filtered_halls)
 
 @app.route('/lunch')
 def lunch():
-  filtered_halls = open_stations()
-  return render_template('lunch.html', halls=filtered_halls)
+  filtered_halls = open_at_meal("lunch")
+  return render_template('index.html', halls=filtered_halls)
 
 @app.route('/dinner')
 def dinner():
-  filtered_halls = open_stations()
-  return render_template('dinner.html', halls=filtered_halls)
+  filtered_halls = open_at_meal("dinner")
+  return render_template('index.html', halls=filtered_halls)
 
 # this schedules scraping to happen at midnight
 def schedule_scraping():
