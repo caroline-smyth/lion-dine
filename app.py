@@ -43,8 +43,6 @@ def scrape_data(url):
   wait = WebDriverWait(driver, 60)
   title = driver.title
 
-  #check if it's closed. this logic will have to change now that we're
-  #doing one daily scraping, but i'm leaving it as placeholder for now.
   try:
 
     hall_name = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "node-title.ng-binding")))
@@ -58,7 +56,7 @@ def scrape_data(url):
     p_texts = [p.text.strip() for p in p_elements]
     print(p_texts)
 
-    #halls[name] = p_texts
+    # halls[name] = p_texts
 
   except:
     print("entered except")
@@ -101,7 +99,7 @@ def dummy_food():
     "Grab and Go": {"items":["Mozzerella Sticks", "Dino Nuggets", "Onion Rings"],"hours":(time(0,0),time(23,59))}
   }
   ferrisfood={
-    "Main Line":{"items":["Apple Pancakes", "Bacon", "Scrambled Eggs", "Hash Browns", "Gravy"], "hours":(time(7,30),time(14,0))},"Vegan Station":{"items":["Beyond Sausage", "JustEgg", "Beets"], "hours":(time(7,30),time(14,0))},
+    "Main Line":{"items":["Apple Pancakes", "Bacon", "Scrambled Eggs", "Hash Browns", "Gravy"], "hours":(time(7,30),time(14,0))},"Vegan Station":{"items":["Beyond Sausage", "JustEgg", "Beets"], "hours":(time(7,30),time(14,0))}, "Fusion Station":{"items":["Tuna Poke Bowl", "Chives", "Carrots", "Steamed Vegetables"], "hours":(time(14,0),time(17,0))},
     "action station": {"items":["chunky monkey dinner waffles"],"hours":(time(17,0),time(20,0))},
     "main line": {"items":["entree", "vegetable", "rice"],"hours":(time(17,0),time(20,0))}
   }
@@ -128,7 +126,7 @@ def dummy_food():
   
   dummy_halls = {
     "John Jay": johnjayfood,
-    "JJs": jjsfood,
+    "JJ's": jjsfood,
     "Ferris": ferrisfood,
     "Faculty House": fachousefood,
     "Chef Mike's": mikesfood,
