@@ -153,7 +153,7 @@ def closed_missing_filter():
     filtered_halls["John Jay"] = "Closed"
   #jjs
   if now.hour in [10,11]:
-    filtered_halls["JJs"] = "Closed"
+    filtered_halls["JJ's"] = "Closed"
   #ferris
   if ((now.weekday() in [0,4] and (now.hour < 7 or now.hour >= 20 or (now.hour == 7 and now.minute < 30))) or
       (now.weekday() == 5 and (now.hour < 9 or now.hour >= 20)) or
