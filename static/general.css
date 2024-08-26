@@ -27,11 +27,11 @@ a:hover{
   flex-direction: column;
   transition: color 0.15s;
   font-size: 24px;
-  align-items: center;
+  align-items: left;
 }
 .menu {
   display: flex;
-  align-items: center;
+  align-items: left;
   flex-direction: column;
 }
 
@@ -53,7 +53,7 @@ button {
 }
 
 h3 {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   margin-top: 40px;
 }
 
