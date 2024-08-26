@@ -140,10 +140,10 @@ def dummy_food():
 def closed_missing_filter():
   now = datetime.now()
   halls = cache.get('halls_data') #get the already-scraped data
-  if not halls: #if the scraping didn't work, scrape now
-    for url in cu_urls:
-      scrape_data(url)
-    halls = cache.get('halls_data')
+  #if not halls: #if the scraping didn't work, scrape now
+    #for url in cu_urls:
+      #scrape_data(url)
+    #halls = cache.get('halls_data')
   filtered_halls = {}
   # CHECKS FOR CLOSED
   # john jay
@@ -221,6 +221,6 @@ def schedule_scraping():
   scheduler.start()
 
 if __name__ == '__main__':
-   schedule_scraping()
+   #schedule_scraping()
    app.run(debug=True)
 
