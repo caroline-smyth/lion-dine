@@ -266,17 +266,17 @@ def index():
 @app.route('/breakfast')
 def breakfast():
   filtered_halls = open_at_meal("breakfast")
-  return render_template('index.html', halls=filtered_halls)
+  return render_template('index.html', halls=filtered_halls, meal="breakfast")
 
 @app.route('/lunch')
 def lunch():
   filtered_halls = open_at_meal("lunch")
-  return render_template('index.html', halls=filtered_halls)
+  return render_template('index.html', halls=filtered_halls, meal="lunch")
 
 @app.route('/dinner')
 def dinner():
   filtered_halls = open_at_meal("dinner")
-  return render_template('index.html', halls=filtered_halls)
+  return render_template('index.html', halls=filtered_halls, meal="dinner")
 
 # this schedules scraping to happen at midnight
 def schedule_scraping():
