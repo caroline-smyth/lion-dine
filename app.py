@@ -29,6 +29,22 @@ cu_urls = [
 
 # this does the scraping and converts what is scraped into variables that can be displayed using HTML/CSS/Js
 # Barnard pages need to be scraped separately. Those sites are shit, so need to figure out sm else 
+def hewitt_scrape():
+  driver = webdriver.Chrome()
+  hewitt = {}
+
+  url = "https://dineoncampus.com/barnard/whats-on-the-menu"
+  driver.get(url)
+
+  wait = WebDriverWait(driver, 40)
+  # menu_element = driver.find_element(By.CLASS_NAME, "table.b-table.menu-items.b-table-caption-top.b-table-stacked-md")
+
+  menu_element = driver.find_element(By.TAG_NAME, "table")
+
+  caption = menu_element.find_element(By.TAG_NAME, "caption").text
+
+  print(caption)
+
 def scrape_data(url):
   # options = webdriver.ChromeOptions()
   # options.headless = True
@@ -232,6 +248,7 @@ def open_at_meal(meal):
 
 @app.route('/') #maps the URL / to index()
 def index():
+  
   filtered_halls = current_open_stations() # returns closed/missing data/meal info for each dining hall
     
   return render_template('index.html', halls=filtered_halls)
