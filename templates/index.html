@@ -25,9 +25,9 @@
         <div class="meal-name">Lunch</div>
         <div class="meal-name">Dinner</div>
         -->
-        <a href="/breakfast">Breakfast</a>
-        <a href="/lunch">Lunch</a>
-        <a href="/dinner">Dinner</a>
+        <a href="/breakfast" class="meal-name {% if meal == 'breakfast' %}italicized{% endif %}">Breakfast</a>
+        <a href="/lunch" class="meal-name {% if meal == 'lunch' %}italicized{% endif %}">Lunch</a>
+        <a href="/dinner" class="meal-name {% if meal == 'dinner' %}italicized{% endif %}">Dinner</a>
       </div> 
       <div class="container">
         {% for hall_name, stations in halls.items() %}

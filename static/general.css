@@ -73,3 +73,7 @@ h3 {
 .meal-name:hover{
   color: rgb(105, 179, 231);
 }
+
+.italicized{
+  font-style: italic;
+}
