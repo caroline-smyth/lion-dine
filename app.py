@@ -210,6 +210,7 @@ def open_at_meal(meal):
   # CHECKS FOR CLOSED
 
   # john jay
+  """
   if now.weekday() in [4,5] or now.hour < 9 or now.hour >= 21 or (now.hour == 9 and now.minute < 30):
     filtered_halls["John Jay"] = "Closed"
   #jjs
@@ -237,7 +238,7 @@ def open_at_meal(meal):
       (now.weekday() in [4,5] and (now.hour < 19 or now.hour >= 23)) or
       (now.weekday() == 3 and (now.hour < 11 or now.hour >= 23 or now.hour in [14,15,16,17,18]))):
     filtered_halls["Fac Shack"] = "Closed"
-  
+  """
   dummy_halls = dummy_food()
 
   #for each dining hall, skipping the closed ones, find each
