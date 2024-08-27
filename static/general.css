@@ -74,6 +74,6 @@ h3 {
   color: rgb(105, 179, 231);
 }
 
-.italicized{
-  font-style: italic;
+.meal-name.italicized {
+  font-style: italic !important;
 }
