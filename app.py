@@ -68,9 +68,7 @@ def scrape_hewitt():
   
 
 def scrape_data(url):
-  # options = webdriver.ChromeOptions()
-  # options.headless = True
-  # driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+  
   driver = webdriver.Chrome()
   halls = {}
  
@@ -289,7 +287,7 @@ def open_at_meal(meal):
 @app.route('/') #maps the URL / to index()
 def index():
   
-  scrape_hewitt()
+  # scrape_hewitt()
   filtered_halls = current_open_stations() # returns closed/missing data/meal info for each dining hall
     
   return render_template('index.html', halls=filtered_halls)
