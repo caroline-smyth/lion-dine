@@ -30,7 +30,7 @@
           <a href="https://dining.columbia.edu/">
             <h3>{{ hall_name }}</h3>
           </a>
-          {% if stations == "Closed" or stations == "Missing Data" %}
+          {% if stations is string and stations.startswith("Closed") or stations == "Missing Data" %}
             <div class="menu">
               {{ stations }}
             </div>
