@@ -237,13 +237,33 @@ def open_at_meal(meal):
   # CHECKS FOR CLOSED
 
   # john jay
+  if now.weekday() in [4,5]:
+    filtered_halls["John Jay"] = f"Closed for {meal}"
+  # ferris and jjs open for every meal every day?
+  # fac house
+  if now.weekday() > 2 or meal == "breakfast" or meal == "dinner":
+    filtered_halls["Faculty House"] = f"Closed for {meal}"
+  #mikes
+  if now.weekday() in [5,6] or meal == "breakfast":
+    filtered_halls["Chef Mike's"] = f"Closed for {meal}"
+  #don's
+  if now.weekday() in [5,6]:
+    filtered_halls["Chef Don's"] = f"Closed for {meal}"
+  #grace dodge
+  if now.weekday() in [4,5,6]:
+    filtered_halls["Grace Dodge"] = f"Closed for {meal}"
+  #fac shack
+  if not ((now.weekday() in [0,1,2,3] and meal == "lunch") or (now.weekday() in [3,4,5] and meal == "dinner")):
+    filtered_halls["Fac Shack"] = f"Closed for {meal}"
+
+
   
   dummy_halls = dummy_food()
 
   #for each dining hall, skipping the closed ones, find each
   #station that's currently open and add it to the filtered dictionary
   for hall_name, stations in dummy_halls.items():
-    if hall_name in filtered_halls and filtered_halls[hall_name] == "Closed":
+    if hall_name in filtered_halls and filtered_halls[hall_name].startswith("Closed"):
       continue
     filtered_stations = {}
     for station_name, station_info in stations.items():
