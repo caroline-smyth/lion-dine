@@ -64,10 +64,50 @@ def scrape_hewitt():
 
   print(hewitt)
   
+def scrape_ferris():
+  driver = webdriver.Chrome()
+  url = "https://dining.columbia.edu/content/ferris-booth-commons-0"
 
-  
+  driver.get(url)
+
+  wait = WebDriverWait(driver, 40)
+
+
+
+  buttons = driver.find_elements(By.TAG_NAME, "button")
+
+  for button in buttons:
+    if button.text.strip() == "Breakfast":
+      button.click()
+      
+      station_elements = wait.until(EC.visibility_of_all_elements_located((By.CSS_SELECTOR, "wrapper")))
+
+      for element in station_elements:
+        s_name = element.find_element(By.CLASS,"station-title")
+        print(s_name.text.strip())
+      
+      stations = wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, "station-title")))
+      
+
+      for s in stations:
+        print(s.text.strip())
+      
+
+      meal_items = wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, "meal-title")))
+
+      for item in meal_items:
+        print(item.text.strip())
+      
+
+    else:
+      continue
+
+  driver.quit()
+
+
 
 def scrape_data(url):
+
   
   driver = webdriver.Chrome()
   halls = {}
@@ -286,7 +326,7 @@ def open_at_meal(meal):
 
 @app.route('/') #maps the URL / to index()
 def index():
-  
+  scrape_ferris()
   # scrape_hewitt()
   filtered_halls = current_open_stations() # returns closed/missing data/meal info for each dining hall
     
