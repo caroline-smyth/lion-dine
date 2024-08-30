@@ -39,6 +39,16 @@ def scrape_hewitt():
 
   hewitt = {}
 
+  """
+  button = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "nav-link")))
+
+  button.click()
+  """
+
+  buttons = driver.find_elements(By.TAG_NAME, "a")
+
+  print(len(buttons))
+
   menu_elements = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "table")))
 
   for m in menu_elements:
@@ -53,6 +63,7 @@ def scrape_hewitt():
     hewitt[station_name] = foods
 
   print(hewitt)
+  
 
   
 
@@ -63,8 +74,6 @@ def scrape_data(url):
   driver = webdriver.Chrome()
   halls = {}
  
-  #for url in cu_urls:
-
   # open a URL, let it load, and find the name of the dining hall
   driver.get(url)
   wait = WebDriverWait(driver, 60)
@@ -260,7 +269,7 @@ def open_at_meal(meal):
 @app.route('/') #maps the URL / to index()
 def index():
   
-  # scrape_hewitt()
+  scrape_hewitt()
   filtered_halls = current_open_stations() # returns closed/missing data/meal info for each dining hall
     
   return render_template('index.html', halls=filtered_halls)
