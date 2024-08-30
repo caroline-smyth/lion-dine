@@ -25,12 +25,14 @@
         <a href="/dinner" class="meal-name {% if meal == 'dinner' %}italicized{% endif %}">Dinner</a>
       </div> 
       <div class="container">
-        {% for hall_name, stations in halls.items() %}
+        {% set hall_order = ["John Jay", "Ferris", "Grace Dodge", "JJ's", "Chef Mike's", "Chef Don's", "Faculty House", "Fac Shack"] %}
+        {% for hall_name in hall_order %}
+          {% set stations = halls.get(hall_name, "Missing Data") %}
         <div class="col">
           <a href="https://dining.columbia.edu/">
             <h3>{{ hall_name }}</h3>
           </a>
-          {% if stations == "Closed" or stations == "Missing Data" %}
+          {% if stations is string and stations.startswith("Closed") or stations == "Missing Data" %}
             <div class="menu">
               {{ stations }}
             </div>
