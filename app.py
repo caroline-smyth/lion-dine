@@ -69,6 +69,9 @@ def scrape_ferris():
   url = "https://dining.columbia.edu/content/ferris-booth-commons-0"
 
   driver.get(url)
+  title = driver.title
+  dining_hall_name = title.split("|")
+  print(dining_hall_name[0].lower())
 
   wait = WebDriverWait(driver, 40)
 
@@ -79,28 +82,46 @@ def scrape_ferris():
   for b in buttons:
     if b.text.strip() == "Breakfast" or b.text.strip() == "Lunch" or b.text.strip() == "Dinner" or b.text.strip() == "Lunch & Dinner":
       clicks.append(b)
-    
+
+  ferrisfood = {}
   for button in clicks:
     button.click()
+
+    meal = button.text.strip().lower()
+
+    meal_dictionary = {}
 
     first_station = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "wrapper")))
 
     station_elements = driver.find_elements(By.CLASS_NAME, "wrapper")
 
-    ferrisfood = {}
-
     for s in station_elements:
-      name = s.find_element(By.CLASS_NAME, "station-title").text.strip()
+      station_name = s.find_element(By.CLASS_NAME, "station-title").text.strip()
 
       meal_items = s.find_elements(By.CLASS_NAME, "meal-title")
 
-      ferrisfood[name] = [item.text.strip() for item in meal_items]
+      meal_dictionary[station_name] = [item.text.strip() for item in meal_items]
+
+      ferrisfood[meal] = meal_dictionary
       """
       ferrisfood["hours"] = [time(7,30),time(14,0)]
       ferrisfood["meals"] = ["breakfast"]
-      """
+      
+    meals = []
+    if button.text.strip() == "Lunch & Dinner":
+      meals.append("lunch")
+      meals.append("dinner")
     
-    print(ferrisfood)
+    else:
+
+      meals.append(button.text.lower())
+    
+    ferrisfood["meals"] = meals
+    """
+  
+    # print(meal_dictionary)
+  
+  print(ferrisfood)
 
 
   driver.quit()
@@ -109,7 +130,6 @@ def scrape_ferris():
 
 def scrape_data(url):
 
-  
   driver = webdriver.Chrome()
   halls = {}
  
