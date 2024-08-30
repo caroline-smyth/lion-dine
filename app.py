@@ -72,35 +72,36 @@ def scrape_ferris():
 
   wait = WebDriverWait(driver, 40)
 
-
-
   buttons = driver.find_elements(By.TAG_NAME, "button")
 
-  for button in buttons:
-    if button.text.strip() == "Breakfast":
-      button.click()
-      
-      station_elements = wait.until(EC.visibility_of_all_elements_located((By.CSS_SELECTOR, "wrapper")))
+  clicks = []
 
-      for element in station_elements:
-        s_name = element.find_element(By.CLASS,"station-title")
-        print(s_name.text.strip())
-      
-      stations = wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, "station-title")))
-      
+  for b in buttons:
+    if b.text.strip() == "Breakfast" or b.text.strip() == "Lunch" or b.text.strip() == "Dinner" or b.text.strip() == "Lunch & Dinner":
+      clicks.append(b)
+    
+  for button in clicks:
+    button.click()
 
-      for s in stations:
-        print(s.text.strip())
-      
+    first_station = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "wrapper")))
 
-      meal_items = wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, "meal-title")))
+    station_elements = driver.find_elements(By.CLASS_NAME, "wrapper")
 
-      for item in meal_items:
-        print(item.text.strip())
-      
+    ferrisfood = {}
 
-    else:
-      continue
+    for s in station_elements:
+      name = s.find_element(By.CLASS_NAME, "station-title").text.strip()
+
+      meal_items = s.find_elements(By.CLASS_NAME, "meal-title")
+
+      ferrisfood[name] = [item.text.strip() for item in meal_items]
+      """
+      ferrisfood["hours"] = [time(7,30),time(14,0)]
+      ferrisfood["meals"] = ["breakfast"]
+      """
+    
+    print(ferrisfood)
+
 
   driver.quit()
 
@@ -134,24 +135,7 @@ def scrape_data(url):
 
   except:
     print("entered except")
-  """
-  this should go in try 
-  #i think items and stations holds all the data?
-  items = wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'meal-items')))
-  
-  stations = driver.find_elements(By.CSS_SELECTOR, 'h2.station-title.ng-binding')
-  #food_items = {"breakfast": [], "lunch": [], "dinner": []} 
-  food_items = {} 
 
-  #fill in the dictionary of (stations -> list of food items)
-  for index, item in enumerate(items):
-    station = stations[index].text
-    meals = item.find_elements(By.CSS_SELECTOR, 'h5.meal-title.ng-binding')
-    food_items[station] = [meal.text for meal in meals]
-  
-  #record the dictionary of all stations and items for this dining hall
-  halls[title] = food_items
-  """
   time_module.sleep(random.uniform(2,5)) #random sleep for anti-detection
 
   driver.quit()
