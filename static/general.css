@@ -31,7 +31,7 @@ a:hover{
   flex: 1 1 calc(30% - 30px); /* limits items per row */  
   max-width: calc(25% - 30px); 
   box-sizing: border-box; 
-  background-color: blue;
+  /*background-color: blue;*/
 }
 .menu {
   display: flex;
