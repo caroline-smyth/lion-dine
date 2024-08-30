@@ -17,8 +17,7 @@ a:hover{
   flex-wrap: wrap;
   text-decoration: none;
   justify-content: center;
-  margin-right: 100px;
-  margin-left: 100px;
+  margin-left: 150px;
   column-gap: 100px;
 }
 
@@ -28,6 +27,7 @@ a:hover{
   transition: color 0.15s;
   font-size: 24px;
   align-items: left;
+  flex: 1 0 15%;
 }
 .menu {
   display: flex;
