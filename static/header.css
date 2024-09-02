@@ -39,4 +39,8 @@
   right: 0;
   bottom: 0;
   height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+
 }
