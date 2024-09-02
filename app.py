@@ -70,8 +70,8 @@ def scrape_ferris():
 
   driver.get(url)
   title = driver.title
-  dining_hall_name = title.split("|")
-  print(dining_hall_name[0].lower())
+  dining_hall = title.split("|")
+  print(dining_hall[0].lower())
 
   wait = WebDriverWait(driver, 40)
 
@@ -330,7 +330,7 @@ def open_at_meal(meal):
 
 @app.route('/') #maps the URL / to index()
 def index():
-  scrape_ferris()
+  # scrape_ferris()
   # scrape_hewitt()
   filtered_halls = current_open_stations() # returns closed/missing data/meal info for each dining hall
     
