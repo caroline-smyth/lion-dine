@@ -20,11 +20,12 @@ cu_urls = [
   "https://dining.columbia.edu/content/jjs-place-0", 
   "https://dining.columbia.edu/content/ferris-booth-commons-0",
   "https://dining.columbia.edu/content/faculty-house-0", 
-  "https://dining.columbia.edu/chef-mikes", 
-  "https://dining.columbia.edu/content/chef-dons-pizza-pi", 
+  "https://dining.columbia.edu/chef-mikes",
+  "https://dining.columbia.edu/content/chef-dons-pizza-pi",
   "https://dining.columbia.edu/content/grace-dodge-dining-hall-0", 
   "https://dining.columbia.edu/content/fac-shack"
   ]
+# "https://dining.columbia.edu/content/chef-dons-pizza-pi", 
   
 
 # this does the scraping and converts what is scraped into variables that can be displayed using HTML/CSS/Js
@@ -74,9 +75,25 @@ def scrape_ferris(url):
   print(dining_hall[0].lower())
 
   wait = WebDriverWait(driver, 40)
+
+  """
+  try:
+    buttons = wait.until(EC.element_to_be_clickable((By.TAG_NAME, "button")))
+    clicks = []
+
+    for b in buttons:
+      if b.text.strip() == "Breakfast" or b.text.strip() == "Lunch" or b.text.strip() == "Dinner" or b.text.strip() == "Lunch & Dinner":
+        clicks.append(b)
+    
+    for click in clicks:
+      click.click()
+      print(click.text.strip())
+
+  except Exception as e:
+    print(f"fail: {e}")
   
-  #button = WebDriverWait(driver, 40).until(EC.element_to_be_clickable((By.TAG_NAME, "button")))
-  
+  """
+
   buttons = driver.find_elements(By.TAG_NAME, "button")
 
   clicks = []
@@ -84,13 +101,14 @@ def scrape_ferris(url):
   for b in buttons:
     if b.text.strip() == "Breakfast" or b.text.strip() == "Lunch" or b.text.strip() == "Dinner" or b.text.strip() == "Lunch & Dinner":
       clicks.append(b)
+  
 
   dining_hall = {}
   for button in clicks:
     button.click()
-
     meal = button.text.strip().lower()
-
+    print(meal)
+    
     meal_dictionary = {}
 
     first_station = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "wrapper")))
@@ -120,6 +138,7 @@ def scrape_ferris(url):
   
   ferrisfood["meals"] = meals
   """
+  
   # print(meal_dictionary)
   
   print(dining_hall)
