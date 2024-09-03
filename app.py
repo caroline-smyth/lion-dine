@@ -64,9 +64,9 @@ def scrape_hewitt():
 
   print(hewitt)
   
-def scrape_ferris():
+def scrape_ferris(url):
   driver = webdriver.Chrome()
-  url = "https://dining.columbia.edu/content/ferris-booth-commons-0"
+  #url = "https://dining.columbia.edu/content/ferris-booth-commons-0"
 
   driver.get(url)
   title = driver.title
@@ -74,7 +74,9 @@ def scrape_ferris():
   print(dining_hall[0].lower())
 
   wait = WebDriverWait(driver, 40)
-
+  
+  #button = WebDriverWait(driver, 40).until(EC.element_to_be_clickable((By.TAG_NAME, "button")))
+  
   buttons = driver.find_elements(By.TAG_NAME, "button")
 
   clicks = []
@@ -83,7 +85,7 @@ def scrape_ferris():
     if b.text.strip() == "Breakfast" or b.text.strip() == "Lunch" or b.text.strip() == "Dinner" or b.text.strip() == "Lunch & Dinner":
       clicks.append(b)
 
-  ferrisfood = {}
+  dining_hall = {}
   for button in clicks:
     button.click()
 
@@ -102,29 +104,31 @@ def scrape_ferris():
 
       meal_dictionary[station_name] = [item.text.strip() for item in meal_items]
 
-      ferrisfood[meal] = meal_dictionary
+      dining_hall[meal] = meal_dictionary
       """
-      ferrisfood["hours"] = [time(7,30),time(14,0)]
-      ferrisfood["meals"] = ["breakfast"]
-      
-    meals = []
-    if button.text.strip() == "Lunch & Dinner":
-      meals.append("lunch")
-      meals.append("dinner")
+    ferrisfood["hours"] = [time(7,30),time(14,0)]
+    ferrisfood["meals"] = ["breakfast"]
     
-    else:
-
-      meals.append(button.text.lower())
-    
-    ferrisfood["meals"] = meals
-    """
+  meals = []
+  if button.text.strip() == "Lunch & Dinner":
+    meals.append("lunch")
+    meals.append("dinner")
   
-    # print(meal_dictionary)
-  
-  print(ferrisfood)
+  else:
 
+    meals.append(button.text.lower())
+  
+  ferrisfood["meals"] = meals
+  """
+  # print(meal_dictionary)
+  
+  print(dining_hall)
 
   driver.quit()
+
+
+  # return dining_hall
+
 
 
 
@@ -330,7 +334,8 @@ def open_at_meal(meal):
 
 @app.route('/') #maps the URL / to index()
 def index():
-  # scrape_ferris()
+  for url in cu_urls:
+    scrape_ferris(url)
   # scrape_hewitt()
   filtered_halls = current_open_stations() # returns closed/missing data/meal info for each dining hall
     
