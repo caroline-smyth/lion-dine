@@ -25,7 +25,6 @@ cu_urls = [
   "https://dining.columbia.edu/content/grace-dodge-dining-hall-0", 
   "https://dining.columbia.edu/content/fac-shack"
   ]
-# "https://dining.columbia.edu/content/chef-dons-pizza-pi", 
   
 
 # this does the scraping and converts what is scraped into variables that can be displayed using HTML/CSS/Js
@@ -46,7 +45,7 @@ def scrape_hewitt():
   button.click()
   """
 
-  buttons = driver.find_elements(By.TAG_NAME, "a")
+  buttons = driver.find_elements(By.CLASS_NAME, "nav-item")
 
   print(len(buttons))
 
@@ -65,34 +64,15 @@ def scrape_hewitt():
 
   print(hewitt)
   
-def scrape_ferris(url):
+def scrape_columbia(url):
   driver = webdriver.Chrome()
-  #url = "https://dining.columbia.edu/content/ferris-booth-commons-0"
 
   driver.get(url)
   title = driver.title
   dining_hall = title.split("|")
-  print(dining_hall[0].lower())
+  #print(dining_hall[0].lower())
 
   wait = WebDriverWait(driver, 40)
-
-  """
-  try:
-    buttons = wait.until(EC.element_to_be_clickable((By.TAG_NAME, "button")))
-    clicks = []
-
-    for b in buttons:
-      if b.text.strip() == "Breakfast" or b.text.strip() == "Lunch" or b.text.strip() == "Dinner" or b.text.strip() == "Lunch & Dinner":
-        clicks.append(b)
-    
-    for click in clicks:
-      click.click()
-      print(click.text.strip())
-
-  except Exception as e:
-    print(f"fail: {e}")
-  
-  """
 
   buttons = driver.find_elements(By.TAG_NAME, "button")
 
@@ -107,7 +87,7 @@ def scrape_ferris(url):
   for button in clicks:
     button.click()
     meal = button.text.strip().lower()
-    print(meal)
+    #print(meal)
     
     meal_dictionary = {}
 
@@ -141,48 +121,11 @@ def scrape_ferris(url):
   
   # print(meal_dictionary)
   
-  print(dining_hall)
+  #print(dining_hall)
 
   driver.quit()
+  return dining_hall
 
-
-  # return dining_hall
-
-
-
-
-def scrape_data(url):
-
-  driver = webdriver.Chrome()
-  halls = {}
- 
-  # open a URL, let it load, and find the name of the dining hall
-  driver.get(url)
-  wait = WebDriverWait(driver, 60)
-  title = driver.title
-
-  try:
-
-    hall_name = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "node-title.ng-binding")))
-    name = hall_name.text.strip()
-
-    print(name)
-    div_element = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "cu-dining-location-description.ng-binding")))
-
-    p_elements = div_element.find_elements(By.TAG_NAME, "p")
-
-    p_texts = [p.text.strip() for p in p_elements]
-    print(p_texts)
-
-    # halls[name] = p_texts
-
-  except:
-    print("entered except")
-
-  time_module.sleep(random.uniform(2,5)) #random sleep for anti-detection
-
-  driver.quit()
-  cache.set('halls_data', halls)
 
 def dummy_food():
   #filling a dictionary to look like what a real halls dictionary would be.
@@ -243,10 +186,13 @@ def dummy_food():
 def current_open_stations():
   now = datetime.now()
   halls = cache.get('halls_data') #get the already-scraped data
-  #if not halls: #if the scraping didn't work, scrape now
-    #for url in cu_urls:
-      #scrape_data(url)
-    #halls = cache.get('halls_data')
+  hall_names = ["John Jay", "JJ's", "Ferris", "Faculty House", "Chef Mike's", "Chef Don's", "Grace Dodge", "Fac Shack"]
+  if not halls: #if the scraping didn't work, scrape now
+    halls = {}
+    for name, url in zip(hall_names, cu_urls):
+      halls[name] = scrape_columbia(url)
+    cache.set('halls_data', halls)
+  print(halls)
   filtered_halls = {} #to be filled
 
   # CHECKS FOR CLOSED
@@ -284,6 +230,7 @@ def current_open_stations():
 
   #for each dining hall, skipping the closed ones, find each
   #station that's currently open and add it to the filtered dictionary
+  
   for hall_name, stations in dummy_halls.items():
     if hall_name in filtered_halls and filtered_halls[hall_name] == "Closed":
       continue
@@ -296,16 +243,17 @@ def current_open_stations():
       filtered_halls[hall_name] = filtered_stations
     else:
       filtered_halls[hall_name] = "Missing Data"
+    
   
   return filtered_halls
 
 def open_at_meal(meal):
   now = datetime.now()
   halls = cache.get('halls_data') #get the already-scraped data
-  #if not halls: #if the scraping didn't work, scrape now
-    #for url in cu_urls:
-      #scrape_data(url)
-    #halls = cache.get('halls_data')
+  if not halls: #if the scraping didn't work, scrape now
+    for url in cu_urls:
+      scrape_columbia(url)
+    halls = cache.get('halls_data')
   filtered_halls = {} #to be filled
 
   # CHECKS FOR CLOSED
@@ -353,8 +301,8 @@ def open_at_meal(meal):
 
 @app.route('/') #maps the URL / to index()
 def index():
-  for url in cu_urls:
-    scrape_ferris(url)
+  #for url in cu_urls:
+    #scrape_columbia(url)
   # scrape_hewitt()
   filtered_halls = current_open_stations() # returns closed/missing data/meal info for each dining hall
     
