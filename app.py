@@ -236,6 +236,25 @@ def current_open_stations():
     if hall_name in filtered_halls and filtered_halls[hall_name] == "Closed":
       continue
     filtered_stations = {}
+    '''
+    this code will replace the below code once we have all scraped data.
+    here, we hard-code the times of each station of each dining hall.
+    if hall_name == "John Jay":
+      #filter for only open stations
+      if 9 <= now.hour and now.hour < 11:
+        filtered_stations['breakfast'] = hall_name['breakfast']
+      if 11 <= now.hour and now.hour < 14 or (now.hour == 14 and now.minute < 30):
+        filtered_stations['lunch'] = hall_name['lunch']
+        filtered_stations['lunch & dinner'] = hall_name['lunch & dinner']
+      if 17 <= now.hour and now.hour < 21:
+        filtered_stations['dinner'] = hall_name['dinner']
+        filtered_stations['lunch & dinner'] = hall_name['lunch & dinner']
+      #return data to the filtered dictionary
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"
+   '''
     for station_name, station_info in stations.items():
       open_time, close_time = station_info["hours"]
       if open_time <= now.time() <= close_time:
