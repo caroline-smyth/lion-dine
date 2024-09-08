@@ -79,18 +79,7 @@ h3 {
 .meal-name.italicized {
   font-style: italic !important;
 }
-/*
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    margin-left: 0;
-    column-gap: 1.25rem;  1.25rem 
-  }
-  .col {
-    flex: 1 0 100%;
-    font-size: 1.125rem; 
-  }
-  button {
-    font-size: 1.125rem; 
-  }
-}*/
+
+body {
+  margin-left: 8rem;
+}
