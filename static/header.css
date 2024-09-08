@@ -33,7 +33,7 @@
   color:rgb(105, 179, 231); 
 }
 
-.footer {
+.feedback {
   position: relative;
   left: 0;
   right: 0;
@@ -42,4 +42,8 @@
   display: flex;
   flex-direction: column;
   align-items: end;
+}
+
+.footer {
+  height: 0.625rem
 }
