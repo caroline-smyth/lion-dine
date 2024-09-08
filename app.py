@@ -70,7 +70,7 @@ def scrape_columbia(url):
   driver.get(url)
   title = driver.title
   dining_hall = title.split("|")
-  #print(dining_hall[0].lower())
+  print(dining_hall[0].lower())
 
   wait = WebDriverWait(driver, 40)
 
@@ -79,7 +79,8 @@ def scrape_columbia(url):
   clicks = []
 
   for b in buttons:
-    if b.text.strip() == "Breakfast" or b.text.strip() == "Lunch" or b.text.strip() == "Dinner" or b.text.strip() == "Lunch & Dinner":
+    text = b.text.strip()
+    if text == "Breakfast" or text == "Lunch" or text == "Dinner" or text == "Lunch & Dinner" or text == "Late Night":
       clicks.append(b)
   
 
@@ -87,7 +88,7 @@ def scrape_columbia(url):
   for button in clicks:
     button.click()
     meal = button.text.strip().lower()
-    #print(meal)
+    # print(meal)
     
     meal_dictionary = {}
 
@@ -253,7 +254,7 @@ def open_at_meal(meal):
   if not halls: #if the scraping didn't work, scrape now
     for url in cu_urls:
       scrape_columbia(url)
-    halls = cache.get('halls_data')
+    halls = cache.set('halls_data')
   filtered_halls = {} #to be filled
 
   # CHECKS FOR CLOSED
@@ -277,8 +278,6 @@ def open_at_meal(meal):
   #fac shack
   if not ((now.weekday() in [0,1,2,3] and meal == "lunch") or (now.weekday() in [3,4,5] and meal == "dinner")):
     filtered_halls["Fac Shack"] = f"Closed for {meal}"
-
-
   
   dummy_halls = dummy_food()
 
