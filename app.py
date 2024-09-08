@@ -250,11 +250,12 @@ def current_open_stations():
 
 def open_at_meal(meal):
   now = datetime.now()
-  halls = cache.get('halls_data') #get the already-scraped data
-  if not halls: #if the scraping didn't work, scrape now
-    for url in cu_urls:
-      scrape_columbia(url)
-    halls = cache.set('halls_data')
+  # MESSED THIS UP I THINK
+  #halls = cache.get('halls_data') #get the already-scraped data
+  #if not halls: #if the scraping didn't work, scrape now
+    #for url in cu_urls:
+      #scrape_columbia(url)
+    #halls = cache.set('halls_data')
   filtered_halls = {} #to be filled
 
   # CHECKS FOR CLOSED
@@ -326,7 +327,7 @@ def dinner():
 def schedule_scraping():
   scheduler = BackgroundScheduler()
   for url in cu_urls:
-    scheduler.add_job(scrape_data, trigger='cron', hour=0, minute=0, args=[url])
+    scheduler.add_job(scrape_columbia, trigger='cron', hour=0, minute=0, args=[url])
   scheduler.start()
 
 if __name__ == '__main__':
