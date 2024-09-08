@@ -14,6 +14,16 @@
 
   <body>
     <main>
+      {% set hall_links = {
+        "John Jay": "https://dining.columbia.edu/content/john-jay-dining-hall",
+        "Ferris": "https://dining.columbia.edu/content/ferris-booth-commons-0",
+        "Grace Dodge": "https://dining.columbia.edu/content/grace-dodge-dining-hall-0",
+        "JJ's": "https://dining.columbia.edu/content/jjs-place-0",
+        "Chef Mike's": "https://dining.columbia.edu/chef-mikes",
+        "Chef Don's": "https://dining.columbia.edu/content/chef-dons-pizza-pi",
+        "Faculty House": "https://dining.columbia.edu/content/faculty-house-0",
+        "Fac Shack": "https://dining.columbia.edu/content/fac-shack"
+      } %}
       <p id="output"></p>
       <div class="feedback">
         <a href="https://forms.gle/PFbWKbaXN1EeYEcu6" target="blank">Feedback</a>
@@ -32,7 +42,7 @@
         {% for hall_name in hall_order %}
           {% set stations = halls.get(hall_name, "Missing Data") %}
         <div class="col">
-          <a href="https://dining.columbia.edu/">
+          <a href="{{ hall_links.get(hall_name,'https://dining.columbia.edu/') }}" target="_blank">
             <h3>{{ hall_name }}</h3>
           </a>
           {% if stations is string and stations.startswith("Closed") or stations == "Missing Data" %}
