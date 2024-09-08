@@ -47,3 +47,12 @@
 .footer {
   height: 5rem
 }
+
+.sidebar {
+  height: 100vh; /* Full-height */
+  width: 10rem; /* Sidebar width */
+  position: fixed; /* Fixed sidebar */
+  top: 0;
+  left: 0;
+  /*padding-top: 20px;  Top padding */
+}
