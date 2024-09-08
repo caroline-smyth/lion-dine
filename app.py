@@ -327,6 +327,42 @@ def open_at_meal(meal):
     if hall_name in filtered_halls and filtered_halls[hall_name].startswith("Closed"):
       continue
     filtered_stations = {}
+    '''
+    this code will replace the below code once we have all scraped data.
+    here, we hard-code the times of each station of each dining hall.
+    if hall_name == "John Jay":
+      #filter for only open stations
+      if meal == 'breakfast':
+        for station, items in hall_name['breakfast']:
+          filtered_stations[station] = items       
+      if meal == 'lunch':
+        for station, items in hall_name['lunch']:
+          filtered_stations[station] = items
+        for station, items in hall_name['lunch & dinner']:
+          filtered_stations[station] = items
+      if meal == 'dinner':
+        for station, items in hall_name['dinner']:
+          filtered_stations[station] = items
+        for station, items in hall_name['lunch & dinner']:
+          filtered_stations[station] = items
+      #return data to the filtered dictionary
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"  
+    if hall_name = "JJ's":
+      #filter for only open stations
+      for station, items in hall_name['lunch & dinner']:
+        filtered_stations[station] = items
+      for station, items in hall_name['late night']:
+        filtered_stations[station] = items
+      #return data to the filtered dictionary
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"
+         
+    '''
     for station_name, station_info in stations.items():
       meals = station_info["meals"]
       if meal in meals:
