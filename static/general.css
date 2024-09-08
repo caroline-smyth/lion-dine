@@ -20,7 +20,6 @@ a:hover{
   margin: 0 auto;
   column-gap: 2rem; /*may need to change*/
   max-width: 1200px;
-  background-color: blue;
 }
 
 .col {
