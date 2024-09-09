@@ -39,15 +39,13 @@ def scrape_hewitt():
 
   hewitt = {}
 
-  """
-  button = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "nav-link")))
+  nav_bar = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "nav.nav-tabs")))
 
-  button.click()
-  """
+  buttons = nav_bar.find_elements(By.CLASS_NAME, "nav-link")
 
-  buttons = driver.find_elements(By.CLASS_NAME, "nav-item")
 
-  print(len(buttons))
+  for b in buttons:
+    print(b.text.strip())
 
   menu_elements = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "table")))
 
@@ -378,7 +376,7 @@ def open_at_meal(meal):
 def index():
   #for url in cu_urls:
     #scrape_columbia(url)
-  # scrape_hewitt()
+  scrape_hewitt()
   filtered_halls = current_open_stations() # returns closed/missing data/meal info for each dining hall
     
   return render_template('index.html', halls=filtered_halls)
