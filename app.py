@@ -43,24 +43,28 @@ def scrape_hewitt():
 
   buttons = nav_bar.find_elements(By.CLASS_NAME, "nav-link")
 
+  dining_hall = {}
 
   for b in buttons:
-    print(b.text.strip())
+    meal = b.text.strip()
+    meal = {}
+    b.click()
+    menu_elements = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "table")))
 
-  menu_elements = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "table")))
+    for m in menu_elements:
+      station_name = m.find_element(By.TAG_NAME, "caption").text.strip()
 
-  for m in menu_elements:
-    station_name = m.find_element(By.TAG_NAME, "caption").text.strip()
+      food_elements = m.find_elements(By.TAG_NAME, "strong")
+      foods = []
 
-    food_elements = m.find_elements(By.TAG_NAME, "strong")
-    foods = []
-
-    for f in food_elements:
-      foods.append(f.text.strip())
-    
-    hewitt[station_name] = foods
-
-  print(hewitt)
+      for f in food_elements:
+        foods.append(f.text.strip())
+  
+      meal[station_name] = foods
+    dining_hall[b.text.strip().lower()] = meal
+  
+  print(dining_hall)
+  return dining_hall
   
 def scrape_columbia(url):
   driver = webdriver.Chrome()
