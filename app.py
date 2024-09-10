@@ -37,7 +37,22 @@ def scrape_hewitt():
 
   wait = WebDriverWait(driver, 40)
 
-  hewitt = {}
+  #hewitt = {}
+
+  dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
+  #print(dropdown.text.strip())
+  dropdown.click()
+  
+  dropdown_header = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-header")))
+
+  #dropdown_items = wait.until(EC.visibility_of_element_located((By.TAG_NAME, "button")))
+  
+  #print(dropdown_header.text.strip())
+
+  #for d in dropdown_items:
+    #d.click()
+    #print(d.text.strip())
+
 
   nav_bar = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "nav.nav-tabs")))
 
