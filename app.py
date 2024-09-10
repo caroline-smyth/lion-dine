@@ -28,7 +28,7 @@ cu_urls = [
   
 
 # this does the scraping and converts what is scraped into variables that can be displayed using HTML/CSS/Js
-# Barnard pages need to be scraped separately. Those sites are shit, so need to figure out sm else 
+
 def scrape_hewitt():
   driver = webdriver.Chrome()
 
@@ -38,20 +38,16 @@ def scrape_hewitt():
   wait = WebDriverWait(driver, 40)
 
   #hewitt = {}
-
-  dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
-  #print(dropdown.text.strip())
-  dropdown.click()
   
-  dropdown_header = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-header")))
-
-  #dropdown_items = wait.until(EC.visibility_of_element_located((By.TAG_NAME, "button")))
+  """
+  dropdown_items = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "button")))
   
-  #print(dropdown_header.text.strip())
+  print(dropdown_items.text.strip())
 
-  #for d in dropdown_items:
-    #d.click()
-    #print(d.text.strip())
+  for d in dropdown_items:
+    d.click()
+    print(d.text.strip())
+  """
 
 
   nav_bar = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "nav.nav-tabs")))
@@ -79,6 +75,11 @@ def scrape_hewitt():
     dining_hall[b.text.strip().lower()] = meal
   
   print(dining_hall)
+
+  dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
+  print(dropdown.text.strip())
+
+  dropdown.click()
   return dining_hall
   
 def scrape_columbia(url):
