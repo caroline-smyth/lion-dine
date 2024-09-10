@@ -140,7 +140,7 @@ def scrape_columbia(url):
   
   # print(meal_dictionary)
   
-  #print(dining_hall)
+  print(dining_hall)
 
   driver.quit()
   return dining_hall
@@ -259,7 +259,7 @@ def current_open_stations():
     here, we hard-code the times of each station of each dining hall.
     if hall_name == "John Jay":
       #filter for only open stations
-      if 9 <= now.hour and now.hour < 11:
+      if 10 <= now.hour and now.hour < 11 or (now.hour == 9 and now.minute >= 30):
         for station, items in hall_name['breakfast']:
           filtered_stations[station] = items
       if 11 <= now.hour and now.hour < 14 or (now.hour == 14 and now.minute < 30):
@@ -280,9 +280,8 @@ def current_open_stations():
     
     if hall_name = "JJ's":
       #filter for only open stations
-      if now.hour < 10 or now.hour >=12:
-        for station, items in hall_name['lunch & dinner']:
-          filtered_stations[station] = items
+      for station, items in hall_name['lunch & dinner']:
+        filtered_stations[station] = items
       if now.hour > 22 or now.hour < 4:
         for station, items in hall_name['late night']:
           filtered_stations[station] = items
@@ -291,7 +290,48 @@ def current_open_stations():
         filtered_halls[hall_name] = filtered_stations
       else:
         filtered_halls[hall_name] = "Missing data"
-        
+
+    if hall_name == "Ferris":
+      #fill in later - complicated
+
+    if hall_name == "Faculty House":
+      filter for only open stations
+        for station, items in hall_name['lunch']:
+          filtered_stations[station] = items
+      #return data to the filtered dictionary
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"
+
+    if hall_name == "Chef Mike's":
+      #filter for only open stations
+      for station, items in hall_name['lunch & dinner']:
+        filtered_stations[station] = items
+      #return data to the filtered dictionary
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"      
+
+    if hall_name == "Chef Don's":
+        #unclear if they ever populate this. might have to hardcode
+
+    if hall_name == "Grace Dodge":
+      #filter for only open stations
+      for station, items in hall_name['lunch & dinner']:
+        filtered_stations[station] = items
+      #return data to the filtered dictionary
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"
+    
+    if hall_name == "Fac Shack":
+      #fill in later - slightly complicated
+    
+
+  
    '''
     for station_name, station_info in stations.items():
       open_time, close_time = station_info["hours"]
@@ -394,9 +434,9 @@ def open_at_meal(meal):
 
 @app.route('/') #maps the URL / to index()
 def index():
-  #for url in cu_urls:
-    #scrape_columbia(url)
-  scrape_hewitt()
+  for url in cu_urls:
+    scrape_columbia(url)
+  #scrape_hewitt()
   filtered_halls = current_open_stations() # returns closed/missing data/meal info for each dining hall
     
   return render_template('index.html', halls=filtered_halls)
