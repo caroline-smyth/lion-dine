@@ -38,6 +38,29 @@ def scrape_hewitt():
   driver.get(url)
 
   wait = WebDriverWait(driver, 40)
+  
+  dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
+  #print(dropdown.text.strip())
+
+  dropdown.click()
+  
+  dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
+
+  items = dropdown_menu.find_elements(By.TAG_NAME, "button")
+
+  barnard_halls = []
+  for i in items:
+    hall = i.text.strip()
+    #print(hall)
+    
+    if("Hewitt" in hall or "Diana" in hall):
+      barnard_halls.append(i)
+      
+    else:
+      continue
+  
+  for h in barnard_halls:
+    print(h.text.strip())
 
   nav_bar = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "nav.nav-tabs")))
 
@@ -64,28 +87,8 @@ def scrape_hewitt():
     dining_hall[b.text.strip().lower()] = meal
   
   print(dining_hall)
-  
-  dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
-  print(dropdown.text.strip())
-
-  dropdown.click()
-  
-  dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
-
-  items = dropdown_menu.find_elements(By.TAG_NAME, "button")
-
-  for i in items:
-    hall = i.text.strip()
-    print(hall)
-    
-    if("Diana" in hall):
-      i.click()
-      
-    else:
-      continue
-      
-  
-  return dining_hall
+  print("made to end")
+  #return dining_hall
   
 def scrape_columbia(url):
   driver = webdriver.Chrome()
@@ -127,23 +130,6 @@ def scrape_columbia(url):
       meal_dictionary[station_name] = [item.text.strip() for item in meal_items]
 
       dining_hall[meal] = meal_dictionary
-      """
-    ferrisfood["hours"] = [time(7,30),time(14,0)]
-    ferrisfood["meals"] = ["breakfast"]
-    
-  meals = []
-  if button.text.strip() == "Lunch & Dinner":
-    meals.append("lunch")
-    meals.append("dinner")
-  
-  else:
-
-    meals.append(button.text.lower())
-  
-  ferrisfood["meals"] = meals
-  """
-  
-  # print(meal_dictionary)
   
   print(dining_hall)
 
