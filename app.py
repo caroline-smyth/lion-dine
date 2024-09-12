@@ -29,6 +29,8 @@ cu_urls = [
 
 # this does the scraping and converts what is scraped into variables that can be displayed using HTML/CSS/Js
 
+#def scrape_barnard():
+
 def scrape_hewitt():
   driver = webdriver.Chrome()
 
@@ -36,19 +38,6 @@ def scrape_hewitt():
   driver.get(url)
 
   wait = WebDriverWait(driver, 40)
-
-  #hewitt = {}
-  
-  """
-  dropdown_items = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "button")))
-  
-  print(dropdown_items.text.strip())
-
-  for d in dropdown_items:
-    d.click()
-    print(d.text.strip())
-  """
-
 
   nav_bar = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "nav.nav-tabs")))
 
@@ -75,11 +64,27 @@ def scrape_hewitt():
     dining_hall[b.text.strip().lower()] = meal
   
   print(dining_hall)
-
+  
   dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
   print(dropdown.text.strip())
 
   dropdown.click()
+  
+  dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
+
+  items = dropdown_menu.find_elements(By.TAG_NAME, "button")
+
+  for i in items:
+    hall = i.text.strip()
+    print(hall)
+    
+    if("Diana" in hall):
+      i.click()
+      
+    else:
+      continue
+      
+  
   return dining_hall
   
 def scrape_columbia(url):
@@ -144,7 +149,6 @@ def scrape_columbia(url):
 
   driver.quit()
   return dining_hall
-
 
 def dummy_food():
   #filling a dictionary to look like what a real halls dictionary would be.
@@ -434,9 +438,9 @@ def open_at_meal(meal):
 
 @app.route('/') #maps the URL / to index()
 def index():
-  for url in cu_urls:
-    scrape_columbia(url)
-  #scrape_hewitt()
+  #for url in cu_urls:
+    #scrape_columbia(url)
+  scrape_hewitt()
   filtered_halls = current_open_stations() # returns closed/missing data/meal info for each dining hall
     
   return render_template('index.html', halls=filtered_halls)
