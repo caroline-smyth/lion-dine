@@ -5,10 +5,11 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 from flask_caching import Cache
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime, time 
-import time as time_module
+import time
 import random
 
 app = Flask(__name__) #sets up a flask application
@@ -40,8 +41,6 @@ def scrape_hewitt():
   wait = WebDriverWait(driver, 40)
   
   dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
-  #print(dropdown.text.strip())
-
   dropdown.click()
   
   dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
@@ -49,47 +48,52 @@ def scrape_hewitt():
   items = dropdown_menu.find_elements(By.TAG_NAME, "button")
 
   barnard_halls = []
-  for i in items:
-    hall = i.text.strip()
-    #print(hall)
-    
+  for item in items:
+    hall = item.text.strip()
     if("Hewitt" in hall or "Diana" in hall):
-      barnard_halls.append(i)
-      
-    else:
-      continue
+      barnard_halls.append(item)
+
+  dining_halls_data = {}
   
-  for h in barnard_halls:
-    print(h.text.strip())
+  for hall in barnard_halls:
+    hall_name = hall.text.strip()
+    print(hall_name)
+    
+    dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
+    print("FIRST")
+    dropdown.click()
+    print("SECOND")
+
+    #dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
 
   nav_bar = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "nav.nav-tabs")))
 
-  buttons = nav_bar.find_elements(By.CLASS_NAME, "nav-link")
-
   dining_hall = {}
 
+  buttons = nav_bar.find_elements(By.CLASS_NAME, "nav-link")
+
   for b in buttons:
-    meal = b.text.strip()
+    meal_time = b.text.strip().lower()
     meal = {}
     b.click()
     menu_elements = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "table")))
 
     for m in menu_elements:
       station_name = m.find_element(By.TAG_NAME, "caption").text.strip()
-
       food_elements = m.find_elements(By.TAG_NAME, "strong")
-      foods = []
-
-      for f in food_elements:
-        foods.append(f.text.strip())
+      foods = [food.text.strip() for food in food_elements]
   
       meal[station_name] = foods
-    dining_hall[b.text.strip().lower()] = meal
-  
-  print(dining_hall)
+    dining_hall[meal_time] = meal
+  dining_halls_data[hall_name] = dining_hall
+
+  print(dining_halls_data)
+
   print("made to end")
-  #return dining_hall
-  
+  driver.quit()
+  return dining_halls_data
+
+
 def scrape_columbia(url):
   driver = webdriver.Chrome()
 
@@ -108,7 +112,7 @@ def scrape_columbia(url):
     text = b.text.strip()
     if text == "Breakfast" or text == "Lunch" or text == "Dinner" or text == "Lunch & Dinner" or text == "Late Night":
       clicks.append(b)
-  
+
 
   dining_hall = {}
   for button in clicks:
@@ -130,8 +134,8 @@ def scrape_columbia(url):
       meal_dictionary[station_name] = [item.text.strip() for item in meal_items]
 
       dining_hall[meal] = meal_dictionary
-  
-  print(dining_hall)
+
+    print(dining_hall)
 
   driver.quit()
   return dining_hall
