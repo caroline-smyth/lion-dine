@@ -9,7 +9,7 @@ from selenium.common.exceptions import TimeoutException
 from flask_caching import Cache
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime, time 
-import time
+import time as time_module
 import random
 
 app = Flask(__name__) #sets up a flask application
@@ -30,9 +30,7 @@ cu_urls = [
 
 # this does the scraping and converts what is scraped into variables that can be displayed using HTML/CSS/Js
 
-#def scrape_barnard():
-
-def scrape_hewitt():
+def scrape_barnard():
   driver = webdriver.Chrome()
 
   url = "https://dineoncampus.com/barnard/whats-on-the-menu"
@@ -45,11 +43,16 @@ def scrape_hewitt():
   
   dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
 
+  #item_test = dropdown_menu.find_element(By.TAG_NAME, "button")
+
+  #item_test.click()
+
   items = dropdown_menu.find_elements(By.TAG_NAME, "button")
 
   barnard_halls = []
   for item in items:
     hall = item.text.strip()
+    
     if("Hewitt" in hall or "Diana" in hall):
       barnard_halls.append(item)
 
@@ -60,10 +63,9 @@ def scrape_hewitt():
     print(hall_name)
     
     dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
-    print("FIRST")
+    
     dropdown.click()
-    print("SECOND")
-
+    
     #dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
 
   nav_bar = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "nav.nav-tabs")))
@@ -85,13 +87,13 @@ def scrape_hewitt():
   
       meal[station_name] = foods
     dining_hall[meal_time] = meal
-  dining_halls_data[hall_name] = dining_hall
+  #dining_halls_data[hall_name] = dining_hall
 
-  print(dining_halls_data)
+  print(dining_hall)
 
   print("made to end")
   driver.quit()
-  return dining_halls_data
+  return dining_hall
 
 
 def scrape_columbia(url):
@@ -430,7 +432,7 @@ def open_at_meal(meal):
 def index():
   #for url in cu_urls:
     #scrape_columbia(url)
-  scrape_hewitt()
+  scrape_barnard()
   filtered_halls = current_open_stations() # returns closed/missing data/meal info for each dining hall
     
   return render_template('index.html', halls=filtered_halls)
