@@ -53,21 +53,53 @@ def scrape_barnard():
   for item in items:
     hall = item.text.strip()
     
-    if("Hewitt" in hall or "Diana" in hall):
-      barnard_halls.append(item)
+    if("Hewitt" in hall):
+      item.click()
+      print(hall)
+
+      dining_hall = {}
+      try:
+        nav_bar = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "nav.nav-tabs")))
+
+        buttons = nav_bar.find_elements(By.CLASS_NAME, "nav-link")
+
+        for b in buttons:
+          meal_time = b.text.strip().lower()
+          meal = {}
+          b.click()
+          menu_elements = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "table")))
+
+          for m in menu_elements:
+            station_name = m.find_element(By.TAG_NAME, "caption").text.strip()
+            food_elements = m.find_elements(By.TAG_NAME, "strong")
+            foods = [food.text.strip() for food in food_elements]
+        
+            meal[station_name] = foods
+          dining_hall[meal_time] = meal
+        #dining_halls_data[hall_name] = dining_hall
+
+        print(dining_hall)
+      except:
+        dining_hall[hall] = None
+        continue
+      
+    
+      #barnard_halls.append(item)
 
   dining_halls_data = {}
-  
+  """
   for hall in barnard_halls:
     hall_name = hall.text.strip()
-    print(hall_name)
+    print("test " + hall_name)
     
     dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
     
     dropdown.click()
+
+    wait
     
     #dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
-
+  
   nav_bar = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "nav.nav-tabs")))
 
   dining_hall = {}
@@ -89,7 +121,7 @@ def scrape_barnard():
     dining_hall[meal_time] = meal
   #dining_halls_data[hall_name] = dining_hall
 
-  print(dining_hall)
+  print(dining_hall)"""
 
   print("made to end")
   driver.quit()
