@@ -30,7 +30,7 @@ cu_urls = [
 
 # this does the scraping and converts what is scraped into variables that can be displayed using HTML/CSS/Js
 def scrape_barnard():
-  barnard_hall_names = ["Hewitt Dining", "Diana Center Cafe"]
+  barnard_hall_names = ["Hewitt Food Hall"]
   #barnard_hall_names = ["Barnard Kosher @ Hewitt Food Hall"]
   driver = webdriver.Chrome()
   url = "https://dineoncampus.com/barnard/whats-on-the-menu"
@@ -50,7 +50,7 @@ def scrape_barnard():
       hall = item.text.strip()
       print("inside loop " + hall)
       
-      if hall == hall_name:
+      if hall_name in hall:
         item.click()
         print("clicked " + hall)
         hall_data = scrape_barnard_inside(driver, wait)
@@ -433,7 +433,7 @@ def open_at_meal(meal):
 def index():
   #for url in cu_urls:
     #scrape_columbia(url)
-  scrape_barnard()
+  #scrape_barnard()
   filtered_halls = current_open_stations() # returns closed/missing data/meal info for each dining hall
     
   return render_template('index.html', halls=filtered_halls)
