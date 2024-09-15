@@ -43,19 +43,21 @@ def scrape_barnard():
   
   dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
 
-  #item_test = dropdown_menu.find_element(By.TAG_NAME, "button")
-
-  #item_test.click()
-
   items = dropdown_menu.find_elements(By.TAG_NAME, "button")
+  
+  for item in items:
+    t = item.text.strip()
+    print("first try " + t)
 
-  barnard_halls = []
+  dining_hall_data = {}
   for item in items:
     hall = item.text.strip()
+    print("inside loop " + hall)
     
-    if("Hewitt" in hall):
+    if("Hewitt" in hall or "Diana" in hall):
+      print("YO")
       item.click()
-      print(hall)
+      print("clicked " + hall)
 
       dining_hall = {}
       try:
@@ -76,17 +78,13 @@ def scrape_barnard():
         
             meal[station_name] = foods
           dining_hall[meal_time] = meal
-        #dining_halls_data[hall_name] = dining_hall
+        dining_hall_data[hall] = dining_hall
 
-        print(dining_hall)
+        #print(dining_hall)
       except:
         dining_hall[hall] = None
         continue
       
-    
-      #barnard_halls.append(item)
-
-  dining_halls_data = {}
   """
   for hall in barnard_halls:
     hall_name = hall.text.strip()
@@ -123,9 +121,10 @@ def scrape_barnard():
 
   print(dining_hall)"""
 
-  print("made to end")
+  print(dining_hall)
+  #print("made to end")
   driver.quit()
-  return dining_hall
+  #return dining_hall
 
 
 def scrape_columbia(url):
