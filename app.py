@@ -29,101 +29,71 @@ cu_urls = [
   
 
 # this does the scraping and converts what is scraped into variables that can be displayed using HTML/CSS/Js
-
 def scrape_barnard():
+  barnard_hall_names = ["Hewitt Dining", "Diana Center Cafe"]
+  #barnard_hall_names = ["Barnard Kosher @ Hewitt Food Hall"]
   driver = webdriver.Chrome()
-
   url = "https://dineoncampus.com/barnard/whats-on-the-menu"
   driver.get(url)
-
-  wait = WebDriverWait(driver, 40)
-  
-  dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
-  dropdown.click()
-  
-  dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
-
-  items = dropdown_menu.find_elements(By.TAG_NAME, "button")
-  
-  for item in items:
-    t = item.text.strip()
-    print("first try " + t)
-
   dining_hall_data = {}
-  for item in items:
-    hall = item.text.strip()
-    print("inside loop " + hall)
-    
-    if("Hewitt" in hall or "Diana" in hall):
-      print("YO")
-      item.click()
-      print("clicked " + hall)
+  wait = WebDriverWait(driver, 40)
 
-      dining_hall = {}
-      try:
-        nav_bar = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "nav.nav-tabs")))
-
-        buttons = nav_bar.find_elements(By.CLASS_NAME, "nav-link")
-
-        for b in buttons:
-          meal_time = b.text.strip().lower()
-          meal = {}
-          b.click()
-          menu_elements = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "table")))
-
-          for m in menu_elements:
-            station_name = m.find_element(By.TAG_NAME, "caption").text.strip()
-            food_elements = m.find_elements(By.TAG_NAME, "strong")
-            foods = [food.text.strip() for food in food_elements]
-        
-            meal[station_name] = foods
-          dining_hall[meal_time] = meal
-        dining_hall_data[hall] = dining_hall
-
-        #print(dining_hall)
-      except:
-        dining_hall[hall] = None
-        continue
-      
-  """
-  for hall in barnard_halls:
-    hall_name = hall.text.strip()
-    print("test " + hall_name)
-    
+  for hall_name in barnard_hall_names:
+    driver.get(url)
     dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
-    
     dropdown.click()
-
-    wait
     
-    #dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
-  
-  nav_bar = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "nav.nav-tabs")))
+    dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
 
-  dining_hall = {}
+    items = dropdown_menu.find_elements(By.TAG_NAME, "button")
+    for item in items:
+      hall = item.text.strip()
+      print("inside loop " + hall)
+      
+      if hall == hall_name:
+        item.click()
+        print("clicked " + hall)
+        hall_data = scrape_barnard_inside(driver, wait)
+        dining_hall_data[hall] = hall_data
 
-  buttons = nav_bar.find_elements(By.CLASS_NAME, "nav-link")
-
-  for b in buttons:
-    meal_time = b.text.strip().lower()
-    meal = {}
-    b.click()
-    menu_elements = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "table")))
-
-    for m in menu_elements:
-      station_name = m.find_element(By.TAG_NAME, "caption").text.strip()
-      food_elements = m.find_elements(By.TAG_NAME, "strong")
-      foods = [food.text.strip() for food in food_elements]
-  
-      meal[station_name] = foods
-    dining_hall[meal_time] = meal
-  #dining_halls_data[hall_name] = dining_hall
-
-  print(dining_hall)"""
-
-  print(dining_hall)
-  #print("made to end")
   driver.quit()
+  print(dining_hall_data)
+  return dining_hall_data
+
+def scrape_barnard_inside(driver, wait): 
+  dining_hall = {}
+  
+  try:
+    nav_bar = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "nav.nav-tabs")))
+
+    print("entered try")
+
+    buttons = nav_bar.find_elements(By.CLASS_NAME, "nav-link")
+
+    for b in buttons:
+      meal_time = b.text.strip().lower()
+      meal = {}
+      b.click()
+      print("clicked meal button")
+      menu_elements = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "table")))
+
+      for m in menu_elements:
+        station_name = m.find_element(By.TAG_NAME, "caption").text.strip()
+        food_elements = m.find_elements(By.TAG_NAME, "strong")
+        foods = [food.text.strip() for food in food_elements]
+    
+        meal[station_name] = foods
+      dining_hall[meal_time] = meal
+    #dining_hall_data[hall] = dining_hall
+
+    #print(dining_hall)
+  except Exception as e:
+    print(f"Error occurred: {e}")
+    dining_hall = None
+
+  return dining_hall
+  #print("made to end")
+  #driver.quit()
   #return dining_hall
 
 
