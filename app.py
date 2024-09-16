@@ -28,7 +28,8 @@ cu_urls = [
   ]
   
 
-# this does the scraping and converts what is scraped into variables that can be displayed using HTML/CSS/Js
+
+#IN PROGRESS
 def scrape_barnard():
   barnard_hall_names = ["Hewitt Food Hall"]
   #barnard_hall_names = ["Barnard Kosher @ Hewitt Food Hall"]
@@ -60,6 +61,7 @@ def scrape_barnard():
   print(dining_hall_data)
   return dining_hall_data
 
+#IN PROGRESS
 def scrape_barnard_inside(driver, wait): 
   dining_hall = {}
   
@@ -97,6 +99,7 @@ def scrape_barnard_inside(driver, wait):
   #return dining_hall
 
 
+#returns a dictionary of the form {dining hall : {station : [items]}}
 def scrape_columbia(url):
   driver = webdriver.Chrome()
 
@@ -143,9 +146,9 @@ def scrape_columbia(url):
   driver.quit()
   return dining_hall
 
+
+#for testing purposes to have food items to use without scraping
 def dummy_food():
-  #filling a dictionary to look like what a real halls dictionary would be.
-  #using this to populate index.html
 
   johnjayfood={ 
     "Wilma's Grill": {"items": ["Pancakes", "Waffles", "Omelettes"], "hours":(time(9,30), time(14,0)), "meals":["breakfast"]},
@@ -199,6 +202,8 @@ def dummy_food():
 
   return dummy_halls
 
+#takes the dictionary of all food items and filters it to only include
+#stations that are currently open
 def current_open_stations():
   now = datetime.now()
   halls = cache.get('halls_data') #get the already-scraped data
@@ -342,6 +347,8 @@ def current_open_stations():
   
   return filtered_halls
 
+#takes the dictionary of all food items and filters it to only include
+#stations that are open at the given meal
 def open_at_meal(meal):
   now = datetime.now()
   # MESSED THIS UP I THINK
@@ -429,7 +436,8 @@ def open_at_meal(meal):
   
   return filtered_halls
 
-@app.route('/') #maps the URL / to index()
+#mapping URLs to functions that display the HTML we want for that URL
+@app.route('/') 
 def index():
   #for url in cu_urls:
     #scrape_columbia(url)
@@ -453,7 +461,7 @@ def dinner():
   filtered_halls = open_at_meal("dinner")
   return render_template('index.html', halls=filtered_halls, meal="dinner")
 
-# this schedules scraping to happen at midnight
+#schedules scraping to happen at midnight
 def schedule_scraping():
   scheduler = BackgroundScheduler()
   for url in cu_urls:
