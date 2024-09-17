@@ -353,8 +353,11 @@ def current_open_stations():
         filtered_halls[hall_name] = "Missing data"      
 
     if hall_name == "Chef Don's":
-      filtered_stations["Regular"] = "Build your own"
-      filtered_stations["Vegan"] = "Build your own"
+      if now.hour >= 8 and now.hour < 11:
+        filtered_stations["Breakfast"] = "Breakfast Sandwich"
+      if now.hour >= 11 and now.hour < 18:
+        filtered_stations["Regular"] = "Build your own"
+        filtered_stations["Vegan"] = "Build your own"
       if filtered_stations:
         filtered_halls[hall_name] = filtered_stations
       else:
@@ -441,10 +444,10 @@ def open_at_meal(meal):
     if hall_name in filtered_halls and filtered_halls[hall_name].startswith("Closed"):
       continue
     filtered_stations = {}
-    '''
-    this code will replace the below code once we have all scraped data.
-    here, we hard-code the times of each station of each dining hall.
-    if hall_name == "John Jay":
+
+    #this code will replace the below code once we have all scraped data.
+    #here, we hard-code the times of each station of each dining hall.
+    if hall_name == "John Jay" or hall_name == "Ferris":
       #filter for only open stations
       if meal == 'breakfast':
         for station, items in hall_name['breakfast']:
@@ -464,7 +467,7 @@ def open_at_meal(meal):
         filtered_halls[hall_name] = filtered_stations
       else:
         filtered_halls[hall_name] = "Missing data"  
-    if hall_name = "JJ's":
+    if hall_name == "JJ's":
       #filter for only open stations
       for station, items in hall_name['lunch & dinner']:
         filtered_stations[station] = items
@@ -475,7 +478,58 @@ def open_at_meal(meal):
         filtered_halls[hall_name] = filtered_stations
       else:
         filtered_halls[hall_name] = "Missing data"
-         
+    if hall_name == "Faculty House":
+      #filter for only open stations
+      if meal == 'lunch':
+        for station, items in stations['lunch']:
+            filtered_stations[station] = items
+      #return data to the filtered dictionary
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data" 
+    if hall_name == "Chef Mike's":
+      #filter for only open stations
+      if meal == 'lunch' or meal == 'dinner':
+        for station, items in stations['lunch & dinner']:
+          filtered_stations[station] = items
+      #return data to the filtered dictionary
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"      
+    if hall_name == "Chef Don's":
+      if meal == 'breakfast':
+        filtered_stations["Breakfast"] = "Breakfast Sandwich"
+      if meal == 'lunch' or meal == 'dinner':
+        filtered_stations["Regular"] = "Build your own"
+        filtered_stations["Vegan"] = "Build your own"
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"    
+    if hall_name == "Grace Dodge":
+      #filter for only open stations
+      if meal == 'lunch' or meal == 'dinner':
+        for station, items in stations['lunch & dinner']:
+          filtered_stations[station] = items
+      #return data to the filtered dictionary
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"
+    if hall_name == "Fac Shack":
+      if meal == 'lunch':
+        for station, items in stations['lunch']:
+          filtered_stations[station] = items
+      if meal == 'dinner':
+        for station, items in stations['dinner']:
+          filtered_stations[station] = items
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"
+    #old code for dummy case
     '''
     for station_name, station_info in stations.items():
       meals = station_info["meals"]
@@ -485,6 +539,7 @@ def open_at_meal(meal):
       filtered_halls[hall_name] = filtered_stations
     else:
       filtered_halls[hall_name] = "Missing Data"
+    '''
   
   return filtered_halls
 
