@@ -28,7 +28,8 @@ cu_urls = [
   ]
   
 
-# this does the scraping and converts what is scraped into variables that can be displayed using HTML/CSS/Js
+
+#IN PROGRESS
 def scrape_barnard():
   barnard_hall_names = ["Hewitt Dining", "Diana"]
   #barnard_hall_names = ["Barnard Kosher @ Hewitt Food Hall"]
@@ -63,6 +64,7 @@ def scrape_barnard():
   print(dining_hall_data)
   return dining_hall_data
 
+#IN PROGRESS
 def scrape_barnard_inside(driver, wait): 
   dining_hall = {}
   
@@ -100,6 +102,7 @@ def scrape_barnard_inside(driver, wait):
   #return dining_hall
 
 
+#returns a dictionary of the form {dining hall : {station : [items]}}
 def scrape_columbia(url):
   driver = webdriver.Chrome()
 
@@ -146,9 +149,10 @@ def scrape_columbia(url):
   driver.quit()
   return dining_hall
 
+
+#for testing purposes to have food items to use without scraping
+'''
 def dummy_food():
-  #filling a dictionary to look like what a real halls dictionary would be.
-  #using this to populate index.html
 
   johnjayfood={ 
     "Wilma's Grill": {"items": ["Pancakes", "Waffles", "Omelettes"], "hours":(time(9,30), time(14,0)), "meals":["breakfast"]},
@@ -201,20 +205,24 @@ def dummy_food():
   }
 
   return dummy_halls
+  '''
 
+#takes the dictionary of all food items and filters it to only include
+#stations that are currently open
 def current_open_stations():
   now = datetime.now()
   halls = cache.get('halls_data') #get the already-scraped data
   hall_names = ["John Jay", "JJ's", "Ferris", "Faculty House", "Chef Mike's", "Chef Don's", "Grace Dodge", "Fac Shack"]
-  #if not halls: #if the scraping didn't work, scrape now
-    #halls = {}
-    #for name, url in zip(hall_names, cu_urls):
-      #halls[name] = scrape_columbia(url)
-    #cache.set('halls_data', halls)
+  if not halls: #if the scraping didn't work, scrape now
+    halls = {}
+    for name, url in zip(hall_names, cu_urls):
+      halls[name] = scrape_columbia(url)
+    cache.set('halls_data', halls)
   print(halls)
   filtered_halls = {} #to be filled
 
-  # CHECKS FOR CLOSED
+  #if a dining hall is closed, give it value "Closed" instead
+  #of a list of food
 
   # john jay
   if now.weekday() in [4,5] or now.hour < 9 or now.hour >= 21 or (now.hour == 9 and now.minute < 30):
@@ -245,32 +253,34 @@ def current_open_stations():
       (now.weekday() == 3 and (now.hour < 11 or now.hour >= 23 or now.hour in [14,15,16,17,18]))):
     filtered_halls["Fac Shack"] = "Closed"
   
-  dummy_halls = dummy_food()
+
+  #dummy_halls = dummy_food() #for testing
 
   #for each dining hall, skipping the closed ones, find each
   #station that's currently open and add it to the filtered dictionary
   
-  for hall_name, stations in dummy_halls.items():
+  for hall_name, stations in halls.items():
+  #for hall_name, stations in dummy_halls.items():
     if hall_name in filtered_halls and filtered_halls[hall_name] == "Closed":
       continue
     filtered_stations = {}
-    '''
-    this code will replace the below code once we have all scraped data.
-    here, we hard-code the times of each station of each dining hall.
+    
+    #this code will replace the below code once we have all scraped data.
+    #here, we hard-code the times of each station of each dining hall.
     if hall_name == "John Jay":
       #filter for only open stations
       if 10 <= now.hour and now.hour < 11 or (now.hour == 9 and now.minute >= 30):
-        for station, items in hall_name['breakfast']:
+        for station, items in stations['breakfast'].items():
           filtered_stations[station] = items
       if 11 <= now.hour and now.hour < 14 or (now.hour == 14 and now.minute < 30):
-        for station, items in hall_name['lunch']:
+        for station, items in stations['lunch'].items():
           filtered_stations[station] = items
-        for station, items in hall_name['lunch & dinner']:
+        for station, items in stations['lunch & dinner'].items():
           filtered_stations[station] = items
       if 17 <= now.hour and now.hour < 21:
-        for station, items in hall_name['dinner']:
+        for station, items in stations['dinner'].items():
           filtered_stations[station] = items
-        for station, items in hall_name['lunch & dinner']:
+        for station, items in stations['lunch & dinner'].items():
           filtered_stations[station] = items
       #return data to the filtered dictionary
       if filtered_stations:
@@ -278,12 +288,12 @@ def current_open_stations():
       else:
         filtered_halls[hall_name] = "Missing data"
     
-    if hall_name = "JJ's":
+    if hall_name == "JJ's":
       #filter for only open stations
-      for station, items in hall_name['lunch & dinner']:
+      for station, items in stations['lunch & dinner'].items():
         filtered_stations[station] = items
       if now.hour > 22 or now.hour < 4:
-        for station, items in hall_name['late night']:
+        for station, items in stations['late night'].items():
           filtered_stations[station] = items
       #return data to the filtered dictionary
       if filtered_stations:
@@ -292,11 +302,44 @@ def current_open_stations():
         filtered_halls[hall_name] = "Missing data"
 
     if hall_name == "Ferris":
-      #fill in later - complicated
+      if now.weekday() in [0,1,2,3,4]:
+        if now.hour > 7 and now.hour < 11 or (now.hour == 7 and now.minute >= 30):
+          for station, items in stations['breakfast'].items():
+            filtered_stations[station] = items
+        if now.hour >= 11 and now.hour < 16:
+          for station, items in stations['lunch'].items():
+            filtered_stations[station] = items
+        if now.hour >= 17 and now.hour < 20:
+          for station, items in stations['dinner'].items():
+            filtered_stations[station] = items
+        if now.hour >= 11 and now.hour < 20:
+          for station, items in stations['lunch & dinner'].items():
+            filtered_stations[station] = items
+      #if now.weekday() == 5:
+        #do later
+      if now.weekday() == 6:
+        if now.hour >= 10 and now.hour < 2:
+          for station, items in stations['breakfast'].items():
+            filtered_stations[station] = items
+        if now.hour >= 11 and now.hour < 2:
+          for station, items in stations['lunch'].items():
+            filtered_stations[station] = items
+          for station, items in stations['lunch & dinner'].items():
+            filtered_stations[station] = items
+        if now.hour >= 17 and now.hour < 20:
+          for station, items in stations['dinner'].items():
+            filtered_stations[station] = items
+          for station, items in stations['lunch & dinner'].items():
+            filtered_stations[station] = items
+      #return data to the filtered dictionary
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"
 
     if hall_name == "Faculty House":
-      filter for only open stations
-        for station, items in hall_name['lunch']:
+      #filter for only open stations
+      for station, items in stations['lunch'].items():
           filtered_stations[station] = items
       #return data to the filtered dictionary
       if filtered_stations:
@@ -306,7 +349,7 @@ def current_open_stations():
 
     if hall_name == "Chef Mike's":
       #filter for only open stations
-      for station, items in hall_name['lunch & dinner']:
+      for station, items in stations['lunch & dinner'].items():
         filtered_stations[station] = items
       #return data to the filtered dictionary
       if filtered_stations:
@@ -315,11 +358,19 @@ def current_open_stations():
         filtered_halls[hall_name] = "Missing data"      
 
     if hall_name == "Chef Don's":
-        #unclear if they ever populate this. might have to hardcode
+      if now.hour >= 8 and now.hour < 11:
+        filtered_stations["Breakfast"] = "Breakfast Sandwich"
+      if now.hour >= 11 and now.hour < 18:
+        filtered_stations["Regular"] = "Build your own"
+        filtered_stations["Vegan"] = "Build your own"
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"
 
     if hall_name == "Grace Dodge":
       #filter for only open stations
-      for station, items in hall_name['lunch & dinner']:
+      for station, items in stations['lunch & dinner'].items():
         filtered_stations[station] = items
       #return data to the filtered dictionary
       if filtered_stations:
@@ -328,11 +379,22 @@ def current_open_stations():
         filtered_halls[hall_name] = "Missing data"
     
     if hall_name == "Fac Shack":
-      #fill in later - slightly complicated
+      if now.weekday() in [0,1,2,3] and now.hour >= 11 and now.hour < 14:
+        for station, items in stations['lunch'].items():
+          filtered_stations[station] = items
+      if now.weekday() in [3,4,5] and now.hour >= 19 and now.hour < 23:
+        for station, items in stations['dinner'].items():
+          filtered_stations[station] = items
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"
     
 
   
-   '''
+    #test code, using time data that is built into the dictionary.
+    #our real dictionary won't have this time data.
+    '''
     for station_name, station_info in stations.items():
       open_time, close_time = station_info["hours"]
       if open_time <= now.time() <= close_time:
@@ -341,18 +403,20 @@ def current_open_stations():
       filtered_halls[hall_name] = filtered_stations
     else:
       filtered_halls[hall_name] = "Missing Data"
-    
+    '''
   
   return filtered_halls
 
+#takes the dictionary of all food items and filters it to only include
+#stations that are open at the given meal
 def open_at_meal(meal):
   now = datetime.now()
   # MESSED THIS UP I THINK
-  #halls = cache.get('halls_data') #get the already-scraped data
-  #if not halls: #if the scraping didn't work, scrape now
-    #for url in cu_urls:
-      #scrape_columbia(url)
-    #halls = cache.set('halls_data')
+  halls = cache.get('halls_data') #get the already-scraped data
+  if not halls: #if the scraping didn't work, scrape now
+    for url in cu_urls:
+      scrape_columbia(url)
+    halls = cache.set('halls_data')
   filtered_halls = {} #to be filled
 
   # CHECKS FOR CLOSED
@@ -377,49 +441,100 @@ def open_at_meal(meal):
   if not ((now.weekday() in [0,1,2,3] and meal == "lunch") or (now.weekday() in [3,4,5] and meal == "dinner")):
     filtered_halls["Fac Shack"] = f"Closed for {meal}"
   
-  dummy_halls = dummy_food()
+  #dummy_halls = dummy_food()
 
   #for each dining hall, skipping the closed ones, find each
   #station that's currently open and add it to the filtered dictionary
-  for hall_name, stations in dummy_halls.items():
+  for hall_name, stations in halls.items():
     if hall_name in filtered_halls and filtered_halls[hall_name].startswith("Closed"):
       continue
     filtered_stations = {}
-    '''
-    this code will replace the below code once we have all scraped data.
-    here, we hard-code the times of each station of each dining hall.
-    if hall_name == "John Jay":
+
+    #this code will replace the below code once we have all scraped data.
+    #here, we hard-code the times of each station of each dining hall.
+    if hall_name == "John Jay" or hall_name == "Ferris":
       #filter for only open stations
       if meal == 'breakfast':
-        for station, items in hall_name['breakfast']:
+        for station, items in hall_name['breakfast'].items():
           filtered_stations[station] = items       
       if meal == 'lunch':
-        for station, items in hall_name['lunch']:
+        for station, items in hall_name['lunch'].items():
           filtered_stations[station] = items
-        for station, items in hall_name['lunch & dinner']:
+        for station, items in hall_name['lunch & dinner'].items():
           filtered_stations[station] = items
       if meal == 'dinner':
-        for station, items in hall_name['dinner']:
+        for station, items in hall_name['dinner'].items():
           filtered_stations[station] = items
-        for station, items in hall_name['lunch & dinner']:
+        for station, items in hall_name['lunch & dinner'].items():
           filtered_stations[station] = items
       #return data to the filtered dictionary
       if filtered_stations:
         filtered_halls[hall_name] = filtered_stations
       else:
         filtered_halls[hall_name] = "Missing data"  
-    if hall_name = "JJ's":
+    if hall_name == "JJ's":
       #filter for only open stations
-      for station, items in hall_name['lunch & dinner']:
+      for station, items in hall_name['lunch & dinner'].items():
         filtered_stations[station] = items
-      for station, items in hall_name['late night']:
+      for station, items in hall_name['late night'].items():
         filtered_stations[station] = items
       #return data to the filtered dictionary
       if filtered_stations:
         filtered_halls[hall_name] = filtered_stations
       else:
         filtered_halls[hall_name] = "Missing data"
-         
+    if hall_name == "Faculty House":
+      #filter for only open stations
+      if meal == 'lunch':
+        for station, items in stations['lunch'].items():
+            filtered_stations[station] = items
+      #return data to the filtered dictionary
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data" 
+    if hall_name == "Chef Mike's":
+      #filter for only open stations
+      if meal == 'lunch' or meal == 'dinner':
+        for station, items in stations['lunch & dinner'].items():
+          filtered_stations[station] = items
+      #return data to the filtered dictionary
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"      
+    if hall_name == "Chef Don's":
+      if meal == 'breakfast':
+        filtered_stations["Breakfast"] = "Breakfast Sandwich"
+      if meal == 'lunch' or meal == 'dinner':
+        filtered_stations["Regular"] = "Build your own"
+        filtered_stations["Vegan"] = "Build your own"
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"    
+    if hall_name == "Grace Dodge":
+      #filter for only open stations
+      if meal == 'lunch' or meal == 'dinner':
+        for station, items in stations['lunch & dinner'].items():
+          filtered_stations[station] = items
+      #return data to the filtered dictionary
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"
+    if hall_name == "Fac Shack":
+      if meal == 'lunch':
+        for station, items in stations['lunch'].items():
+          filtered_stations[station] = items
+      if meal == 'dinner':
+        for station, items in stations['dinner'].items():
+          filtered_stations[station] = items
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"
+    #old code for dummy case
     '''
     for station_name, station_info in stations.items():
       meals = station_info["meals"]
@@ -429,10 +544,12 @@ def open_at_meal(meal):
       filtered_halls[hall_name] = filtered_stations
     else:
       filtered_halls[hall_name] = "Missing Data"
+    '''
   
   return filtered_halls
 
-@app.route('/') #maps the URL / to index()
+#mapping URLs to functions that display the HTML we want for that URL
+@app.route('/') 
 def index():
   for url in cu_urls:
     scrape_columbia(url)
@@ -456,7 +573,7 @@ def dinner():
   filtered_halls = open_at_meal("dinner")
   return render_template('index.html', halls=filtered_halls, meal="dinner")
 
-# this schedules scraping to happen at midnight
+#schedules scraping to happen at midnight
 def schedule_scraping():
   scheduler = BackgroundScheduler()
   for url in cu_urls:
