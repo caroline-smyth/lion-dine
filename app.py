@@ -208,15 +208,16 @@ def current_open_stations():
   now = datetime.now()
   halls = cache.get('halls_data') #get the already-scraped data
   hall_names = ["John Jay", "JJ's", "Ferris", "Faculty House", "Chef Mike's", "Chef Don's", "Grace Dodge", "Fac Shack"]
-  #if not halls: #if the scraping didn't work, scrape now
-    #halls = {}
-    #for name, url in zip(hall_names, cu_urls):
-      #halls[name] = scrape_columbia(url)
-    #cache.set('halls_data', halls)
+  if not halls: #if the scraping didn't work, scrape now
+    halls = {}
+    for name, url in zip(hall_names, cu_urls):
+      halls[name] = scrape_columbia(url)
+    cache.set('halls_data', halls)
   print(halls)
   filtered_halls = {} #to be filled
 
-  # CHECKS FOR CLOSED
+  #if a dining hall is closed, give it value "Closed" instead
+  #of a list of food
 
   # john jay
   if now.weekday() in [4,5] or now.hour < 9 or now.hour >= 21 or (now.hour == 9 and now.minute < 30):
@@ -247,7 +248,8 @@ def current_open_stations():
       (now.weekday() == 3 and (now.hour < 11 or now.hour >= 23 or now.hour in [14,15,16,17,18]))):
     filtered_halls["Fac Shack"] = "Closed"
   
-  dummy_halls = dummy_food()
+
+  dummy_halls = dummy_food() #for testing
 
   #for each dining hall, skipping the closed ones, find each
   #station that's currently open and add it to the filtered dictionary
@@ -256,9 +258,9 @@ def current_open_stations():
     if hall_name in filtered_halls and filtered_halls[hall_name] == "Closed":
       continue
     filtered_stations = {}
-    '''
-    this code will replace the below code once we have all scraped data.
-    here, we hard-code the times of each station of each dining hall.
+    
+    #this code will replace the below code once we have all scraped data.
+    #here, we hard-code the times of each station of each dining hall.
     if hall_name == "John Jay":
       #filter for only open stations
       if 10 <= now.hour and now.hour < 11 or (now.hour == 9 and now.minute >= 30):
@@ -280,7 +282,7 @@ def current_open_stations():
       else:
         filtered_halls[hall_name] = "Missing data"
     
-    if hall_name = "JJ's":
+    if hall_name == "JJ's":
       #filter for only open stations
       for station, items in hall_name['lunch & dinner']:
         filtered_stations[station] = items
@@ -294,11 +296,44 @@ def current_open_stations():
         filtered_halls[hall_name] = "Missing data"
 
     if hall_name == "Ferris":
-      #fill in later - complicated
+      if now.weekday() in [0,1,2,3,4]:
+        if now.hour > 7 and now.hour < 11 or (now.hour == 7 and now.minute >= 30):
+          for station, items in hall_name['breakfast']:
+            filtered_stations[station] = items
+        if now.hour >= 11 and now.hour < 16:
+          for station, items in hall_name['lunch']:
+            filtered_stations[station] = items
+        if now.hour >= 17 and now.hour < 20:
+          for station, items in hall_name['dinner']:
+            filtered_stations[station] = items
+        if now.hour >= 11 and now.hour < 20:
+          for station, items in hall_name['lunch & dinner']:
+            filtered_stations[station] = items
+      #if now.weekday() == 5:
+        #do later
+      if now.weekday() == 6:
+        if now.hour >= 10 and now.hour < 2:
+          for station, items in hall_name['breakfast']:
+            filtered_stations[station] = items
+        if now.hour >= 11 and now.hour < 2:
+          for station, items in hall_name['lunch']:
+            filtered_stations[station] = items
+          for station, items in hall_name['lunch & dinner']:
+            filtered_stations[station] = items
+        if now.hour >= 17 and now.hour < 20:
+          for station, items in hall_name['dinner']:
+            filtered_stations[station] = items
+          for station, items in hall_name['lunch & dinner']:
+            filtered_stations[station] = items
+      #return data to the filtered dictionary
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"
 
     if hall_name == "Faculty House":
-      filter for only open stations
-        for station, items in hall_name['lunch']:
+      #filter for only open stations
+      for station, items in hall_name['lunch']:
           filtered_stations[station] = items
       #return data to the filtered dictionary
       if filtered_stations:
@@ -317,7 +352,12 @@ def current_open_stations():
         filtered_halls[hall_name] = "Missing data"      
 
     if hall_name == "Chef Don's":
-        #unclear if they ever populate this. might have to hardcode
+      filtered_stations["Regular"] = "Build your own"
+      filtered_stations["Vegan"] = "Build your own"
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"
 
     if hall_name == "Grace Dodge":
       #filter for only open stations
@@ -330,11 +370,24 @@ def current_open_stations():
         filtered_halls[hall_name] = "Missing data"
     
     if hall_name == "Fac Shack":
-      #fill in later - slightly complicated
+      if now.weekday() in [0,1,2,3] and now.hour >= 11 and now.hour < 14:
+        for station, items in hall_name['lunch']:
+          filtered_stations[station] = items
+      if now.weekday() in [3,4,5] and now.hour >= 19 and now.hour < 23:
+        for station, items in hall_name['dinner']:
+          filtered_stations[station] = items
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"
     
 
   
-   '''
+   
+    
+    #test code, using time data that is built into the dictionary.
+    #our real dictionary won't have this time data.
+    '''
     for station_name, station_info in stations.items():
       open_time, close_time = station_info["hours"]
       if open_time <= now.time() <= close_time:
@@ -343,7 +396,7 @@ def current_open_stations():
       filtered_halls[hall_name] = filtered_stations
     else:
       filtered_halls[hall_name] = "Missing Data"
-    
+    '''
   
   return filtered_halls
 
