@@ -254,7 +254,8 @@ def current_open_stations():
   #for each dining hall, skipping the closed ones, find each
   #station that's currently open and add it to the filtered dictionary
   
-  for hall_name, stations in dummy_halls.items():
+  for hall_name, stations in halls.items():
+  #for hall_name, stations in dummy_halls.items():
     if hall_name in filtered_halls and filtered_halls[hall_name] == "Closed":
       continue
     filtered_stations = {}
