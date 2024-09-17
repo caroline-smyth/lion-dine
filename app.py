@@ -148,6 +148,7 @@ def scrape_columbia(url):
 
 
 #for testing purposes to have food items to use without scraping
+'''
 def dummy_food():
 
   johnjayfood={ 
@@ -201,6 +202,7 @@ def dummy_food():
   }
 
   return dummy_halls
+  '''
 
 #takes the dictionary of all food items and filters it to only include
 #stations that are currently open
@@ -249,7 +251,7 @@ def current_open_stations():
     filtered_halls["Fac Shack"] = "Closed"
   
 
-  dummy_halls = dummy_food() #for testing
+  #dummy_halls = dummy_food() #for testing
 
   #for each dining hall, skipping the closed ones, find each
   #station that's currently open and add it to the filtered dictionary
@@ -407,11 +409,11 @@ def current_open_stations():
 def open_at_meal(meal):
   now = datetime.now()
   # MESSED THIS UP I THINK
-  #halls = cache.get('halls_data') #get the already-scraped data
-  #if not halls: #if the scraping didn't work, scrape now
-    #for url in cu_urls:
-      #scrape_columbia(url)
-    #halls = cache.set('halls_data')
+  halls = cache.get('halls_data') #get the already-scraped data
+  if not halls: #if the scraping didn't work, scrape now
+    for url in cu_urls:
+      scrape_columbia(url)
+    halls = cache.set('halls_data')
   filtered_halls = {} #to be filled
 
   # CHECKS FOR CLOSED
@@ -436,11 +438,11 @@ def open_at_meal(meal):
   if not ((now.weekday() in [0,1,2,3] and meal == "lunch") or (now.weekday() in [3,4,5] and meal == "dinner")):
     filtered_halls["Fac Shack"] = f"Closed for {meal}"
   
-  dummy_halls = dummy_food()
+  #dummy_halls = dummy_food()
 
   #for each dining hall, skipping the closed ones, find each
   #station that's currently open and add it to the filtered dictionary
-  for hall_name, stations in dummy_halls.items():
+  for hall_name, stations in halls.items():
     if hall_name in filtered_halls and filtered_halls[hall_name].startswith("Closed"):
       continue
     filtered_stations = {}
