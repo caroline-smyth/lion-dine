@@ -554,9 +554,9 @@ def open_at_meal(meal):
 #mapping URLs to functions that display the HTML we want for that URL
 @app.route('/') 
 def index():
-  for url in cu_urls:
-    scrape_columbia(url)
-  scrape_barnard()
+  #for url in cu_urls:
+    #scrape_columbia(url)
+  #scrape_barnard()
   filtered_halls = current_open_stations() # returns closed/missing data/meal info for each dining hall
     
   return render_template('index.html', halls=filtered_halls)
@@ -584,6 +584,6 @@ def schedule_scraping():
   scheduler.start()
 
 if __name__ == '__main__':
-   #schedule_scraping()
+   schedule_scraping()
    app.run(host='0.0.0.0', port=5000)
 
