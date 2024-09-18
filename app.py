@@ -151,7 +151,8 @@ def scrape_all():
   dict = {}
   for url in cu_urls:
     for hall, food_data in scrape_columbia(url):
-      dict[hall] = food_data
+      if url != "https://dining.columbia.edu/content/chef-dons-pizza-pi":
+        dict[hall] = food_data
   for hall, food_data in scrape_barnard():
     dict[hall] = food_data
   return dict
