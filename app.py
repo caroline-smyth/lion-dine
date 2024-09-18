@@ -422,6 +422,11 @@ def current_open_stations():
         filtered_halls[hall_name] = filtered_stations
       else:
         filtered_halls[hall_name] = "Missing data"
+
+    #if hall_name == "Hewitt":
+      #asdf
+    #if hall_name == "Diana":
+      #asdf
     
 
   
@@ -566,6 +571,38 @@ def open_at_meal(meal):
           filtered_stations[station] = items
       if meal == 'dinner':
         for station, items in stations.get('dinner',{}).items():
+          filtered_stations[station] = items
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"
+    if hall_name == "Hewitt":
+      if meal == 'breakfast':
+        for station, items in stations.get('breakfast',{}).items():
+          filtered_stations[station] = items
+      if meal == 'lunch':
+        for station, items in stations.get('lunch',{}).items():
+          filtered_stations[station] = items
+      if meal == 'dinner':
+        for station, items in stations.get('dinner',{}).items():
+          filtered_stations[station] = items
+      for station, items in stations.get('every day',{}).items():
+        filtered_stations[station] = items
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"
+    if hall_name == "Diana":
+      if meal == 'breakfast':
+        for station, items in stations.get('breakfast',{}).items():
+          filtered_stations[station] = items
+      if meal == 'lunch':
+        for station, items in stations.get('lunch',{}).items():
+          filtered_stations[station] = items
+      if meal == 'dinner':
+        for station, items in stations.get('dinner',{}).items():
+          filtered_stations[station] = items
+        for station, items in stations.get('late night',{}).items():
           filtered_stations[station] = items
       if filtered_stations:
         filtered_halls[hall_name] = filtered_stations
