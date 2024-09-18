@@ -22,8 +22,22 @@
         "Chef Mike's": "https://dining.columbia.edu/chef-mikes",
         "Chef Don's": "https://dining.columbia.edu/content/chef-dons-pizza-pi",
         "Faculty House": "https://dining.columbia.edu/content/faculty-house-0",
-        "Fac Shack": "https://dining.columbia.edu/content/fac-shack"
+        "Fac Shack": "https://dining.columbia.edu/content/fac-shack",
+        "Hewitt": "https://dineoncampus.com/barnard/whats-on-the-menu",
+        "Diana": "https://dineoncampus.com/barnard/whats-on-the-menu"
       } %}
+      {% set hall_order = [
+        "John Jay", 
+        "Ferris", 
+        "Grace Dodge", 
+        "JJ's", 
+        "Chef Mike's", 
+        "Chef Don's", 
+        "Faculty House", 
+        "Fac Shack",
+        "Hewitt",
+        "Diana"
+      ] %}
       <p id="output"></p>
       <div class="feedback">
         <a href="https://forms.gle/PFbWKbaXN1EeYEcu6" target="blank">Feedback</a>
@@ -38,9 +52,8 @@
         <a href="/dinner" class="meal-name {% if meal == 'dinner' %}italicized{% endif %}">Dinner</a>
       </div> 
       <div class="container">
-        {% set hall_order = ["John Jay", "Ferris", "Grace Dodge", "JJ's", "Chef Mike's", "Chef Don's", "Faculty House", "Fac Shack"] %}
         {% for hall_name in hall_order %}
-          {% set stations = halls.get(hall_name, "Missing Data") %}
+          {% set stations = halls.get(hall_name, "Missing data") %}
         <div class="col">
           <a href="{{ hall_links.get(hall_name,'https://dining.columbia.edu/') }}" target="_blank">
             <h3>{{ hall_name }}</h3>
