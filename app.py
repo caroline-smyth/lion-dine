@@ -423,10 +423,16 @@ def current_open_stations():
       else:
         filtered_halls[hall_name] = "Missing data"
 
-    #if hall_name == "Hewitt":
-      #asdf
-    #if hall_name == "Diana":
-      #asdf
+    if hall_name == "Hewitt":
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"
+    if hall_name == "Diana":
+      if filtered_stations:
+        filtered_halls[hall_name] = filtered_stations
+      else:
+        filtered_halls[hall_name] = "Missing data"
     
 
   
