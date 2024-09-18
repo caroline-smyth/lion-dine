@@ -45,7 +45,7 @@
           <a href="{{ hall_links.get(hall_name,'https://dining.columbia.edu/') }}" target="_blank">
             <h3>{{ hall_name }}</h3>
           </a>
-          {% if stations is string and stations.startswith("Closed") or stations == "Missing Data" %}
+          {% if stations is string and stations.startswith("Closed") or stations == "Missing data" %}
             <div class="menu">
               {{ stations }}
             </div>
