@@ -411,13 +411,16 @@ def current_open_stations():
 #stations that are open at the given meal
 def open_at_meal(meal):
   now = datetime.now()
-  # MESSED THIS UP I THINK
   halls = cache.get('halls_data') #get the already-scraped data
+  hall_names = ["John Jay", "JJ's", "Ferris", "Faculty House", "Chef Mike's", "Chef Don's", "Grace Dodge", "Fac Shack"]
   if not halls: #if the scraping didn't work, scrape now
-    for url in cu_urls:
-      scrape_columbia(url)
-    halls = cache.set('halls_data')
+    halls = {}
+    for name, url in zip(hall_names, cu_urls):
+      halls[name] = scrape_columbia(url)
+    cache.set('halls_data', halls)
+  print(halls)
   filtered_halls = {} #to be filled
+
 
   # CHECKS FOR CLOSED
 
