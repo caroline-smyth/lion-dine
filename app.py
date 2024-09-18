@@ -456,10 +456,10 @@ def open_at_meal(meal):
 
   # CHECKS FOR CLOSED
 
+  #ferris, JJs, hewitt are open every meal every day
   # john jay
   if now.weekday() in [4,5]:
     filtered_halls["John Jay"] = f"Closed for {meal}"
-  # ferris and jjs open for every meal every day?
   # fac house
   if now.weekday() > 2 or meal == "breakfast" or meal == "dinner":
     filtered_halls["Faculty House"] = f"Closed for {meal}"
@@ -475,7 +475,9 @@ def open_at_meal(meal):
   #fac shack
   if not ((now.weekday() in [0,1,2,3] and meal == "lunch") or (now.weekday() in [3,4,5] and meal == "dinner")):
     filtered_halls["Fac Shack"] = f"Closed for {meal}"
-  
+  #diana
+  if now.weekday() == 5 or (now.weekday() == 6 and meal == "breakfast") or (now.weekday() == 4 and meal == "dinner"):
+    filtered_halls["Diana"] = f"Closed for {meal}"
   #dummy_halls = dummy_food()
 
   #for each dining hall, skipping the closed ones, find each
