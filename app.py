@@ -458,17 +458,17 @@ def open_at_meal(meal):
     if hall_name == "John Jay" or hall_name == "Ferris":
       #filter for only open stations
       if meal == 'breakfast':
-        for station, items in hall_name['breakfast'].items():
+        for station, items in stations['breakfast'].items():
           filtered_stations[station] = items       
       if meal == 'lunch':
-        for station, items in hall_name['lunch'].items():
+        for station, items in stations['lunch'].items():
           filtered_stations[station] = items
-        for station, items in hall_name['lunch & dinner'].items():
+        for station, items in stations['lunch & dinner'].items():
           filtered_stations[station] = items
       if meal == 'dinner':
-        for station, items in hall_name['dinner'].items():
+        for station, items in stations['dinner'].items():
           filtered_stations[station] = items
-        for station, items in hall_name['lunch & dinner'].items():
+        for station, items in stations['lunch & dinner'].items():
           filtered_stations[station] = items
       #return data to the filtered dictionary
       if filtered_stations:
@@ -477,9 +477,9 @@ def open_at_meal(meal):
         filtered_halls[hall_name] = "Missing data"  
     if hall_name == "JJ's":
       #filter for only open stations
-      for station, items in hall_name['lunch & dinner'].items():
+      for station, items in stations['lunch & dinner'].items():
         filtered_stations[station] = items
-      for station, items in hall_name['late night'].items():
+      for station, items in stations['late night'].items():
         filtered_stations[station] = items
       #return data to the filtered dictionary
       if filtered_stations:
