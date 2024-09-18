@@ -359,10 +359,10 @@ def current_open_stations():
 
     if hall_name == "Chef Don's":
       if now.hour >= 8 and now.hour < 11:
-        filtered_stations["Breakfast"] = "Breakfast Sandwich"
+        filtered_stations["Breakfast"] = ["Breakfast Sandwich"]
       if now.hour >= 11 and now.hour < 18:
-        filtered_stations["Regular"] = "Build your own"
-        filtered_stations["Vegan"] = "Build your own"
+        filtered_stations["Regular"] = ["Build your own"]
+        filtered_stations["Vegan"] = ["Build your own"]
       if filtered_stations:
         filtered_halls[hall_name] = filtered_stations
       else:
@@ -505,10 +505,10 @@ def open_at_meal(meal):
         filtered_halls[hall_name] = "Missing data"      
     if hall_name == "Chef Don's":
       if meal == 'breakfast':
-        filtered_stations["Breakfast"] = "Breakfast Sandwich"
+        filtered_stations["Breakfast"] = ["Breakfast Sandwich"]
       if meal == 'lunch' or meal == 'dinner':
-        filtered_stations["Regular"] = "Build your own"
-        filtered_stations["Vegan"] = "Build your own"
+        filtered_stations["Regular"] = ["Build your own"]
+        filtered_stations["Vegan"] = ["Build your own"]
       if filtered_stations:
         filtered_halls[hall_name] = filtered_stations
       else:
