@@ -235,9 +235,7 @@ def current_open_stations():
   now = datetime.now()
   halls = cache.get('halls_data') #get the already-scraped data
   if not halls: #if the scraping didn't work, scrape now
-    halls = {}
-    for name, url in zip(hall_names, cu_urls):
-      halls[name] = scrape_columbia(url)
+    halls = scrape_all()
     cache.set('halls_data', halls)
   print(halls)
   filtered_halls = {} #to be filled
@@ -460,9 +458,7 @@ def open_at_meal(meal):
   now = datetime.now()
   halls = cache.get('halls_data') #get the already-scraped data
   if not halls: #if the scraping didn't work, scrape now
-    halls = {}
-    for name, url in zip(hall_names, cu_urls):
-      halls[name] = scrape_columbia(url)
+    halls = scrape_all()
     cache.set('halls_data', halls)
   print(halls)
   filtered_halls = {} #to be filled
@@ -659,8 +655,7 @@ def dinner():
 #schedules scraping to happen at midnight
 def schedule_scraping():
   scheduler = BackgroundScheduler()
-  for url in cu_urls:
-    scheduler.add_job(scrape_all, trigger='cron', hour=0, minute=0)
+  scheduler.add_job(scrape_all, trigger='cron', hour=0, minute=0)
   scheduler.start()
 
 if __name__ == '__main__':
