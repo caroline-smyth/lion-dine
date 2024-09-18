@@ -27,8 +27,6 @@ cu_urls = [
   "https://dining.columbia.edu/content/fac-shack"
   ]
   
-
-
 #IN PROGRESS
 def scrape_barnard():
   barnard_hall_names = ["Hewitt Dining", "Diana"]
@@ -101,7 +99,6 @@ def scrape_barnard_inside(driver, wait):
   #driver.quit()
   #return dining_hall
 
-
 #returns a dictionary of the form {dining hall : {station : [items]}}
 def scrape_columbia(url):
   driver = webdriver.Chrome()
@@ -149,6 +146,15 @@ def scrape_columbia(url):
   driver.quit()
   return dining_hall
 
+#combines the columbia and barnard scrapes into one dictionary
+def scrape_all():
+  dict = {}
+  for url in cu_urls:
+    for hall, food_data in scrape_columbia(url):
+      dict[hall] = food_data
+  for hall, food_data in scrape_barnard():
+    dict[hall] = food_data
+  return dict
 
 #for testing purposes to have food items to use without scraping
 '''
@@ -580,7 +586,7 @@ def dinner():
 def schedule_scraping():
   scheduler = BackgroundScheduler()
   for url in cu_urls:
-    scheduler.add_job(scrape_columbia, trigger='cron', hour=0, minute=0, args=[url])
+    scheduler.add_job(scrape_all, trigger='cron', hour=0, minute=0)
   scheduler.start()
 
 if __name__ == '__main__':
