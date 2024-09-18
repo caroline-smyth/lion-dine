@@ -15,7 +15,7 @@ import random
 app = Flask(__name__) #sets up a flask application
 cache = Cache(app, config={'CACHE_TYPE': 'simple'}) #sets up a cache for daily scraped data
 
-#dining hall URLs
+#dining hall URLs and names
 cu_urls = [
   "https://dining.columbia.edu/content/john-jay-dining-hall",
   "https://dining.columbia.edu/content/jjs-place-0", 
@@ -26,7 +26,19 @@ cu_urls = [
   "https://dining.columbia.edu/content/grace-dodge-dining-hall-0", 
   "https://dining.columbia.edu/content/fac-shack"
   ]
-  
+hall_names = [
+  "John Jay", 
+  "JJ's", 
+  "Ferris", 
+  "Faculty House", 
+  "Chef Mike's", 
+  "Chef Don's", 
+  "Grace Dodge", 
+  "Fac Shack", 
+  "Hewitt", 
+  "Diana"
+  ]
+
 #IN PROGRESS
 def scrape_barnard():
   barnard_hall_names = ["Hewitt Dining", "Diana"]
@@ -219,7 +231,6 @@ def dummy_food():
 def current_open_stations():
   now = datetime.now()
   halls = cache.get('halls_data') #get the already-scraped data
-  hall_names = ["John Jay", "JJ's", "Ferris", "Faculty House", "Chef Mike's", "Chef Don's", "Grace Dodge", "Fac Shack"]
   if not halls: #if the scraping didn't work, scrape now
     halls = {}
     for name, url in zip(hall_names, cu_urls):
@@ -259,6 +270,21 @@ def current_open_stations():
       (now.weekday() in [4,5] and (now.hour < 19 or now.hour >= 23)) or
       (now.weekday() == 3 and (now.hour < 11 or now.hour >= 23 or now.hour in [14,15,16,17,18]))):
     filtered_halls["Fac Shack"] = "Closed"
+  #hewitt
+  if ((now.weekday() in [0,1,2,3,4] and 
+       now.hour < 7 or (now.hour == 7 and now.minute < 30) or now.hour == 10 or
+       (now.hour == 14 and now.minute > 30) or now.hour == 15 or 
+       (now.hour == 16 and now.minute < 30) or now.hour >= 20) or
+      (now.weekday() in [5,6] and 
+       now.hour < 10 or (now.hour == 10 and now.minute < 30) or now.hour == 15 or
+       (now.hour == 16 and now.minute < 30) or now.hour >= 20)):
+    filtered_halls["Hewitt"] = "Closed"
+  #diana
+  if ((now.weekday() in [0,1,2,3] and (now.hour < 9 or now.hour in [15,16])) or 
+      (now.weekday() == 4 and (now.hour < 9 or now.hour >= 15)) or
+      (now.weekday() == 5) or 
+      (now.weekday() == 6 and (now.hour < 12 or now.hour > 20))):
+    filtered_halls["Diana"] = "Closed"
   
 
   #dummy_halls = dummy_food() #for testing
@@ -419,7 +445,6 @@ def current_open_stations():
 def open_at_meal(meal):
   now = datetime.now()
   halls = cache.get('halls_data') #get the already-scraped data
-  hall_names = ["John Jay", "JJ's", "Ferris", "Faculty House", "Chef Mike's", "Chef Don's", "Grace Dodge", "Fac Shack"]
   if not halls: #if the scraping didn't work, scrape now
     halls = {}
     for name, url in zip(hall_names, cu_urls):
