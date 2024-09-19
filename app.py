@@ -16,16 +16,16 @@ app = Flask(__name__) #sets up a flask application
 cache = Cache(app, config={'CACHE_TYPE': 'simple'}) #sets up a cache for daily scraped data
 
 #dining hall URLs and names
-cu_urls = [
-  "https://dining.columbia.edu/content/john-jay-dining-hall",
-  "https://dining.columbia.edu/content/jjs-place-0", 
-  "https://dining.columbia.edu/content/ferris-booth-commons-0",
-  "https://dining.columbia.edu/content/faculty-house-0", 
-  "https://dining.columbia.edu/chef-mikes",
-  "https://dining.columbia.edu/content/chef-dons-pizza-pi",
-  "https://dining.columbia.edu/content/grace-dodge-dining-hall-0", 
-  "https://dining.columbia.edu/content/fac-shack"
-  ]
+cu_urls = {
+  "John Jay" : "https://dining.columbia.edu/content/john-jay-dining-hall",
+  "JJ's" : "https://dining.columbia.edu/content/jjs-place-0", 
+  "Ferris" : "https://dining.columbia.edu/content/ferris-booth-commons-0",
+  "Faculty House" : "https://dining.columbia.edu/content/faculty-house-0", 
+  "Chef Mike's" : "https://dining.columbia.edu/chef-mikes",
+  "Chef Don's" : "https://dining.columbia.edu/content/chef-dons-pizza-pi",
+  "Grace Dodge" : "https://dining.columbia.edu/content/grace-dodge-dining-hall-0", 
+  "Fac Shack" : "https://dining.columbia.edu/content/fac-shack"
+}
 hall_names = [
   "John Jay", 
   "JJ's", 
@@ -112,9 +112,9 @@ def scrape_barnard_inside(driver, wait):
   #return dining_hall
 
 #returns a dictionary of the form {dining hall : {station : [items]}}
-def scrape_columbia(url):
+def scrape_columbia(hall_name):
+  url = cu_urls[hall_name]
   driver = webdriver.Chrome()
-
   driver.get(url)
   title = driver.title
   dining_hall = title.split("|")
@@ -156,12 +156,12 @@ def scrape_columbia(url):
     print(dining_hall)
 
   driver.quit()
-  return dining_hall
+  return {hall_name : dining_hall}
 
 #combines the columbia and barnard scrapes into one dictionary
 def scrape_all():
   dict = {}
-  for url in cu_urls:
+  for url in cu_urls.values():
     if url == "https://dining.columbia.edu/content/chef-dons-pizza-pi":
       continue
     hall_data = scrape_columbia(url)
