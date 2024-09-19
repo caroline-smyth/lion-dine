@@ -163,6 +163,7 @@ def scrape_all():
   dict = {}
   for hall in cu_urls.keys():
     if hall == "Chef Don's":
+      dict["Chef Don's"] = {'breakfast' : {}, 'lunch' : {}, 'dinner' : {}}
       continue
     hall_data = scrape_columbia(hall)
     dict.update(hall_data)
