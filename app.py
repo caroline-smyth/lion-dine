@@ -16,16 +16,16 @@ app = Flask(__name__) #sets up a flask application
 cache = Cache(app, config={'CACHE_TYPE': 'simple'}) #sets up a cache for daily scraped data
 
 #dining hall URLs and names
-cu_urls = [
-  "https://dining.columbia.edu/content/john-jay-dining-hall",
-  "https://dining.columbia.edu/content/jjs-place-0", 
-  "https://dining.columbia.edu/content/ferris-booth-commons-0",
-  "https://dining.columbia.edu/content/faculty-house-0", 
-  "https://dining.columbia.edu/chef-mikes",
-  "https://dining.columbia.edu/content/chef-dons-pizza-pi",
-  "https://dining.columbia.edu/content/grace-dodge-dining-hall-0", 
-  "https://dining.columbia.edu/content/fac-shack"
-  ]
+cu_urls = {
+  "John Jay" : "https://dining.columbia.edu/content/john-jay-dining-hall",
+  "JJ's" : "https://dining.columbia.edu/content/jjs-place-0", 
+  "Ferris" : "https://dining.columbia.edu/content/ferris-booth-commons-0",
+  "Faculty House" : "https://dining.columbia.edu/content/faculty-house-0", 
+  "Chef Mike's" : "https://dining.columbia.edu/chef-mikes",
+  "Chef Don's" : "https://dining.columbia.edu/content/chef-dons-pizza-pi",
+  "Grace Dodge" : "https://dining.columbia.edu/content/grace-dodge-dining-hall-0", 
+  "Fac Shack" : "https://dining.columbia.edu/content/fac-shack"
+}
 hall_names = [
   "John Jay", 
   "JJ's", 
@@ -112,9 +112,9 @@ def scrape_barnard_inside(driver, wait):
   #return dining_hall
 
 #returns a dictionary of the form {dining hall : {station : [items]}}
-def scrape_columbia(url):
+def scrape_columbia(hall_name):
+  url = cu_urls[hall_name]
   driver = webdriver.Chrome()
-
   driver.get(url)
   title = driver.title
   dining_hall = title.split("|")
@@ -156,20 +156,19 @@ def scrape_columbia(url):
     print(dining_hall)
 
   driver.quit()
-  return dining_hall
+  return {hall_name : dining_hall}
 
 #combines the columbia and barnard scrapes into one dictionary
 def scrape_all():
   dict = {}
-  for url in cu_urls:
-    if url == "https://dining.columbia.edu/content/chef-dons-pizza-pi":
+  for hall in cu_urls.keys():
+    if hall == "Chef Don's":
+      dict["Chef Don's"] = {'breakfast' : {}, 'lunch' : {}, 'dinner' : {}}
       continue
-    hall_data = scrape_columbia(url)
-    for hall, data in hall_data.items():
-      dict[hall] = data
+    hall_data = scrape_columbia(hall)
+    dict.update(hall_data)
   barnard_data = scrape_barnard()
-  for hall, data in barnard_data.items():
-    dict[hall] = data
+  dict.update(barnard_data)
   return dict
 
 #for testing purposes to have food items to use without scraping
@@ -250,7 +249,7 @@ def current_open_stations():
   if now.hour in [10,11]:
     filtered_halls["JJ's"] = "Closed"
   #ferris
-  if ((now.weekday() in [0,4] and (now.hour < 7 or now.hour >= 20 or (now.hour == 7 and now.minute < 30))) or
+  if ((now.weekday() in [0,1,2,3,4] and (now.hour < 7 or now.hour >= 20 or (now.hour == 7 and now.minute < 30))) or
       (now.weekday() == 5 and (now.hour < 9 or now.hour >= 20)) or
       (now.weekday() == 6 and (now.hour < 10 or now.hour >= 20 or now.hour in [15,16]))):
     filtered_halls["Ferris"] = "Closed"
@@ -395,8 +394,7 @@ def current_open_stations():
       if now.hour >= 8 and now.hour < 11:
         filtered_stations["Breakfast"] = ["Breakfast Sandwich"]
       if now.hour >= 11 and now.hour < 18:
-        filtered_stations["Regular"] = ["Build your own"]
-        filtered_stations["Vegan"] = ["Build your own"]
+        filtered_stations["Pizza"] = ["Build your own"]
       if filtered_stations:
         filtered_halls[hall_name] = filtered_stations
       else:
@@ -554,8 +552,7 @@ def open_at_meal(meal):
       if meal == 'breakfast':
         filtered_stations["Breakfast"] = ["Breakfast Sandwich"]
       if meal == 'lunch' or meal == 'dinner':
-        filtered_stations["Regular"] = ["Build your own"]
-        filtered_stations["Vegan"] = ["Build your own"]
+        filtered_stations["Pizza"] = ["Build your own"]
       if filtered_stations:
         filtered_halls[hall_name] = filtered_stations
       else:
