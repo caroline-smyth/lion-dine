@@ -161,15 +161,13 @@ def scrape_columbia(hall_name):
 #combines the columbia and barnard scrapes into one dictionary
 def scrape_all():
   dict = {}
-  for url in cu_urls.values():
-    if url == "https://dining.columbia.edu/content/chef-dons-pizza-pi":
+  for hall in cu_urls.keys():
+    if hall == "Chef Don's":
       continue
-    hall_data = scrape_columbia(url)
-    for hall, data in hall_data.items():
-      dict[hall] = data
+    hall_data = scrape_columbia(hall)
+    dict.update(hall_data)
   barnard_data = scrape_barnard()
-  for hall, data in barnard_data.items():
-    dict[hall] = data
+  dict.update(barnard_data)
   return dict
 
 #for testing purposes to have food items to use without scraping
