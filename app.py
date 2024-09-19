@@ -248,7 +248,7 @@ def current_open_stations():
   if now.hour in [10,11]:
     filtered_halls["JJ's"] = "Closed"
   #ferris
-  if ((now.weekday() in [0,4] and (now.hour < 7 or now.hour >= 20 or (now.hour == 7 and now.minute < 30))) or
+  if ((now.weekday() in [0,1,2,3,4] and (now.hour < 7 or now.hour >= 20 or (now.hour == 7 and now.minute < 30))) or
       (now.weekday() == 5 and (now.hour < 9 or now.hour >= 20)) or
       (now.weekday() == 6 and (now.hour < 10 or now.hour >= 20 or now.hour in [15,16]))):
     filtered_halls["Ferris"] = "Closed"
