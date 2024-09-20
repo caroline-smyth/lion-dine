@@ -13,6 +13,7 @@ from datetime import datetime, time
 import time as time_module
 import random
 from contextlib import contextmanager
+import os
 
 app = Flask(__name__) #sets up a flask application
 cache = Cache(app, config={'CACHE_TYPE': 'simple'}) #sets up a cache for daily scraped data
@@ -44,6 +45,7 @@ hall_names = [
 #configures webdriver for a headless environment
 def managed_webdriver():
   chrome_options = Options()
+  chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN", "/usr/bin/chromium")
   chrome_options.add_argument("--headless")
   chrome_options.add_argument("--no-sandbox")
   chrome_options.add_argument("--disable-dev-shm-usage")
