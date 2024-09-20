@@ -55,38 +55,37 @@ def managed_webdriver():
 
 #IN PROGRESS
 def scrape_barnard():
-  barnard_hall_names = ["Hewitt Dining", "Diana"]
-  #barnard_hall_names = ["Barnard Kosher @ Hewitt Food Hall"]
-  driver = webdriver.Chrome()
-  url = "https://dineoncampus.com/barnard/whats-on-the-menu"
-  driver.get(url)
-  dining_hall_data = {}
-  wait = WebDriverWait(driver, 40)
-
-  for hall_name in barnard_hall_names:
+  with managed_webdriver() as driver:
+    barnard_hall_names = ["Hewitt Dining", "Diana"]
+    #barnard_hall_names = ["Barnard Kosher @ Hewitt Food Hall"]
+    url = "https://dineoncampus.com/barnard/whats-on-the-menu"
     driver.get(url)
-    dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
-    dropdown.click()
-    
-    dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
+    dining_hall_data = {}
+    wait = WebDriverWait(driver, 40)
 
-    items = dropdown_menu.find_elements(By.TAG_NAME, "button")
-    for item in items:
-      hall = item.text.strip()
-      print("inside loop " + hall)
+    for hall_name in barnard_hall_names:
+      driver.get(url)
+      dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
+      dropdown.click()
       
-      if hall_name in hall:
-        item.click()
-        print("clicked " + hall)
-        hall_data = scrape_barnard_inside(driver, wait)
-        if hall_data == None:
-          hall_data = scrape_barnard_inside(driver, wait)
-          hall_data = scrape_barnard_inside(driver, wait)
-        dining_hall_data[hall] = hall_data
+      dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
 
-  driver.quit()
-  print(dining_hall_data)
-  return dining_hall_data
+      items = dropdown_menu.find_elements(By.TAG_NAME, "button")
+      for item in items:
+        hall = item.text.strip()
+        print("inside loop " + hall)
+        
+        if hall_name in hall:
+          item.click()
+          print("clicked " + hall)
+          hall_data = scrape_barnard_inside(driver, wait)
+          if hall_data == None:
+            hall_data = scrape_barnard_inside(driver, wait)
+            hall_data = scrape_barnard_inside(driver, wait)
+          dining_hall_data[hall] = hall_data
+
+    print(dining_hall_data)
+    return dining_hall_data
 
 #IN PROGRESS
 def scrape_barnard_inside(driver, wait): 
@@ -127,50 +126,48 @@ def scrape_barnard_inside(driver, wait):
 
 #returns a dictionary of the form {dining hall : {station : [items]}}
 def scrape_columbia(hall_name):
-  url = cu_urls[hall_name]
-  driver = webdriver.Chrome()
-  driver.get(url)
-  title = driver.title
-  dining_hall = title.split("|")
-  print(dining_hall[0].lower())
+  with managed_webdriver() as driver:
+    url = cu_urls[hall_name]
+    driver.get(url)
+    title = driver.title
+    dining_hall = title.split("|")
+    print(dining_hall[0].lower())
 
-  wait = WebDriverWait(driver, 40)
+    wait = WebDriverWait(driver, 40)
 
-  buttons = driver.find_elements(By.TAG_NAME, "button")
+    buttons = driver.find_elements(By.TAG_NAME, "button")
 
-  clicks = []
+    clicks = []
 
-  for b in buttons:
-    text = b.text.strip()
-    if text == "Breakfast" or text == "Lunch" or text == "Dinner" or text == "Lunch & Dinner" or text == "Late Night":
-      clicks.append(b)
+    for b in buttons:
+      text = b.text.strip()
+      if text == "Breakfast" or text == "Lunch" or text == "Dinner" or text == "Lunch & Dinner" or text == "Late Night":
+        clicks.append(b)
 
+    dining_hall = {}
+    for button in clicks:
+      button.click()
+      meal = button.text.strip().lower()
+      # print(meal)
+      
+      meal_dictionary = {}
 
-  dining_hall = {}
-  for button in clicks:
-    button.click()
-    meal = button.text.strip().lower()
-    # print(meal)
-    
-    meal_dictionary = {}
+      wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "wrapper")))
 
-    first_station = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "wrapper")))
+      station_elements = driver.find_elements(By.CLASS_NAME, "wrapper")
 
-    station_elements = driver.find_elements(By.CLASS_NAME, "wrapper")
+      for s in station_elements:
+        station_name = s.find_element(By.CLASS_NAME, "station-title").text.strip()
 
-    for s in station_elements:
-      station_name = s.find_element(By.CLASS_NAME, "station-title").text.strip()
+        meal_items = s.find_elements(By.CLASS_NAME, "meal-title")
 
-      meal_items = s.find_elements(By.CLASS_NAME, "meal-title")
+        meal_dictionary[station_name] = [item.text.strip() for item in meal_items]
 
-      meal_dictionary[station_name] = [item.text.strip() for item in meal_items]
+        dining_hall[meal] = meal_dictionary
 
-      dining_hall[meal] = meal_dictionary
+      print(dining_hall)
 
-    print(dining_hall)
-
-  driver.quit()
-  return {hall_name : dining_hall}
+    return {hall_name : dining_hall}
 
 #combines the columbia and barnard scrapes into one dictionary
 def scrape_all():
