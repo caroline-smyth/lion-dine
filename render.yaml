@@ -3,10 +3,9 @@ services:
     name: YourAppName
     env: python
     buildCommand: |
-      sudo apt-get update
-      sudo apt-get install -y chromium-browser
+      apt-get update && apt-get install -y chromium-browser
       pip install -r requirements.txt
-    startCommand: python app.py
+    startCommand: gunicorn app:app --bind 0.0.0.0:5000 --timeout 120
     envVars:
       - key: GOOGLE_CHROME_BIN
         value: /usr/bin/chromium-browser
