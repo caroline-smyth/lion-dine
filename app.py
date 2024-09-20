@@ -6,11 +6,13 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.chrome.options import Options
 from flask_caching import Cache
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime, time 
 import time as time_module
 import random
+from contextlib import contextmanager
 
 app = Flask(__name__) #sets up a flask application
 cache = Cache(app, config={'CACHE_TYPE': 'simple'}) #sets up a cache for daily scraped data
@@ -38,6 +40,18 @@ hall_names = [
   "Hewitt", 
   "Diana"
   ]
+
+#configures webdriver for a headless environment
+def managed_webdriver():
+  chrome_options = Options()
+  chrome_options.add_argument("--headless")
+  chrome_options.add_argument("--no-sandbox")
+  chrome_options.add_argument("--disable-dev-shm-usage")
+  driver = webdriver.Chrome(options=chrome_options)
+  try:
+    yield driver
+  finally:
+    driver.quit()
 
 #IN PROGRESS
 def scrape_barnard():
