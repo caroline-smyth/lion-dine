@@ -1,6 +1,6 @@
 .header {
   display: flex;
-  font-family: Inconsolata;
+  font-family: "Inter", sans-serif;
   align-items: top;
   font-size: 32px;
   font-weight: bold;
