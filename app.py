@@ -18,7 +18,7 @@ import os
 app = Flask(__name__) #sets up a flask application
 cache = Cache(app, config={'CACHE_TYPE': 'simple'}) #sets up a cache for daily scraped data
 
-#dining hall URLs and names
+#dining hall URLs and names 
 cu_urls = {
   "John Jay" : "https://dining.columbia.edu/content/john-jay-dining-hall",
   "JJ's" : "https://dining.columbia.edu/content/jjs-place-0", 
@@ -56,7 +56,7 @@ def managed_webdriver():
   finally:
     driver.quit()
 
-#IN PROGRESS
+#IN PROGRESS 
 def scrape_barnard():
   with managed_webdriver() as driver:
     barnard_hall_names = ["Hewitt Dining", "Diana"]
