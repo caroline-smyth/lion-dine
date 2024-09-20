@@ -323,10 +323,14 @@ def current_open_stations():
     
     if hall_name == "JJ's":
       #filter for only open stations
-      for station, items in stations.get('lunch & dinner',{}).items():
-        filtered_stations[station] = items
+      if now.hour >= 12 or now.hour < 4:
+        for station, items in stations.get('lunch & dinner',{}).items():
+          filtered_stations[station] = items
       if now.hour > 22 or now.hour < 4:
         for station, items in stations.get('late night',{}).items():
+          filtered_stations[station] = items
+      if now.hour >= 4 and now.hour < 10:
+        for station, items in stations.get('breakfast',{}).items():
           filtered_stations[station] = items
       #return data to the filtered dictionary
       if filtered_stations:
@@ -519,10 +523,17 @@ def open_at_meal(meal):
         filtered_halls[hall_name] = "Missing data"  
     if hall_name == "JJ's":
       #filter for only open stations
-      for station, items in stations.get('lunch & dinner',{}).items():
-        filtered_stations[station] = items
-      for station, items in stations.get('late night',{}).items():
-        filtered_stations[station] = items
+      if meal == 'breakfast':
+        for station, items in stations.get('breakfast',{}).items():
+          filtered_stations[station] = items
+      if meal == 'lunch':
+        for station, items in stations.get('lunch & dinner',{}).items():
+          filtered_stations[station] = items
+      if meal == 'dinner':
+        for station, items in stations.get('lunch & dinner',{}).items():
+          filtered_stations[station] = items
+        for station, items in stations.get('late night',{}).items():
+          filtered_stations[station] = items
       #return data to the filtered dictionary
       if filtered_stations:
         filtered_halls[hall_name] = filtered_stations
