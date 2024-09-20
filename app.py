@@ -60,14 +60,13 @@ def managed_webdriver():
 def scrape_barnard():
   with managed_webdriver() as driver:
     barnard_hall_names = ["Hewitt Dining", "Diana"]
-    #barnard_hall_names = ["Barnard Kosher @ Hewitt Food Hall"]
     url = "https://dineoncampus.com/barnard/whats-on-the-menu"
     driver.get(url)
     dining_hall_data = {}
     wait = WebDriverWait(driver, 40)
 
     for hall_name in barnard_hall_names:
-      driver.get(url)
+      # driver.get(url) # untested
       dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
       dropdown.click()
       
@@ -76,17 +75,23 @@ def scrape_barnard():
       items = dropdown_menu.find_elements(By.TAG_NAME, "button")
       for item in items:
         hall = item.text.strip()
-        print("inside loop " + hall)
+        #print("inside loop " + hall)
         
         if hall_name in hall:
           item.click()
-          print("clicked " + hall)
+          #print("clicked " + hall)
           hall_data = scrape_barnard_inside(driver, wait)
-          if hall_data == None:
+          retries = 0
+          while hall_data is None and retries < 4:
+            time_module.sleep(2)
             hall_data = scrape_barnard_inside(driver, wait)
-            hall_data = scrape_barnard_inside(driver, wait)
-          dining_hall_data[hall] = hall_data
+            retries += 1
 
+          if hall_data is not None:
+            dining_hall_data[hall] = hall_data
+          else:
+            print(f"Failed to scrape data for {hall}")
+          
     print(dining_hall_data)
     return dining_hall_data
 
@@ -97,7 +102,7 @@ def scrape_barnard_inside(driver, wait):
   try:
     nav_bar = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "nav.nav-tabs")))
 
-    print("entered try")
+    #print("entered try")
 
     buttons = nav_bar.find_elements(By.CLASS_NAME, "nav-link")
 
@@ -105,7 +110,13 @@ def scrape_barnard_inside(driver, wait):
       meal_time = b.text.strip().lower()
       meal = {}
       b.click()
-      print("clicked meal button")
+      """
+      try: potential try catch
+        menu_elements = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "table")))
+      except TimeoutException:
+        print(f"Timeout occured while scraping {meal_time}")
+        return None
+        """
       menu_elements = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "table")))
 
       for m in menu_elements:
@@ -115,17 +126,12 @@ def scrape_barnard_inside(driver, wait):
     
         meal[station_name] = foods
       dining_hall[meal_time] = meal
-    #dining_hall_data[hall] = dining_hall
 
-    #print(dining_hall)
   except Exception as e:
     print(f"Error occurred: {e}")
-    dining_hall = None
+    dining_hall = None # maybe return None
 
   return dining_hall
-  #print("made to end")
-  #driver.quit()
-  #return dining_hall
 
 #returns a dictionary of the form {dining hall : {station : [items]}}
 def scrape_columbia(hall_name):
