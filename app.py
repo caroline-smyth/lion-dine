@@ -229,7 +229,7 @@ def dummy_food():
   '''
 
 #takes the dictionary of all food items and filters it to only include
-#stations that are currently open
+#stations that are currently open 
 def current_open_stations():
   now = datetime.now()
   halls = cache.get('halls_data') #get the already-scraped data
