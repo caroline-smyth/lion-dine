@@ -43,6 +43,7 @@ hall_names = [
   ]
 
 #configures webdriver for a headless environment
+@contextmanager
 def managed_webdriver():
   chrome_options = Options()
   chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN", "/usr/bin/chromium")
