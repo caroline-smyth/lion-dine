@@ -189,8 +189,9 @@ def scrape_columbia(hall_name):
             print(f"failed to click {btn.text} button. {e}")
       if not clicked:
         print("no accept button found on the privacy notice that was detected. attempting javascript dismissal")
+        driver.switch_to.default_content()
         driver.execute_script("document.getElementById('cu-privacy-notice').style.display = 'none';")
-        print("javascritp removal successful")
+        print("javascript removal successful")
       driver.switch_to.default_content()
     except TimeoutException:
       print("No privacy notice found or it didn't appear in time")
