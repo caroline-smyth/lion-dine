@@ -170,11 +170,22 @@ def scrape_columbia(hall_name):
       privacy_notice = wait.until(
         EC.presence_of_element_located((By.ID, "cu-privacy-notice"))
       )
-      print("privacy notice detected")
-      if driver.find_elements(By.TAG_NAME, "iframe"):
-        print("privacy notice in an iframe")
-      else:
-        print("NOT in an iframe")
+      iframe = driver.find_element(By.TAG_NAME, "iframe")
+      driver.switch_to.frame(iframe)
+      possible_texts = ["i agree", "agree", "accept", "ok", "yes"]
+      accept_buttons = privacy_notice.find_elements(By.TAG_NAME, "button")
+      clicked = False
+      for btn in accept_buttons:
+        btn_text = btn.text.strip().lower()
+        if btn_text in possible_texts:
+              btn.click()
+              print(f"Clicked '{btn.text}' button to accept privacy notice.")
+              clicked = True
+              break
+      if not clicked:
+        print("no accept button found on the privacy notice that was detected. attempting javascript dismissal")
+        driver.execute_script("document.getElementById('cu-privacy-notice').style.display = 'none';")
+      driver.switch_to.default_content()
     except TimeoutException:
       print("No privacy notice found or it didn't appear in time")
 
