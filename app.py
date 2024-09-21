@@ -163,10 +163,14 @@ def scrape_columbia(hall_name):
 
     #handle the privacy notice
     try:
-      accept_button = wait.until(
-        EC.element_to_be_clickable((By.XPATH, "//div[@id='cu-privacy-notice']//button[text()='I AGREE']"))
+      #accept_button = wait.until(
+        #EC.element_to_be_clickable((By.XPATH, "//div[@id='cu-privacy-notice']//button[text()='I AGREE']"))
+      #)
+      #accept_button.click()
+      privacy_notice = wait.until(
+        EC.presence_of_element_located((By.ID, "cu-privacy-notice"))
       )
-      accept_button.click()
+      print("privacy notice detected")
     except TimeoutException:
       print("No privacy notice found or it didn't appear in time")
 
