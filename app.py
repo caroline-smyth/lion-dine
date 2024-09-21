@@ -252,8 +252,8 @@ def scrape_all():
       continue
     hall_data = scrape_columbia(hall)
     dict.update(hall_data)
-  barnard_data = scrape_barnard()
-  dict.update(barnard_data)
+  #barnard_data = scrape_barnard()
+  #dict.update(barnard_data)
   return dict
 
 #for testing purposes to have food items to use without scraping
