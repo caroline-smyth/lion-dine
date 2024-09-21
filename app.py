@@ -194,7 +194,7 @@ def scrape_columbia(hall_name):
         print("javascript removal successful")
       driver.switch_to.default_content()'''
       driver.execute_script("document.getElementById('cu-privacy-notice').style.display = 'none';")
-
+      print("javascript removal successful")
     except TimeoutException:
       print("No privacy notice found or it didn't appear in time")
     except NoSuchElementException:
