@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException, ElementClickInterceptedException
 from selenium.webdriver.chrome.options import Options
 from flask_caching import Cache
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -188,6 +188,14 @@ def scrape_columbia(hall_name):
       driver.switch_to.default_content()
     except TimeoutException:
       print("No privacy notice found or it didn't appear in time")
+    except NoSuchElementException:
+      print("Privacy notice elements not found")
+    except ElementClickInterceptedException:
+      print("Privacy notice could not be clicked. Attempting JavaScript dismissal.")
+      try:
+        driver.execute_script("document.getElementById('cu-privacy-notice').style.display = 'none';")
+      except Exception as e:
+        print(f"Unexpected error while handling privacy notice: {e}")
 
     #continue with scraping 
     buttons = driver.find_elements(By.TAG_NAME, "button")
