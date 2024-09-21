@@ -180,7 +180,8 @@ def scrape_columbia(hall_name):
         if btn_text in possible_texts:
           try:
             #btn.click()
-            driver.execute_script("arguments[0].click();", btn) #the same as above line but better?
+            driver.execute_script("arguments[0].scrollIntoView();", btn) #scroll into view
+            driver.execute_script("arguments[0].click();", btn) #the same as btn.click() but better?
             print(f"Clicked '{btn.text}' button to accept privacy notice.")
             clicked = True
             break
