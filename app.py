@@ -171,6 +171,10 @@ def scrape_columbia(hall_name):
         EC.presence_of_element_located((By.ID, "cu-privacy-notice"))
       )
       print("privacy notice detected")
+      if driver.find_elements(By.TAG_NAME, "iframe"):
+        print("privacy notice in an iframe")
+      else:
+        print("NOT in an iframe")
     except TimeoutException:
       print("No privacy notice found or it didn't appear in time")
 
