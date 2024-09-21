@@ -43,7 +43,7 @@ hall_names = [
   "Diana"
   ]
 
-#configures webdriver for a headless environment
+#configures webdriver for a headless environment 
 @contextmanager
 def managed_webdriver():
   chrome_options = Options()
