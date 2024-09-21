@@ -80,20 +80,17 @@ def scrape_barnard():
     wait = WebDriverWait(driver, 40)
 
     for hall_name in barnard_hall_names:
-      # driver.get(url) # untested
-      dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
+      dropdown = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".btn.dropdown-toggle")))
       dropdown.click()
       
-      dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
-
+      dropdown_menu = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "dropdown-menu.show")))
       items = dropdown_menu.find_elements(By.TAG_NAME, "button")
+
       for item in items:
         hall = item.text.strip()
-        #print("inside loop " + hall)
-        
         if hall_name in hall:
           item.click()
-          #print("clicked " + hall)
+          wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".nav.nav-tabs")))
           hall_data = scrape_barnard_inside(driver, wait)
           retries = 0
           while hall_data is None and retries < 4:
@@ -112,12 +109,9 @@ def scrape_barnard():
 #IN PROGRESS
 def scrape_barnard_inside(driver, wait): 
   dining_hall = {}
-  
   try:
-    nav_bar = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "nav.nav-tabs")))
-
+    nav_bar = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "nav.nav-tabs")))
     #print("entered try")
-
     buttons = nav_bar.find_elements(By.CLASS_NAME, "nav-link")
 
     for b in buttons:
@@ -137,7 +131,6 @@ def scrape_barnard_inside(driver, wait):
         station_name = m.find_element(By.TAG_NAME, "caption").text.strip()
         food_elements = m.find_elements(By.TAG_NAME, "strong")
         foods = [food.text.strip() for food in food_elements]
-    
         meal[station_name] = foods
       dining_hall[meal_time] = meal
 
