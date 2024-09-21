@@ -83,7 +83,7 @@ def scrape_barnard():
       dropdown = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".btn.dropdown-toggle")))
       dropdown.click()
       
-      dropdown_menu = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "dropdown-menu.show")))
+      dropdown_menu = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".dropdown-menu.show")))
       items = dropdown_menu.find_elements(By.TAG_NAME, "button")
 
       for item in items:
