@@ -167,35 +167,42 @@ def scrape_columbia(hall_name):
         #EC.element_to_be_clickable((By.XPATH, "//div[@id='cu-privacy-notice']//button[text()='I AGREE']"))
       #)
       #accept_button.click()
-      privacy_notice = wait.until(
-        EC.presence_of_element_located((By.ID, "cu-privacy-notice"))
+      iframe = wait.until(
+        EC.presence_of_element_located((By.TAG_NAME, "iframe"))
       )
-      iframe = driver.find_element(By.TAG_NAME, "iframe")
+      print("privacy notice iframe detected")
       driver.switch_to.frame(iframe)
       possible_texts = ["i agree", "agree", "accept", "ok", "yes"]
-      accept_buttons = privacy_notice.find_elements(By.TAG_NAME, "button")
+      accept_buttons = driver.find_elements(By.TAG_NAME, "button")
       clicked = False
       for btn in accept_buttons:
         btn_text = btn.text.strip().lower()
         if btn_text in possible_texts:
-              btn.click()
-              print(f"Clicked '{btn.text}' button to accept privacy notice.")
-              clicked = True
-              break
+          try:
+            #btn.click()
+            driver.execute_script("arguments[0].click();", btn) #the same as above line but better?
+            print(f"Clicked '{btn.text}' button to accept privacy notice.")
+            clicked = True
+            break
+          except Exception as e:
+            print(f"failed to click {btn.text} button. {e}")
       if not clicked:
         print("no accept button found on the privacy notice that was detected. attempting javascript dismissal")
         driver.execute_script("document.getElementById('cu-privacy-notice').style.display = 'none';")
+        print("javascritp removal successful")
       driver.switch_to.default_content()
     except TimeoutException:
       print("No privacy notice found or it didn't appear in time")
     except NoSuchElementException:
       print("Privacy notice elements not found")
     except ElementClickInterceptedException:
-      print("Privacy notice could not be clicked. Attempting JavaScript dismissal.")
+      print("Privacy notice could not be clicked. Attempting javascript dismissal.")
       try:
         driver.execute_script("document.getElementById('cu-privacy-notice').style.display = 'none';")
       except Exception as e:
         print(f"Unexpected error while handling privacy notice: {e}")
+    except Exception as e:
+      print(f"Unexpected error while handling privacy notice: {e}")
 
     #continue with scraping 
     buttons = driver.find_elements(By.TAG_NAME, "button")
