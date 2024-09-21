@@ -136,42 +136,49 @@ def scrape_barnard_inside(driver, wait):
 #returns a dictionary of the form {dining hall : {station : [items]}}
 def scrape_columbia(hall_name):
   with managed_webdriver() as driver:
+
+    #go to the URL and print the title of the page
     url = cu_urls[hall_name]
     driver.get(url)
     title = driver.title
-    dining_hall = title.split("|")
-    print(dining_hall[0].lower())
+    dining_hall_name = title.split("|")
+    print(dining_hall_name[0].lower())
 
+    #let page load
     wait = WebDriverWait(driver, 40)
 
-    buttons = driver.find_elements(By.TAG_NAME, "button")
+    #handle the privacy notice
+    try:
+      accept_button = wait.until(
+        EC.element_to_be_clickable((By.XPATH, "//div[@id='cu-privacy-notice']//button[text()='I AGREE']"))
+      )
+      accept_button.click()
+    except TimeoutException:
+      print("No privacy notice found or it didn't appear in time")
 
-    clicks = []
+    #continue with scraping 
+    buttons = driver.find_elements(By.TAG_NAME, "button")
+    meal_buttons = []
 
     for b in buttons:
       text = b.text.strip()
-      if text == "Breakfast" or text == "Lunch" or text == "Dinner" or text == "Lunch & Dinner" or text == "Late Night":
-        clicks.append(b)
+      if text in ["Breakfast", "Lunch", "Dinner", "Lunch & Dinner", "Late Night"]:
+        meal_buttons.append(b)
 
     dining_hall = {}
-    for button in clicks:
+    for button in meal_buttons:
       button.click()
       meal = button.text.strip().lower()
       # print(meal)
       
       meal_dictionary = {}
-
       wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "wrapper")))
-
       station_elements = driver.find_elements(By.CLASS_NAME, "wrapper")
 
       for s in station_elements:
         station_name = s.find_element(By.CLASS_NAME, "station-title").text.strip()
-
         meal_items = s.find_elements(By.CLASS_NAME, "meal-title")
-
         meal_dictionary[station_name] = [item.text.strip() for item in meal_items]
-
         dining_hall[meal] = meal_dictionary
 
       print(dining_hall)
