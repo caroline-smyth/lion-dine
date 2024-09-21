@@ -50,7 +50,8 @@ def managed_webdriver():
   chrome_options.add_argument("--headless")
   chrome_options.add_argument("--no-sandbox")
   chrome_options.add_argument("--disable-dev-shm-usage")
-  driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
+  service = ChromeService(ChromeDriverManager().install())
+  driver = webdriver.Chrome(service=service, options=chrome_options)
   try:
     yield driver
   finally:
