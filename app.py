@@ -171,7 +171,7 @@ def scrape_columbia(hall_name):
         EC.presence_of_element_located((By.TAG_NAME, "iframe"))
       )
       print("privacy notice iframe detected")
-      driver.switch_to.frame(iframe)
+      '''driver.switch_to.frame(iframe)
       possible_texts = ["i agree", "agree", "accept", "ok", "yes"]
       accept_buttons = driver.find_elements(By.TAG_NAME, "button")
       clicked = False
@@ -192,7 +192,9 @@ def scrape_columbia(hall_name):
         driver.switch_to.default_content()
         driver.execute_script("document.getElementById('cu-privacy-notice').style.display = 'none';")
         print("javascript removal successful")
-      driver.switch_to.default_content()
+      driver.switch_to.default_content()'''
+      driver.execute_script("document.getElementById('cu-privacy-notice').style.display = 'none';")
+
     except TimeoutException:
       print("No privacy notice found or it didn't appear in time")
     except NoSuchElementException:
