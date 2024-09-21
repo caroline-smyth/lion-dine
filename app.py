@@ -46,11 +46,11 @@ hall_names = [
 @contextmanager
 def managed_webdriver():
   chrome_options = Options()
-  chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN", "/usr/bin/chromium")
+  chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN", "/usr/bin/chromium-browser")
   chrome_options.add_argument("--headless")
   chrome_options.add_argument("--no-sandbox")
   chrome_options.add_argument("--disable-dev-shm-usage")
-  driver = webdriver.Chrome(options=chrome_options)
+  driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
   try:
     yield driver
   finally:
