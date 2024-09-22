@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException, NoSuchElementException, ElementClickInterceptedException
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.chrome.options import Options
 from flask_caching import Cache
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -43,28 +43,16 @@ hall_names = [
   "Diana"
   ]
 
-#configures webdriver for a headless environment 
+#configures webdriver for a headless environment
 @contextmanager
 def managed_webdriver():
   chrome_options = Options()
-
-  #determine OS and set chrome binary location based on that
-  current_os = platform.system()
-  if current_os == "Darwin":
-    chrome_binary = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-  elif current_os == "Linux":
-    chrome_binary = os.path.join(os.getcwd(), 'chromium', 'chrome-linux', 'chrome')
-  elif current_os == "Windows":
-    chrome_binary = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
-  else:
-    raise Exception(f"Unsupported OS: {current_os}")
-
-  chrome_options.binary_location = chrome_binary
+  chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN", "/usr/bin/chromium-browser")
   chrome_options.add_argument("--headless")
   chrome_options.add_argument("--no-sandbox")
   chrome_options.add_argument("--disable-dev-shm-usage")
-  service = ChromeService(ChromeDriverManager().install())
-  driver = webdriver.Chrome(service=service, options=chrome_options)
+
+  driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
   try:
     yield driver
   finally:
@@ -80,37 +68,31 @@ def scrape_barnard():
     wait = WebDriverWait(driver, 40)
 
     for hall_name in barnard_hall_names:
-      dropdown = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".btn.dropdown-toggle")))
+      # driver.get(url) # untested
+      dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
       dropdown.click()
-      print(f"clicked dropdown for {hall_name}")
       
-      dropdown_menu = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".dropdown-menu.show")))
+      dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
+
       items = dropdown_menu.find_elements(By.TAG_NAME, "button")
-      print(f"found {len(items)} in the dropdown menu")
-
       for item in items:
-        try:
-          hall = item.text.strip()
-          if hall_name in hall:
-            item.click()
-            print(f"selected hall: {hall_name}")
-            wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".nav.nav-tabs")))
+        hall = item.text.strip()
+        #print("inside loop " + hall)
+        
+        if hall_name in hall:
+          item.click()
+          #print("clicked " + hall)
+          hall_data = scrape_barnard_inside(driver, wait)
+          retries = 0
+          while hall_data is None and retries < 4:
+            time_module.sleep(2)
             hall_data = scrape_barnard_inside(driver, wait)
-            retries = 0
-            while hall_data is None and retries < 4:
-              time_module.sleep(2)
-              hall_data = scrape_barnard_inside(driver, wait)
-              retries += 1
+            retries += 1
 
-            if hall_data is not None:
-              dining_hall_data[hall] = hall_data
-              print(f"successfully scraped data for {hall}")
-            else:
-              print(f"Failed to scrape data for {hall}")
-        except TimeoutException:
-          print(f"timeout while processing {hall_name}")
-        except Exception as e:
-          print(f"error while processing {hall_name}: {e}")
+          if hall_data is not None:
+            dining_hall_data[hall] = hall_data
+          else:
+            print(f"Failed to scrape data for {hall}")
           
     print(dining_hall_data)
     return dining_hall_data
@@ -118,16 +100,18 @@ def scrape_barnard():
 #IN PROGRESS
 def scrape_barnard_inside(driver, wait): 
   dining_hall = {}
+  
   try:
-    nav_bar = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "nav.nav-tabs")))
+    nav_bar = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "nav.nav-tabs")))
+
+    #print("entered try")
+
     buttons = nav_bar.find_elements(By.CLASS_NAME, "nav-link")
-    print(f"found {len(buttons)} meal tabs")
 
     for b in buttons:
       meal_time = b.text.strip().lower()
       meal = {}
       b.click()
-      print(f"clicked meal tab: {meal_time}")
       """
       try: potential try catch
         menu_elements = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "table")))
@@ -136,16 +120,14 @@ def scrape_barnard_inside(driver, wait):
         return None
         """
       menu_elements = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "table")))
-      print(f"found {len(menu_elements)} menu tables for {meal_time}")
 
       for m in menu_elements:
         station_name = m.find_element(By.TAG_NAME, "caption").text.strip()
         food_elements = m.find_elements(By.TAG_NAME, "strong")
         foods = [food.text.strip() for food in food_elements]
+    
         meal[station_name] = foods
-        print(f"scraped station {station_name}")
       dining_hall[meal_time] = meal
-      print(f"completed scraping for meal time {meal_time}")
 
   except Exception as e:
     print(f"Error occurred: {e}")
@@ -156,87 +138,42 @@ def scrape_barnard_inside(driver, wait):
 #returns a dictionary of the form {dining hall : {station : [items]}}
 def scrape_columbia(hall_name):
   with managed_webdriver() as driver:
-
-    #go to the URL and print the title of the page
     url = cu_urls[hall_name]
     driver.get(url)
     title = driver.title
-    dining_hall_name = title.split("|")
-    print(dining_hall_name[0].lower())
+    dining_hall = title.split("|")
+    print(dining_hall[0].lower())
 
-    #let page load
     wait = WebDriverWait(driver, 40)
 
-    #handle the privacy notice
-    try:
-      #accept_button = wait.until(
-        #EC.element_to_be_clickable((By.XPATH, "//div[@id='cu-privacy-notice']//button[text()='I AGREE']"))
-      #)
-      #accept_button.click()
-      iframe = wait.until(
-        EC.presence_of_element_located((By.TAG_NAME, "iframe"))
-      )
-      print("privacy notice iframe detected")
-      '''driver.switch_to.frame(iframe)
-      possible_texts = ["i agree", "agree", "accept", "ok", "yes"]
-      accept_buttons = driver.find_elements(By.TAG_NAME, "button")
-      clicked = False
-      for btn in accept_buttons:
-        btn_text = btn.text.strip().lower()
-        if btn_text in possible_texts:
-          try:
-            #btn.click()
-            driver.execute_script("arguments[0].scrollIntoView();", btn) #scroll into view
-            driver.execute_script("arguments[0].click();", btn) #the same as btn.click() but better?
-            print(f"Clicked '{btn.text}' button to accept privacy notice.")
-            clicked = True
-            break
-          except Exception as e:
-            print(f"failed to click {btn.text} button. {e}")
-      if not clicked:
-        print("no accept button found on the privacy notice that was detected. attempting javascript dismissal")
-        driver.switch_to.default_content()
-        driver.execute_script("document.getElementById('cu-privacy-notice').style.display = 'none';")
-        print("javascript removal successful")
-      driver.switch_to.default_content()'''
-      driver.execute_script("document.getElementById('cu-privacy-notice').style.display = 'none';")
-      print("javascript removal successful")
-    except TimeoutException:
-      print("No privacy notice found or it didn't appear in time")
-    except NoSuchElementException:
-      print("Privacy notice elements not found")
-    except ElementClickInterceptedException:
-      print("Privacy notice could not be clicked. Attempting javascript dismissal.")
-      try:
-        driver.execute_script("document.getElementById('cu-privacy-notice').style.display = 'none';")
-      except Exception as e:
-        print(f"Unexpected error while handling privacy notice: {e}")
-    except Exception as e:
-      print(f"Unexpected error while handling privacy notice: {e}")
-
-    #continue with scraping 
     buttons = driver.find_elements(By.TAG_NAME, "button")
-    meal_buttons = []
+
+    clicks = []
 
     for b in buttons:
       text = b.text.strip()
-      if text in ["Breakfast", "Lunch", "Dinner", "Lunch & Dinner", "Late Night"]:
-        meal_buttons.append(b)
+      if text == "Breakfast" or text == "Lunch" or text == "Dinner" or text == "Lunch & Dinner" or text == "Late Night":
+        clicks.append(b)
 
     dining_hall = {}
-    for button in meal_buttons:
+    for button in clicks:
       button.click()
       meal = button.text.strip().lower()
       # print(meal)
       
       meal_dictionary = {}
+
       wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "wrapper")))
+
       station_elements = driver.find_elements(By.CLASS_NAME, "wrapper")
 
       for s in station_elements:
         station_name = s.find_element(By.CLASS_NAME, "station-title").text.strip()
+
         meal_items = s.find_elements(By.CLASS_NAME, "meal-title")
+
         meal_dictionary[station_name] = [item.text.strip() for item in meal_items]
+
         dining_hall[meal] = meal_dictionary
 
       print(dining_hall)
@@ -252,8 +189,8 @@ def scrape_all():
       continue
     hall_data = scrape_columbia(hall)
     dict.update(hall_data)
-  #barnard_data = scrape_barnard()
-  #dict.update(barnard_data)
+  barnard_data = scrape_barnard()
+  dict.update(barnard_data)
   return dict
 
 #for testing purposes to have food items to use without scraping
