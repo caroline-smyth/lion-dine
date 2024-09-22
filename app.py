@@ -55,7 +55,7 @@ def managed_webdriver():
   elif current_os == "Linux":
     chrome_binary = os.path.join(os.getcwd(), 'chromium', 'chrome-linux', 'chrome')
   elif current_os == "Windows":
-    chrome_binary = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    chrome_binary = "C:\Program Files\Google\Chrome\Application\chrome.exe"
   else:
     raise Exception(f"Unsupported OS: {current_os}")
 
@@ -63,8 +63,8 @@ def managed_webdriver():
   chrome_options.add_argument("--headless")
   chrome_options.add_argument("--no-sandbox")
   chrome_options.add_argument("--disable-dev-shm-usage")
-  service = ChromeService(ChromeDriverManager().install())
-  driver = webdriver.Chrome(service=service, options=chrome_options)
+  #service = ChromeService(ChromeDriverManager().install())
+  driver = webdriver.Chrome(options=chrome_options)
   try:
     yield driver
   finally:
