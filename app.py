@@ -220,7 +220,7 @@ def scrape_columbia(hall_name):
 
     for b in buttons:
       text = b.text.strip()
-      if text in ["Breakfast", "Lunch", "Dinner", "Lunch & Dinner", "Late Night"]:
+      if text in ["Breakfast", "Brunch", "Lunch", "Dinner", "Lunch & Dinner", "Late Night"]:
         meal_buttons.append(b)
 
     dining_hall = {}
@@ -387,6 +387,10 @@ def current_open_stations():
     #here, we hard-code the times of each station of each dining hall.
     if hall_name == "John Jay":
       #filter for only open stations
+      if now.weekday() == 6:
+        if 10 <= now.hour and now.hour < 11 or (now.hour == 9 and now.minute >= 30):
+          for station, items in stations.get('brunch',{}).items():
+            filtered_stations[station] = items
       if 10 <= now.hour and now.hour < 11 or (now.hour == 9 and now.minute >= 30):
         for station, items in stations.get('breakfast',{}).items():
           filtered_stations[station] = items
@@ -449,7 +453,7 @@ def current_open_stations():
       #if now.weekday() == 5:
         #do later
       if now.weekday() == 6:
-        if now.hour >= 10 and now.hour < 2:
+        if now.hour <= 11 and (now.hour > 7 and now.minute > 30):
           for station, items in stations.get('breakfast',{}).items():
             filtered_stations[station] = items
         if now.hour >= 11 and now.hour < 2:
@@ -462,11 +466,11 @@ def current_open_stations():
             filtered_stations[station] = items
           for station, items in stations.get('lunch & dinner',{}).items():
             filtered_stations[station] = items
-      #return data to the filtered dictionary
-      if filtered_stations:
-        filtered_halls[hall_name] = filtered_stations
-      else:
-        filtered_halls[hall_name] = "Missing data"
+    #return data to the filtered dictionary
+    if filtered_stations:
+      filtered_halls[hall_name] = filtered_stations
+    else:
+      filtered_halls[hall_name] = "Missing data"
 
     if hall_name == "Faculty House":
       #filter for only open stations
