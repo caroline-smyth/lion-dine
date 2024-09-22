@@ -63,8 +63,8 @@ def managed_webdriver():
   chrome_options.add_argument("--headless")
   chrome_options.add_argument("--no-sandbox")
   chrome_options.add_argument("--disable-dev-shm-usage")
-  #service = ChromeService(ChromeDriverManager().install())
-  driver = webdriver.Chrome(options=chrome_options)
+  service = ChromeService(ChromeDriverManager().install())
+  driver = webdriver.Chrome(service=service,options=chrome_options)
   try:
     yield driver
   finally:
@@ -80,7 +80,7 @@ def scrape_barnard():
     wait = WebDriverWait(driver, 40)
 
     for hall_name in barnard_hall_names:
-      dropdown = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".btn.dropdown-toggle")))
+      dropdown = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".btn.dropdown-toggle")))
       dropdown.click()
       print(f"clicked dropdown for {hall_name}")
       
@@ -97,10 +97,11 @@ def scrape_barnard():
             wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".nav.nav-tabs")))
             hall_data = scrape_barnard_inside(driver, wait)
             retries = 0
+            """
             while hall_data is None and retries < 4:
               time_module.sleep(2)
               hall_data = scrape_barnard_inside(driver, wait)
-              retries += 1
+              retries += 1"""
 
             if hall_data is not None:
               dining_hall_data[hall] = hall_data
@@ -128,24 +129,23 @@ def scrape_barnard_inside(driver, wait):
       meal = {}
       b.click()
       print(f"clicked meal tab: {meal_time}")
-      """
-      try: potential try catch
+      
+      try:
         menu_elements = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "table")))
+        print(f"found {len(menu_elements)} menu tables for {meal_time}")
+
+        for m in menu_elements:
+          station_name = m.find_element(By.TAG_NAME, "caption").text.strip()
+          print(station_name)
+          food_elements = m.find_elements(By.TAG_NAME, "strong")
+          foods = [food.text.strip() for food in food_elements]
+          meal[station_name] = foods
+          print(f"scraped station {station_name}")
+        dining_hall[meal_time] = meal
+        print(f"completed scraping for meal time {meal_time}")
       except TimeoutException:
         print(f"Timeout occured while scraping {meal_time}")
         return None
-        """
-      menu_elements = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "table")))
-      print(f"found {len(menu_elements)} menu tables for {meal_time}")
-
-      for m in menu_elements:
-        station_name = m.find_element(By.TAG_NAME, "caption").text.strip()
-        food_elements = m.find_elements(By.TAG_NAME, "strong")
-        foods = [food.text.strip() for food in food_elements]
-        meal[station_name] = foods
-        print(f"scraped station {station_name}")
-      dining_hall[meal_time] = meal
-      print(f"completed scraping for meal time {meal_time}")
 
   except Exception as e:
     print(f"Error occurred: {e}")
@@ -246,12 +246,14 @@ def scrape_columbia(hall_name):
 #combines the columbia and barnard scrapes into one dictionary
 def scrape_all():
   dict = {}
+  
   for hall in cu_urls.keys():
     if hall == "Chef Don's":
       dict["Chef Don's"] = {'breakfast' : {}, 'lunch' : {}, 'dinner' : {}}
       continue
     hall_data = scrape_columbia(hall)
     dict.update(hall_data)
+  
   #barnard_data = scrape_barnard()
   #dict.update(barnard_data)
   return dict
