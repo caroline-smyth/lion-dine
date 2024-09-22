@@ -67,11 +67,16 @@
             </div>
           {% elif stations is mapping %}
             <div class="menu">
+              {% if stations.get("all hours") %}
+                <div class="hours">{{ stations["all hours"]}}</div>
+              {% endif %}
               {% for station_name, items in stations.items() %}
-                <div class="food-type">{{ station_name }}</div>
-                {% for item in items %}
-                  <div class="food-name">{{ item }}</div>
-                {% endfor %}
+                {% if station_name != "all hours" %}
+                  <div class="food-type">{{ station_name }}</div>
+                  {% for item in items %}
+                    <div class="food-name">{{ item }}</div>
+                  {% endfor %}
+                {% endif %}
               {% endfor %}
             </div>
           {% else %}
