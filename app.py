@@ -53,7 +53,7 @@ def managed_webdriver():
   if current_os == "Darwin":
     chrome_binary = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
   elif current_os == "Linux":
-    chrome_binary = os.environ.get("GOOGLE_CHROME_BIN", "/usr/bin/chromium")
+    chrome_binary = os.path.join(os.getcwd(), 'chromium', 'chrome-linux', 'chrome')
   elif current_os == "Windows":
     chrome_binary = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
   else:
