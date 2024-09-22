@@ -237,9 +237,9 @@ def scrape_columbia(hall_name):
         station_name = s.find_element(By.CLASS_NAME, "station-title").text.strip()
         meal_items = s.find_elements(By.CLASS_NAME, "meal-title")
         meal_dictionary[station_name] = [item.text.strip() for item in meal_items]
-        dining_hall[meal] = meal_dictionary
+      dining_hall[meal] = meal_dictionary
 
-      print(dining_hall)
+    print(dining_hall)
 
     return {hall_name : dining_hall}
 

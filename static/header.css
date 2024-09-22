@@ -1,9 +1,9 @@
 .header {
   display: flex;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
   align-items: top;
   font-size: 32px;
-  font-weight: bold;
+  font-weight: 500;
   margin-top: 100px;
   z-index: 100;
   transition: color 0.15s;
