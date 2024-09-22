@@ -450,8 +450,20 @@ def current_open_stations():
         if now.hour >= 11 and now.hour < 20:
           for station, items in stations.get('lunch & dinner',{}).items():
             filtered_stations[station] = items
-      #if now.weekday() == 5:
-        #do later
+      if now.weekday() == 5:
+        if now.hour <= 11 and (now.hour > 9):
+          for station, items in stations.get('breakfast',{}).items():
+            filtered_stations[station] = items
+        if now.hour >= 11 and now.hour < 2:
+          for station, items in stations.get('lunch',{}).items():
+            filtered_stations[station] = items
+          for station, items in stations.get('lunch & dinner',{}).items():
+            filtered_stations[station] = items
+        if now.hour >= 17 and now.hour < 20:
+          for station, items in stations.get('dinner',{}).items():
+            filtered_stations[station] = items
+          for station, items in stations.get('lunch & dinner',{}).items():
+            filtered_stations[station] = items
       if now.weekday() == 6:
         if now.hour <= 11 and (now.hour > 7 and now.minute > 30):
           for station, items in stations.get('breakfast',{}).items():
