@@ -388,6 +388,7 @@ def current_open_stations():
     if hall_name == "John Jay":
       #filter for only open stations
       if now.weekday() == 6:
+        filtered_stations["all hours"] = "9:30 am - 9 pm"
         if 10 <= now.hour and now.hour < 11 or (now.hour == 9 and now.minute >= 30):
           for station, items in stations.get('brunch',{}).items():
             filtered_stations[station] = items
@@ -465,10 +466,11 @@ def current_open_stations():
           for station, items in stations.get('lunch & dinner',{}).items():
             filtered_stations[station] = items
       if now.weekday() == 6:
-        if now.hour <= 11 and (now.hour > 7 and now.minute > 30):
-          for station, items in stations.get('breakfast',{}).items():
+        if (now.hour == 7 and now.minute >= 30) or (now.hour >= 8 and now.hour < 11):
+          for station, items in stations.get('breakfast', {}).items():
             filtered_stations[station] = items
-        if now.hour >= 11 and now.hour < 2:
+
+        if now.hour >= 11 and now.hour < 14:
           for station, items in stations.get('lunch',{}).items():
             filtered_stations[station] = items
           for station, items in stations.get('lunch & dinner',{}).items():
