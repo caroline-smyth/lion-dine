@@ -392,11 +392,21 @@ def current_open_stations():
         if 10 <= now.hour and now.hour < 11 or (now.hour == 9 and now.minute >= 30):
           for station, items in stations.get('brunch',{}).items():
             filtered_stations[station] = items
+        if 11 <= now.hour and now.hour < 14 or (now.hour == 14 and now.minute < 30):
+          for station, items in stations.get('lunch',{}).items():
+            filtered_stations[station] = items
+        for station, items in stations.get('lunch & dinner',{}).items():
+          filtered_stations[station] = items
+        if 17 <= now.hour and now.hour < 21:
+          for station, items in stations.get('dinner',{}).items():
+            filtered_stations[station] = items
+          for station, items in stations.get('lunch & dinner',{}).items():
+            filtered_stations[station] = items
       if now.weekday() in [0, 1, 2, 3]:
         if 10 <= now.hour and now.hour < 11 or (now.hour == 9 and now.minute >= 30):
           for station, items in stations.get('breakfast',{}).items():
             filtered_stations[station] = items
-      if now.weekday() in [0, 1, 2, 3, 6]:
+      
         if 11 <= now.hour and now.hour < 14 or (now.hour == 14 and now.minute < 30):
           for station, items in stations.get('lunch',{}).items():
             filtered_stations[station] = items
@@ -407,7 +417,7 @@ def current_open_stations():
             filtered_stations[station] = items
           for station, items in stations.get('lunch & dinner',{}).items():
             filtered_stations[station] = items
-      #return data to the filtered dictionary
+        #return data to the filtered dictionary
       if len(filtered_stations) == 1:
         filtered_halls[hall_name] = filtered_stations
         filtered_halls[hall_name]["Missing Data"] = ""
