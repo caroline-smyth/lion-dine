@@ -12,6 +12,23 @@ RUN apt-get update && apt-get install -y \
     curl \
     chromium \
     chromium-driver \
+    libnss3 \
+    libxss1 \
+    libasound2 \
+    fonts-liberation \
+    libatk-bridge2.0-0 \
+    libgtk-3-0 \
+    libdrm2 \
+    libgbm1 \
+    libxshmfence1 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxrandr2 \
+    libxi6 \
+    libxcursor1 \
+    libxext6 \
+    libxfixes3 \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 # Optional: Display versions for debugging
