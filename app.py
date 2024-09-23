@@ -63,7 +63,7 @@ def managed_webdriver():
     chrome_options.binary_location = chrome_binary
   else:
     raise Exception(f"Unsupported OS: {current_os}")'''
-  chrome_options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
+  '''chrome_options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
   
   chrome_options.add_argument("--headless")
   chrome_options.add_argument("--no-sandbox")
@@ -74,7 +74,34 @@ def managed_webdriver():
   chrome_options.add_argument("--window-size=1920,1080")
   #service = ChromeService(ChromeDriverManager().install())
   service = Service(executable_path=os.environ.get("CHROMEDRIVER_PATH"))
-  driver = webdriver.Chrome(service=service,options=chrome_options)
+  driver = webdriver.Chrome(service=service,options=chrome_options)'''
+
+  #kill myself
+  chrome_options = Options()
+    
+  # Use the Chrome binary provided by the buildpack
+  chrome_bin = os.environ.get("GOOGLE_CHROME_BIN")
+  chromedriver_path = os.environ.get("CHROMEDRIVER_PATH")
+  
+  if not chrome_bin or not chromedriver_path:
+    raise EnvironmentError("Chrome binary or Chromedriver path not found in environment variables.")
+  
+  chrome_options.binary_location = chrome_bin
+  
+  # Add necessary arguments for Heroku
+  chrome_options.add_argument("--headless")
+  chrome_options.add_argument("--disable-gpu")
+  chrome_options.add_argument("--no-sandbox")
+  chrome_options.add_argument("--disable-dev-shm-usage")
+  chrome_options.add_argument("--disable-setuid-sandbox")
+  chrome_options.add_argument("--remote-debugging-port=9222")
+  chrome_options.add_argument("--window-size=1920,1080")
+
+  # Initialize the ChromeDriver service using the path from environment variables
+  service = Service(executable_path=chromedriver_path)
+  
+  # Initialize the WebDriver
+  driver = webdriver.Chrome(service=service, options=chrome_options)
   try:
     yield driver
   except WebDriverException as e:
