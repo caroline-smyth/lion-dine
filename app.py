@@ -52,14 +52,15 @@ def managed_webdriver():
   current_os = platform.system()
   if current_os == "Darwin":
     chrome_binary = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    chrome_options.binary_location = chrome_binary
   elif current_os == "Linux":
-    chrome_binary = os.path.join(os.getcwd(), 'chromium', 'chrome-linux', 'chrome')
+    chrome_options.binary_location = '/usr/bin/google-chrome'
   elif current_os == "Windows":
     chrome_binary = "C:\Program Files\Google\Chrome\Application\chrome.exe"
+    chrome_options.binary_location = chrome_binary
   else:
     raise Exception(f"Unsupported OS: {current_os}")
 
-  chrome_options.binary_location = chrome_binary
   chrome_options.add_argument("--headless")
   chrome_options.add_argument("--no-sandbox")
   chrome_options.add_argument("--disable-dev-shm-usage")
