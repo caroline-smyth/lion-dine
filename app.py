@@ -49,10 +49,11 @@ hall_names = [
 #configures webdriver for a headless environment 
 @contextmanager
 def managed_webdriver():
-  chrome_options = Options()
 
   #determine OS and set chrome binary location based on that
-  '''current_os = platform.system()
+  '''
+  chrome_options = Options()
+  current_os = platform.system()
   if current_os == "Darwin":
     chrome_binary = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
     chrome_options.binary_location = chrome_binary
@@ -79,16 +80,10 @@ def managed_webdriver():
   #kill myself
   chrome_options = Options()
     
-  # Use the Chrome binary provided by the buildpack
-  chrome_bin = os.environ.get("GOOGLE_CHROME_BIN")
-  chromedriver_path = os.environ.get("CHROMEDRIVER_PATH")
+  # Set the path to the Chrome binary
+  chrome_options.binary_location = "/usr/bin/google-chrome"
   
-  if not chrome_bin or not chromedriver_path:
-    raise EnvironmentError("Chrome binary or Chromedriver path not found in environment variables.")
-  
-  chrome_options.binary_location = chrome_bin
-  
-  # Add necessary arguments for Heroku
+  # Add necessary arguments for headless operation
   chrome_options.add_argument("--headless")
   chrome_options.add_argument("--disable-gpu")
   chrome_options.add_argument("--no-sandbox")
@@ -97,8 +92,8 @@ def managed_webdriver():
   chrome_options.add_argument("--remote-debugging-port=9222")
   chrome_options.add_argument("--window-size=1920,1080")
 
-  # Initialize the ChromeDriver service using the path from environment variables
-  service = Service(executable_path=chromedriver_path)
+  # Set the path to Chromedriver
+  service = Service(executable_path="/usr/local/bin/chromedriver")
   
   # Initialize the WebDriver
   driver = webdriver.Chrome(service=service, options=chrome_options)
