@@ -63,6 +63,8 @@ def managed_webdriver():
   chrome_options.add_argument("--headless")
   chrome_options.add_argument("--no-sandbox")
   chrome_options.add_argument("--disable-dev-shm-usage")
+  chrome_options.add_argument("--headless")
+  chrome_options.add_argument("--disable-gpu")
   service = ChromeService(ChromeDriverManager().install())
   driver = webdriver.Chrome(service=service,options=chrome_options)
   try:
@@ -72,8 +74,9 @@ def managed_webdriver():
 
 #IN PROGRESS 
 def scrape_barnard():
+
   with managed_webdriver() as driver:
-    barnard_hall_names = ["Hewitt Dining", "Diana"]
+    barnard_hall_names = ["Diana"]
     url = "https://dineoncampus.com/barnard/whats-on-the-menu"
     driver.get(url)
     dining_hall_data = {}
@@ -84,24 +87,26 @@ def scrape_barnard():
       dropdown.click()
       print(f"clicked dropdown for {hall_name}")
       
-      dropdown_menu = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".dropdown-menu.show")))
+      #dropdown_menu = wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='menu-location-selector']/ul")))
+      dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
       items = dropdown_menu.find_elements(By.TAG_NAME, "button")
       print(f"found {len(items)} in the dropdown menu")
-
+      """
       for item in items:
         try:
           hall = item.text.strip()
+          
           if hall_name in hall:
             item.click()
             print(f"selected hall: {hall_name}")
             wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".nav.nav-tabs")))
             hall_data = scrape_barnard_inside(driver, wait)
             retries = 0
-            """
+            
             while hall_data is None and retries < 4:
               time_module.sleep(2)
               hall_data = scrape_barnard_inside(driver, wait)
-              retries += 1"""
+              retries += 1
 
             if hall_data is not None:
               dining_hall_data[hall] = hall_data
@@ -113,6 +118,7 @@ def scrape_barnard():
         except Exception as e:
           print(f"error while processing {hall_name}: {e}")
           
+          """
     print(dining_hall_data)
     return dining_hall_data
 
@@ -130,22 +136,23 @@ def scrape_barnard_inside(driver, wait):
       b.click()
       print(f"clicked meal tab: {meal_time}")
       
-      try:
-        menu_elements = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "table")))
-        print(f"found {len(menu_elements)} menu tables for {meal_time}")
+      #try:
+      menu_elements = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "table")))
+      print(f"found {len(menu_elements)} menu tables for {meal_time}")
 
-        for m in menu_elements:
-          station_name = m.find_element(By.TAG_NAME, "caption").text.strip()
-          print(station_name)
-          food_elements = m.find_elements(By.TAG_NAME, "strong")
-          foods = [food.text.strip() for food in food_elements]
-          meal[station_name] = foods
-          print(f"scraped station {station_name}")
-        dining_hall[meal_time] = meal
-        print(f"completed scraping for meal time {meal_time}")
+      for m in menu_elements:
+        station_name = m.find_element(By.TAG_NAME, "caption").text.strip()
+        print(station_name)
+        food_elements = m.find_elements(By.TAG_NAME, "strong")
+        foods = [food.text.strip() for food in food_elements]
+        meal[station_name] = foods
+        print(f"scraped station {station_name}")
+      dining_hall[meal_time] = meal
+      print(f"completed scraping for meal time {meal_time}")
+      """
       except TimeoutException:
         print(f"Timeout occured while scraping {meal_time}")
-        return None
+        return None"""
 
   except Exception as e:
     print(f"Error occurred: {e}")
@@ -177,7 +184,8 @@ def scrape_columbia(hall_name):
         EC.presence_of_element_located((By.TAG_NAME, "iframe"))
       )
       print("privacy notice iframe detected")
-      '''driver.switch_to.frame(iframe)
+      '''
+      driver.switch_to.frame(iframe)
       possible_texts = ["i agree", "agree", "accept", "ok", "yes"]
       accept_buttons = driver.find_elements(By.TAG_NAME, "button")
       clicked = False
