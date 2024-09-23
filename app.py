@@ -78,25 +78,14 @@ def managed_webdriver():
   driver = webdriver.Chrome(service=service,options=chrome_options)'''
 
   #kill myself
+  chromedriver_path = '/path/to/chromedriver'
   chrome_options = Options()
-    
-  # Set the path to the Chrome binary
-  chrome_options.binary_location = "/usr/bin/google-chrome"
-  
-  # Add necessary arguments for headless operation
   chrome_options.add_argument("--headless")
-  chrome_options.add_argument("--disable-gpu")
   chrome_options.add_argument("--no-sandbox")
   chrome_options.add_argument("--disable-dev-shm-usage")
-  chrome_options.add_argument("--disable-setuid-sandbox")
-  chrome_options.add_argument("--remote-debugging-port=9222")
-  chrome_options.add_argument("--window-size=1920,1080")
-
-  # Set the path to Chromedriver
-  service = Service(executable_path="/usr/local/bin/chromedriver")
-  
-  # Initialize the WebDriver
+  service = Service(chromedriver_path)
   driver = webdriver.Chrome(service=service, options=chrome_options)
+
   try:
     yield driver
   except WebDriverException as e:
