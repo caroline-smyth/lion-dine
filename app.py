@@ -7,6 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException, ElementClickInterceptedException
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from flask_caching import Cache
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime, time 
@@ -49,24 +50,25 @@ def managed_webdriver():
   chrome_options = Options()
 
   #determine OS and set chrome binary location based on that
-  '''current_os = platform.system()
+  current_os = platform.system()
   if current_os == "Darwin":
     chrome_binary = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
     chrome_options.binary_location = chrome_binary
   elif current_os == "Linux":
-    chrome_options.binary_location = '/usr/bin/google-chrome'
+    chrome_options.binary_location = '/usr/bin/chromium'
   elif current_os == "Windows":
     chrome_binary = "C:\Program Files\Google\Chrome\Application\chrome.exe"
     chrome_options.binary_location = chrome_binary
   else:
-    raise Exception(f"Unsupported OS: {current_os}")'''
+    raise Exception(f"Unsupported OS: {current_os}")
 
   chrome_options.add_argument("--headless")
   chrome_options.add_argument("--no-sandbox")
   chrome_options.add_argument("--disable-dev-shm-usage")
   chrome_options.add_argument("--disable-gpu")
   #service = ChromeService(ChromeDriverManager().install())
-  driver = webdriver.Chrome(options=chrome_options)
+  service = Service("/usr/bin/chromedriver")
+  driver = webdriver.Chrome(service=service,options=chrome_options)
   try:
     yield driver
   finally:
