@@ -1,48 +1,45 @@
 # Use an official Python runtime as a parent image
-FROM python:3.9-slim-buster
+FROM python:3.12-slim
 
-# Set the working directory to /app
-WORKDIR /app
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     wget \
-    gnupg \
     unzip \
-    curl \
-    chromium \
-    chromium-driver \
-    libnss3 \
-    libxss1 \
-    libasound2 \
-    fonts-liberation \
-    libatk-bridge2.0-0 \
-    libgtk-3-0 \
-    libdrm2 \
-    libgbm1 \
-    libxshmfence1 \
-    libxcomposite1 \
-    libxdamage1 \
-    libxrandr2 \
-    libxi6 \
-    libxcursor1 \
-    libxext6 \
-    libxfixes3 \
-    ca-certificates \
+    gnupg \
     && rm -rf /var/lib/apt/lists/*
 
-# Optional: Display versions for debugging
-RUN chromium --version
-RUN chromedriver --version
+# Install Google Chrome
+RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+    echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list && \
+    apt-get update && apt-get install -y google-chrome-stable && \
+    rm -rf /var/lib/apt/lists/*
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Install Chromedriver
+# First, determine the Chrome version
+RUN CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+') && \
+    CHROMEDRIVER_VERSION=$(wget -qO- https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION) && \
+    wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip && \
+    unzip /tmp/chromedriver.zip -d /usr/local/bin/ && \
+    chmod +x /usr/local/bin/chromedriver && \
+    rm /tmp/chromedriver.zip
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Set working directory
+WORKDIR /app
 
-# Expose port 5000 for Flask
+# Copy requirements.txt and install Python dependencies
+COPY requirements.txt /app/
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+# Copy the rest of the application code
+COPY . /app/
+
+# Expose port (optional, Heroku uses PORT env variable)
 EXPOSE 5000
 
-# Run the application
-CMD ["python", "app.py"]
+# Define the default command to run the app
+CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "app:app"]
