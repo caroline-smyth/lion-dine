@@ -52,7 +52,7 @@ def managed_webdriver():
   chrome_options = Options()
 
   #determine OS and set chrome binary location based on that
-  current_os = platform.system()
+  '''current_os = platform.system()
   if current_os == "Darwin":
     chrome_binary = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
     chrome_options.binary_location = chrome_binary
@@ -62,17 +62,19 @@ def managed_webdriver():
     chrome_binary = "C:\Program Files\Google\Chrome\Application\chrome.exe"
     chrome_options.binary_location = chrome_binary
   else:
-    raise Exception(f"Unsupported OS: {current_os}")
-
+    raise Exception(f"Unsupported OS: {current_os}")'''
+  chrome_options.binary_location = os.environ.get('GOOGLE_CHROME_BIN', '/app/.apt/usr/bin/google-chrome')
+  
   chrome_options.add_argument("--headless")
   chrome_options.add_argument("--no-sandbox")
-  chrome_options.add_argument("--disable-dev-shm-usage")
+  #chrome_options.add_argument("--disable-dev-shm-usage")
   chrome_options.add_argument("--disable-gpu")
-  chrome_options.add_argument("--disable-setuid-sandbox")
-  chrome_options.add_argument("--remote-debugging-port=9222")
-  chrome_options.add_argument("--window-size=1920,1080")
+  #chrome_options.add_argument("--disable-setuid-sandbox")
+  #chrome_options.add_argument("--remote-debugging-port=9222")
+  #chrome_options.add_argument("--window-size=1920,1080")
   #service = ChromeService(ChromeDriverManager().install())
-  service = Service("/usr/bin/chromedriver")
+  chrome_driver_path = os.environ.get('CHROMEDRIVER_PATH', '/app/.chromedriver/bin/chromedriver')
+  service = Service(chrome_driver_path)
   driver = webdriver.Chrome(service=service,options=chrome_options)
   try:
     yield driver
