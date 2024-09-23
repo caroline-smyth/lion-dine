@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException, ElementClickInterceptedException
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
+from selenium.common.exceptions import WebDriverException
 from flask_caching import Cache
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime, time 
@@ -66,13 +67,21 @@ def managed_webdriver():
   chrome_options.add_argument("--no-sandbox")
   chrome_options.add_argument("--disable-dev-shm-usage")
   chrome_options.add_argument("--disable-gpu")
+  chrome_options.add_argument("--disable-setuid-sandbox")
+  chrome_options.add_argument("--remote-debugging-port=9222")
+  chrome_options.add_argument("--window-size=1920,1080")
   #service = ChromeService(ChromeDriverManager().install())
   service = Service("/usr/bin/chromedriver")
   driver = webdriver.Chrome(service=service,options=chrome_options)
   try:
     yield driver
+  except WebDriverException as e:
+    print(f"WebDriverException occurred: {e}")
   finally:
-    driver.quit()
+    try:
+      driver.quit()
+    except:
+      print(f"Error quitting driver: {e}")
 
 #IN PROGRESS 
 def scrape_barnard():
