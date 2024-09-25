@@ -490,17 +490,6 @@ def open_at_meal(meal):
         filtered_halls[hall_name] = filtered_stations
       else:
         filtered_halls[hall_name] = "Missing data"
-    #old code for dummy case
-    '''
-    for station_name, station_info in stations.items():
-      meals = station_info["meals"]
-      if meal in meals:
-        filtered_stations[station_name] = station_info["items"]
-    if filtered_stations:
-      filtered_halls[hall_name] = filtered_stations
-    else:
-      filtered_halls[hall_name] = "Missing Data"
-    '''
   
   return filtered_halls
 
