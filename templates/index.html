@@ -53,10 +53,10 @@
       </header>
       <div class="var" id="halls"></div>
       <div class="meals-container">
-          <a href="/breakfast" class="meal-name {% if meal == 'breakfast' %}italicized{% endif %}"><button>Breakfast</button></a>
-          <a href="/lunch" class="meal-name {% if meal == 'lunch' %}italicized{% endif %}"><button>Lunch</button></a>
-          <a href="/dinner" class="meal-name {% if meal == 'dinner' %}italicized{% endif %}"><button>Dinner</button></a>
-          <a href="/latenight" class="meal-name {% if meal == 'latenight' %}italicized{% endif %}"><button>Late Night</button></a>
+        <a href="/breakfast" class="meal-button {% if meal == 'breakfast' %}active{% endif %}">Breakfast</a>
+        <a href="/lunch" class="meal-button {% if meal == 'lunch' %}active{% endif %}">Lunch</a>
+        <a href="/dinner" class="meal-button {% if meal == 'dinner' %}active{% endif %}">Dinner</a>
+        <a href="/latenight" class="meal-button {% if meal == 'latenight' %}active{% endif %}">Late Night</a>        
       </div> 
       <div class="container">
         {% for hall_name in hall_order %}
