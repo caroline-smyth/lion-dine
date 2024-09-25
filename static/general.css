@@ -55,9 +55,6 @@ button:hover{
   opacity: .75;
 }
 
-button:active{
-  background-color: rbg(1,33,105);
-}
 
 .votes {
   display: flex;
@@ -76,18 +73,6 @@ h3 {
   margin-top: 10px; /*0.625rem*/
 }
 
-.meal-name{
-  color: black;
-  font-size: 28px; /*1.75rem*/
-  cursor: pointer;
-  font-style: normal;
-  transition: color 0.15s;
-}
-
-.meal-name:hover{
-  color: rgb(105, 179, 231);
-}
-
 .meal-name.italicized {
   font-style: italic !important;
 }
@@ -95,4 +80,27 @@ h3 {
 body {
   margin-left: 5rem;
   
+}
+
+.meal-button {
+  display: inline-block;
+  padding: 10px 30px 10px 30px;
+  background-color: rgb(105, 179, 231); 
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.6rem;
+  margin: 5px;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.meal-button:hover {
+  opacity: 0.75;
+  color: white;
+}
+
+.meal-button.active {
+  background-color: rgb(1, 33, 105);
 }
