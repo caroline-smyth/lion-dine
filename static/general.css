@@ -37,15 +37,28 @@ a:hover{
   flex-direction: column;
 }
 
+
 button {
-  background-color: white;
+  border: none;
+  background-color: rgb(105, 179, 231); 
   color: white;
   font-weight: medium;
   cursor: pointer;
   border-radius: 5px;
   font-family: "Inconsolata";
   font-size: 24px;
-  padding: 10px;
+  padding: 10px 30px 10px 30px;
+}
+
+.button_text {
+  border: none;
+  background-color: rgb(105, 179, 231); 
+  color: white;
+  font-weight: medium;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: "Inconsolata";
+  font-size: 24px;
 }
 
 .votes {
