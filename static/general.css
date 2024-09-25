@@ -55,15 +55,8 @@ button:hover{
   opacity: .75;
 }
 
-.button_text {
-  border: none;
-  background-color: rgb(105, 179, 231); 
-  color: white;
-  font-weight: medium;
-  cursor: pointer;
-  border-radius: 5px;
-  font-family: "Inconsolata";
-  font-size: 24px;
+button:active{
+  background-color: rbg(1,33,105);
 }
 
 .votes {
