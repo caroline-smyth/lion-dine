@@ -169,7 +169,7 @@ def current_open_stations():
 
     if hall_name == "Ferris":
       if now.weekday() in [0,1,2,3,4]:
-        filtered_stations["all hours"] = "7:30 am - 8 pm"
+        #filtered_stations["all hours"] = "7:30 am - 8 pm"
         if now.hour > 7 and now.hour < 11 or (now.hour == 7 and now.minute >= 30):
           for station, items in stations.get('breakfast',{}).items():
             filtered_stations[station] = items
@@ -524,6 +524,11 @@ def lunch():
 def dinner():
   filtered_halls = open_at_meal("dinner")
   return render_template('index.html', halls=filtered_halls, meal="dinner")
+
+@app.route('/latenight')
+def latenight():
+  filtered_halls = open_at_meal("latenight")
+  return render_template('index.html', halls=filtered_halls, meal="latenight")
 
 if __name__ == '__main__':
    app.run(host='0.0.0.0',port=5000)
