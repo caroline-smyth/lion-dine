@@ -34,40 +34,25 @@ def current_open_stations():
   print(halls)
   filtered_halls = {} #to be filled
 
-  #if a dining hall is closed, give it value "Closed" instead
-  #of a list of food
+  #if a dining hall is closed, give it value "Closed" instead of a list of food
 
-  # john jay
+  closed_check = [
+    ("John Jay", john_jay_open),
+    ("JJ's", jjs_open),
+    ("Ferris", ferris_open),
+    ("Faculty House", fac_house_open),
+    ("Chef Mike's", mikes_open),
+    ("Chef Don's", dons_open),
+    ("Grace Dodge", grace_dodge_open),
+    ("Fac Shack", fac_shack_open),
+    ("Hewitt", hewitt_open),
+    ("Diana", diana_open)
+    ]
   
-  if not john_jay_open():
-    filtered_halls["John Jay"] = "Closed"
-  #jjs
-  if not jjs_open():
-    filtered_halls["JJ's"] = "Closed"
-  #ferris
-  if not ferris_open():
-    filtered_halls["Ferris"] = "Closed"
-  #fac house
-  if not fac_house_open():
-    filtered_halls["Faculty House"] = "Closed"
-  #mikes
-  if not mikes_open():
-    filtered_halls["Chef Mike's"] = "Closed"
-  #dons
-  if not dons_open():
-    filtered_halls["Chef Don's"] = "Closed"
-  #grace dodge
-  if not grace_dodge_open():
-    filtered_halls["Grace Dodge"] = "Closed"
-  #fac shack
-  if not fac_shack_open():
-    filtered_halls["Fac Shack"] = "Closed"
-  #hewitt
-  if not hewitt_open():
-    filtered_halls["Hewitt"] = "Closed"
-  #diana
-  if not diana_open():
-    filtered_halls["Diana"] = "Closed"
+  for hall_name, is_open_func in closed_check:
+    if not is_open_func():
+        filtered_halls[hall_name] = "Closed"
+
   
   #for each dining hall, skipping the closed ones, find each
   #station that's currently open and add it to the filtered dictionary
@@ -464,27 +449,32 @@ def open_at_meal(meal):
 @app.route('/') 
 def index():
   filtered_halls = current_open_stations() # returns closed/missing data/meal info for each dining hall
-  return render_template('index.html', halls=filtered_halls)
+  now = datetime.now()
+  return render_template('index.html', halls=filtered_halls, current_time=now)
     
 @app.route('/breakfast')
 def breakfast():
   filtered_halls = open_at_meal("breakfast")
-  return render_template('index.html', halls=filtered_halls, meal="breakfast")
+  now = datetime.now()
+  return render_template('index.html', halls=filtered_halls, meal="breakfast", current_time=now)
 
 @app.route('/lunch')
 def lunch():
   filtered_halls = open_at_meal("lunch")
-  return render_template('index.html', halls=filtered_halls, meal="lunch")
+  now = datetime.now()
+  return render_template('index.html', halls=filtered_halls, meal="lunch", current_time=now)
 
 @app.route('/dinner')
 def dinner():
   filtered_halls = open_at_meal("dinner")
-  return render_template('index.html', halls=filtered_halls, meal="dinner")
+  now = datetime.now()
+  return render_template('index.html', halls=filtered_halls, meal="dinner", current_time=now)
 
 @app.route('/latenight')
 def latenight():
   filtered_halls = open_at_meal("latenight")
-  return render_template('index.html', halls=filtered_halls, meal="latenight")
+  now = datetime.now()
+  return render_template('index.html', halls=filtered_halls, meal="latenight", current_time=now)
 
 if __name__ == '__main__':
    app.run(host='0.0.0.0',port=5000)
