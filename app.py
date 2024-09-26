@@ -6,6 +6,7 @@ import os
 import requests
 import json
 import boto3
+from time_functions import john_jay_open, jjs_open, ferris_open, fac_house_open, mikes_open, dons_open, grace_dodge_open, fac_shack_open, hewitt_open, diana_open
 
 app = Flask(__name__) #sets up a flask application 
 
@@ -37,52 +38,37 @@ def current_open_stations():
   #of a list of food
 
   # john jay
-  if now.weekday() in [4,5] or now.hour < 9 or now.hour >= 21 or (now.hour == 9 and now.minute < 30):
+  
+  if not john_jay_open():
     filtered_halls["John Jay"] = "Closed"
   #jjs
-  if now.hour in [10,11]:
+  if not jjs_open():
     filtered_halls["JJ's"] = "Closed"
   #ferris
-  if ((now.weekday() in [0,1,2,3,4] and (now.hour < 7 or now.hour >= 20 or (now.hour == 7 and now.minute < 30))) or
-      (now.weekday() == 5 and (now.hour < 9 or now.hour >= 20)) or
-      (now.weekday() == 6 and (now.hour < 10 or now.hour >= 20 or now.hour in [15,16]))):
+  if not ferris_open():
     filtered_halls["Ferris"] = "Closed"
   #fac house
-  if now.weekday() > 2 or now.hour < 11 or now.hour > 14 or (now.hour == 14 and now.minute > 30):
+  if not fac_house_open():
     filtered_halls["Faculty House"] = "Closed"
   #mikes
-  if now.weekday() in [5,6] or now.hour < 10 or now.hour >= 22 or (now.hour == 10 and now.minute < 30):
+  if not mikes_open():
     filtered_halls["Chef Mike's"] = "Closed"
   #dons
-  if now.weekday() in [5,6] or now.hour < 8 or now.hour >= 18:
+  if not dons_open():
     filtered_halls["Chef Don's"] = "Closed"
   #grace dodge
-  if now.weekday() in [4,5,6] or now.hour < 11 or now.hour >= 19:
+  if not grace_dodge_open():
     filtered_halls["Grace Dodge"] = "Closed"
   #fac shack
-  if (now.weekday() == 6) or (now.weekday() in [0,1,2] and (now.hour < 11 or now.hour >= 14) or
-      (now.weekday() in [4,5] and (now.hour < 19 or now.hour >= 23)) or
-      (now.weekday() == 3 and (now.hour < 11 or now.hour >= 23 or now.hour in [14,15,16,17,18]))):
+  if not fac_shack_open():
     filtered_halls["Fac Shack"] = "Closed"
   #hewitt
-  if ((now.weekday() in [0,1,2,3,4] and 
-       now.hour < 7 or (now.hour == 7 and now.minute < 30) or now.hour == 10 or
-       (now.hour == 14 and now.minute > 30) or now.hour == 15 or 
-       (now.hour == 16 and now.minute < 30) or now.hour >= 20) or
-      (now.weekday() in [5,6] and 
-       now.hour < 10 or (now.hour == 10 and now.minute < 30) or now.hour == 15 or
-       (now.hour == 16 and now.minute < 30) or now.hour >= 20)):
+  if not hewitt_open():
     filtered_halls["Hewitt"] = "Closed"
   #diana
-  if ((now.weekday() in [0,1,2,3] and (now.hour < 9 or now.hour in [15,16])) or 
-      (now.weekday() == 4 and (now.hour < 9 or now.hour >= 15)) or
-      (now.weekday() == 5) or 
-      (now.weekday() == 6 and (now.hour < 12 or now.hour > 20))):
+  if not diana_open():
     filtered_halls["Diana"] = "Closed"
   
-
-  #dummy_halls = dummy_food() #for testing
-
   #for each dining hall, skipping the closed ones, find each
   #station that's currently open and add it to the filtered dictionary
   
