@@ -155,13 +155,6 @@ def current_open_stations():
           else:          
             filtered_stations[station] = items
       #return data to the filtered dictionary
-      """
-      if len(filtered_stations) == 1:
-        filtered_halls[hall_name] = filtered_stations
-        filtered_halls[hall_name]["Missing Data"] = ""
-      else:
-        filtered_halls[hall_name] = filtered_stations 
-        """
 
       if filtered_stations:
         filtered_halls[hall_name] = filtered_stations
@@ -296,21 +289,6 @@ def current_open_stations():
         #filtered_halls[hall_name]["Missing Data"] = ""
       else:
         filtered_halls[hall_name] = "Missing Data"
-    
-
-  
-    #test code, using time data that is built into the dictionary.
-    #our real dictionary won't have this time data.
-    '''
-    for station_name, station_info in stations.items():
-      open_time, close_time = station_info["hours"]
-      if open_time <= now.time() <= close_time:
-        filtered_stations[station_name] = station_info["items"]
-    if filtered_stations:
-      filtered_halls[hall_name] = filtered_stations
-    else:
-      filtered_halls[hall_name] = "Missing Data"
-    '''
   
   return filtered_halls
 
