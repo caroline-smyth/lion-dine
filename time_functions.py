@@ -3,36 +3,36 @@ from datetime import datetime
 now = datetime.now()
 
 #chatgpt but something of this ilk
-hours = {
-  "John Jay": "Sunday to Thursday: 9:30 AM to 9:00 PM",
-  "JJ's": "Daily: Open from 12:00 PM to 10:00 AM next day; Closed from 10:00 AM to 12:00 PM",
-  "Ferris": (
-      "Monday to Friday: 7:30 AM to 8:00 PM; "
-      "Saturday: 9:00 AM to 8:00 PM; "
-      "Sunday: 10:00 AM to 3:00 PM and 5:00 PM to 8:00 PM"
-  ),
-  "Faculty House": "Monday and Tuesday: 11:00 AM to 2:30 PM",
-  "Chef Mike's": "Monday to Friday: 10:30 AM to 10:00 PM",
-  "Chef Don's": "Monday to Friday: 8:00 AM to 6:00 PM",
-  "Grace Dodge": "Monday to Thursday: 11:00 AM to 7:00 PM",
-  "Fac Shack": (
-      "Monday to Wednesday: 11:00 AM to 2:00 PM; "
-      "Wednesday to Saturday: 7:00 PM to 11:00 PM; "
-      "Closed Sunday"
-  ),
-  "Hewitt": (
-      "Monday to Friday: "
-      "Breakfast 7:30 AM to 10:00 AM, Lunch 11:00 AM to 2:30 PM, Dinner 4:30 PM to 8:00 PM; "
-      "Saturday and Sunday: "
-      "Brunch 10:30 AM to 3:00 PM, Dinner 4:30 PM to 8:00 PM"
-  ),
-  "Diana": (
-      "Monday to Thursday: 9:00 AM to 2:59 PM, 5:00 PM to 8:00 PM; "
-      "Friday: 9:00 AM to 2:59 PM; "
-      "Sunday: 12:00 PM to 8:00 PM; "
-      "Closed Saturday"
-  ),
-}
+def hours_dict():
+  hours = [
+    ("John Jay", "Sun to Thurs: 9:30 AM to 9:00 PM"),
+    ("JJ's", "Daily: 12:00 PM to 10:00 AM"),
+    ("Ferris",
+        "Mon to Fri: 7:30 AM to 8:00 PM; "
+        "Sat: 9:00 AM to 8:00 PM; "
+        "Sun: 10:00 AM to 3:00 PM and 5:00 PM to 8:00 PM"
+    ),
+    ("Faculty House", "Mon to Weds: 11:00 AM to 2:30 PM"),
+    ("Chef Mike's", "Mon to Fri: 10:30 AM to 10:00 PM"),
+    ("Chef Don's", "Mon to Fri: 8:00 AM to 6:00 PM"),
+    ("Grace Dodge", "Mon to Thurs: 11:00 AM to 7:00 PM"),
+    ("Fac Shack",
+        "Mon to Weds: 11:00 AM to 2:00 PM; "
+        "Weds to Sat: 7:00 PM to 11:00 PM; "
+    ),
+    ("Hewitt", 
+        "Mon to Fri: "
+        "Breakfast 7:30 AM to 10:00 AM, Lunch 11:00 AM to 2:30 PM, Dinner 4:30 PM to 8:00 PM; "
+        "Sat and Sun: "
+        "Brunch 10:30 AM to 3:00 PM, Dinner 4:30 PM to 8:00 PM"
+    ),
+    ("Diana", 
+        "Mon to Thurs: 9:00 AM to 3:00 PM, 5:00 PM to 8:00 PM; "
+        "Fri: 9:00 AM to 3:00 PM; "
+        "Sun: 12:00 PM to 8:00 PM; "
+    ),
+  ]
+  return hours
 
 
 def john_jay_open():

@@ -18,7 +18,7 @@ a:hover{
   text-decoration: none;
   justify-content: center;
   margin: 0 auto;
-  column-gap: 2rem; /*may need to change*/
+  column-gap: 2rem;
   max-width: 1200px;
 }
 
@@ -35,6 +35,7 @@ a:hover{
 .menu {
   display: flex;
   flex-direction: column;
+  white-space: nowrap;
 }
 
 
@@ -77,11 +78,6 @@ h3 {
   font-style: italic !important;
 }
 
-body {
-  margin-left: 5rem;
-  
-}
-
 .meal-button {
   display: inline-block;
   padding: 10px 30px 10px 30px;
@@ -94,6 +90,8 @@ body {
   margin: 5px;
   cursor: pointer;
   transition: 0.15s;
+  font-weight: medium;
+  font-size: 24px;
 }
 
 .meal-button:hover {
