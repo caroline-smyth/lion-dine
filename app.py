@@ -7,7 +7,7 @@ import requests
 import json
 import boto3
 
-app = Flask(__name__) #sets up a flask application
+app = Flask(__name__) #sets up a flask application 
 
 #gets dining data from dropbox json file
 def get_dining_data():
