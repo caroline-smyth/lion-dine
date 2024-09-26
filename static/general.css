@@ -36,6 +36,7 @@ a:hover{
   display: flex;
   flex-direction: column;
   white-space: nowrap;
+  margin-bottom: 40px;
 }
 
 
@@ -65,8 +66,8 @@ button:hover{
 }
 
 h3 {
+  margin-top: 0px;
   margin-bottom: 10px;
-  margin-top: 40px; /*2.5rem*/
 }
 
 .food-type {
@@ -92,6 +93,7 @@ h3 {
   transition: 0.15s;
   font-weight: medium;
   font-size: 24px;
+  margin-bottom: 35px;
 }
 
 .meal-button:hover {
