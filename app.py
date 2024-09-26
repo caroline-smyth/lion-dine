@@ -5,21 +5,23 @@ import random
 import os
 import requests
 import json
+import boto3
 
 app = Flask(__name__) #sets up a flask application
 
 #gets dining data from dropbox json file
 def get_dining_data():
+  bucket_name = 'liondine-data'
+  object_name = 'dining_data.json'
+  s3_client = boto3.client('s3')
+
   try:
-    url = 'https://www.dropbox.com/scl/fi/xw1hdarlxp669mrqj3b9q/dining_data.json?rlkey=canzljc67mwx9lahdy0ps1bvl&st=y00ueu6e&dl=1'
-    response = requests.get(url)
-    data = response.json()
+    response = s3_client.get_object(Bucket=bucket_name, Key=object_name)
+    content = response['Body'].read().decode('utf-8')
+    data = json.loads(content)
     return data
-  except requests.exceptions.RequestException as e:
+  except Exception as e:
     print(f"Error fetching data from Dropbox: {e}")
-    return {}
-  except json.JSONDecodeError as e:
-    print(f"Error decoding JSON data: {e}")
     return {}
 
 
