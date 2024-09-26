@@ -93,7 +93,6 @@ h3 {
   transition: 0.15s;
   font-weight: medium;
   font-size: 26px;
-  margin-bottom: 40px;
 }
 
 .meal-button:hover {
@@ -103,4 +102,12 @@ h3 {
 
 .meal-button.active {
   background-color: rgb(1, 33, 105);
+}
+
+.barrier{
+  height: 40px;
+}
+
+.timing {
+  margin-bottom: 10px;
 }

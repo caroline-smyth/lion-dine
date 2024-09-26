@@ -63,23 +63,25 @@
         <a href="/dinner" class="meal-button {% if meal == 'dinner' %}active{% endif %}">Dinner</a>
         <a href="/latenight" class="meal-button {% if meal == 'latenight' %}active{% endif %}">Late Night</a>        
       </div>
-
+      <div class="barrier"></div>
       <div class="container">
         {% for hall_name in hall_order %}
-          {% set stations = halls.get(hall_name, "Missing data") %}
+          {% set hall_info = halls.get(hall_name, {"status": "Unknown", "hours": "Hours not available", "stations": "No data available"}) %}
         <div class="col">
           <a href="{{ hall_links.get(hall_name,'https://dining.columbia.edu/') }}" target="_blank">
             <h3>{{ hall_name }}</h3>
           </a>
-          <div class="hours">Hours: {{ stations.hours }}</div>
-          <div class="status">Status: {{ stations.status }}</div>
-          {% if stations is string and stations.startswith("Closed") or stations == "Missing data"%}
+          <div class="timing">
+            <div class="hours">Hours: {{ hall_info.hours }}</div>
+            <div class="status">Status: {{ hall_info.status }}</div>
+          </div>
+          {% if hall_info.stations is string %}
             <div class="menu">
-              {{ stations }}
+              {{ hall_info.stations }}
             </div>
-          {% elif stations is mapping and stations != stations.hours and stations != stations.status %}
+          {% elif hall_info.stations is mapping %}
             <div class="menu">
-              {% for station_name, items in stations.items() %}
+              {% for station_name, items in hall_info.stations.items() %}
                 <div class="food-type">{{ station_name }}</div>
                 {% for item in items %}
                   <div class="food-name">{{ item }}</div>

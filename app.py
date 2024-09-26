@@ -51,7 +51,7 @@ def current_open_stations():
   
   hours = {
     "John Jay": "Sun to Thurs: 9:30 AM to 9:00 PM",
-    "JJs": "Daily: 12:00 PM to 10:00 AM",
+    "JJ's": "Daily: 12:00 PM to 10:00 AM",
     "Ferris":
       "Mon to Fri: 7:30 AM to 8:00 PM; Sat: 9:00 AM to 8:00 PM; Sun: 10:00 AM to 3:00 PM and 5:00 PM to 8:00 PM",
     "Faculty House": "Mon to Weds: 11:00 AM to 2:30 PM",
@@ -65,11 +65,6 @@ def current_open_stations():
     "Diana":
       "Mon to Thurs: 9:00 AM to 3:00 PM, 5:00 PM to 8:00 PM; Fri: 9:00 AM to 3:00 PM; Sun: 12:00 PM to 8:00 PM; ",
   }
-  """
-  for hall_name, is_open_func in closed_check:
-    if not is_open_func():
-      filtered_halls[hall_name] = "Closed"
-  """
 
   for hall_name, is_open_func in closed_check:
     # Initialize with hours for all halls
