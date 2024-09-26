@@ -58,3 +58,18 @@ body {
   left: 0;
   /*padding-top: 20px;  Top padding */
 }
+
+.feedback {
+  border: none;
+  background-color: rgb(105, 179, 231); 
+  color: white;
+  font-weight: medium;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 10px 30px 10px 30px;
+  transition: opacity 0.15s;
+}
+
+.feedback:hover{
+  opacity: .75;
+}

@@ -1,9 +1,9 @@
 function updateTime() {
   var now = new Date();
   var options = { 
-      weekday: 'long', 
+      weekday: 'short', 
       year: 'numeric', 
-      month: 'long', 
+      month: 'short', 
       day: 'numeric', 
       hour: '2-digit', 
       minute: '2-digit', 
