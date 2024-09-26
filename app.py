@@ -51,28 +51,38 @@ def current_open_stations():
   
   hours = {
     "John Jay": "Sun to Thurs: 9:30 AM to 9:00 PM",
-    "JJs": "Daily: 12:00 PM to 10:00 AM"
+    "JJs": "Daily: 12:00 PM to 10:00 AM",
+    "Ferris":
+      "Mon to Fri: 7:30 AM to 8:00 PM; Sat: 9:00 AM to 8:00 PM; Sun: 10:00 AM to 3:00 PM and 5:00 PM to 8:00 PM",
+    "Faculty House": "Mon to Weds: 11:00 AM to 2:30 PM",
+    "Chef Mike's": "Mon to Fri: 10:30 AM to 10:00 PM",
+    "Chef Don's": "Mon to Fri: 8:00 AM to 6:00 PM",
+    "Grace Dodge": "Mon to Thurs: 11:00 AM to 7:00 PM",
+    "Fac Shack":
+      "Mon to Weds: 11:00 AM to 2:00 PM; Weds to Sat: 7:00 PM to 11:00 PM; ",
+    "Hewitt": 
+      "Mon to Fri: Breakfast 7:30 AM to 10:00 AM, Lunch 11:00 AM to 2:30 PM, Dinner 4:30 PM to 8:00 PM; Sat and Sun: Brunch 10:30 AM to 3:00 PM, Dinner 4:30 PM to 8:00 PM",
+    "Diana":
+      "Mon to Thurs: 9:00 AM to 3:00 PM, 5:00 PM to 8:00 PM; Fri: 9:00 AM to 3:00 PM; Sun: 12:00 PM to 8:00 PM; ",
   }
   """
-  for hall_name, hour in hours:
-    filtered_halls[hall_name] = hour
-  
-  for hall_name, is_open_func in closed_check:
-    filtered_halls[hall_name] = {"status": "Open" if is_open_func() else "Closed"}
-    filtered_halls[hall_name]["hours"] = hours.get(hall_name, "Hours not available")
-  """
-
   for hall_name, is_open_func in closed_check:
     if not is_open_func():
       filtered_halls[hall_name] = "Closed"
+  """
 
-  #for each dining hall, skipping the closed ones, find each
-  #station that's currently open and add it to the filtered dictionary
+  for hall_name, is_open_func in closed_check:
+    # Initialize with hours for all halls
+    filtered_halls[hall_name] = {
+        "status": "Open" if is_open_func() else "Closed",
+        "hours": hours.get(hall_name, "Hours not available")
+    }
+
+  #for each dining hall, skipping the closed ones, find each station that's currently open and add it to the filtered dictionary
   
   for hall_name, stations in halls.items():
-  #for hall_name, stations in dummy_halls.items():
-    #if hall_name in filtered_halls and filtered_halls[hall_name]["status"] == "Closed":
-    if hall_name in filtered_halls and filtered_halls[hall_name] == "Closed":
+    if hall_name in filtered_halls and filtered_halls[hall_name]["status"] == "Closed":
+    #if hall_name in filtered_halls and filtered_halls[hall_name] == "Closed":
       filtered_halls[hall_name][stations] = "No stations currently open"
       #continue
       continue
