@@ -6,7 +6,7 @@ import os
 import requests
 import json
 import boto3
-from time_functions import john_jay_open, jjs_open, ferris_open, fac_house_open, mikes_open, dons_open, grace_dodge_open, fac_shack_open, hewitt_open, diana_open
+from time_functions import john_jay_open, jjs_open, ferris_open, fac_house_open, mikes_open, dons_open, grace_dodge_open, fac_shack_open, hewitt_open, diana_open, hours_dict
 
 app = Flask(__name__) #sets up a flask application 
 
@@ -49,17 +49,32 @@ def current_open_stations():
     ("Diana", diana_open)
     ]
   
+  hours = {
+    "John Jay": "Sun to Thurs: 9:30 AM to 9:00 PM",
+    "JJs": "Daily: 12:00 PM to 10:00 AM"
+  }
+  """
+  for hall_name, hour in hours:
+    filtered_halls[hall_name] = hour
+  
+  for hall_name, is_open_func in closed_check:
+    filtered_halls[hall_name] = {"status": "Open" if is_open_func() else "Closed"}
+    filtered_halls[hall_name]["hours"] = hours.get(hall_name, "Hours not available")
+  """
+
   for hall_name, is_open_func in closed_check:
     if not is_open_func():
-        filtered_halls[hall_name] = "Closed"
+      filtered_halls[hall_name] = "Closed"
 
-  
   #for each dining hall, skipping the closed ones, find each
   #station that's currently open and add it to the filtered dictionary
   
   for hall_name, stations in halls.items():
   #for hall_name, stations in dummy_halls.items():
+    #if hall_name in filtered_halls and filtered_halls[hall_name]["status"] == "Closed":
     if hall_name in filtered_halls and filtered_halls[hall_name] == "Closed":
+      filtered_halls[hall_name][stations] = "No stations currently open"
+      #continue
       continue
     filtered_stations = {}
     
