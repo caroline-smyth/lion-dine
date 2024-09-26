@@ -1,6 +1,7 @@
 APScheduler==3.10.4
 attrs==24.2.0
 blinker==1.8.2
+boto3=1.35.27
 cachelib==0.9.0
 certifi==2024.8.30
 cffi==1.17.1
