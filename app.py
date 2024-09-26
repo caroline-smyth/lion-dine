@@ -296,6 +296,7 @@ def current_open_stations():
 
 #takes the dictionary of all food items and filters it to only include
 #stations that are open at the given meal
+
 def open_at_meal(meal):
   now = datetime.now()
   halls = get_dining_data()
