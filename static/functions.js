@@ -1,3 +1,22 @@
+function updateTime() {
+  var now = new Date();
+  var options = { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric', 
+      hour: '2-digit', 
+      minute: '2-digit', 
+      second: '2-digit',
+      hour12: true  
+  };
+  var currentTimeString = now.toLocaleString('en-US', options);
+  document.getElementById('current-time').textContent = currentTimeString;
+}
+
+updateTime();
+setInterval(updateTime, 1000);
+
 document.addEventListener('DOMContentLoaded', function() {
   const upvoteButtons = document.querySelectorAll('.fa.fa-solid.fa-circle-arrow-up');
   const downvoteButtons = document.querySelectorAll('.fa.fa-solid.fa-circle-arrow-down');
