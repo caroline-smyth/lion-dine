@@ -1,0 +1,110 @@
+{
+    "John Jay": {},
+    "JJ's": {
+        "late night": {
+            "Main Line": [
+                "Jamaican Beef Patty"
+            ]
+        },
+        "breakfast": {
+            "Main Line": [
+                "Waffle sticks",
+                "Sausage, egg, and cheese nuggets",
+                "Southwest tofu scramble"
+            ]
+        }
+    },
+    "Ferris": {
+        "breakfast": {
+            "Main Line": [
+                "Blueberry pancakes",
+                "Scrambled Eggs",
+                "Diced Potato",
+                "Turkey Sausage",
+                "Sliced Kielbasa",
+                "Biscuits and Sausage Gravy"
+            ],
+            "Vegan Station": [
+                "Quinoa w mixed berries",
+                "Tofu scramble",
+                "Beyond Sausage"
+            ]
+        },
+        "lunch": {
+            "Action Station": [
+                "Fried fish"
+            ],
+            "Vegan Station": [
+                "Latin rice with chorizo",
+                "Black beans",
+                "Charred platains"
+            ]
+        },
+        "dinner": {
+            "Main Line": [
+                "Honey sriracha chicken",
+                "Vegetable lo mein",
+                "White rice",
+                "Eggs rolls",
+                "Stir fry vegetables"
+            ],
+            "Vegan Station": [
+                "Sweet and sour tofu",
+                "White rice",
+                "Stir fry vegetables"
+            ],
+            "Action Station": [
+                "Hot Hoagies"
+            ]
+        },
+        "lunch & dinner": {
+            "Daily Pizzas": [
+                "Pizza"
+            ]
+        }
+    },
+    "Faculty House": {
+        "lunch": {
+            "Daily Offerings": [
+                "BBQ Chicken",
+                "Mac & Cheese",
+                "Mashed Potatoes",
+                "Mixed Grain Pilaf",
+                "String Beans"
+            ]
+        }
+    },
+    "Chef Mike's": {
+        "lunch & dinner": {
+            "Build Your Own - Right Line": [
+                "Protein",
+                "Cheese",
+                "Toppings",
+                "Dressings"
+            ],
+            "Cold Counter - Middle Line": [
+                "Grilled Chicken Ranch",
+                "Curry Chickpea Salad Hero"
+            ],
+            "Hot Counter - Left Line": [
+                "Chicken Fajita",
+                "Jackfruit Fajita"
+            ]
+        }
+    },
+    "Chef Don's": {
+        "breakfast": {},
+        "lunch": {},
+        "dinner": {}
+    },
+    "Grace Dodge": {},
+    "Fac Shack": {
+        "dinner": {
+            "Main Line": [
+                "Frito Pie Burrito",
+                "Sweet Plantain and Black Bean Burrito",
+                "Served with a Side of"
+            ]
+        }
+    }
+}
