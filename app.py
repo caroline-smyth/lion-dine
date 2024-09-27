@@ -22,7 +22,7 @@ def get_dining_data():
     data = json.loads(content)
     return data
   except Exception as e:
-    print(f"Error fetching data from Dropbox: {e}")
+    print(f"Error fetching data from AWS S33: {e}")
     return {}
 
 
@@ -50,7 +50,7 @@ def current_open_stations():
     ]
   
   hours = hours_dict()
-  
+
   for hall_name, is_open_func in closed_check:
     # Initialize with hours for all halls
     filtered_halls[hall_name] = {
