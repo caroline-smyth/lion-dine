@@ -33,15 +33,6 @@
   color:rgb(105, 179, 231); 
 }
 
-.top {
-  position: relative;
-  margin-right: 2.5rem;
-  justify-content: space-between;
-  display: flex;
-  flex-direction: row;
-  font-size: 22px;
-}
-
 .footer {
   height: 5rem
 }
@@ -59,15 +50,17 @@ body {
   /*padding-top: 20px;  Top padding */
 }
 
+.top {
+  margin-right: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 22px;
+}
+
 .feedback {
-  border: none;
-  background-color: rgb(105, 179, 231); 
-  color: white;
-  font-weight: medium;
-  cursor: pointer;
-  border-radius: 5px;
-  padding: 10px 30px 10px 30px;
-  transition: opacity 0.15s;
+  text-decoration: underline;
+  margin-top:5px;
 }
 
 .feedback:hover{
