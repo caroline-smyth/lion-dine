@@ -77,7 +77,9 @@
             <!--
             {% endif %}-->
           </div>
-          {% if hall_info.stations is string %}
+          {% if hall_info.hours.startswith("Closed") or hall_info.status.startswith("Closed") %}
+            <div class="menu"></div>
+          {% elif hall_info.stations is string %}
             <div class="menu">
               {{ hall_info.stations }}
             </div>
