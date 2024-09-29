@@ -55,7 +55,7 @@ def current_open_stations():
     # Initialize with hours for all halls
     filtered_halls[hall_name] = {
         "status": "Open" if is_open_func() else "Closed",
-        "hours": hours.get(hall_name, "Hours not available")
+        "hours": hours.get(hall_name, "Hours not available"),
     }
 
   #for each dining hall, skipping the closed ones, find each station that's currently open and add it to the filtered dictionary
@@ -268,8 +268,6 @@ def current_open_stations():
   
   return filtered_halls
 
-#def hall_hours():
-
 #takes the dictionary of all food items and filters it to only include
 #stations that are open at the given meal
 
@@ -318,6 +316,7 @@ def open_at_meal(meal):
     if hall_name == "John Jay" or hall_name == "Ferris":
       #filter for only open stations
       if meal == 'breakfast':
+        
         for station, items in stations.get('breakfast',{}).items():
           filtered_stations[station] = items       
       if meal == 'lunch':

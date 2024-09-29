@@ -5,8 +5,6 @@ now = datetime.now()
 def hours_dict():
   weekday = now.weekday()
   hours = {}
-  breakfast_hours = {}
-  lunch_hours = {}
   # sun - thurs
   if weekday in [0, 1, 2, 3, 6]:
     hours["John Jay"] = "9:30 AM to 9:00 PM"
@@ -17,47 +15,76 @@ def hours_dict():
   hours["JJ's"] = "12:00 PM to 10:00 AM"
   # mon - fri
   if weekday in [0, 1, 2, 3, 4]:
-     hours["Ferris"] = "7:30 AM to 8:00 PM"
-     hours["Chef Mike's"] = "10:30 AM to 10:00 PM"
-     hours["Chef Don's"] = "8:00 AM to 6:00 PM"
-     hours["Hewitt"] = "7:30 AM to 10:00 AM, 11:00 AM to 2:30 PM, 4:30 PM to 8:00 PM"
+    hours["Ferris"] = "7:30 AM to 8:00 PM"
+    hours["Chef Mike's"] = "10:30 AM to 10:00 PM"
+    hours["Chef Don's"] = "8:00 AM to 6:00 PM"
+    hours["Hewitt"] = "7:30 AM to 10:00 AM, 11:00 AM to 2:30 PM, 4:30 PM to 8:00 PM"
+    hours["Diana"] = "9:00 AM to 3:00 PM"
   # just saturday
   elif weekday == 5:
-     hours["Chef Mike's"] = "Closed today"
-     hours["Chef Don's"] = "Closed today"
-     hours["Diana"] = "Closed today"
-     hours["Hewitt"] = "10:30 AM to 3:00 PM, 4:30 PM to 8:00 PM"
-     hours["Ferris"] = "9:00 AM to 8:00 PM"
+    hours["Chef Mike's"] = "Closed today"
+    hours["Chef Don's"] = "Closed today"
+    hours["Diana"] = "Closed today"
+    hours["Hewitt"] = "10:30 AM to 3:00 PM, 4:30 PM to 8:00 PM"
+    hours["Ferris"] = "9:00 AM to 8:00 PM"
   # just sunday
   else:
-     hours["Ferris"] = "10:00 AM to 3:00 PM and 5:00 PM to 8:00 PM"
-     hours["Chef Mike's"] = "Closed today"
-     hours["Chef Don's"] = "Closed today"
-     hours["Diana"] = "12:00 PM to 8:00 PM"
-     hours["Hewitt"] = "10:30 AM to 3:00 PM, 4:30 PM to 8:00 PM"
+    hours["Ferris"] = "10:00 AM to 3:00 PM and 5:00 PM to 8:00 PM"
+    hours["Chef Mike's"] = "Closed today"
+    hours["Chef Don's"] = "Closed today"
+    hours["Diana"] = "12:00 PM to 8:00 PM"
+    hours["Hewitt"] = "10:30 AM to 3:00 PM, 4:30 PM to 8:00 PM"
   # mon - wed
   if weekday in [0, 1, 2]:
-     hours["Faculty House"] = "11:00 AM to 2:30 PM"
-     hours["Fac Shack"] = "11:00 AM to 2:00 PM"
+    hours["Faculty House"] = "11:00 AM to 2:30 PM"
+    hours["Fac Shack"] = "11:00 AM to 2:00 PM"
   # thurs - sun
   else:
-     hours["Faculty House"] = "Closed today"
+    hours["Faculty House"] = "Closed today"
   # mon - thurs
   if weekday in [0, 1, 2, 3]:
-     hours["Grace Dodge"] = "11:00 AM to 7:00 PM"
-     hours["Diana"] = "9:00 AM to 3:00 PM, 5:00 PM to 8:00 PM"
+    hours["Grace Dodge"] = "11:00 AM to 7:00 PM"
+    hours["Diana"] = "9:00 AM to 3:00 PM, 5:00 PM to 8:00 PM"
   # fri - sun 
   else:
-     hours["Grace Dodge"] = "Closed today"
+    hours["Grace Dodge"] = "Closed today"
   #just friday
-  if weekday == 4:
-     hours["Diana"] = "9:00 AM to 3:00 PM"
+
   # weds - sat
   if weekday in [2, 3, 4, 5]:
-     hours["Fac Shack"] = "7:00 PM to 11:00 PM"
+    hours["Fac Shack"] = "7:00 PM to 11:00 PM"
+  elif weekday == 6:
+    hours["Fac Shack"] = "Closed today"
 
   return hours
 
+def breakfast_hours():
+  b_hours = {
+
+  }
+
+  return b_hours
+
+def lunch_hours():
+  l_hours = {
+
+  }
+
+  return l_hours
+
+def dinner_hours():
+  d_hours = {
+
+  }
+
+  return d_hours
+
+def latenight_hours():
+  ln_hours = {
+
+  }
+  
+  return ln_hours
 
 def john_jay_open():
   if now.weekday() in [4,5] or now.hour < 9 or now.hour >= 21 or (now.hour == 9 and now.minute < 30):
@@ -124,10 +151,9 @@ def hewitt_open():
     return True
 
 def diana_open():
-  if ((now.weekday() in [0,1,2,3] and (now.hour < 9 or now.hour in [15,16])) or 
-      (now.weekday() == 4 and (now.hour < 9 or now.hour >= 15)) or
-      (now.weekday() == 5) or 
-      (now.weekday() == 6 and (now.hour < 12 or now.hour > 20))):
-    return False
-  else:
-    return True
+  return not (
+    (now.weekday() in [0,1,2,3] and (now.hour < 9 or now.hour in [15,16])) or 
+    (now.weekday() == 4 and (now.hour < 9 or now.hour >= 15)) or
+    (now.weekday() == 5) or 
+    (now.weekday() == 6 and (now.hour < 12 or now.hour > 20))
+  )
