@@ -6,7 +6,7 @@ import os
 import requests
 import json
 import boto3
-from time_functions import john_jay_open, jjs_open, ferris_open, fac_house_open, mikes_open, dons_open, grace_dodge_open, fac_shack_open, hewitt_open, diana_open, hours_dict
+from time_functions import john_jay_open, jjs_open, ferris_open, fac_house_open, mikes_open, dons_open, grace_dodge_open, fac_shack_open, hewitt_open, diana_open, hours_dict, breakfast_hours, lunch_hours, dinner_hours
 
 app = Flask(__name__) #sets up a flask application 
 
@@ -277,37 +277,58 @@ def open_at_meal(meal):
   print(halls)
   filtered_halls = {} #to be filled
 
+  for hall_name in halls.keys():
+    filtered_halls[hall_name] = {
+      'status': 'Unknown',
+      'hours': 'Hours not available',
+      #'stations': {}
+    }
 
   # CHECKS FOR CLOSED
+  
+  closed_check = [
+    ("John Jay", john_jay_open),
+    ("JJ's", jjs_open),
+    ("Ferris", ferris_open),
+    ("Faculty House", fac_house_open),
+    ("Chef Mike's", mikes_open),
+    ("Chef Don's", dons_open),
+    ("Grace Dodge", grace_dodge_open),
+    ("Fac Shack", fac_shack_open),
+    ("Hewitt", hewitt_open),
+    ("Diana", diana_open)
+    ]
+  
+  b_hours = breakfast_hours()
+  l_hours = lunch_hours()
+  d_hours = dinner_hours()
 
-  #ferris, JJs, hewitt are open every meal every day
-  # john jay
-  if now.weekday() in [4,5]:
-    filtered_halls["John Jay"] = f"Closed for {meal}"
-  # fac house
-  if now.weekday() > 2 or meal == "breakfast" or meal == "dinner":
-    filtered_halls["Faculty House"] = f"Closed for {meal}"
-  #mikes
-  if now.weekday() in [5,6] or meal == "breakfast":
-    filtered_halls["Chef Mike's"] = f"Closed for {meal}"
-  #don's
-  if now.weekday() in [5,6]:
-    filtered_halls["Chef Don's"] = f"Closed for {meal}"
-  #grace dodge
-  if now.weekday() in [4,5,6] or meal == "breakfast":
-    filtered_halls["Grace Dodge"] = f"Closed for {meal}"
-  #fac shack
-  if not ((now.weekday() in [0,1,2,3] and meal == "lunch") or (now.weekday() in [3,4,5] and meal == "dinner")):
-    filtered_halls["Fac Shack"] = f"Closed for {meal}"
-  #diana
-  if now.weekday() == 5 or (now.weekday() == 6 and meal == "breakfast") or (now.weekday() == 4 and meal == "dinner"):
-    filtered_halls["Diana"] = f"Closed for {meal}"
-  #dummy_halls = dummy_food()
+  if meal == "breakfast":
+    for hall_name, is_open_func in closed_check:
+      # Initialize with hours for all halls
+      filtered_halls[hall_name] = {
+          "status": "Open" if is_open_func() else f"Closed for breakfast",
+          "hours": b_hours.get(hall_name, "Hours not available"),
+      }
+  elif meal == "lunch":
+    for hall_name, is_open_func in closed_check:
+      # Initialize with hours for all halls
+      filtered_halls[hall_name] = {
+          "status": "Open" if is_open_func() else f"Closed for lunch",
+          "hours": l_hours.get(hall_name, "Hours not available"),
+      }
+  else:
+    for hall_name, is_open_func in closed_check:
+      # Initialize with hours for all halls
+      filtered_halls[hall_name] = {
+          "status": "Open" if is_open_func() else f"Closed for dinner",
+          "hours": d_hours.get(hall_name, "Hours not available"),
+      }
 
   #for each dining hall, skipping the closed ones, find each
   #station that's currently open and add it to the filtered dictionary
   for hall_name, stations in halls.items():
-    if hall_name in filtered_halls and filtered_halls[hall_name].startswith("Closed"):
+    if hall_name in filtered_halls and filtered_halls[hall_name].status.startswith("Closed"):
       continue
     filtered_stations = {}
 
@@ -474,11 +495,12 @@ def dinner():
   now = datetime.now()
   return render_template('index.html', halls=filtered_halls, meal="dinner", current_time=now)
 
+"""
 @app.route('/latenight')
 def latenight():
   filtered_halls = open_at_meal("latenight")
   now = datetime.now()
   return render_template('index.html', halls=filtered_halls, meal="latenight", current_time=now)
-
+"""
 if __name__ == '__main__':
    app.run(host='0.0.0.0',port=5000)
