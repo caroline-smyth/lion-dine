@@ -29,7 +29,7 @@ a:hover{
   font-size: 1.5rem;/*1.5rem*/
   align-items: flex-start;
   flex: 1 1 calc(30% - 30px); /*limits items per row */
-  max-width: 100%;
+  max-width: (30% - 25px);
   box-sizing: border-box; 
 }
 .menu {
