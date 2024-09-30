@@ -29,14 +29,16 @@ a:hover{
   font-size: 1.5rem;/*1.5rem*/
   align-items: flex-start;
   flex: 1 1 calc(30% - 30px); /*limits items per row */
-  max-width: calc(25% - 30px);
+  max-width: 100%;
   box-sizing: border-box; 
 }
 .menu {
   display: flex;
   flex-direction: column;
-  white-space: nowrap;
   margin-bottom: 40px;
+  word-wrap: break-word; /* Breaks long words */
+  overflow-wrap: break-word; /* Handles overflowing words */
+  white-space: normal;
 }
 
 
