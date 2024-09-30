@@ -71,14 +71,12 @@
           </a>
           <div class="timing">
             <div class="hours">{{ hall_info.hours }}</div>
-            {% if not hall_info.hours.startswith("Closed") %}
+            {% if not hall_info.hours.startswith("Closed") or hall_info.status.startswith("Closed")%}
             <div class="status">Status: {{ hall_info.status }} now</div>
             {% endif %}
           </div>
           {% if hall_info.get('hours','').startswith("Closed") or hall_info.status.startswith("Closed") %}
             <div class="menu"></div>
-          
-
           {% elif hall_info.stations is mapping and hall_info.stations %}
             <div class="menu">
               {% for station_name, items in hall_info.stations.items() %}

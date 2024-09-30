@@ -303,7 +303,7 @@ def open_at_meal(meal):
     for hall_name, is_open_func in closed_check:
       # Initialize with hours for all halls
       filtered_halls[hall_name] = {
-          "status": "Open" if is_open_func() else f"Closed",
+          "status": "Open" if is_open_func() else "Closed",
           "hours": b_hours.get(hall_name, "Hours not available"),
           "stations": {},
       }
