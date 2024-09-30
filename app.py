@@ -63,7 +63,7 @@ def current_open_stations():
   for hall_name, stations in halls.items():
     if hall_name in filtered_halls and filtered_halls[hall_name]["status"] == "Closed":
     #if hall_name in filtered_halls and filtered_halls[hall_name] == "Closed":
-      filtered_halls[hall_name][stations] = "No stations currently open"
+      filtered_halls[hall_name]["stations"] = "No stations currently open"
       #continue
       continue
     filtered_stations = {}
