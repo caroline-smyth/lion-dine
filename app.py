@@ -307,21 +307,21 @@ def open_at_meal(meal):
     for hall_name, is_open_func in closed_check:
       # Initialize with hours for all halls
       filtered_halls[hall_name] = {
-          "status": "Open" if is_open_func() else f"Closed for breakfast",
+          "status": "Open" if is_open_func() else f"Closed",
           "hours": b_hours.get(hall_name, "Hours not available"),
       }
   elif meal == "lunch":
     for hall_name, is_open_func in closed_check:
       # Initialize with hours for all halls
       filtered_halls[hall_name] = {
-          "status": "Open" if is_open_func() else f"Closed for lunch",
+          "status": "Open" if is_open_func() else f"Closed",
           "hours": l_hours.get(hall_name, "Hours not available"),
       }
   else:
     for hall_name, is_open_func in closed_check:
       # Initialize with hours for all halls
       filtered_halls[hall_name] = {
-          "status": "Open" if is_open_func() else f"Closed for dinner",
+          "status": "Open" if is_open_func() else f"Closed",
           "hours": d_hours.get(hall_name, "Hours not available"),
       }
 

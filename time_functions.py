@@ -232,9 +232,8 @@ def hewitt_open():
     return True
 
 def diana_open():
-  return not (
-    (now.weekday() in [0,1,2,3] and (now.hour < 9 or now.hour in [15,16])) or 
-    (now.weekday() == 4 and (now.hour < 9 or now.hour >= 15)) or
-    (now.weekday() == 5) or 
-    (now.weekday() == 6 and (now.hour < 12 or now.hour > 20))
-  )
+  if ((now.weekday() in [0,1,2,3] and (now.hour < 9 or now.hour in [15,16])) or (now.weekday() == 4 and (now.hour < 9 or now.hour >= 15)) or ((now.weekday() == 5) or (now.weekday() == 6 and (now.hour < 12 or now.hour >= 20)))
+  ):
+    return False
+  else:
+    return True
