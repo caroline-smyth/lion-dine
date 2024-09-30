@@ -56,6 +56,7 @@ def current_open_stations():
     filtered_halls[hall_name] = {
         "status": "Open" if is_open_func() else "Closed",
         "hours": hours.get(hall_name, "Hours not available"),
+        "stations": {},
     }
 
   #for each dining hall, skipping the closed ones, find each station that's currently open and add it to the filtered dictionary
@@ -276,7 +277,7 @@ def open_at_meal(meal):
     filtered_halls[hall_name] = {
       'status': 'Unknown',
       'hours': 'Hours not available',
-      #'stations': {}
+      'stations': {},
     }
 
   # CHECKS FOR CLOSED
@@ -304,6 +305,7 @@ def open_at_meal(meal):
       filtered_halls[hall_name] = {
           "status": "Open" if is_open_func() else f"Closed",
           "hours": b_hours.get(hall_name, "Hours not available"),
+          "stations": {},
       }
   elif meal == "lunch":
     for hall_name, is_open_func in closed_check:
@@ -311,6 +313,7 @@ def open_at_meal(meal):
       filtered_halls[hall_name] = {
           "status": "Open" if is_open_func() else f"Closed",
           "hours": l_hours.get(hall_name, "Hours not available"),
+          "stations": {},
       }
   else:
     for hall_name, is_open_func in closed_check:
@@ -318,12 +321,13 @@ def open_at_meal(meal):
       filtered_halls[hall_name] = {
           "status": "Open" if is_open_func() else f"Closed",
           "hours": d_hours.get(hall_name, "Hours not available"),
+          "stations": {},
       }
 
   #for each dining hall, skipping the closed ones, find each
   #station that's currently open and add it to the filtered dictionary
   for hall_name, stations in halls.items():
-    if hall_name in filtered_halls and filtered_halls[hall_name].status.startswith("Closed"):
+    if hall_name in filtered_halls and filtered_halls[hall_name]["status"].startswith("Closed"):
       continue
     filtered_stations = {}
 
@@ -332,7 +336,6 @@ def open_at_meal(meal):
     if hall_name == "John Jay" or hall_name == "Ferris":
       #filter for only open stations
       if meal == 'breakfast':
-        
         for station, items in stations.get('breakfast',{}).items():
           filtered_stations[station] = items       
       if meal == 'lunch':
