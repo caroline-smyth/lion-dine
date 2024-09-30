@@ -62,7 +62,6 @@ def current_open_stations():
   
   for hall_name, stations in halls.items():
     if hall_name in filtered_halls and filtered_halls[hall_name]["status"] == "Closed":
-    #if hall_name in filtered_halls and filtered_halls[hall_name] == "Closed":
       filtered_halls[hall_name]["stations"] = "No stations currently open"
       #continue
       continue
@@ -71,8 +70,6 @@ def current_open_stations():
     #this code will replace the below code once we have all scraped data.
     #here, we hard-code the times of each station of each dining hall.
     if hall_name == "John Jay":
-      #filter for only open stations
-      #filtered_stations["all hours"] = "9:30 am - 9 pm"
       if now.weekday() == 6:
         if 10 <= now.hour and now.hour < 11 or (now.hour == 9 and now.minute >= 30):
           for station, items in stations.get('brunch',{}).items():
@@ -104,10 +101,9 @@ def current_open_stations():
             filtered_stations[station] = items
         #return data to the filtered dictionary
       if filtered_stations:
-        filtered_halls[hall_name] = filtered_stations
-        #filtered_halls[hall_name]["Missing Data"] = ""
+        filtered_halls[hall_name]["stations"] = filtered_stations
       else:
-        filtered_halls[hall_name] = "Missing Data"
+        filtered_halls[hall_name]["stations"] = "Missing Data"
     
     if hall_name == "JJ's":
       #filter for only open stations
@@ -133,10 +129,9 @@ def current_open_stations():
       #return data to the filtered dictionary
 
       if filtered_stations:
-        filtered_halls[hall_name] = filtered_stations
-        #filtered_halls[hall_name]["Missing Data"] = ""
+        filtered_halls[hall_name]["stations"] = filtered_stations
       else:
-        filtered_halls[hall_name] = "Missing Data"
+        filtered_halls[hall_name]["stations"] = "Missing Data"
 
     if hall_name == "Ferris":
       if now.weekday() in [0,1,2,3,4]:
@@ -186,10 +181,10 @@ def current_open_stations():
             filtered_stations[station] = items
     #return data to the filtered dictionary
       if filtered_stations:
-        filtered_halls[hall_name] = filtered_stations
-        #filtered_halls[hall_name]["Missing Data"] = ""
+        filtered_halls[hall_name]["stations"] = filtered_stations
+        #filtered_halls[hall_name]["stations"]["Missing Data"] = ""
       else:
-        filtered_halls[hall_name] = "Missing Data"
+        filtered_halls[hall_name]["stations"] = "Missing Data"
 
     if hall_name == "Faculty House":
       #filter for only open stations
@@ -198,9 +193,9 @@ def current_open_stations():
           filtered_stations[station] = items
       #return data to the filtered dictionary
       if filtered_stations:
-        filtered_halls[hall_name] = filtered_stations
+        filtered_halls[hall_name]["stations"] = filtered_stations
       else:
-        filtered_halls[hall_name] = "Missing data"
+        filtered_halls[hall_name]["stations"] = "Missing data"
 
     if hall_name == "Chef Mike's":
       #filter for only open stations
@@ -209,10 +204,10 @@ def current_open_stations():
         filtered_stations[station] = items
       #return data to the filtered dictionary
       if filtered_stations:
-        filtered_halls[hall_name] = filtered_stations
-        #filtered_halls[hall_name]["Missing Data"] = ""
+        filtered_halls[hall_name]["stations"] = filtered_stations
+        #filtered_halls[hall_name]["stations"]["Missing Data"] = ""
       else:
-        filtered_halls[hall_name] = "Missing Data"    
+        filtered_halls[hall_name]["stations"] = "Missing Data"    
 
     if hall_name == "Chef Don's":
       #filtered_stations["all hours"] = "8 am - 6 pm"
@@ -221,10 +216,10 @@ def current_open_stations():
       if now.hour >= 11 and now.hour < 18:
         filtered_stations["Pizza"] = ["Build your own"]
       if filtered_stations:
-        filtered_halls[hall_name] = filtered_stations
-        #filtered_halls[hall_name]["Missing Data"] = ""
+        filtered_halls[hall_name]["stations"] = filtered_stations
+        #filtered_halls[hall_name]["stations"]["Missing Data"] = ""
       else:
-        filtered_halls[hall_name] = "Missing Data"
+        filtered_halls[hall_name]["stations"] = "Missing Data"
 
     if hall_name == "Grace Dodge":
       #filter for only open stations
@@ -233,10 +228,10 @@ def current_open_stations():
         filtered_stations[station] = items
       #return data to the filtered dictionary
       if filtered_stations:
-        filtered_halls[hall_name] = filtered_stations
-        #filtered_halls[hall_name]["Missing Data"] = ""
+        filtered_halls[hall_name]["stations"] = filtered_stations
+        #filtered_halls[hall_name]["stations"]["Missing Data"] = ""
       else:
-        filtered_halls[hall_name] = "Missing Data"
+        filtered_halls[hall_name]["stations"] = "Missing Data"
     
     if hall_name == "Fac Shack":
       if now.weekday() in [0,1,2,3] and now.hour >= 11 and now.hour < 14:
@@ -248,23 +243,23 @@ def current_open_stations():
         for station, items in stations.get('dinner',{}).items():
           filtered_stations[station] = items
       if filtered_stations:
-        filtered_halls[hall_name] = filtered_stations
-        #filtered_halls[hall_name]["Missing Data"] = ""
+        filtered_halls[hall_name]["stations"] = filtered_stations
+        #filtered_halls[hall_name]["stations"]["Missing Data"] = ""
       else:
-        filtered_halls[hall_name] = "Missing Data"
+        filtered_halls[hall_name]["stations"] = "Missing Data"
 
     if hall_name == "Hewitt":
       if filtered_stations:
-        filtered_halls[hall_name] = filtered_stations
-        #filtered_halls[hall_name]["Missing Data"] = ""
+        filtered_halls[hall_name]["stations"] = filtered_stations
+        #filtered_halls[hall_name]["stations"]["Missing Data"] = ""
       else:
-        filtered_halls[hall_name] = "Missing Data"
+        filtered_halls[hall_name]["stations"] = "Missing Data"
     if hall_name == "Diana":
       if filtered_stations:
-        filtered_halls[hall_name] = filtered_stations
-        #filtered_halls[hall_name]["Missing Data"] = ""
+        filtered_halls[hall_name]["stations"] = filtered_stations
+        #filtered_halls[hall_name]["stations"]["Missing Data"] = ""
       else:
-        filtered_halls[hall_name] = "Missing Data"
+        filtered_halls[hall_name]["stations"] = "Missing Data"
   
   return filtered_halls
 
