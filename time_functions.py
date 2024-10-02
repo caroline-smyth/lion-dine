@@ -51,8 +51,10 @@ def hours_dict():
   #just friday
 
   # weds - sat
-  if weekday in [2, 3, 4, 5]:
+  if weekday in [4, 5]:
     hours["Fac Shack"] = "7:00 PM to 11:00 PM"
+  elif weekday == 3:
+    hours["Fac Shack"] = "11:00 AM to 2:00 PM, 7:00 PM to 11:00 PM"
   elif weekday == 6:
     hours["Fac Shack"] = "Closed today"
 
@@ -188,7 +190,8 @@ def ferris_open():
     return True
 
 def fac_house_open():
-  if now.weekday() > 3 or now.hour < 11 or now.hour > 14 or (now.hour == 14 and now.minute > 30):
+  if now.weekday() > 2 or now.hour < 11 or now.hour > 15:
+    # (now.hour == 14 and now.minute > 30)
     return False
   else:
     return True
