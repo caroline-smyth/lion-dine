@@ -1,6 +1,8 @@
 from datetime import datetime
+import pytz
 
-now = datetime.now()
+ny_tz = pytz.timezone('America/New_York')
+now = datetime.now(ny_tz)
 weekday = now.weekday()
 
 def hours_dict():
