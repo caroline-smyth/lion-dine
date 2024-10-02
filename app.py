@@ -7,8 +7,12 @@ import requests
 import json
 import boto3
 from time_functions import john_jay_open, jjs_open, ferris_open, fac_house_open, mikes_open, dons_open, grace_dodge_open, fac_shack_open, hewitt_open, diana_open, hours_dict, breakfast_hours, lunch_hours, dinner_hours
+import pytz
 
 app = Flask(__name__) #sets up a flask application 
+
+ny_tz = pytz.timezone('America/New_York')
+now = datetime.now(ny_tz)
 
 #gets dining data from dropbox json file
 def get_dining_data():
@@ -29,7 +33,6 @@ def get_dining_data():
 #takes the dictionary of all food items and filters it to only include
 #stations that are currently open
 def current_open_stations():
-  now = datetime.now()
   halls = get_dining_data()
   print(halls)
   filtered_halls = {} #to be filled
@@ -471,25 +474,21 @@ def open_at_meal(meal):
 @app.route('/') 
 def index():
   filtered_halls = current_open_stations() # returns closed/missing data/meal info for each dining hall
-  now = datetime.now()
   return render_template('index.html', halls=filtered_halls, current_time=now)
     
 @app.route('/breakfast')
 def breakfast():
   filtered_halls = open_at_meal("breakfast")
-  now = datetime.now()
   return render_template('index.html', halls=filtered_halls, meal="breakfast", current_time=now)
 
 @app.route('/lunch')
 def lunch():
   filtered_halls = open_at_meal("lunch")
-  now = datetime.now()
   return render_template('index.html', halls=filtered_halls, meal="lunch", current_time=now)
 
 @app.route('/dinner')
 def dinner():
   filtered_halls = open_at_meal("dinner")
-  now = datetime.now()
   return render_template('index.html', halls=filtered_halls, meal="dinner", current_time=now)
 
 """
