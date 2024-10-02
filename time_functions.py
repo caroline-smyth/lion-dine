@@ -185,14 +185,13 @@ def jjs_open():
 def ferris_open():
   if ((now.weekday() in [0,1,2,3,4] and (now.hour < 7 or now.hour >= 20 or (now.hour == 7 and now.minute < 30))) or
       (now.weekday() == 5 and (now.hour < 9 or now.hour >= 20)) or
-      (now.weekday() == 6 and (now.hour < 10 or now.hour >= 20 or now.hour in [14,16]))):
+      (now.weekday() == 6 and (now.hour < 10 or now.hour >= 20 or now.hour in [14,15]))):
     return False
   else:
     return True
 
 def fac_house_open():
-  if now.weekday() > 2 or now.hour < 11 or now.hour > 14:
-    #or now.hour < 11  or now.hour > 15 or (now.hour == 14 and now.minute > 30)
+  if now.weekday() > 2 or now.hour < 11 or now.hour > 15 or (now.hour == 14 and now.minute > 30):
     return False
   else:
     return True
@@ -216,9 +215,10 @@ def grace_dodge_open():
     return True
 
 def fac_shack_open():
-  if (now.weekday() == 6) or (now.weekday() in [0,1,2] and (now.hour < 11 or now.hour >= 14) or
+  if ((now.weekday() == 6) or 
+      (now.weekday() in [0,1,2] and (now.hour < 11 or now.hour >= 14) or
       (now.weekday() in [4,5] and (now.hour < 19 or now.hour >= 23)) or
-      (now.weekday() == 3 and (now.hour < 11 or now.hour >= 23 or now.hour in [14,15,16,17,18]))):
+      (now.weekday() == 3 and (now.hour < 11 or now.hour >= 23 or now.hour in [14,15,16,17,18])))):
     return False
   else:
     return True
@@ -236,7 +236,10 @@ def hewitt_open():
     return True
 
 def diana_open():
-  if ((now.weekday() in [0,1,2,3] and (now.hour < 9 or now.hour in [15,16])) or (now.weekday() == 4 and (now.hour < 9 or now.hour >= 15)) or ((now.weekday() == 5) or (now.weekday() == 6 and (now.hour < 12 or now.hour >= 20)))
+  if (((now.weekday() in [0,1,2,3] and (now.hour < 9 or now.hour in [15,16])) or 
+       (now.weekday() == 4 and (now.hour < 9 or now.hour >= 15)) or 
+       (now.weekday() == 5) or 
+       (now.weekday() == 6 and (now.hour < 12 or now.hour >= 20)))
   ):
     return False
   else:
