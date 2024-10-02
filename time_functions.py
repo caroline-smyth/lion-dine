@@ -78,7 +78,7 @@ def breakfast_hours():
     b_hours["Diana"] = "Closed for breakfast"
   
   if weekday in [6, 0, 1, 2, 3]:
-    b_hours["John Jay"] = "9:30 AM to 2:00 PM"
+    b_hours["John Jay"] = "9:30 AM to 11:00 AM"
   else:
     b_hours["John Jay"] = "Closed for breakfast"
 
@@ -99,12 +99,14 @@ def lunch_hours():
   else:
     l_hours["Chef Mike's"] = "Closed for lunch"
     l_hours["Chef Don's"] = "Closed for lunch"
-    l_hours["Ferris"] = "11:00 AM to 2:00 PM, 3:00 PM to 5:00 PM" #????
     l_hours["Hewitt"] = "10:30 AM to 3:00 PM"
-    l_hours["Diana"] = "12:00 PM to 8:00 PM" # again not quite right
+    if weekday == 5:
+      l_hours["Ferris"] = "11:00 AM to 5:00 PM"
+      l_hours["Diana"] = "Closed for lunch"
+    if weekday == 6:
+      l_hours["Ferris"] = "10:00 AM to 2:00 PM" #????
+      l_hours["Diana"] = "12:00 PM to 8:00 PM" # again not quite right
   
-  if weekday == 5:
-    l_hours["Diana"] = "Closed for lunch"
   #m-w
   if weekday in [0, 1, 2]:
     l_hours["Faculty House"] = "11:00 AM to 2:30 PM"
@@ -120,7 +122,7 @@ def lunch_hours():
     l_hours["Grace Dodge"] = "Closed for lunch"
 
   if weekday in [6, 0, 1, 2, 3]:
-    l_hours["John Jay"] = "11:00 AM to 5:00 PM" # eh
+    l_hours["John Jay"] = "11:00 AM to 2:30 PM"
   else:
     l_hours["John Jay"] = "Closed for lunch"
   
@@ -133,17 +135,16 @@ def dinner_hours():
   d_hours["JJ's"] = "12:00 PM to midnight"
   d_hours["Hewitt"] = "4:30 PM to 8:00 PM"
   d_hours["Faculty House"] = "Closed for dinner"
+  d_hours["Ferris"] = "5:00 PM to 8:00 PM"
 
   # mon - fri
   if weekday in [0, 1, 2, 3, 4]:
     d_hours["Chef Mike's"] = "10:30 AM to 10:00 PM"
     d_hours["Chef Don's"] = "11:00 AM to 6:00 PM"
-    d_hours["Ferris"] = "5:00 PM to 8:00 PM"
   # sat - sun
   else:
     d_hours["Chef Mike's"] = "Closed for dinner"
     d_hours["Chef Don's"] = "Closed for dinner"
-    d_hours["Ferris"] = "5:00 PM to 8:00 PM"
   #th-sat
   if weekday in [3, 4, 5]:
     d_hours["Fac Shack"] = "7:00 PM to 11:00 PM"
@@ -155,10 +156,10 @@ def dinner_hours():
     d_hours["Diana"] = "5:00 PM to 12:00 AM"
   else:
     d_hours["Grace Dodge"] = "Closed for dinner"
-    d_hours["Diana"] = "12:00 PM to 8:00 PM"
-
-  if weekday == 5:
-    d_hours["Diana"] = "Closed for dinner" 
+    if weekday == 6:
+      d_hours["Diana"] = "12:00 PM to 8:00 PM"
+    else:
+      d_hours["Diana"] = "Closed for dinner" 
 
   if weekday in [6, 0, 1, 2, 3]:
     d_hours["John Jay"] = "5:00 PM to 9:00 PM" 
