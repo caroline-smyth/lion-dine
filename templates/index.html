@@ -75,7 +75,8 @@
           </div>
           {% if hall_info.get('hours','').startswith("Closed") or hall_info.status.startswith("Closed") %}
             <div class="menu"></div>
-          {% elif hall_info.stations is mapping and hall_info.stations %}
+          {% endif %}
+          {% if hall_info.stations is mapping and hall_info.stations %}
             <div class="menu">
               {% for station_name, items in hall_info.stations.items() %}
                 <div class="food-type">{{ station_name }}</div>
