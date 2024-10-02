@@ -75,7 +75,7 @@
           {% if hall_info.status.startswith("Closed") %}
             <div>closed check</div>
             <div class="menu"></div>
-          {% elif hall_info.stations %}
+          {% elif hall_info.stations is mapping hall_info.stations %}
             <div>mapping check</div>
             <div class="menu">
               {% for station_name, items in hall_info.stations.items() %}
