@@ -19,7 +19,6 @@ def hours_dict():
     hours["Chef Mike's"] = "10:30 AM to 10:00 PM"
     hours["Chef Don's"] = "8:00 AM to 6:00 PM"
     hours["Hewitt"] = "7:30 AM to 10:00 AM, 11:00 AM to 2:30 PM, 4:30 PM to 8:00 PM"
-    hours["Diana"] = "9:00 AM to 3:00 PM"
   # just saturday
   elif weekday == 5:
     hours["Chef Mike's"] = "Closed today"
@@ -29,7 +28,7 @@ def hours_dict():
     hours["Ferris"] = "9:00 AM to 8:00 PM"
   # just sunday
   else:
-    hours["Ferris"] = "10:00 AM to 3:00 PM and 5:00 PM to 8:00 PM"
+    hours["Ferris"] = "10:00 AM to 2:00 PM, 4:00 PM to 8:00 PM"
     hours["Chef Mike's"] = "Closed today"
     hours["Chef Don's"] = "Closed today"
     hours["Diana"] = "12:00 PM to 8:00 PM"
@@ -49,7 +48,8 @@ def hours_dict():
   else:
     hours["Grace Dodge"] = "Closed today"
   #just friday
-
+  if weekday == 4:
+    hours["Diana"] = "9:00 AM to 3:00 PM"
   # weds - sat
   if weekday in [4, 5]:
     hours["Fac Shack"] = "7:00 PM to 11:00 PM"
