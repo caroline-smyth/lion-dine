@@ -190,7 +190,7 @@ def ferris_open():
     return True
 
 def fac_house_open():
-  if now.weekday() > 2:
+  if now.weekday() > 2 or now.hour < 11 or now.hour > 14:
     #or now.hour < 11  or now.hour > 15 or (now.hour == 14 and now.minute > 30)
     return False
   else:
