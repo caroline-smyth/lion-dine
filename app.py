@@ -268,7 +268,6 @@ def current_open_stations():
 #stations that are open at the given meal
 
 def open_at_meal(meal):
-  now = datetime.now()
   halls = get_dining_data()
   print(halls)
   filtered_halls = {} #to be filled
