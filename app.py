@@ -14,6 +14,19 @@ app = Flask(__name__) #sets up a flask application
 ny_tz = pytz.timezone('America/New_York')
 now = datetime.now(ny_tz)
 
+dining_halls = [
+  "John Jay",
+  "JJ's",
+  "Ferris",
+  "Faculty House",
+  "Chef Mike's",
+  "Chef Don's",
+  "Grace Dodge",
+  "Fac Shack", 
+  "Hewitt", 
+  "Diana"
+]
+
 #gets dining data from dropbox json file
 def get_dining_data():
   bucket_name = 'liondine-data'
@@ -275,7 +288,7 @@ def open_at_meal(meal):
   print(halls)
   filtered_halls = {} #to be filled
 
-  for hall_name in halls.keys():
+  for hall_name in dining_halls:
     filtered_halls[hall_name] = {
       'status': 'Unknown',
       'hours': 'Hours not available',
