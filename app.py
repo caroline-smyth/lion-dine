@@ -23,8 +23,8 @@ dining_halls = [
   "Chef Don's",
   "Grace Dodge",
   "Fac Shack", 
-  "Hewitt", 
-  "Diana"
+  "Hewitt Dining", 
+  "Diana Center Cafe"
 ]
 
 #gets dining data from dropbox json file
@@ -61,8 +61,8 @@ def current_open_stations():
     ("Chef Don's", dons_open),
     ("Grace Dodge", grace_dodge_open),
     ("Fac Shack", fac_shack_open),
-    ("Hewitt", hewitt_open),
-    ("Diana", diana_open)
+    ("Hewitt Dining", hewitt_open),
+    ("Diana Center Cafe", diana_open)
     ]
   
   hours = hours_dict()
@@ -265,13 +265,13 @@ def current_open_stations():
       else:
         filtered_halls[hall_name]["stations"] = "Missing Data"
 
-    if hall_name == "Hewitt":
+    if hall_name == "Hewitt Dining":
       if filtered_stations:
         filtered_halls[hall_name]["stations"] = filtered_stations
         #filtered_halls[hall_name]["stations"]["Missing Data"] = ""
       else:
         filtered_halls[hall_name]["stations"] = "Missing Data"
-    if hall_name == "Diana":
+    if hall_name == "Diana Center Cafe":
       if filtered_stations:
         filtered_halls[hall_name]["stations"] = filtered_stations
         #filtered_halls[hall_name]["stations"]["Missing Data"] = ""
@@ -305,7 +305,7 @@ def open_at_meal(meal):
   filtered_halls["John Jay"]["status"] = "Open" if now.weekday() in [6,0,1,2,3] else f"Closed for {meal}"
   filtered_halls["JJ's"]["status"] = "Open"
   filtered_halls["Ferris"]["status"] = "Open"
-  filtered_halls["Hewitt"]["status"] = "Open"
+  filtered_halls["Hewitt Dining"]["status"] = "Open"
   if now.weekday() in [0,1,2] and meal == "lunch":
     filtered_halls["Faculty House"]["status"] = "Open"
   else:
@@ -330,9 +330,9 @@ def open_at_meal(meal):
   if (now.weekday() in [0,1,2,3] or
       now.weekday() == 4 and meal in ["breakfast","lunch"] or
       now.weekday() == 6 and meal in ["lunch","dinner"]):
-    filtered_halls["Diana"]["status"] = "Open"
+    filtered_halls["Diana Center Cafe"]["status"] = "Open"
   else:
-    filtered_halls["Diana"]["status"] = f"Closed for {meal}"
+    filtered_halls["Diana Center Cafe"]["status"] = f"Closed for {meal}"
 
   for hall_name in halls.keys():
     if meal == "breakfast":
@@ -451,7 +451,7 @@ def open_at_meal(meal):
         filtered_halls[hall_name]["stations"] = filtered_stations
       else:
         filtered_halls[hall_name]["stations"] = "Missing data"
-    if hall_name == "Hewitt":
+    if hall_name == "Hewitt Dining":
       if meal == 'breakfast':
         for station, items in stations.get('breakfast',{}).items():
           filtered_stations[station] = items
@@ -467,7 +467,7 @@ def open_at_meal(meal):
         filtered_halls[hall_name]["stations"] = filtered_stations
       else:
         filtered_halls[hall_name]["stations"] = "Missing data"
-    if hall_name == "Diana":
+    if hall_name == "Diana Center Cafe":
       if meal == 'breakfast':
         for station, items in stations.get('breakfast',{}).items():
           filtered_stations[station] = items
