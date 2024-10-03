@@ -71,6 +71,9 @@
           </a>
           <div class="timing">
             <div class="hours">{{ hall_info.hours }}</div>
+            {% if hall_info.status == "Closed" %}
+             <div class="status">{{ hall_info.status }}</div>
+            {% endif %}
           </div>
           {% if hall_info.status.startswith("Closed") %}
             <div class="menu"></div>
