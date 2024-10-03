@@ -322,14 +322,14 @@ def open_at_meal(meal):
     filtered_halls["Grace Dodge"]["status"] = "Open"
   else:
     filtered_halls["Grace Dodge"]["status"] = f"Closed for {meal}"
-  if (now.weekday in [0,1,2,3] and meal == "lunch" or
-      now.weekday in [3,4,5] and meal == "dinner"):
+  if (now.weekday() in [0,1,2,3] and meal == "lunch" or
+      now.weekday() in [3,4,5] and meal == "dinner"):
     filtered_halls["Fac Shack"]["status"] = "Open"
   else:
     filtered_halls["Fac Shack"]["status"] = f"Closed for {meal}"
-  if (now.weekday in [0,1,2,3] or
-      now.weekday == 4 and meal in ["breakfast","lunch"] or
-      now.weekday == 6 and meal in ["lunch","dinner"]):
+  if (now.weekday() in [0,1,2,3] or
+      now.weekday() == 4 and meal in ["breakfast","lunch"] or
+      now.weekday() == 6 and meal in ["lunch","dinner"]):
     filtered_halls["Diana"]["status"] = "Open"
   else:
     filtered_halls["Diana"]["status"] = f"Closed for {meal}"
