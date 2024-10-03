@@ -26,7 +26,7 @@ def get_dining_data():
     data = json.loads(content)
     return data
   except Exception as e:
-    print(f"Error fetching data from AWS S33: {e}")
+    print(f"Error fetching data from AWS S3: {e}")
     return {}
 
 
@@ -287,7 +287,7 @@ def open_at_meal(meal):
   b_hours = breakfast_hours()
   l_hours = lunch_hours()
   d_hours = dinner_hours()
-  
+
   #filtered_halls[hall_name]["status"] = "Open" if meal in meal_list else f"Closed for {meal}"
   filtered_halls["John Jay"]["status"] = "Open" if now.weekday() in [6,0,1,2,3] else f"Closed for {meal}"
   filtered_halls["JJ's"]["status"] = "Open"
