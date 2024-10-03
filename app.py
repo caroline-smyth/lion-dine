@@ -284,47 +284,51 @@ def open_at_meal(meal):
 
   # CHECKS FOR CLOSED
   
-  closed_check = [
-    ("John Jay", john_jay_open),
-    ("JJ's", jjs_open),
-    ("Ferris", ferris_open),
-    ("Faculty House", fac_house_open),
-    ("Chef Mike's", mikes_open),
-    ("Chef Don's", dons_open),
-    ("Grace Dodge", grace_dodge_open),
-    ("Fac Shack", fac_shack_open),
-    ("Hewitt", hewitt_open),
-    ("Diana", diana_open)
-    ]
-  
   b_hours = breakfast_hours()
   l_hours = lunch_hours()
   d_hours = dinner_hours()
 
-  if meal == "breakfast":
-    for hall_name, is_open_func in closed_check:
-      # Initialize with hours for all halls
-      filtered_halls[hall_name] = {
-          "status": "Open" if is_open_func() else "Closed",
-          "hours": b_hours.get(hall_name, "Hours not available"),
-          "stations": {},
-      }
-  elif meal == "lunch":
-    for hall_name, is_open_func in closed_check:
-      # Initialize with hours for all halls
-      filtered_halls[hall_name] = {
-          "status": "Open" if is_open_func() else f"Closed",
-          "hours": l_hours.get(hall_name, "Hours not available"),
-          "stations": {},
-      }
-  else:
-    for hall_name, is_open_func in closed_check:
-      # Initialize with hours for all halls
-      filtered_halls[hall_name] = {
-          "status": "Open" if is_open_func() else f"Closed",
-          "hours": d_hours.get(hall_name, "Hours not available"),
-          "stations": {},
-      }
+  for hall_name in halls.keys():
+    #filtered_halls[hall_name]["status"] = "Open" if meal in meal_list else f"Closed for {meal}"
+    filtered_halls["John Jay"]["status"] = "Open" if now.weekday() in [6,0,1,2,3] else f"Closed for {meal}"
+    filtered_halls["JJ's"]["status"] = "Open"
+    filtered_halls["Ferris"]["status"] = "Open"
+    filtered_halls["Hewitt"]["status"] = "Open"
+    if now.weekday() in [0,1,2] and meal == "lunch":
+      filtered_halls["Faculty House"]["status"] = "Open"
+    else:
+      filtered_halls["Faculty House"]["status"] = f"Closed for {meal}"
+    if now.weekday() in [0,1,2,3,4] and meal in ["lunch","dinner"]:
+      filtered_halls["Chef Mike's"]["status"] = "Open"
+    else:
+      filtered_halls["Chef Mike's"]["status"] = f"Closed for {meal}"
+    if now.weekday() in [0,1,2,3,4]:
+      filtered_halls["Chef Don's"]["status"] = "Open"
+    else:
+      filtered_halls["Chef Don's"]["status"] = f"Closed for {meal}"
+    if now.weekday() in [0,1,2,3] and meal in ["lunch","dinner"]:
+      filtered_halls["Grace Dodge"]["status"] = "Open"
+    else:
+      filtered_halls["Grace Dodge"]["status"] = f"Closed for {meal}"
+    if (now.weekday in [0,1,2,3] and meal == "lunch" or
+        now.weekday in [3,4,5] and meal == "dinner"):
+      filtered_halls["Fac Shack"]["status"] = "Open"
+    else:
+      filtered_halls["Fac Shack"]["status"] = f"Closed for {meal}"
+    if (now.weekday in [0,1,2,3] or
+        now.weekday == 4 and meal in ["breakfast","lunch"] or
+        now.weekday == 6 and meal in ["lunch","dinner"]):
+      filtered_halls["Diana"]["status"] = "Open"
+    else:
+      filtered_halls["Diana"]["status"] = f"Closed for {meal}"
+
+
+    if meal == "breakfast":
+      filtered_halls[hall_name]["hours"] = b_hours.get(hall_name, "Hours not available")
+    elif meal == "lunch":
+      filtered_halls[hall_name]["hours"] = l_hours.get(hall_name, "Hours not available")
+    elif meal == "dinner":
+      filtered_halls[hall_name]["hours"] = d_hours.get(hall_name, "Hours not available")
 
   #for each dining hall, skipping the closed ones, find each
   #station that's currently open and add it to the filtered dictionary
