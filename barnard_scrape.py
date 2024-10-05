@@ -14,7 +14,7 @@ import random
 from contextlib import contextmanager
 
 def scrape_barnard():
-  barnard_hall_names = ["Hewitt Dining", "Diana Center Cafe"]
+  barnard_hall_names = ["Hewitt Dining"]
   driver = webdriver.Chrome()
   url = "https://dineoncampus.com/barnard/whats-on-the-menu"
   driver.get(url)
@@ -35,9 +35,6 @@ def scrape_barnard():
       if hall_name in hall:
         item.click()
         hall_data = scrape_barnard_inside(driver, wait)
-        if hall_data == None:
-          hall_data = scrape_barnard_inside(driver, wait)
-          hall_data = scrape_barnard_inside(driver, wait)
         dining_hall_data[hall] = hall_data
 
   driver.quit()
@@ -49,8 +46,6 @@ def scrape_barnard_inside(driver, wait):
   
   try:
     nav_bar = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "nav.nav-tabs")))
-
-    print("entered try")
 
     buttons = nav_bar.find_elements(By.CLASS_NAME, "nav-link")
 
@@ -73,3 +68,5 @@ def scrape_barnard_inside(driver, wait):
     dining_hall = None
 
   return dining_hall
+
+scrape_barnard()

@@ -101,37 +101,11 @@ def scrape_columbia(hall_name):
 
     #handle the privacy notice
     try:
-      #accept_button = wait.until(
-        #EC.element_to_be_clickable((By.XPATH, "//div[@id='cu-privacy-notice']//button[text()='I AGREE']"))
-      #)
-      #accept_button.click()
       iframe = wait.until(
         EC.presence_of_element_located((By.TAG_NAME, "iframe"))
       )
       print("privacy notice iframe detected")
-      '''
-      driver.switch_to.frame(iframe)
-      possible_texts = ["i agree", "agree", "accept", "ok", "yes"]
-      accept_buttons = driver.find_elements(By.TAG_NAME, "button")
-      clicked = False
-      for btn in accept_buttons:
-        btn_text = btn.text.strip().lower()
-        if btn_text in possible_texts:
-          try:
-            #btn.click()
-            driver.execute_script("arguments[0].scrollIntoView();", btn) #scroll into view
-            driver.execute_script("arguments[0].click();", btn) #the same as btn.click() but better?
-            print(f"Clicked '{btn.text}' button to accept privacy notice.")
-            clicked = True
-            break
-          except Exception as e:
-            print(f"failed to click {btn.text} button. {e}")
-      if not clicked:
-        print("no accept button found on the privacy notice that was detected. attempting javascript dismissal")
-        driver.switch_to.default_content()
-        driver.execute_script("document.getElementById('cu-privacy-notice').style.display = 'none';")
-        print("javascript removal successful")
-      driver.switch_to.default_content()'''
+      
       driver.execute_script("document.getElementById('cu-privacy-notice').style.display = 'none';")
       print("javascript removal successful")
     except TimeoutException:

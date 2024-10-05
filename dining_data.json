@@ -1,60 +1,77 @@
 {
     "John Jay": {},
     "JJ's": {
+        "lunch & dinner": {
+            "Main Line": [
+                "Southwest turkey burger",
+                "Crispy teriyaki sandwich",
+                "Salami, mozzarella, cherry peppers sandwich",
+                "Southwest black bean burger",
+                "Curried chickpea rice bowl"
+            ],
+            "Fry Station": [
+                "Chicken wings",
+                "Mozzarella sticks",
+                "Spicy coated fries"
+            ],
+            "Grill": [
+                "Buffalo chicken quesadilla"
+            ]
+        },
         "late night": {
             "Main Line": [
-                "Jamaican Beef Patty"
+                "Buffalo chicken egg roll"
             ]
         },
         "breakfast": {
             "Main Line": [
-                "Waffle sticks",
-                "Sausage, egg, and cheese nuggets",
-                "Southwest tofu scramble"
+                "Western tater tot bowl",
+                "Tres leches french toast",
+                "Vegan egg sandwich"
             ]
         }
     },
     "Ferris": {
         "breakfast": {
             "Main Line": [
-                "Blueberry pancakes",
+                "French Toast Sticks",
                 "Scrambled Eggs",
-                "Diced Potato",
-                "Turkey Sausage",
-                "Sliced Kielbasa",
+                "Hash Brown Patty",
+                "Ham",
+                "Chicken Sausage",
                 "Biscuits and Sausage Gravy"
             ],
             "Vegan Station": [
-                "Quinoa w mixed berries",
-                "Tofu scramble",
-                "Beyond Sausage"
+                "Roasted Carrots",
+                "Just Eggs",
+                "Roasted Breakfast Potatoes"
             ]
         },
         "lunch": {
             "Action Station": [
-                "Fried fish"
+                "Loaded Fries"
             ],
             "Vegan Station": [
-                "Latin rice with chorizo",
-                "Black beans",
-                "Charred platains"
+                "Roasted Beets",
+                "BBQ Tofu Nuggets",
+                "Vegetable Quinoa"
             ]
         },
         "dinner": {
             "Main Line": [
-                "Honey sriracha chicken",
-                "Vegetable lo mein",
-                "White rice",
-                "Eggs rolls",
-                "Stir fry vegetables"
+                "Beef Bulgogi",
+                "Wheatberry",
+                "Vegetable Lo Mein",
+                "Edamame Dumplings",
+                "Stir Fry Vegetables"
             ],
             "Vegan Station": [
-                "Sweet and sour tofu",
-                "White rice",
-                "Stir fry vegetables"
+                "Fable Mushroom Bulgogi",
+                "Soba Noodles",
+                "Stir Fry Vegetables"
             ],
             "Action Station": [
-                "Hot Hoagies"
+                "Halal Cart"
             ]
         },
         "lunch & dinner": {
@@ -63,35 +80,8 @@
             ]
         }
     },
-    "Faculty House": {
-        "lunch": {
-            "Daily Offerings": [
-                "BBQ Chicken",
-                "Mac & Cheese",
-                "Mashed Potatoes",
-                "Mixed Grain Pilaf",
-                "String Beans"
-            ]
-        }
-    },
-    "Chef Mike's": {
-        "lunch & dinner": {
-            "Build Your Own - Right Line": [
-                "Protein",
-                "Cheese",
-                "Toppings",
-                "Dressings"
-            ],
-            "Cold Counter - Middle Line": [
-                "Grilled Chicken Ranch",
-                "Curry Chickpea Salad Hero"
-            ],
-            "Hot Counter - Left Line": [
-                "Chicken Fajita",
-                "Jackfruit Fajita"
-            ]
-        }
-    },
+    "Faculty House": {},
+    "Chef Mike's": {},
     "Chef Don's": {
         "breakfast": {},
         "lunch": {},
@@ -101,8 +91,8 @@
     "Fac Shack": {
         "dinner": {
             "Main Line": [
-                "Frito Pie Burrito",
-                "Sweet Plantain and Black Bean Burrito",
+                "Chicken Mole Burrito",
+                "Vegan Chorizo and Potato Burrito",
                 "Served with a Side of"
             ]
         }
