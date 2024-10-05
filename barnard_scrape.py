@@ -35,6 +35,8 @@ def scrape_barnard():
       if hall_name in hall:
         item.click()
         hall_data = scrape_barnard_inside(driver, wait)
+        if hall_data is None:
+          dining_hall_data[hall] = {}
         dining_hall_data[hall] = hall_data
 
   driver.quit()
@@ -69,4 +71,4 @@ def scrape_barnard_inside(driver, wait):
 
   return dining_hall
 
-#scrape_barnard()
+scrape_barnard()
