@@ -96,5 +96,223 @@
                 "Served with a Side of"
             ]
         }
-    }
+    },
+    "Hewitt Dining": {
+        "breakfast": {
+            "Homestyle": [
+                "Scrambled Eggs",
+                "Chicken Sausage Patty",
+                "Veggie Sausage Patty",
+                "Tofu Scramble",
+                "Tater Tots"
+            ],
+            "Delicious Without": [
+                "Churro Pancake Short Stack",
+                "Vanilla Oat Churro Pancakes",
+                "Turkey Breakfast Sausage",
+                "Breakfast Potatoes",
+                "Chickpeas, Spinach, Roasted Tomatoes",
+                "Oatmeal",
+                "Cubed Pineapple",
+                "Pineapple Ginger Turmeric Smoothie"
+            ],
+            "The Sweet Shoppe": [
+                "Double Chocolate Chip Muffin",
+                "Blueberry Muffin",
+                "Cranberry Muffin",
+                "Corn Muffin",
+                "Croissant"
+            ],
+            "Fuel": [
+                "Low Fat Strawberry Yogurt",
+                "Low Fat Vanilla Yogurt",
+                "Homemade Granola",
+                "4% Full Fat Cottage Cheese",
+                "Cubed Honeydew",
+                "Cubed Cantaloupe",
+                "Cubed Pineapple"
+            ]
+        },
+        "lunch": {
+            "500 Degrees": [
+                "Buffalo Chicken Pizza",
+                "Cheese Pizza",
+                "Vegetable Pizza",
+                "Garlic Powder",
+                "Crushed Red Pepper",
+                "Grated Parmesan Cheese",
+                "Dried Oregano"
+            ],
+            "Homestyle": [
+                "Buttermilk Pancakes",
+                "Crunchy French Toast",
+                "Waffles",
+                "Turkey Bacon",
+                "Tofu Scramble",
+                "Thyme Roasted Potatoes"
+            ],
+            "Flame": [
+                "Scrambled Eggs",
+                "Egg Omelette",
+                "Egg White Omelet",
+                "Chopped Onion",
+                "Diced Red Bell Peppers",
+                "Roasted Mushroom",
+                "Sauteed Spinach",
+                "Chopped Tomatoes",
+                "Cheddar Cheese"
+            ],
+            "Cucina": [
+                "Scrambled Egg",
+                "Veggie Sausage Patty",
+                "Black Beans and Rice",
+                "Cajun Grilled Catfish",
+                "Mixed Vegetable Blend"
+            ],
+            "Delicious Without": [
+                "Oatmeal",
+                "Herb Roasted Potato Wedges",
+                "Turkey Bacon",
+                "Steamed Broccoli",
+                "Oat Milk Chia Seed Pudding",
+                "Fresh Fruit Salad",
+                "Garden Salad"
+            ],
+            "The Sweet Shoppe": [
+                "Chocolate Croissant",
+                "Croissant",
+                "Apple Fritters",
+                "Assorted Danish",
+                "Cranberry Muffin",
+                "Country Corn Muffin",
+                "Chocolate Muffin",
+                "Blueberry Muffin",
+                "Apple Turnover",
+                "Cereal, Oats n' Honey Granola"
+            ],
+            "Fuel": [
+                "Low Fat Strawberry Yogurt",
+                "Low Fat Vanilla Yogurt",
+                "4% Full Fat Cottage Cheese",
+                "Cubed Honeydew",
+                "Cubed Cantaloupe",
+                "Cubed Pineapple"
+            ]
+        },
+        "dinner": {
+            "500 Degrees": [
+                "Vegetable Cheese Pizza",
+                "Rueben Pizza",
+                "Spinach Pizza",
+                "Parmesan Cheese",
+                "Crushed Red Pepper"
+            ],
+            "Homestyle": [
+                "Jamaican Jerk Chicken",
+                "Grilled Tofu",
+                "Macaroni & Cheese",
+                "steamed rice",
+                "Fried Plantains",
+                "Green Beans and Cherry Tomatoes"
+            ],
+            "Flame": [
+                "Hamburger Patty",
+                "Whole Wheat Hamburger Bun",
+                "American Cheese Slice",
+                "Hot Dog",
+                "Grilled Chicken",
+                "Sliced Red Onion",
+                "Lettuce Leaf",
+                "Meatless Black Bean Burger",
+                "3/8\" French Fries, Fried",
+                "Grilled Tater Wedges"
+            ],
+            "Cucina": [
+                "Penne Pasta",
+                "Tomato Sauce",
+                "Alfredo Sauce",
+                "Meatballs",
+                "Vegan Meatballs",
+                "Steamed Broccoli"
+            ],
+            "Delicious Without": [
+                "Herb Crusted Chicken",
+                "Cilantro Rice",
+                "Three Bean Chili",
+                "Broccoli",
+                "Garden Salad",
+                "Black Bean and Corn Salad",
+                "Rainbow Fruit Salad"
+            ]
+        },
+        "every day": {
+            "Fresh 52": [
+                "Spring Mix",
+                "Chopped Romaine Lettuce",
+                "Baby Spinach",
+                "Sliced Red Onion",
+                "Sliced Cucumber",
+                "Cherry Tomatoes",
+                "Mandarin Orange Sections",
+                "Croutons",
+                "Fat Free Raspberry Dressing",
+                "Fat Free Italian Dressing",
+                "Buttermilk Ranch Dressing",
+                "Caesar Dressing",
+                "Balsamic Vinegar",
+                "Extra Virgin Olive Oil"
+            ],
+            "Soup": [
+                "Beef Vegetable Soup",
+                "Crackers, Saltine, 2 CT, Zesta",
+                "Crackers, Oyster, Zesta, Keebler, 0.5 oz"
+            ]
+        },
+        "brunch": {
+            "500 Degrees": [
+                "Belgian Waffle",
+                "Buttermilk Pancakes",
+                "Buttermilk Biscuit",
+                "French Toast",
+                "Chicken Sausage Patty"
+            ],
+            "Homestyle": [
+                "French Toast",
+                "Buttermilk Pancakes",
+                "Home Fries with Onions & Peppers",
+                "Belgian Waffles",
+                "Tofu Scramble",
+                "Veggie Sausage Patty"
+            ],
+            "Cucina": [
+                "Scrambled Eggs",
+                "Tofu Scramble",
+                "Veggie Sausage Patty",
+                "Baked Tilapia",
+                "Mixed Vegetables",
+                "Black Beans and Rice",
+                "Turkey Bacon"
+            ],
+            "Flame": [
+                "Scrambled Eggs",
+                "Free Range Eggs",
+                "Egg White Omelet",
+                "Chopped Onion",
+                "Diced Red Bell Peppers",
+                "Roasted Mushroom",
+                "Sauteed Spinach",
+                "Chopped Tomatoes",
+                "Cheddar Cheese",
+                "Shredded Mozzarella Cheese"
+            ],
+            "Delicious Without": [
+                "Rosemary Roasted Potato",
+                "Turkey Bacon",
+                "Oatmeal",
+                "Roasted Vegetable Mix",
+                "Steamed Rice"
+            ]
+        }
+    },
+    "Diana Center Cafe": null
 }
