@@ -39,8 +39,8 @@ hall_names = [
   "Chef Don's", 
   "Grace Dodge", 
   "Fac Shack", 
-  "Hewitt", 
-  "Diana"
+  "Hewitt Dining", 
+  "Diana Center Cafe"
   ]
 
 #configures webdriver for a headless environment 
