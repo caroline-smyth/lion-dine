@@ -266,15 +266,33 @@ def current_open_stations():
         filtered_halls[hall_name]["stations"] = "Missing Data"
 
     if hall_name == "Hewitt Dining":
+      if (now.weekday() in [0, 1, 2, 3, 4] and ((now.hour > 7 and now.hour < 10) or now.hour == 7 and now.minute > 30)) or (now.weekday() in [5, 6] and ((now.hour > 10 and now.hour < 12) or (now.hour == 10 and now.minute > 30))):
+        for station, items in stations.get('breakfast',{}).items():
+          filtered_stations[station] = items
+        for station, items in stations.get('every day',{}).items():
+          filtered_stations[station] = items
+        for station, items in stations.get('brunch',{}).items():
+          filtered_stations[station] = items
+      if (now.weekday() in [0, 1, 2, 3, 4] and ((now.hour >= 11 and now.hour < 14) or (now.hour == 14 and now.minute < 30))) or (now.weekday() in [5, 6] and (now.hour > 12 and now.hour < 15)):
+        for station, items in stations.get('lunch',{}).items():
+          filtered_stations[station] = items
+        for station, items in stations.get('every day',{}).items():
+          filtered_stations[station] = items
+        for station, items in stations.get('brunch',{}).items():
+          filtered_stations[station] = items
+      if (now.hour > 16 and now.hour < 30) or (now.hour == 16 and now.minute > 30):
+        for station, items in stations.get('dinner',{}).items():
+          filtered_stations[station] = items
+        for station, items in stations.get('every day',{}).items():
+          filtered_stations[station] = items
       if filtered_stations:
         filtered_halls[hall_name]["stations"] = filtered_stations
-        #filtered_halls[hall_name]["stations"]["Missing Data"] = ""
       else:
         filtered_halls[hall_name]["stations"] = "Missing Data"
-    if hall_name == "Diana Center Cafe":
+      
+    if hall_name == "Diana Center Cafe":      
       if filtered_stations:
         filtered_halls[hall_name]["stations"] = filtered_stations
-        #filtered_halls[hall_name]["stations"]["Missing Data"] = ""
       else:
         filtered_halls[hall_name]["stations"] = "Missing Data"
   
