@@ -14,7 +14,7 @@ import random
 from contextlib import contextmanager
 
 def scrape_barnard():
-  barnard_hall_names = ["Hewitt Dining"]
+  barnard_hall_names = ["Hewitt Dining", "Diana Center Cafe"]
   driver = webdriver.Chrome()
   url = "https://dineoncampus.com/barnard/whats-on-the-menu"
   driver.get(url)
@@ -69,4 +69,4 @@ def scrape_barnard_inside(driver, wait):
 
   return dining_hall
 
-scrape_barnard()
+#scrape_barnard()

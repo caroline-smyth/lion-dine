@@ -145,7 +145,7 @@ def scrape_columbia(hall_name):
         meal_dictionary[station_name] = [item.text.strip() for item in meal_items]
       dining_hall[meal] = meal_dictionary
 
-    print(dining_hall)
+    #print(dining_hall)
 
     return {hall_name : dining_hall}
 
@@ -162,7 +162,9 @@ def scrape_all():
   
   barnard_data = scrape_barnard()
   dict.update(barnard_data)
+  print(dict)
   return dict
+
 
 #stores scraped data in a json file
 def scrape_and_save():
@@ -185,3 +187,4 @@ def upload_to_s3(file_path, bucket_name, object_name=None):
 if __name__ == '__main__':
    scrape_and_save()
    print("scraping and upload completed")
+
