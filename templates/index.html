@@ -67,7 +67,13 @@
           {% set hall_info = halls.get(hall_name, {"status": "Unknown", "hours": "Hours not available", "stations": "No data available"}) %}
         <div class="col">
           <a href="{{ hall_links.get(hall_name,'https://dining.columbia.edu/') }}" target="_blank">
-            <h3>{{ hall_name }}</h3>
+            {% if hall_name == "Hewitt Dining" %}
+              <h3>Hewitt</h3>
+            {% elif hall_name == "Diana Center Cafe" %}
+              <h3>Diana</h3>
+            {% else %}
+              <h3>{{ hall_name }}</h3>
+            {% endif %}
           </a>
           <div class="timing">
             <div class="hours">{{ hall_info.hours }}</div>

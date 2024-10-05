@@ -290,7 +290,20 @@ def current_open_stations():
       else:
         filtered_halls[hall_name]["stations"] = "Missing Data"
       
-    if hall_name == "Diana Center Cafe":      
+    if hall_name == "Diana Center Cafe":
+      if (now.weekday() in [0, 1, 2, 3] and ((now.hour >= 9 and now.hour < 11) or (now.hour == 11 and now.minute < 30))) or (now.weekday() == 4 and (now.hour >= 9 and now.hour < 12)):
+        for station, items in stations.get('breakfast',{}).items():
+          filtered_stations[station] = items  
+      if (now.weekday() in [0, 1, 2, 3] and ((now.hour > 11 and now.hour < 17) or (now.hour == 11 and now.minute > 30))) or (now.weekday() == 4 and (now.hour >= 12 and now.hour < 15) or (now.weekday() == 6 and (now.hour >= 12 and now.hour < 17))):
+        for station, items in stations.get('lunch',{}).items():
+          filtered_stations[station] = items   
+      if now.weekday() in [0, 1, 2, 3, 6] and ((now.hour >= 17 and now.hour < 20)):
+        for station, items in stations.get('dinner',{}).items():
+          filtered_stations[station] = items       
+      if now.weekday() in [0, 1, 2, 3] and (now.hour >= 20):
+        for station, items in stations.get('late night',{}).items():
+          filtered_stations[station] = items
+
       if filtered_stations:
         filtered_halls[hall_name]["stations"] = filtered_stations
       else:
