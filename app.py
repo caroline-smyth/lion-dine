@@ -12,7 +12,6 @@ import pytz
 app = Flask(__name__) #sets up a flask application 
 
 ny_tz = pytz.timezone('America/New_York')
-now = datetime.now(ny_tz)
 
 dining_halls = [
   "John Jay",
@@ -46,6 +45,7 @@ def get_dining_data():
 #takes the dictionary of all food items and filters it to only include
 #stations that are currently open
 def current_open_stations():
+  now = datetime.now(ny_tz)
   halls = get_dining_data()
   print(halls)
   filtered_halls = {} #to be filled
@@ -284,6 +284,7 @@ def current_open_stations():
 #stations that are open at the given meal
 
 def open_at_meal(meal):
+  now = datetime.now(ny_tz)
   halls = get_dining_data()
   print(halls)
   filtered_halls = {} #to be filled
@@ -489,21 +490,25 @@ def open_at_meal(meal):
 #mapping URLs to functions that display the HTML we want for that URL
 @app.route('/') 
 def index():
+  now = datetime.now(ny_tz)
   filtered_halls = current_open_stations() # returns closed/missing data/meal info for each dining hall
   return render_template('index.html', halls=filtered_halls, current_time=now)
     
 @app.route('/breakfast')
 def breakfast():
+  now = datetime.now(ny_tz)
   filtered_halls = open_at_meal("breakfast")
   return render_template('index.html', halls=filtered_halls, meal="breakfast", current_time=now)
 
 @app.route('/lunch')
 def lunch():
+  now = datetime.now(ny_tz)
   filtered_halls = open_at_meal("lunch")
   return render_template('index.html', halls=filtered_halls, meal="lunch", current_time=now)
 
 @app.route('/dinner')
 def dinner():
+  now = datetime.now(ny_tz)
   filtered_halls = open_at_meal("dinner")
   return render_template('index.html', halls=filtered_halls, meal="dinner", current_time=now)
 
