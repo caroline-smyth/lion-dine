@@ -78,10 +78,18 @@ def current_open_stations():
   #for each dining hall, skipping the closed ones, find each station that's currently open and add it to the filtered dictionary
   
   for hall_name, stations in halls.items():
+    """
     if hall_name in filtered_halls and filtered_halls[hall_name]["status"] == "Closed":
       filtered_halls[hall_name]["stations"] = "No stations currently open"
       #continue
       continue
+    """
+    if hall_name in filtered_halls and filtered_halls[hall_name]["status"].startswith("Closed"):
+      continue
+    if stations is None:
+      filtered_halls[hall_name]["stations"] = "Missing data"
+      continue
+  
     filtered_stations = {}
     
     #this code will replace the below code once we have all scraped data.
@@ -380,6 +388,10 @@ def open_at_meal(meal):
     if hall_name in filtered_halls and filtered_halls[hall_name]["status"].startswith("Closed"):
       continue
     filtered_stations = {}
+    
+    if stations is None:
+      filtered_halls[hall_name]["stations"] = "Missing data"
+      continue
 
     #this code will replace the below code once we have all scraped data.
     #here, we hard-code the times of each station of each dining hall.
