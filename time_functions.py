@@ -215,22 +215,13 @@ def grace_dodge_open():
     return True
 
 def fac_shack_open():
-  if ((now.weekday() == 6) or 
-      (now.weekday() in [0,1,2] and (now.hour < 11 or now.hour >= 14) or
-      (now.weekday() in [4,5] and (now.hour < 19 or now.hour >= 23)) or
-      (now.weekday() == 3 and (now.hour < 11 or now.hour >= 23 or now.hour in [14,15,16,17,18])))):
+  if ((now.weekday() == 6) or (now.weekday() in [0,1,2] and (now.hour < 11 or now.hour >= 14) or (now.weekday() in [4,5] and (now.hour < 19 or now.hour >= 23)) or (now.weekday() == 3 and (now.hour < 11 or now.hour >= 23 or now.hour in [14,15,16,17,18])))):
     return False
   else:
     return True
 
 def hewitt_open():
-  if ((now.weekday() in [0,1,2,3,4] and 
-    now.hour < 7 or (now.hour == 7 and now.minute < 30) or now.hour == 10 or
-    (now.hour == 14 and now.minute > 30) or now.hour == 15 or 
-    (now.hour == 16 and now.minute < 30) or now.hour >= 20) or
-  (now.weekday() in [5,6] and 
-    now.hour < 10 or (now.hour == 10 and now.minute < 30) or now.hour == 15 or
-    (now.hour == 16 and now.minute < 30) or now.hour >= 20)):
+  if ((now.weekday() in [0,1,2,3,4] and now.hour < 7 or (now.hour == 7 and now.minute < 30) or now.hour == 10 or (now.hour == 14 and now.minute > 30) or now.hour == 15 or (now.hour == 16 and now.minute < 30) or now.hour >= 20) or (now.weekday() in [5,6] and now.hour < 10 or (now.hour == 10 and now.minute < 30) or now.hour == 15 or (now.hour == 16 and now.minute < 30) or now.hour >= 20)):
     return False
   else:
     return True
