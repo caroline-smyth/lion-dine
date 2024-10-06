@@ -185,9 +185,7 @@ def jjs_open():
     return True
 
 def ferris_open():
-  if ((now.weekday() in [0,1,2,3,4] and (now.hour < 7 or now.hour >= 20 or (now.hour == 7 and now.minute < 30))) or
-      (now.weekday() == 5 and (now.hour < 9 or now.hour >= 20)) or
-      (now.weekday() == 6 and (now.hour < 10 or now.hour >= 20 or now.hour in [14,15]))):
+  if ((now.weekday() in [0,1,2,3,4] and (now.hour < 7 or now.hour >= 20 or (now.hour == 7 and now.minute < 30))) or (now.weekday() == 5 and (now.hour < 9 or now.hour >= 20)) or (now.weekday() == 6 and (now.hour < 10 or now.hour >= 20 or now.hour in [14,15]))):
     return False
   else:
     return True
