@@ -81,7 +81,6 @@ def current_open_stations():
     """
     if hall_name in filtered_halls and filtered_halls[hall_name]["status"] == "Closed":
       filtered_halls[hall_name]["stations"] = "No stations currently open"
-      #continue
       continue
     """
     if hall_name in filtered_halls and filtered_halls[hall_name]["status"].startswith("Closed"):
@@ -174,7 +173,6 @@ def current_open_stations():
           for station, items in stations.get('lunch & dinner',{}).items():
             filtered_stations[station] = items
       if now.weekday() == 5:
-        #filtered_stations["all hours"] = "9 am - 8 pm"
         if now.hour <= 11 and (now.hour > 9):
           for station, items in stations.get('breakfast',{}).items():
             filtered_stations[station] = items
