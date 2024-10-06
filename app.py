@@ -522,6 +522,8 @@ def open_at_meal(meal):
         for station, items in stations.get('lunch',{}).items():
           filtered_stations[station] = items
       if meal == 'dinner':
+        for station, items in stations.get('brunch',{}).items():
+          filtered_stations[station] = items
         for station, items in stations.get('dinner',{}).items():
           filtered_stations[station] = items
         for station, items in stations.get('late night',{}).items():
