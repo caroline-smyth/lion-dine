@@ -107,17 +107,17 @@
     "Ferris": {
         "breakfast": {
             "Main Line": [
-                "Cinnamon Roll",
+                "French Toast",
                 "Scrambled Eggs",
-                "Roasted Potatoes",
+                "Homes Fries",
                 "Pork Bacon",
-                "Turkey Sausage Patties",
+                "Turkey Sausage",
                 "Biscuits and Sausage Gravy"
             ]
         },
         "lunch": {
             "Action Station": [
-                "Chicken and Waffles Bar"
+                "Waffles"
             ],
             "Vegan Station": [
                 "Garlic Broccoli",
@@ -134,12 +134,12 @@
                 "Sweet Plantains"
             ],
             "Vegan Station": [
-                "Latin Spiced Jackfruit",
+                "Jackfruit",
                 "Arroz Con Grandules",
                 "Sweet Plantains"
             ],
             "Action Station": [
-                "Breakfast Burrito Bar"
+                "Fried Chicken Sandwich"
             ]
         },
         "lunch & dinner": {
@@ -350,5 +350,49 @@
             ]
         }
     },
-    "Diana Center Cafe": null
+    "Diana Center Cafe": {
+        "lunch": {
+            "Sono": [
+                "Cilantro Pesto Tofu"
+            ],
+            "Homestyle": [
+                "Grilled Teriyaki Tofu"
+            ]
+        },
+        "brunch": {
+            "500 Degrees": [
+                "Veggie Breakfast Pizza",
+                "Pepper and Onion Pizza",
+                "Grilled Cheese Sandwich"
+            ],
+            "Delicious Without": [
+                "Breakfast Fried Rice",
+                "White Rice",
+                "Potato Stir-Fry Banchan",
+                "Sauteed Crimini Mushrooms",
+                "Spicy Braised Bok Choy",
+                "Grilled Scallions",
+                "Corn Grits",
+                "Mango Refresher Smoothie",
+                "Cubed Watermelon"
+            ],
+            "The Sweet Shoppe": [
+                "Double Chocolate Chip Muffin",
+                "Blueberry Muffin",
+                "Cranberry Muffin",
+                "Corn Muffin",
+                "Croissant",
+                "Chocolate Croissant"
+            ],
+            "Fuel": [
+                "Low Fat Strawberry Yogurt",
+                "Low Fat Vanilla Yogurt",
+                "Homemade Granola",
+                "4% Full Fat Cottage Cheese",
+                "Cubed Honeydew",
+                "Cubed Cantaloupe",
+                "Cubed Pineapple"
+            ]
+        }
+    }
 }
