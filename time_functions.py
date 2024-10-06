@@ -227,12 +227,12 @@ def fac_shack_open():
 
 def hewitt_open():
   if ((now.weekday() in [0,1,2,3,4] and 
-       now.hour < 7 or (now.hour == 7 and now.minute < 30) or now.hour == 10 or
-       (now.hour == 14 and now.minute > 30) or now.hour == 15 or 
-       (now.hour == 16 and now.minute < 30) or now.hour >= 20) or
-      (now.weekday() in [5,6] and 
-       now.hour < 10 or (now.hour == 10 and now.minute < 30) or now.hour == 15 or
-       (now.hour == 16 and now.minute < 30) or now.hour >= 20)):
+    now.hour < 7 or (now.hour == 7 and now.minute < 30) or now.hour == 10 or
+    (now.hour == 14 and now.minute > 30) or now.hour == 15 or 
+    (now.hour == 16 and now.minute < 30) or now.hour >= 20) or
+  (now.weekday() in [5,6] and 
+    now.hour < 10 or (now.hour == 10 and now.minute < 30) or now.hour == 15 or
+    (now.hour == 16 and now.minute < 30) or now.hour >= 20)):
     return False
   else:
     return True

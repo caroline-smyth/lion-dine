@@ -325,6 +325,7 @@ def current_open_stations():
 def open_at_meal(meal):
   now = datetime.now(ny_tz)
   halls = get_dining_data()
+  print("Dining hall names: ", halls.keys())
   print(halls)
   filtered_halls = {} #to be filled
 
@@ -499,10 +500,14 @@ def open_at_meal(meal):
       if meal == 'breakfast':
         for station, items in stations.get('breakfast',{}).items():
           filtered_stations[station] = items
-      if meal == 'lunch':
+        for station, items in stations.get('brunch',{}).items():
+          filtered_stations[station] = items
+      elif meal == 'lunch':
         for station, items in stations.get('lunch',{}).items():
           filtered_stations[station] = items
-      if meal == 'dinner':
+        for station, items in stations.get('brunch',{}).items():
+          filtered_stations[station] = items
+      elif meal == 'dinner':
         for station, items in stations.get('dinner',{}).items():
           filtered_stations[station] = items
       for station, items in stations.get('every day',{}).items():
