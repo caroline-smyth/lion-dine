@@ -15,6 +15,7 @@ from contextlib import contextmanager
 
 def scrape_barnard():
   barnard_hall_names = ["Hewitt Dining", "Diana Center Cafe"]
+  #barnard_hall_names = ["Diana Center Cafe"]
   driver = webdriver.Chrome()
   url = "https://dineoncampus.com/barnard/whats-on-the-menu"
   driver.get(url)
@@ -55,6 +56,7 @@ def scrape_barnard_inside(driver, wait):
       meal_time = b.text.strip().lower()
       meal = {}
       b.click()
+      #time_module.sleep(1)
       menu_elements = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "table")))
 
       for m in menu_elements:
@@ -71,4 +73,4 @@ def scrape_barnard_inside(driver, wait):
 
   return dining_hall
 
-#scrape_barnard()
+scrape_barnard()
