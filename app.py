@@ -541,6 +541,8 @@ def open_at_meal(meal):
 @app.route('/') 
 def index():
   now = datetime.now(ny_tz)
+  halls = get_dining_data()
+  print(f"Halls data: {halls}")
   filtered_halls = current_open_stations() # returns closed/missing data/meal info for each dining hall
   return render_template('index.html', halls=filtered_halls, current_time=now)
     
