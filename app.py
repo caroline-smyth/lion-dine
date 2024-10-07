@@ -8,6 +8,7 @@ import json
 import boto3
 from time_functions import john_jay_open, jjs_open, ferris_open, fac_house_open, mikes_open, dons_open, grace_dodge_open, fac_shack_open, hewitt_open, diana_open, hours_dict, breakfast_hours, lunch_hours, dinner_hours
 import pytz
+from flask import make_response, render_template
 
 app = Flask(__name__) #sets up a flask application 
 
@@ -540,9 +541,17 @@ def open_at_meal(meal):
 #mapping URLs to functions that display the HTML we want for that URL
 @app.route('/') 
 def index():
+  """
   now = datetime.now(ny_tz)
   filtered_halls = current_open_stations() # returns closed/missing data/meal info for each dining hall
-  return render_template('index.html', halls=filtered_halls, current_time=now)
+  return render_template('index.html', halls=filtered_halls, current_time=now)"""
+  now = datetime.now(ny_tz)
+  filtered_halls = current_open_stations()
+  response = make_response(render_template('index.html', halls=filtered_halls, current_time=now))
+  response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+  response.headers['Pragma'] = 'no-cache'
+  response.headers['Expires'] = '0'
+  return response
     
 @app.route('/breakfast')
 def breakfast():
