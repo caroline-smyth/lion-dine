@@ -45,7 +45,7 @@ def get_dining_data():
 
 #takes the dictionary of all food items and filters it to only include
 #stations that are currently open
-def current_open_stations(now):
+def current_open_stations(current_time):
   #now = datetime.now(ny_tz)
   halls = get_dining_data()
   print(halls)
@@ -541,7 +541,6 @@ def open_at_meal(meal):
 #mapping URLs to functions that display the HTML we want for that URL
 @app.route('/') 
 def index():
-  
   now = datetime.now(ny_tz)
   filtered_halls = current_open_stations(now) # returns closed/missing data/meal info for each dining hall
   return render_template('index.html', halls=filtered_halls, current_time=now)
