@@ -45,7 +45,7 @@ def hours_dict():
   # mon - thurs
   if weekday in [0, 1, 2, 3]:
     hours["Grace Dodge"] = "11:00 AM to 7:00 PM"
-    hours["Diana Center Cafe"] = "9:00 AM to 3:00 PM, 5:00 PM to 8:00 PM"
+    hours["Diana Center Cafe"] = "9:00 AM to 3:00 PM, 5:00 PM to midnight"
   # fri - sun 
   else:
     hours["Grace Dodge"] = "Closed today"
