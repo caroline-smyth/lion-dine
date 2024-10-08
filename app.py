@@ -45,8 +45,8 @@ def get_dining_data():
 
 #takes the dictionary of all food items and filters it to only include
 #stations that are currently open
-def current_open_stations():
-  now = datetime.now(ny_tz)
+def current_open_stations(now):
+  #now = datetime.now(ny_tz)
   halls = get_dining_data()
   print(halls)
   filtered_halls = {} #to be filled
@@ -541,17 +541,19 @@ def open_at_meal(meal):
 #mapping URLs to functions that display the HTML we want for that URL
 @app.route('/') 
 def index():
-  """
+  
   now = datetime.now(ny_tz)
-  filtered_halls = current_open_stations() # returns closed/missing data/meal info for each dining hall
-  return render_template('index.html', halls=filtered_halls, current_time=now)"""
+  filtered_halls = current_open_stations(now) # returns closed/missing data/meal info for each dining hall
+  return render_template('index.html', halls=filtered_halls, current_time=now)
+"""
   now = datetime.now(ny_tz)
-  filtered_halls = current_open_stations()
+  filtered_halls = current_open_stations(now)
   response = make_response(render_template('index.html', halls=filtered_halls, current_time=now))
   response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
   response.headers['Pragma'] = 'no-cache'
   response.headers['Expires'] = '0'
   return response
+  """
     
 @app.route('/breakfast')
 def breakfast():
