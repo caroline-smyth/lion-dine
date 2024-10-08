@@ -1,6 +1,129 @@
 {
-    "John Jay": {},
-    "JJ's": {},
+    "John Jay": {
+        "breakfast": {
+            "Soup Station": [
+                "Oatmeal",
+                "Blueberry Oatmeal",
+                "Grits"
+            ],
+            "Main Line": [
+                "Scramble Eggs",
+                "Egg White Scramble",
+                "Pancakes",
+                "Roasted Carrots",
+                "Tater Tots",
+                "Sausage"
+            ],
+            "Vegan Station": [
+                "Tofu Scramble",
+                "Vegan Sausage",
+                "Vegan Muffins",
+                "Roasted Carrots"
+            ],
+            "Nook": [
+                "Cherry Blossom Tarts",
+                "Spinach Quiche"
+            ]
+        },
+        "lunch": {
+            "Main Line": [
+                "Spicy Pork Stew",
+                "Vegetable Lo Mein",
+                "Vegetable Medley",
+                "Black Beans",
+                "Bulgur"
+            ],
+            "Halal Station": [
+                "Sweet Chili Chicken",
+                "Vegetable Lo Mein",
+                "Vegetable Medley"
+            ],
+            "Gluten Free Station": [
+                "Sweet Chili Chicken",
+                "Vegetable Lo Mein",
+                "Vegetable Medley"
+            ],
+            "Vegan Station": [
+                "Spicy Stewed Tofu",
+                "Vegetable Lo Mein",
+                "Vegetable Medley"
+            ]
+        },
+        "dinner": {
+            "Main Line": [
+                "Creamy Chipotle Chicken",
+                "Corn",
+                "Yellow Rice",
+                "Freekeh",
+                "Black Eyed Beans"
+            ],
+            "Halal Station": [
+                "Creamy Chipotle Chicken",
+                "Corn",
+                "Yellow Rice"
+            ],
+            "Gluten Free Station": [
+                "Creamy Chipotle Chicken",
+                "Corn",
+                "Yellow Rice"
+            ],
+            "Vegan Station": [
+                "Rajma Kidney Beans",
+                "Yellow Rice",
+                "Corn"
+            ]
+        },
+        "lunch & dinner": {
+            "Pasta Station": [
+                "Marinara Sauce",
+                "Chicken Alfredo",
+                "Shallot Oil",
+                "Cavatappi",
+                "Whole Wheat Pasta",
+                "Pomodoro"
+            ],
+            "Soup Station": [
+                "Hot & Sour",
+                "Egg Drop"
+            ],
+            "Fusion Station": [
+                "Chicken Shawarma",
+                "Lemon Potatoes",
+                "Falafel",
+                "Roasted Green Beans",
+                "Pita Bread"
+            ],
+            "Action Station": [
+                "Pepperoni Pizza Grilled Cheese"
+            ]
+        }
+    },
+    "JJ's": {
+        "lunch & dinner": {
+            "Main Line": [
+                "Truffle aioli burger",
+                "Pot roast panini",
+                "Chicken caesar salad sandwich",
+                "Chana masala fries",
+                "Beyond burger with truffle aioli"
+            ],
+            "Fry Station": [
+                "Chicken tenders",
+                "Onion rings",
+                "Curly fries"
+            ],
+            "Grill": [
+                "Spinach and mushroom quesadilla"
+            ]
+        },
+        "breakfast": {
+            "Main Line": [
+                "BEC on an english muffin",
+                "Strawberry cheescake stuffed french toast",
+                "Vegan pancakes"
+            ]
+        }
+    },
     "Ferris": {
         "breakfast": {
             "Main Line": [
@@ -61,7 +184,24 @@
             ]
         }
     },
-    "Chef Mike's": {},
+    "Chef Mike's": {
+        "lunch & dinner": {
+            "Build Your Own - Right Line": [
+                "Protein",
+                "Cheese",
+                "Toppings",
+                "Dressings"
+            ],
+            "Cold Counter - Middle Line": [
+                "Roast Beef and Blue Cheese Crumble",
+                "Chinese Garlic Broccoli"
+            ],
+            "Hot Counter - Left Line": [
+                "BBQ Pork",
+                "BBQ Jackfruit"
+            ]
+        }
+    },
     "Chef Don's": {
         "breakfast": {},
         "lunch": {},
