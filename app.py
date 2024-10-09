@@ -467,9 +467,9 @@ def open_at_meal(meal):
         filtered_halls[hall_name]["stations"] = "Missing data"      
     if hall_name == "Chef Don's":
       if meal == 'breakfast':
-        filtered_stations["Breakfast"] = ["Breakfast Sandwich"]
+        filtered_stations["Breakfast"] = ["Bacon egg and cheese bagel", "Ham egg and cheese bagel", "Vegan breakfast bagel", "Cup of oatmeal", "Piece of fruit","Danish pastry","Small coffee or tea"]
       if meal == 'lunch' or meal == 'dinner':
-        filtered_stations["Pizza"] = ["Build your own"]
+        filtered_stations["Lunch/Dinner Service"] = ["Build your own pizza", "Toasted Cuban sandwich", "Piece of fruit", "Milkshake or Freestyle machine beverage", "Dessert"]
       if filtered_stations:
         filtered_halls[hall_name]["stations"] = filtered_stations
       else:
