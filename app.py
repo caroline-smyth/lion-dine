@@ -236,9 +236,9 @@ def current_open_stations(now):
     if hall_name == "Chef Don's":
       #filtered_stations["all hours"] = "8 am - 6 pm"
       if now.hour >= 8 and now.hour < 11:
-        filtered_stations["Breakfast"] = ["Breakfast Sandwich"]
+        filtered_stations["Breakfast"] = ["Bacon egg and cheese bagel", "Ham egg and cheese bagel", "Vegan breakfast bagel", "Cup of oatmeal", "Piece of fruit","Danish pastry","Small coffee or tea"]
       if now.hour >= 11 and now.hour < 18:
-        filtered_stations["Pizza"] = ["Build your own"]
+        filtered_stations["Lunch/Dinner Service"] = ["Build your own pizza", "Toasted Cuban sandwich", "Piece of fruit", "Milkshake or Freestyle machine beverage", "Dessert"]
       if filtered_stations:
         filtered_halls[hall_name]["stations"] = filtered_stations
         #filtered_halls[hall_name]["stations"]["Missing Data"] = ""
