@@ -94,7 +94,8 @@ def scrape_columbia(hall_name):
     driver.get(url)
     title = driver.title
     dining_hall_name = title.split("|")
-    print(dining_hall_name[0].lower())
+    actual_name = dining_hall_name[0].lower()
+    print(actual_name)
 
     #let page load
     wait = WebDriverWait(driver, 40)
@@ -142,7 +143,17 @@ def scrape_columbia(hall_name):
       for s in station_elements:
         station_name = s.find_element(By.CLASS_NAME, "station-title").text.strip()
         meal_items = s.find_elements(By.CLASS_NAME, "meal-title")
-        meal_dictionary[station_name] = [item.text.strip() for item in meal_items]
+        meal_items_text = [item.text.strip() for item in meal_items]
+
+        if "grace dodge" in actual_name or "fac shack" in actual_name:
+          print("YOOOO")
+          meal_descriptions = s.find_elements(By.CLASS_NAME, "meal-description")
+          meal_descriptions_text = [desc.text.strip() for desc in meal_descriptions]
+          combined_items = [element for pair in zip(meal_items_text, meal_descriptions_text) for element in pair]
+
+          meal_dictionary[station_name] = combined_items
+        else:
+          meal_dictionary[station_name] = meal_items_text
       dining_hall[meal] = meal_dictionary
 
     #print(dining_hall)
