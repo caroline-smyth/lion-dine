@@ -2,23 +2,20 @@
     "John Jay": {
         "breakfast": {
             "Soup Station": [
-                "Oatmeal",
-                "Strawberries and Cream Oatmeal",
-                "Farina"
+                "Chicken Noodle",
+                "Tomato Bisque"
             ],
             "Main Line": [
-                "Scramble Eggs",
-                "Leek, Mushroom, Asparagus Egg White Scramble",
-                "Peach Pancakes",
-                "Roasted Tomatoes",
-                "Tri Patty",
-                "Corned Beef Hash"
+                "Fried Pollock",
+                "Red Rice",
+                "Corn Bread",
+                "Asparagus w/ Roasted Tomatoes",
+                "Northern Beans"
             ],
             "Vegan Station": [
-                "Just Egg Patty",
-                "Vegan Sausage",
-                "Tri Patty",
-                "Roasted Tomatoes"
+                "Vegan Fish",
+                "Asparagus w/ Roasted Tomatoes",
+                "Red Rice"
             ],
             "Nook": [
                 "Beignets",
@@ -29,6 +26,39 @@
                 "Original and Strawberry Yogurt",
                 "Smoothie",
                 "Cream Cheese"
+            ],
+            "Halal Station": [
+                "Roasted Salmon",
+                "Asparagus w/ Roasted Tomatoes",
+                "Red Rice"
+            ],
+            "Gluten Free Station": [
+                "Roasted Salmon",
+                "Asparagus w/ Roasted Tomatoes",
+                "Red Rice"
+            ],
+            "Pasta Station": [
+                "Marinara Sauce",
+                "Roasted Red Pepper Sauce",
+                "Garlic Oil",
+                "Spirali Garden",
+                "Whole Wheat Pasta",
+                "Turkey Bolognese"
+            ],
+            "Fusion Station": [
+                "Mediterranean Beef w/ Feta and Tomato",
+                "Falafel",
+                "Lemon Potatoes",
+                "Roasted Broccoli",
+                "Pita"
+            ],
+            "Grill": [
+                "Grilled Cheese Sandwiches",
+                "Grilled Lemon Chicken",
+                "Vegan Burger"
+            ],
+            "Action Station": [
+                "Tofu Cacciatorre"
             ]
         },
         "lunch": {
@@ -216,21 +246,14 @@
     "Grace Dodge": {
         "lunch & dinner": {
             "Salad": [
-                "Protein",
                 "Gochujang BBQ Thighs (GF, H)",
-                "Vegetable",
                 "Sauteed Broccolini and Cauliflower with Crispy Garlic",
-                "Starch",
                 "Herb Roasted Red Bliss Potatoes with Peppers and Onions"
             ],
             "Ramen Station": [
-                "Choice of Protein",
                 "Roasted Pork Belly (GF, Contains Pork) Braised Chicken (GF, H)",
-                "Choice of Noodle",
                 "Yakisoba Noodle (Vegan, Contains Wheat) Vermicelli Rice Noodle (Gluten Free)",
-                "Choice of Broth",
                 "Tonkatsu Broth (Contains Sesame, Soy, Wheat, Pork), Shiro Miso Kombu Dashi (Vegan, Gluten Free)",
-                "Toppings",
                 "Tofu, Marinated Egg Scallion, Shredded Carrots, Sauteed Shiitake, Bean Sprouts, Edamame, Corn, Kim Chi"
             ]
         }

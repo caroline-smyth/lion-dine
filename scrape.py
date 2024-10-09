@@ -145,13 +145,16 @@ def scrape_columbia(hall_name):
         meal_items = s.find_elements(By.CLASS_NAME, "meal-title")
         meal_items_text = [item.text.strip() for item in meal_items]
 
-        if "grace dodge" in actual_name or "fac shack" in actual_name:
-          print("YOOOO")
+        if "fac shack" in actual_name:
           meal_descriptions = s.find_elements(By.CLASS_NAME, "meal-description")
           meal_descriptions_text = [desc.text.strip() for desc in meal_descriptions]
           combined_items = [element for pair in zip(meal_items_text, meal_descriptions_text) for element in pair]
 
           meal_dictionary[station_name] = combined_items
+        elif "grace dodge" in actual_name:
+          meal_descriptions = s.find_elements(By.CLASS_NAME, "meal-description")
+          meal_descriptions_text = [desc.text.strip() for desc in meal_descriptions]
+          meal_dictionary[station_name] = meal_descriptions_text
         else:
           meal_dictionary[station_name] = meal_items_text
       dining_hall[meal] = meal_dictionary
