@@ -79,11 +79,6 @@ def current_open_stations(now):
   #for each dining hall, skipping the closed ones, find each station that's currently open and add it to the filtered dictionary
   
   for hall_name, stations in halls.items():
-    """
-    if hall_name in filtered_halls and filtered_halls[hall_name]["status"] == "Closed":
-      filtered_halls[hall_name]["stations"] = "No stations currently open"
-      continue
-    """
     if hall_name in filtered_halls and filtered_halls[hall_name]["status"].startswith("Closed"):
       continue
     if stations is None:
@@ -549,7 +544,7 @@ def index():
   now = datetime.now(ny_tz)
   """
   now = datetime.now(ny_tz)
-  if now.hour >= 4 and now.hour < 12:
+  if now.hour >= 4 and now.hour < 11:
     return breakfast()
   elif now.hour <= 15:
     return lunch()
