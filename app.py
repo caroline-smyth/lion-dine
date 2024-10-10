@@ -541,6 +541,7 @@ def open_at_meal(meal):
 #mapping URLs to functions that display the HTML we want for that URL
 @app.route('/') 
 def index():
+  """
   now = datetime.now(ny_tz)
   filtered_halls = current_open_stations(now) # returns closed/missing data/meal info for each dining hall
   return render_template('index.html', halls=filtered_halls, current_time=now)
@@ -552,7 +553,7 @@ def index():
   response.headers['Pragma'] = 'no-cache'
   response.headers['Expires'] = '0'
   return response
-  """
+
     
 @app.route('/breakfast')
 def breakfast():
