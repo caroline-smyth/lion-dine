@@ -545,14 +545,26 @@ def index():
   now = datetime.now(ny_tz)
   filtered_halls = current_open_stations(now) # returns closed/missing data/meal info for each dining hall
   return render_template('index.html', halls=filtered_halls, current_time=now)
-"""
+
   now = datetime.now(ny_tz)
+  """
+  now = datetime.now(ny_tz)
+  if now.hour >= 4 and now.hour < 11:
+    return breakfast()
+  elif now.hour <= 15:
+    return lunch()
+  else:
+    return dinner()
+  """
   filtered_halls = current_open_stations(now)
   response = make_response(render_template('index.html', halls=filtered_halls, current_time=now))
   response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
   response.headers['Pragma'] = 'no-cache'
   response.headers['Expires'] = '0'
   return response
+  """
+  
+
 
     
 @app.route('/breakfast')

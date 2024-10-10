@@ -8,27 +8,19 @@
             ],
             "Main Line": [
                 "Scramble Eggs",
-                "Tomato, Basil, Portobello Mushroom Egg White Scramble",
-                "Pancakes",
+                "Egg White Scramble",
+                "Maple Pork Sausage",
                 "Roasted Broccoli",
-                "Sweet Potato Tots",
-                "Maple Pork Sausage"
+                "Sweet Potato Tots"
             ],
             "Vegan Station": [
-                "Just Egg Patty",
+                "Tofu Scramble",
                 "Vegan Sausage",
-                "Sweet Potato Puffs",
                 "Roasted Broccoli"
             ],
             "Nook": [
-                "French Toast Sticks",
-                "Belgian Waffle",
-                "Blueberry Filling, Syrup"
-            ],
-            "Cold Bar": [
-                "Fresh Fruit",
-                "Smoothie",
-                "Cream Cheese"
+                "Cherry Blossom Tart",
+                "Spinach and Swiss Quiche"
             ]
         },
         "lunch": {
@@ -76,7 +68,7 @@
             "Vegan Station": [
                 "Chickpea and Spinach Curry",
                 "Cauliflower",
-                "Coconut Rice and Peas"
+                "Potato"
             ]
         },
         "lunch & dinner": {
@@ -86,26 +78,21 @@
                 "Rosemary Oil",
                 "Ziti",
                 "Whole Wheat Pasta",
-                "Beef Bolognese"
+                "Mussels Fra Diavlo"
             ],
             "Soup Station": [
-                "Pasta Fagioli",
-                "Chili"
+                "Loaded Baked Potato",
+                "Butternut Squash and Apple Soup"
             ],
             "Fusion Station": [
                 "Roasted Lemon Chicken",
-                "Falafel",
-                "Lemon Potatoes",
-                "Asparagus, Artichoke, Yellow Squash",
+                "Mediterranean Seitan",
+                "Dill Rice",
+                "Asparagus, Artichoke, Squash",
                 "Pita"
             ],
-            "Grill": [
-                "Grilled Cheese Sandwiches",
-                "Crispy Chicken Sandwich",
-                "Vegan Hot Dog"
-            ],
             "Action Station": [
-                "Moroccan Meatball Stew"
+                "Queso Arepas"
             ]
         }
     },
@@ -147,11 +134,11 @@
                 "Scrambled Eggs",
                 "Potato Pancakes",
                 "Pork Sausage Patty",
-                "Turkey Sausage",
+                "Turkey Bacon",
                 "Biscuits and Sausage Gravy"
             ],
             "Vegan Station": [
-                "Baked Sweet Potato Wedge",
+                "Baked Sweet Potato Wedges",
                 "Just Egg",
                 "Beyond Sausage"
             ]
@@ -203,8 +190,8 @@
                 "Tempeh w/ Grilled Veggies"
             ],
             "Hot Counter - Left Line": [
-                "Hot Pastrami",
-                "BOTDH Sub"
+                "Philly Cheese Steak",
+                "Portabella Mushroom"
             ]
         }
     },
