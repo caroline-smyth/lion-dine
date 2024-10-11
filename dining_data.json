@@ -35,22 +35,17 @@
     "Ferris": {
         "breakfast": {
             "Main Line": [
-                "Seared Caprese Chicken",
-                "Garlic Gnocchi",
-                "Bulgur Pilaf",
-                "Navy Beans",
-                "Broccoli and Carrots"
+                "Waffles",
+                "Scrambled Eggs",
+                "Roasted Diced Yukon Gold",
+                "Sliced Kielbasa",
+                "Turkey Sausage Links",
+                "Biscuits and Sausage Gravy"
             ],
             "Vegan Station": [
-                "Vegan Chick'n Marinara",
-                "Basil Penne",
-                "Broccoli and Carrots"
-            ],
-            "Action Station": [
-                "Hot Hoagies"
-            ],
-            "Daily Pizzas": [
-                "Pizza"
+                "Warm Quinoa w/ Mixed Berries",
+                "Tofu Scramble",
+                "Beyond Sausage"
             ]
         },
         "lunch": {
@@ -126,16 +121,17 @@
     "Hewitt Dining": {
         "breakfast": {
             "500 Degrees": [
-                "Scrambled Eggs",
                 "Margherita Flat Bread Pizza",
-                "Cheese Flatbread"
+                "Cheese Flatbread",
+                "Scrambled Eggs",
+                "Beef Breakfast Sausage"
             ],
             "Homestyle": [
+                "Turkey Bacon",
+                "Tater Tots",
                 "Waffles",
                 "Buttermilk Pancakes",
-                "Tater Tots",
-                "Buttermilk Biscuit",
-                "Chicken Sausage Patty"
+                "Buttermilk Biscuit"
             ],
             "Flame": [
                 "Scrambled Eggs",
@@ -150,24 +146,25 @@
                 "Shredded Mozzarella Cheese"
             ],
             "Cucina": [
-                "Waffles",
-                "Buttermilk Pancakes",
-                "Tater Tots",
-                "Buttermilk Biscuit",
-                "Chicken Sausage Patty"
+                "Scrambled Eggs",
+                "Scrambled Eggs with Cheese",
+                "Home Fries",
+                "Beef Breakfast Sausage",
+                "Tofu Scramble",
+                "Meatless Vegetarian Sausage Patty"
             ],
             "Delicious Without": [
                 "Smothered Hashbrowns",
-                "Beef Breakfast Sausage",
                 "Crispy Hashbrowns",
-                "Breakfast Spiced Zucchini",
+                "Chicken Sausage Patty",
+                "Roasted Brussels Sprouts",
                 "Oatmeal",
-                "Mixed Berries",
-                "Green Seedless Grapes",
-                "Red Grapes",
                 "Raisins",
                 "Golden Raisins",
-                "Sugar, In The Raw"
+                "Sugar, In The Raw",
+                "Mixed Berries",
+                "Red Grapes",
+                "Fresh Fruit Salad"
             ],
             "Fruit & Yogurt": [
                 "Classic Oatmeal",
@@ -203,12 +200,10 @@
             ],
             "Homestyle": [
                 "Chicken Cacciatore",
-                "Southwest Cod",
+                "Beef Stew",
+                "Herb Crusted Tofu",
                 "Red Beans & Rice",
-                "Mashed Potatoes",
-                "Roasted Brussels Sprouts",
-                "Sriracha Spiced PAOW",
-                "Sauteed Onions and Peppers"
+                "Roasted Brussels Sprouts"
             ],
             "Flame": [
                 "Hamburger Patty",
@@ -227,16 +222,19 @@
                 "Penne Pasta",
                 "Marinara Sauce",
                 "Alfredo Sauce",
-                "Vegan Meatballs",
-                "Steamed Broccoli",
-                "Sliced Grilled Chicken Breast"
+                "Italian Meatball",
+                "Breaded Chicken Bites",
+                "Saut\u00e9ed PAOW",
+                "Mushroom Duxelle",
+                "Steamed Broccoli"
             ],
             "Delicious Without": [
-                "Herb Chicken Swords",
+                "Chicken Breast",
+                "Sweet Thai Chili Sauce",
+                "Southwestern Bean and Tomato Stew",
                 "Cilantro Brown Rice",
-                "Kidney Beans",
-                "Green Beans",
-                "Cucumber Salad",
+                "Steamed Broccoli",
+                "Garden Salad",
                 "Spinach Salad",
                 "Fresh Fruit Salad"
             ],
