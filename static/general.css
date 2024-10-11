@@ -32,13 +32,6 @@ a:hover{
   max-width: calc(20% - 2rem); /* Ensures max width does not exceed 20% */
   box-sizing: border-box; /* Includes padding/border in element’s width and height */
 }
-/*
-@media screen and (max-width: 768px) {
-  .col {
-    flex: 1 1 calc(50% - 2rem);
-    max-width: calc(50% - 2rem);
-  }
-}*/
 
 .menu {
   display: flex;
