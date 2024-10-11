@@ -362,8 +362,7 @@ def open_at_meal(meal):
     filtered_halls["Fac Shack"]["status"] = "Open"
   else:
     filtered_halls["Fac Shack"]["status"] = f"Closed for {meal}"
-  if (now.weekday() in [0,1,2,3] or
-      now.weekday() == 4 and meal in ["breakfast","lunch"] or
+  if (now.weekday() in [0,1,2,3, 4] and meal in ["breakfast","lunch", "dinner"] or
       now.weekday() == 6 and meal in ["lunch","dinner"]):
     filtered_halls["Diana Center Cafe"]["status"] = "Open"
   else:
@@ -464,7 +463,7 @@ def open_at_meal(meal):
       if meal == 'breakfast':
         filtered_stations["Breakfast"] = ["Bacon egg and cheese bagel", "Ham egg and cheese bagel", "Vegan breakfast bagel", "Cup of oatmeal", "Piece of fruit","Danish pastry","Small coffee or tea"]
       if meal == 'lunch' or meal == 'dinner':
-        filtered_stations["Lunch/Dinner Service"] = ["Build your own pizza", "Toasted Cuban sandwich", "Piece of fruit", "Milkshake or Freestyle machine beverage", "Dessert"]
+        filtered_stations["Lunch/Dinner Service"] = ["Build your own pizza", "Toasted Cuban sandwich", "Piece of fruit", "Soup","Milkshake or Freestyle machine beverage", "Dessert"]
       if filtered_stations:
         filtered_halls[hall_name]["stations"] = filtered_stations
       else:
