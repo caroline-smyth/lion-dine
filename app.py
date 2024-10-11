@@ -546,7 +546,7 @@ def index():
   now = datetime.now(ny_tz)
   if now.hour >= 4 and now.hour < 11:
     return breakfast()
-  elif now.hour <= 15:
+  elif now.hour >= 11 and now.hour <= 15:
     return lunch()
   else:
     return dinner()
