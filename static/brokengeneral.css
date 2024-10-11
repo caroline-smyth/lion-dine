@@ -11,7 +11,6 @@ a{
 a:hover{
   color: rgb(105, 179, 231); 
 }
-/*
 .container{
   display: flex;
   flex-direction: row;
@@ -21,35 +20,19 @@ a:hover{
   margin: 0 auto;
   column-gap: 2rem;
   max-width: 1200px;
-}*/
-.container {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr); /* Creates five equal columns */
-  gap: 2rem; /* Adjusts the space between items */
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
-/*
 .col {
   display: flex;
   flex-direction: column;
   transition: color 0.15s;
   font-size: 1.5rem;
   align-items: flex-start;
-  flex: 1 1 calc(20% - 2rem); 
+  flex: 1 1 calc(20% - 2rem);  /*20% width for 5 items per row, minus gap */
   max-width: calc(20% - 2rem); 
   box-sizing: border-box;
-  min-width: 0;
 }
-*/
-.col {
-  display: flex;
-  flex-direction: column;
-  font-size: 1.5rem;
-  align-items: flex-start;
-  box-sizing: border-box;
-}
+
 .menu {
   display: flex;
   flex-direction: column;
