@@ -134,7 +134,7 @@ def lunch_hours():
 def dinner_hours():
   d_hours = {}
 
-  d_hours["JJ's"] = "12:00 PM to midnight"
+  d_hours["JJ's"] = "12:00 PM to 10:00 AM"
   d_hours["Hewitt Dining"] = "4:30 PM to 8:00 PM"
   d_hours["Faculty House"] = "Closed for dinner"
   d_hours["Ferris"] = "5:00 PM to 8:00 PM"
