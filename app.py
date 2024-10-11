@@ -6,7 +6,7 @@ import os
 import requests
 import json
 import boto3
-from time_functions import john_jay_open, jjs_open, ferris_open, fac_house_open, mikes_open, dons_open, grace_dodge_open, fac_shack_open, hewitt_open, diana_open, hours_dict, breakfast_hours, lunch_hours, dinner_hours
+from time_functions import john_jay_open, jjs_open, ferris_open, fac_house_open, mikes_open, dons_open, grace_dodge_open, fac_shack_open, hewitt_open, diana_open, hours_dict, breakfast_hours, lunch_hours, dinner_hours, latenight_hours
 import pytz
 from flask import make_response, render_template
 
@@ -335,6 +335,8 @@ def open_at_meal(meal):
   b_hours = breakfast_hours()
   l_hours = lunch_hours()
   d_hours = dinner_hours()
+  ln_hours = latenight_hours()
+
 
   #filtered_halls[hall_name]["status"] = "Open" if meal in meal_list else f"Closed for {meal}"
   filtered_halls["John Jay"]["status"] = "Open" if now.weekday() in [6,0,1,2,3] else f"Closed for {meal}"
@@ -351,6 +353,8 @@ def open_at_meal(meal):
     filtered_halls["Chef Mike's"]["status"] = f"Closed for {meal}"
   if now.weekday() in [0,1,2,3,4]:
     filtered_halls["Chef Don's"]["status"] = "Open"
+    if meal == "latenight":
+      filtered_halls["Chef Don's"]["status"] = f"Closed for {meal}"
   else:
     filtered_halls["Chef Don's"]["status"] = f"Closed for {meal}"
   if now.weekday() in [0,1,2,3] and meal in ["lunch","dinner"]:
@@ -358,7 +362,7 @@ def open_at_meal(meal):
   else:
     filtered_halls["Grace Dodge"]["status"] = f"Closed for {meal}"
   if (now.weekday() in [0,1,2,3] and meal == "lunch" or
-      now.weekday() in [3,4,5] and meal == "dinner"):
+      now.weekday() in [3,4,5] and (meal == "dinner" or meal == "latenight")):
     filtered_halls["Fac Shack"]["status"] = "Open"
   else:
     filtered_halls["Fac Shack"]["status"] = f"Closed for {meal}"
@@ -366,8 +370,13 @@ def open_at_meal(meal):
       now.weekday() == 4 and meal in ["breakfast","lunch"] or
       now.weekday() == 6 and meal in ["lunch","dinner"]):
     filtered_halls["Diana Center Cafe"]["status"] = "Open"
+  elif now.weekday() in [0, 1, 2, 3] and meal == "latenight":
+    filtered_halls["Diana Center Cafe"]["status"] = "Open"
   else:
     filtered_halls["Diana Center Cafe"]["status"] = f"Closed for {meal}"
+  if meal == "latenight":
+    filtered_halls["Ferris"]["status"] = filtered_halls["John Jay"]["status"] = filtered_halls["Faculty House"]["status"] = filtered_halls["Chef Mike's"]["status"] = filtered_halls["Chef Don's"]["status"] = filtered_halls["Hewitt Dining"]["status"] = f"Closed for {meal}"
+
 
   for hall_name in halls.keys():
     if meal == "breakfast":
@@ -376,6 +385,8 @@ def open_at_meal(meal):
       filtered_halls[hall_name]["hours"] = l_hours.get(hall_name, "Hours not available")
     elif meal == "dinner":
       filtered_halls[hall_name]["hours"] = d_hours.get(hall_name, "Hours not available")
+    elif meal == "latenight":
+      filtered_halls[hall_name]["hours"] = ln_hours.get(hall_name, "Hours not available")
 
   #for each dining hall, skipping the closed ones, find each
   #station that's currently open and add it to the filtered dictionary
@@ -430,6 +441,7 @@ def open_at_meal(meal):
             filtered_stations[station].extend(items)
           else:
             filtered_stations[station] = items
+      if meal == 'latenight':
         for station, items in stations.get('late night',{}).items():
           if station in filtered_stations:
             filtered_stations[station].extend(items)
@@ -486,6 +498,9 @@ def open_at_meal(meal):
       if meal == 'dinner':
         for station, items in stations.get('dinner',{}).items():
           filtered_stations[station] = items
+      if meal == 'latenight':
+        for station, items in stations.get('dinner',{}).items():
+          filtered_stations[station] = items
       if filtered_stations:
         filtered_halls[hall_name]["stations"] = filtered_stations
       else:
@@ -522,8 +537,7 @@ def open_at_meal(meal):
       if meal == 'dinner':
         for station, items in stations.get('brunch',{}).items():
           filtered_stations[station] = items
-        for station, items in stations.get('dinner',{}).items():
-          filtered_stations[station] = items
+      if meal == 'latenight':
         for station, items in stations.get('late night',{}).items():
           filtered_stations[station] = items
       if filtered_stations:
@@ -546,10 +560,12 @@ def index():
   now = datetime.now(ny_tz)
   if now.hour >= 4 and now.hour < 11:
     return breakfast()
-  elif now.hour >= 11 and now.hour <= 15:
+  elif now.hour >= 11 and now.hour < 15:
     return lunch()
-  else:
+  elif now.hour >= 15 and now.hour < 20:
     return dinner()
+  else:
+    return latenight()
   """
   filtered_halls = current_open_stations(now)
   response = make_response(render_template('index.html', halls=filtered_halls, current_time=now))
@@ -580,12 +596,11 @@ def dinner():
   filtered_halls = open_at_meal("dinner")
   return render_template('index.html', halls=filtered_halls, meal="dinner", current_time=now)
 
-"""
 @app.route('/latenight')
 def latenight():
   filtered_halls = open_at_meal("latenight")
   now = datetime.now()
   return render_template('index.html', halls=filtered_halls, meal="latenight", current_time=now)
-"""
+
 if __name__ == '__main__':
    app.run(host='0.0.0.0',port=5000)
