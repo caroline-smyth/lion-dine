@@ -316,8 +316,8 @@ def current_open_stations(now):
 #takes the dictionary of all food items and filters it to only include
 #stations that are open at the given meal
 
-def open_at_meal(meal):
-  now = datetime.now(ny_tz)
+def open_at_meal(now, meal):
+  #now = datetime.now(ny_tz)
   halls = get_dining_data()
   print("Dining hall names: ", halls.keys())
   print(halls)
@@ -564,19 +564,19 @@ def index():
 @app.route('/breakfast')
 def breakfast(now):
   #now = datetime.now(ny_tz)
-  filtered_halls = open_at_meal("breakfast")
+  filtered_halls = open_at_meal(now, "breakfast")
   return render_template('index.html', halls=filtered_halls, meal="breakfast", current_time=now)
 
 @app.route('/lunch')
 def lunch(now):
   #now = datetime.now(ny_tz)
-  filtered_halls = open_at_meal("lunch")
+  filtered_halls = open_at_meal(now, "lunch")
   return render_template('index.html', halls=filtered_halls, meal="lunch", current_time=now)
 
 @app.route('/dinner')
 def dinner(now):
   #now = datetime.now(ny_tz)
-  filtered_halls = open_at_meal("dinner")
+  filtered_halls = open_at_meal(now, "dinner")
   return render_template('index.html', halls=filtered_halls, meal="dinner", current_time=now)
 
 """
