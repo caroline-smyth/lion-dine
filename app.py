@@ -544,11 +544,11 @@ def index():
   """
   now = datetime.now(ny_tz)
   if now.hour >= 4 and now.hour < 11:
-    return breakfast(now)
+    return breakfast()
   elif now.hour <= 15:
-    return lunch(now)
+    return lunch()
   else:
-    return dinner(now)
+    return dinner()
   """
   filtered_halls = current_open_stations(now)
   response = make_response(render_template('index.html', halls=filtered_halls, current_time=now))
@@ -562,20 +562,20 @@ def index():
 
     
 @app.route('/breakfast')
-def breakfast(now):
-  #now = datetime.now(ny_tz)
+def breakfast():
+  now = datetime.now(ny_tz)
   filtered_halls = open_at_meal(now, "breakfast")
   return render_template('index.html', halls=filtered_halls, meal="breakfast", current_time=now)
 
 @app.route('/lunch')
-def lunch(now):
-  #now = datetime.now(ny_tz)
+def lunch():
+  now = datetime.now(ny_tz)
   filtered_halls = open_at_meal(now, "lunch")
   return render_template('index.html', halls=filtered_halls, meal="lunch", current_time=now)
 
 @app.route('/dinner')
-def dinner(now):
-  #now = datetime.now(ny_tz)
+def dinner():
+  now = datetime.now(ny_tz)
   filtered_halls = open_at_meal(now, "dinner")
   return render_template('index.html', halls=filtered_halls, meal="dinner", current_time=now)
 
