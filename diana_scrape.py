@@ -14,32 +14,30 @@ import random
 from contextlib import contextmanager
 
 def scrape_diana():
-  barnard_hall_names = ["Diana Center Cafe"]
-  #barnard_hall_names = ["Diana Center Cafe"]
+  hall_name = "Diana Center Cafe"
   driver = webdriver.Chrome()
   url = "https://dineoncampus.com/barnard/whats-on-the-menu"
   driver.get(url)
   dining_hall_data = {}
   wait = WebDriverWait(driver, 40)
 
-  for hall_name in barnard_hall_names:
-    driver.get(url)
-    dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
-    dropdown.click()
-    
-    dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
+  driver.get(url)
+  dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
+  dropdown.click()
+  
+  dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
 
-    items = dropdown_menu.find_elements(By.TAG_NAME, "button")
-    for item in items:
-      hall = item.text.strip()
-      
-      if hall_name in hall:
-        item.click()
-        time_module.sleep(1)
-        hall_data = scrape_barnard_inside(driver, wait)
-        if hall_data is None:
-          dining_hall_data[hall] = {}
-        dining_hall_data[hall] = hall_data
+  items = dropdown_menu.find_elements(By.TAG_NAME, "button")
+  for item in items:
+    hall = item.text.strip()
+    
+    if hall_name in hall:
+      item.click()
+      time_module.sleep(1)
+      hall_data = scrape_barnard_inside(driver, wait)
+      if hall_data is None:
+        dining_hall_data[hall] = {}
+      dining_hall_data[hall] = hall_data
 
   driver.quit()
   print(dining_hall_data)
@@ -50,14 +48,25 @@ def scrape_barnard_inside(driver, wait):
   
   try:
     nav_bar = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "nav.nav-tabs")))
-
     buttons = nav_bar.find_elements(By.CLASS_NAME, "nav-link")
+    meal_times = [btn.text.strip().lower() for btn in buttons]
 
-    for b in buttons:
-      meal_time = b.text.strip().lower()
+    for meal_time in meal_times:
+      #meal_time = b.text.strip().lower()
       meal = {}
-      b.click()
+      nav_bar = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".nav.nav-tabs")))
+      buttons = nav_bar.find_elements(By.CSS_SELECTOR, ".nav-link")
       #time_module.sleep(1)
+
+      btn_found = False
+      for btn in buttons:
+          if btn.text.strip().lower() == meal_time:
+              btn.click()
+              btn_found = True
+              break
+      if not btn_found:
+          print(f"Button for meal time '{meal_time}' not found.")
+          continue
       menu_elements = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "table")))
 
       for m in menu_elements:
