@@ -8,7 +8,7 @@ import json
 import boto3
 from time_functions import john_jay_open, jjs_open, ferris_open, fac_house_open, mikes_open, dons_open, grace_dodge_open, fac_shack_open, hewitt_open, diana_open, hours_dict, breakfast_hours, lunch_hours, dinner_hours, latenight_hours
 import pytz
-from flask import make_response, render_template
+from flask import make_response, g, render_template
 
 app = Flask(__name__) #sets up a flask application 
 
@@ -46,7 +46,6 @@ def get_dining_data():
 #takes the dictionary of all food items and filters it to only include
 #stations that are currently open
 def current_open_stations(now):
-  #now = datetime.now(ny_tz)
   halls = get_dining_data()
   print(halls)
   filtered_halls = {} #to be filled
@@ -317,7 +316,6 @@ def current_open_stations(now):
 #stations that are open at the given meal
 
 def open_at_meal(now, meal):
-  #now = datetime.now(ny_tz)
   halls = get_dining_data()
   print("Dining hall names: ", halls.keys())
   print(halls)
@@ -554,6 +552,18 @@ def open_at_meal(now, meal):
   return filtered_halls
 
 #mapping URLs to functions that display the HTML we want for that URL
+def get_current_time():
+  """Helper to fetch or reuse the current time for this request."""
+  if not hasattr(g, 'now'):
+      g.now = datetime.now(ny_tz)
+  return g.now
+
+@app.before_request
+def set_current_time():
+  """Set the current time once per request."""
+  g.now = datetime.now(ny_tz)
+
+
 @app.route('/') 
 def index():
   """
@@ -561,17 +571,8 @@ def index():
   filtered_halls = current_open_stations(now) # returns closed/missing data/meal info for each dining hall
   return render_template('index.html', halls=filtered_halls, current_time=now)
 
-  now = datetime.now(ny_tz)
-  
-  now = datetime.now(ny_tz)
-  if now.hour >= 4 and now.hour < 11:
-    return breakfast()
-  elif now.hour <= 15:
-    return lunch()
-  else:
-    return dinner()
   """
-  now = datetime.now(ny_tz)
+  now = get_current_time()
   if now.hour >= 4 and now.hour < 11:
     return breakfast()
   elif now.hour <= 15:
@@ -594,26 +595,26 @@ def index():
     
 @app.route('/breakfast')
 def breakfast():
-  now = datetime.now(ny_tz)
+  now = get_current_time()
   filtered_halls = open_at_meal(now, "breakfast")
   return render_template('index.html', halls=filtered_halls, meal="breakfast", current_time=now)
 
 @app.route('/lunch')
 def lunch():
-  now = datetime.now(ny_tz)
+  now = get_current_time()
   filtered_halls = open_at_meal(now, "lunch")
   return render_template('index.html', halls=filtered_halls, meal="lunch", current_time=now)
 
 @app.route('/dinner')
 def dinner():
-  now = datetime.now(ny_tz)
+  now = get_current_time()
   filtered_halls = open_at_meal(now, "dinner")
   return render_template('index.html', halls=filtered_halls, meal="dinner", current_time=now)
 
 
 @app.route('/latenight')
 def latenight():
-  now = datetime.now(ny_tz)
+  now = get_current_time()
   filtered_halls = open_at_meal(now, "latenight")
   return render_template('index.html', halls=filtered_halls, meal="latenight", current_time=now)
 
