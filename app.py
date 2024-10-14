@@ -575,9 +575,9 @@ def index():
   now = get_current_time()
   if now.hour >= 4 and now.hour < 11:
     return breakfast()
-  elif now.hour <= 15:
+  elif now.hour >= 11 and now.hour < 16:
     return lunch()
-  elif now.hour <= 20:
+  elif now.hour >= 16 and now.hour <= 21:
     return dinner()
   else:
     return latenight()
@@ -590,9 +590,6 @@ def index():
   return response
   """
   
-
-
-    
 @app.route('/breakfast')
 def breakfast():
   now = get_current_time()
@@ -610,7 +607,6 @@ def dinner():
   now = get_current_time()
   filtered_halls = open_at_meal(now, "dinner")
   return render_template('index.html', halls=filtered_halls, meal="dinner", current_time=now)
-
 
 @app.route('/latenight')
 def latenight():
