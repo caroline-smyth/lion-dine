@@ -491,6 +491,16 @@ def open_at_meal(now, meal):
       if meal == 'lunch' or meal == 'dinner':
         for station, items in stations.get('lunch & dinner',{}).items():
           filtered_stations[station] = items
+        if stations.get('lunch & dinner',{}).items() == None:
+          filtered_halls[hall_name]["Salad Base"] = ["Spinach", "Spring Green Mix", "Romaine"]
+          filtered_halls[hall_name]["Grains"] = ["Brown Rice", "White Rice"]
+          filtered_halls[hall_name]["Cold Toppings & Protein"] = ["Bell Peppers", "Black Beans", "Chickpeas", "Corn", "Cucumbers", "Red Onion", "Shredded Carrots", "Tofu", "Tomatoes"]
+          filtered_halls[hall_name]["Hot Toppings & Protein"] = ["Rotates Daily"]
+          filtered_halls[hall_name]["Ramen Broth"] = ["Tonkatsu", "Shiro Miso Kombu Dashi"]
+          filtered_halls[hall_name]["Noodles"] = ["Yakisoba", "Vermicelli"]
+          filtered_halls[hall_name]["Toppings"] = ["Bok Choy","Bean Sprouts","Cilantro","Corn","Kimchi","Marinated Egg", "Scallions","Sauteed Shiitake Mushrooms","Shredded Carrots","Tofu"]
+          filtered_halls[hall_name]["Protein"] = ["Rotates Daily"]
+          filtered_halls[hall_name]["Sides"] = ["Fruit","Beverage","Dessert"]
       #return data to the filtered dictionary
       if filtered_stations:
         filtered_halls[hall_name]["stations"] = filtered_stations
