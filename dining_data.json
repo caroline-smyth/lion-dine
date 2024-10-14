@@ -2,20 +2,23 @@
     "John Jay": {
         "breakfast": {
             "Soup Station": [
-                "Chipotle Corn Chowder",
-                "Butternut Squash Apple"
+                "Oatmeal",
+                "Strawberry Oatmeal",
+                "Grits"
             ],
             "Main Line": [
-                "Mongolian Beef",
-                "Vegetable Lo Mein",
-                "Kasha",
-                "Asian Blend",
-                "Edamame"
+                "Scramble Eggs",
+                "Powerblend, Red Bell Pepper Egg White Scramble",
+                "Pancakes",
+                "Peppers Onions Cauliflower",
+                "Hash Brown Patty",
+                "Andouille"
             ],
             "Vegan Station": [
-                "BBQ Vegan Chicken",
-                "Asian Blend",
-                "Jasmine Rice"
+                "Just Egg Patty",
+                "Vegan Sausage",
+                "Hash Brown Patty",
+                "Peppers Onions Cauliflower"
             ],
             "Nook": [
                 "French Toast Sticks",
@@ -26,38 +29,6 @@
                 "Banana Chocolate Chip Sunrise Blend",
                 "Smoothie",
                 "Cream Cheese"
-            ],
-            "Halal Station": [
-                "Mongolian Beef",
-                "Asian Blend",
-                "Vegetable Lo Mein"
-            ],
-            "Gluten Free Station": [
-                "Mongolian Beef",
-                "Asian Blend",
-                "Jasmine Rice"
-            ],
-            "Pasta Station": [
-                "Marinara Sauce",
-                "Carbonara",
-                "Shallot Oil",
-                "Bowties",
-                "Whole Wheat Pasta",
-                "Chicken Alfredo"
-            ],
-            "Fusion Station": [
-                "Kidney Beans",
-                "Cilantro Lime Rice",
-                "Carrots Broccoli Red Onion",
-                "Corn Tortillas"
-            ],
-            "Grill": [
-                "Grilled Cheese Sandwiches",
-                "Beef Teriyaki Stir Fried Noodles",
-                "Vegan Sausage"
-            ],
-            "Action Station": [
-                "Cuban Sandwich"
             ]
         },
         "lunch": {
