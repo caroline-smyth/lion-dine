@@ -479,9 +479,11 @@ def open_at_meal(now, meal):
         filtered_halls[hall_name]["stations"] = "Missing data"      
     if hall_name == "Chef Don's":
       if meal == 'breakfast':
-        filtered_stations["Breakfast"] = ["Bacon egg and cheese bagel", "Ham egg and cheese bagel", "Vegan breakfast bagel", "Cup of oatmeal", "Piece of fruit","Danish pastry","Small coffee or tea"]
+        filtered_stations["Sandwiches"] = ["Bacon egg and cheese bagel", "Ham egg and cheese bagel", "Vegan breakfast bagel"]
+        filtered_stations["Sides"] = ["Cup of oatmeal", "Piece of fruit","Danish pastry","Small coffee or tea"]
       if meal == 'lunch' or meal == 'dinner':
-        filtered_stations["Lunch/Dinner Service"] = ["Build your own pizza", "Toasted Cuban sandwich", "Piece of fruit", "Soup","Milkshake or Freestyle machine beverage", "Dessert"]
+        filtered_stations["Entree"] = ["Build your own pizza", "Toasted Cuban sandwich"]
+        filtered_stations["Sides"] = ["Piece of fruit", "Soup","Milkshake","Freestyle machine beverage", "Dessert"]
       if filtered_stations:
         filtered_halls[hall_name]["stations"] = filtered_stations
       else:
@@ -489,18 +491,18 @@ def open_at_meal(now, meal):
     if hall_name == "Grace Dodge":
       #filter for only open stations
       if meal == 'lunch' or meal == 'dinner':
+        filtered_stations["Salad Base"] = ["Spinach", "Spring Green Mix", "Romaine"]
+        filtered_stations["Grains"] = ["Brown Rice", "White Rice"]
+        filtered_stations["Cold Toppings & Protein"] = ["Bell Peppers", "Black Beans", "Chickpeas", "Corn", "Cucumbers", "Red Onion", "Shredded Carrots", "Tofu", "Tomatoes"]
+        filtered_stations["Hot Toppings & Protein"] = ["Rotates Daily"]
+        filtered_stations["Ramen Broth"] = ["Tonkatsu", "Shiro Miso Kombu Dashi"]
+        filtered_stations["Noodles"] = ["Yakisoba", "Vermicelli"]
+        filtered_stations["Toppings"] = ["Bok Choy","Bean Sprouts","Cilantro","Corn","Kimchi","Marinated Egg", "Scallions","Sauteed Shiitake Mushrooms","Shredded Carrots","Tofu"]
+        filtered_stations["Protein"] = ["Rotates Daily"]
+        filtered_stations["Sides"] = ["Fruit","Beverage","Dessert"]
         for station, items in stations.get('lunch & dinner',{}).items():
           filtered_stations[station] = items
-        if stations.get('lunch & dinner',{}).items() == None:
-          filtered_halls[hall_name]["Salad Base"] = ["Spinach", "Spring Green Mix", "Romaine"]
-          filtered_halls[hall_name]["Grains"] = ["Brown Rice", "White Rice"]
-          filtered_halls[hall_name]["Cold Toppings & Protein"] = ["Bell Peppers", "Black Beans", "Chickpeas", "Corn", "Cucumbers", "Red Onion", "Shredded Carrots", "Tofu", "Tomatoes"]
-          filtered_halls[hall_name]["Hot Toppings & Protein"] = ["Rotates Daily"]
-          filtered_halls[hall_name]["Ramen Broth"] = ["Tonkatsu", "Shiro Miso Kombu Dashi"]
-          filtered_halls[hall_name]["Noodles"] = ["Yakisoba", "Vermicelli"]
-          filtered_halls[hall_name]["Toppings"] = ["Bok Choy","Bean Sprouts","Cilantro","Corn","Kimchi","Marinated Egg", "Scallions","Sauteed Shiitake Mushrooms","Shredded Carrots","Tofu"]
-          filtered_halls[hall_name]["Protein"] = ["Rotates Daily"]
-          filtered_halls[hall_name]["Sides"] = ["Fruit","Beverage","Dessert"]
+        
       #return data to the filtered dictionary
       if filtered_stations:
         filtered_halls[hall_name]["stations"] = filtered_stations
