@@ -40,6 +40,7 @@ a:hover{
   /*word-wrap: break-word;  Breaks long words 
   overflow-wrap: break-word;  Handles overflowing words */
   white-space: normal;
+  row-gap: 0.3rem;
 }
 
 
@@ -71,10 +72,12 @@ button:hover{
 h3 {
   margin-top: 0px;
   margin-bottom: 10px;
+  /*font-size: 32px;*/
 }
 
 .food-type {
   font-weight: bold;
+  /*font-size: 24px;*/
   margin-top: 10px; /*0.625rem*/
 }
 
@@ -112,6 +115,6 @@ h3 {
 }
 
 .timing {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   font-style: italic !important;
 }
