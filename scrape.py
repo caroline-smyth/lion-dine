@@ -49,7 +49,15 @@ def managed_webdriver():
 
     #determine OS and set chrome binary location based on that
     chrome_options = Options()
-    chrome_options.add_argument("--headless=new")  # Use the new headless mode
+    chrome_options = Options()
+    """
+    chrome_options.add_argument("--headless")  # Use standard headless mode
+    chrome_options.add_argument("--window-size=1920,1080")
+    chrome_options.add_argument("--disable-extensions")
+    chrome_options.add_argument("--disable-infobars")
+    chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+    """
+    chrome_options.add_argument("--headless")  # Use the new headless mode
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--disable-gpu")
@@ -59,6 +67,7 @@ def managed_webdriver():
     chrome_options.add_argument("--disable-setuid-sandbox")
     chrome_options.add_argument("--disable-infobars")
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+    
 
     # Determine the OS and set Chrome binary location
     current_os = platform.system()
