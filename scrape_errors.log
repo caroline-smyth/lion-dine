@@ -1,53 +1,71 @@
 john jay dining hall 
-privacy notice iframe detected
-javascript removal successful
-jj's place 
-privacy notice iframe detected
-javascript removal successful
-ferris booth commons 
-privacy notice iframe detected
-javascript removal successful
-faculty house 
-privacy notice iframe detected
-javascript removal successful
-chef mike's sub shop 
-privacy notice iframe detected
-javascript removal successful
-grace dodge dining hall 
-privacy notice iframe detected
-javascript removal successful
-the fac shack 
-privacy notice iframe detected
-javascript removal successful
-Error occurred: Message: stale element reference: stale element not found in the current frame
-  (Session info: chrome=129.0.6668.90); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Unexpected error while handling privacy notice: Message: disconnected: unable to send message to renderer
+  (failed to check if window was closed: disconnected: not connected to DevTools)
+  (Session info: chrome=129.0.6668.90)
 Stacktrace:
-	GetHandleVerifier [0x00007FF6B286B095+29557]
-	(No symbol) [0x00007FF6B27DFA50]
-	(No symbol) [0x00007FF6B269B56A]
-	(No symbol) [0x00007FF6B26A213E]
-	(No symbol) [0x00007FF6B26A44B7]
-	(No symbol) [0x00007FF6B26A4570]
-	(No symbol) [0x00007FF6B26E942B]
-	(No symbol) [0x00007FF6B271718A]
-	(No symbol) [0x00007FF6B26E2E86]
-	(No symbol) [0x00007FF6B27173A0]
-	(No symbol) [0x00007FF6B273851C]
-	(No symbol) [0x00007FF6B2716F33]
-	(No symbol) [0x00007FF6B26E116F]
-	(No symbol) [0x00007FF6B26E22D1]
-	GetHandleVerifier [0x00007FF6B2B9C96D+3378253]
-	GetHandleVerifier [0x00007FF6B2BE8497+3688311]
-	GetHandleVerifier [0x00007FF6B2BDD1CB+3642539]
-	GetHandleVerifier [0x00007FF6B292A6B6+813462]
-	(No symbol) [0x00007FF6B27EAB5F]
-	(No symbol) [0x00007FF6B27E6B74]
-	(No symbol) [0x00007FF6B27E6D10]
-	(No symbol) [0x00007FF6B27D5C1F]
-	BaseThreadInitThunk [0x00007FFAF91C257D+29]
-	RtlUserThreadStart [0x00007FFAFAB4AF08+40]
+	GetHandleVerifier [0x00835523+24195]
+	(No symbol) [0x007CAA04]
+	(No symbol) [0x006C2093]
+	(No symbol) [0x006AD53C]
+	(No symbol) [0x006AD4C6]
+	(No symbol) [0x006ABF93]
+	(No symbol) [0x006ACABD]
+	(No symbol) [0x006C5C1F]
+	(No symbol) [0x006C639D]
+	(No symbol) [0x006C9508]
+	(No symbol) [0x006C9580]
+	(No symbol) [0x00706AE5]
+	(No symbol) [0x0070711B]
+	(No symbol) [0x007476F2]
+	(No symbol) [0x0072AB84]
+	(No symbol) [0x00745280]
+	(No symbol) [0x0072A8D6]
+	(No symbol) [0x006FBA27]
+	(No symbol) [0x006FC43D]
+	GetHandleVerifier [0x00AFCE13+2938739]
+	GetHandleVerifier [0x00B4EC69+3274185]
+	GetHandleVerifier [0x008C09C2+594722]
+	GetHandleVerifier [0x008C7EDC+624700]
+	(No symbol) [0x007D37CD]
+	(No symbol) [0x007D0528]
+	(No symbol) [0x007D06C5]
+	(No symbol) [0x007C2CA6]
+	BaseThreadInitThunk [0x76937BA9+25]
+	RtlInitializeExceptionChain [0x77A5C0CB+107]
+	RtlClearBits [0x77A5C04F+191]
 
-{'Hewitt Dining': {'breakfast': {'500 Degrees': ['Breakfast Pizza', 'Veggie Breakfast Pizza', 'Four Cheese Flat Bread'], 'Homestyle': ['Waffles', 'French Toast', 'Southern Biscuit', 'Chicken Sausage Patty', 'Tater Tots'], 'Flame': ['Scrambled Eggs', 'Free Range Eggs', 'Egg White Omelet', 'Chopped Onion', 'Diced Red Bell Peppers', 'Roasted Mushroom', 'Sauteed Spinach', 'Chopped Tomatoes', 'Cheddar Cheese', 'Shredded Mozzarella Cheese'], 'Cucina': ['French Toast Sticks', 'Waffles', 'Pumpkin Pancakes', 'Beef Breakfast Sausage', 'Spiced Potato Wedges', 'Taco Seasoning Spiced Tater Tots'], 'Delicious Without': ['Black Bean Breakfast Bowl', 'Seasoned Hash Browns', 'Brussels Sprouts', 'Black Bean Breakfast Bowl', 'Oatmeal', 'Turkey Bacon', 'Green Seedless Grapes'], 'The Sweet Shoppe': ['Chocolate Croissant', 'Croissant', 'Blueberry Muffin', 'Cranberry Muffin', 'Corn Muffin', 'Apple Turnover', 'Apple Danish', 'Raspberry Danish', 'Apricot Danish'], 'Fuel': ['Low Fat Strawberry Yogurt', 'Low Fat Vanilla Yogurt', 'Homemade Granola', '4% Full Fat Cottage Cheese', '2% Greek Plain Yogurt', 'Cubed Honeydew', 'Cubed Cantaloupe', 'Cubed Pineapple']}, 'lunch': {'500 Degrees': ['Cheese Pizza', 'Grilled Veggie Pizza', 'Buffalo Chicken Pizza', "2Mato's Vegan Veggie Pizza", 'Parmesan Cheese'], 'Homestyle': ['BBQ Chicken', 'Meatloaf', 'Lemon Herb White Fish', 'PAOW Soy and Vegetable Stir Fry', 'Mashed Potatoes', 'Mixed Vegetable Blend'], 'Flame': ['Hamburger Patty', 'Whole Wheat Hamburger Bun', 'American Cheese Slice', 'Hot Dog', 'Grilled Chicken', 'Sliced Red Onion', 'Lettuce Leaf', 'Meatless Black Bean Burger', '3/8" French Fries, Fried', 'Tater Tots'], 'Cucina': ['Penne Pasta', 'Vegan Meatballs', 'Beyond Sweet Italian Sausage', 'Sauteed Chicken Breast', 'Steamed Broccoli', 'Marinara Sauce', 'Alfredo Sauce', 'Pesto Sauce'], 'Delicious Without': ['Roasted Herb Chicken', 'Stewed Black Beans with Tomatoes and Onions', 'Basmati Rice', 'Roasted Brussels Sprouts', 'Garden Salad', 'Kidney Bean Salad', 'Fresh Fruit Salad', 'Oat Milk Chia Seed Pudding'], 'The Sweet Shoppe': ['Cheese Danish', 'Croissant', 'Country Corn Muffin', 'Cranberry Muffin', 'Chocolate Croissant', 'Blueberry Muffin'], 'Fuel': ['Hummus', 'Garlic Hummus', 'Fresh Carrot Sticks', 'Celery Sticks', 'Cubed Pineapple', 'Cubed Honeydew', 'Cubed Watermelon'], 'Salad Bar': ['Herbed Penne Pasta', 'Mixed Vegetables', 'Vegan Chicken Free Nuggets', 'Garlic Hummus', 'Sliced Black Olives', 'Celery Sticks', 'Fresh Carrot Sticks', 'Grape Tomatoes', 'Sliced English Cucumber', 'Chopped Kale', 'Mixed Field Greens', 'Chopped Iceberg Lettuce']}, 'dinner': {'500 Degrees': ['Cheese Pizza', 'Grilled Veggie Pizza', 'Chicken Pizza', 'Tomato Pie Style Pizza', "2Mato's Vegan Veggie Pizza", 'Parmesan Cheese'], 'Homestyle': ['Pollo Guisado', 'Garlic, Lemon and Parsley Shrimp', 'Arroz con Gandules', 'Maduros', 'French Fries'], 'Flame': ['Hamburger Patty', 'Whole Wheat Hamburger Bun', 'American Cheese Slice', 'Hot Dog', 'Grilled Chicken', 'Sliced Red Onion', 'Lettuce Leaf', 'Meatless Black Bean Burger', '3/8" French Fries, Fried', 'Grilled Tater Wedges'], 'Cucina': ['Beef Birria Tacos', 'Citrus Chicken Carnitas', 'Beyond Chorizo', 'refried black beans', 'Corn Esquites', 'Mexican Rice'], 'Delicious Without': ['Thai Red Chili Spiced Chicken', 'Stir Fry Vegetables', 'Jasmine Rice', 'Garden Salad', 'Chickpea Salad', 'Fresh Fruit Salad', 'Three Bean Chili']}, 'every day': {'Fresh 52': ['Spring Mix', 'Chopped Romaine Lettuce', 'Baby Spinach', 'Sliced Red Onion', 'Sliced Cucumber', 'Cherry Tomatoes', 'Mandarin Orange Sections', 'Croutons', 'Fat Free Raspberry Dressing', 'Fat Free Italian Dressing', 'Buttermilk Ranch Dressing', 'Caesar Dressing', 'Balsamic Vinegar', 'Extra Virgin Olive Oil'], 'Desserts': ['Blondie', "M&M's"], 'Soup': ['Chicken Vegetable Soup', 'Crackers, Oyster, Zesta, Keebler, 0.5 oz', 'Crackers, Saltine, 2 CT, Zesta', 'Chicken Rice Soup']}}, 'Diana Center Cafe': None}
-{'John Jay': {'breakfast': {'Soup Station': ['Italian Wedding', 'Cream of Mushroom'], 'Main Line': ['Pernil', 'Sweet Plantains', 'Arroz Blanco', 'Stewed Eggplant', 'Habichuelas Guisadas'], 'Vegan Station': ['Impossible Pastelon', 'Stewed Eggplant', 'Arroz Blanco'], 'Nook': ['French Toast', 'Apple Turnovers'], 'Halal Station': ['Pollo Asado', 'Sweet Plantains', 'Stewed Eggplant'], 'Gluten Free Station': ['Pollo Asado', 'Sweet Plantains', 'Stewed Eggplant'], 'Grill': ['ABC sandwich', 'Grilled Cheese Sandwich', 'Vegan Sausage'], 'Pasta Station': ['Marinara Sauce', 'Sundried Tomato Pesto', 'Basil Oil', 'Ziti', 'Whole Wheat Pasta', 'Lentil and Mushroom'], 'Fusion Station': ['Fried Pollock', 'Garbonzo Beans', 'Yellow Rice', 'Fiesta Blend Corn', 'Corn Tortillas'], 'Action Station': ['Barbacoa Torta']}, 'lunch': {'Main Line': ['Pollo Guisado', 'Moro de Guandules', 'Wheatberries', 'Roasted Root Vegetables', 'Black Eyed Peas'], 'Halal Station': ['Pollo Guisado', 'Moro de Guandules', 'Roasted Root Vegetables'], 'Gluten Free Station': ['Pollo Guisado', 'Moro de Guandules', 'Roasted Root Vegetables'], 'Vegan Station': ['Jackfruit Guisado', 'Moro de Guandules', 'Roasted Root Vegetables']}, 'dinner': {'Main Line': ['Pernil', 'Sweet Plantains', 'Arroz Blanco', 'Stewed Eggplant', 'Habichuelas Guisadas'], 'Halal Station': ['Pollo Asado', 'Sweet Plantains', 'Stewed Eggplant'], 'Gluten Free Station': ['Pollo Asado', 'Sweet Plantains', 'Stewed Eggplant'], 'Vegan Station': ['Impossible Pastelon', 'Stewed Eggplant', 'Arroz Blanco'], 'Grill': ['ABC sandwich', 'Grilled Cheese Sandwich', 'Vegan Sausage']}, 'lunch & dinner': {'Pasta Station': ['Marinara Sauce', 'Sundried Tomato Pesto', 'Basil Oil', 'Ziti', 'Whole Wheat Pasta', 'Lentil and Mushroom'], 'Soup Station': ['Italian Wedding', 'Cream of Mushroom'], 'Fusion Station': ['Fried Pollock', 'Garbonzo Beans', 'Yellow Rice', 'Fiesta Blend Corn', 'Corn Tortillas'], 'Action Station': ['Barbacoa Torta']}}, "JJ's": {'breakfast': {'Action Station': ['Turkey sausage pancake sandwich', 'Cinnamon roll', 'Vegan pancakes']}, 'lunch & dinner': {'Main Line': ['Italian burger', 'Beef and lamb gyro', 'Miso glazed salmon avocado wrap', 'Beyond Italian burger', 'Creamy tomato soup in grilled cheese bread bowl'], 'Fry Station': ['Boneless chicken wings', 'Mozzarella sticks', 'Steak fries'], 'Grill': ['Pot roast quesadilla']}, 'late night': {'Main Line': ['Chipotle steak taco']}}, 'Ferris': {'breakfast': {'Main Line': ['French Toast', 'Scrambled Eggs', 'Hash Brown Patty', 'Sliced Kielbasa and Peppers', 'Chicken Sausage Links', 'Biscuits and Sausage Gravy', 'Sliced Kielbasa & Peppers'], 'Vegan Station': ['Curry Cauliflower', 'Just Egg', 'Beyond Sausage']}, 'lunch': {'Vegan Station': ['Baked Sweet Potato', 'Savory Black Beans', 'Chipotle Corn'], 'Action Station': ['Thai Lettuce Wraps']}, 'dinner': {'Main Line': ['Flank Steak in Peppercorn Sauce', 'Swai in Beurre Monte', 'Frites', 'Farro Pilaf', 'Haircots Verts'], 'Vegan Station': ['Seitan in Peppercorn Sauce', 'Frites', 'Haricots Verts'], 'Action Station': ['Crepes']}, 'lunch & dinner': {'Daily Pizzas': ['Pizza']}}, 'Faculty House': {'lunch': {'Daily Offerings': ['Broiled Salmon with Saffron Cream Sauce', 'Red Beans Stew', 'Basmati Rice', 'Mac & Cheese', 'Mix Vegetables']}}, "Chef Mike's": {'lunch & dinner': {'Build Your Own - Right Line': ['Protein', 'Cheese', 'Toppings', 'Dressings'], 'Cold Counter - Middle Line': ['Roast Beef', 'Portabella Eggplant'], 'Hot Counter - Left Line': ['Chopped cheese', 'Vegan chopped cheese']}}, "Chef Don's": {'breakfast': {}, 'lunch': {}, 'dinner': {}}, 'Grace Dodge': {}, 'Fac Shack': {'lunch': {'Lunch Service': ['Malai Chicken', 'served over Basmati Cumin Rice and Chana Masala', 'Chana Masala', 'served over Saffron Basmati Cumin Rice with Stewed Eggplant', 'Served with a side of', 'Chili Garlic Naan (D, V, S, H) Coriander Chutney (VN, GF, H) Chocolate Chip Cookie (D, V, S, E, H)']}}, 'Hewitt Dining': {'breakfast': {'500 Degrees': ['Breakfast Pizza', 'Veggie Breakfast Pizza', 'Four Cheese Flat Bread'], 'Homestyle': ['Waffles', 'French Toast', 'Southern Biscuit', 'Chicken Sausage Patty', 'Tater Tots'], 'Flame': ['Scrambled Eggs', 'Free Range Eggs', 'Egg White Omelet', 'Chopped Onion', 'Diced Red Bell Peppers', 'Roasted Mushroom', 'Sauteed Spinach', 'Chopped Tomatoes', 'Cheddar Cheese', 'Shredded Mozzarella Cheese'], 'Cucina': ['French Toast Sticks', 'Waffles', 'Pumpkin Pancakes', 'Beef Breakfast Sausage', 'Spiced Potato Wedges', 'Taco Seasoning Spiced Tater Tots'], 'Delicious Without': ['Black Bean Breakfast Bowl', 'Seasoned Hash Browns', 'Brussels Sprouts', 'Black Bean Breakfast Bowl', 'Oatmeal', 'Turkey Bacon', 'Green Seedless Grapes'], 'The Sweet Shoppe': ['Chocolate Croissant', 'Croissant', 'Blueberry Muffin', 'Cranberry Muffin', 'Corn Muffin', 'Apple Turnover', 'Apple Danish', 'Raspberry Danish', 'Apricot Danish'], 'Fuel': ['Low Fat Strawberry Yogurt', 'Low Fat Vanilla Yogurt', 'Homemade Granola', '4% Full Fat Cottage Cheese', '2% Greek Plain Yogurt', 'Cubed Honeydew', 'Cubed Cantaloupe', 'Cubed Pineapple']}, 'lunch': {'500 Degrees': ['Cheese Pizza', 'Grilled Veggie Pizza', 'Buffalo Chicken Pizza', "2Mato's Vegan Veggie Pizza", 'Parmesan Cheese'], 'Homestyle': ['BBQ Chicken', 'Meatloaf', 'Lemon Herb White Fish', 'PAOW Soy and Vegetable Stir Fry', 'Mashed Potatoes', 'Mixed Vegetable Blend'], 'Flame': ['Hamburger Patty', 'Whole Wheat Hamburger Bun', 'American Cheese Slice', 'Hot Dog', 'Grilled Chicken', 'Sliced Red Onion', 'Lettuce Leaf', 'Meatless Black Bean Burger', '3/8" French Fries, Fried', 'Tater Tots'], 'Cucina': ['Penne Pasta', 'Vegan Meatballs', 'Beyond Sweet Italian Sausage', 'Sauteed Chicken Breast', 'Steamed Broccoli', 'Marinara Sauce', 'Alfredo Sauce', 'Pesto Sauce'], 'Delicious Without': ['Roasted Herb Chicken', 'Stewed Black Beans with Tomatoes and Onions', 'Basmati Rice', 'Roasted Brussels Sprouts', 'Garden Salad', 'Kidney Bean Salad', 'Fresh Fruit Salad', 'Oat Milk Chia Seed Pudding'], 'The Sweet Shoppe': ['Cheese Danish', 'Croissant', 'Country Corn Muffin', 'Cranberry Muffin', 'Chocolate Croissant', 'Blueberry Muffin'], 'Fuel': ['Hummus', 'Garlic Hummus', 'Fresh Carrot Sticks', 'Celery Sticks', 'Cubed Pineapple', 'Cubed Honeydew', 'Cubed Watermelon'], 'Salad Bar': ['Herbed Penne Pasta', 'Mixed Vegetables', 'Vegan Chicken Free Nuggets', 'Garlic Hummus', 'Sliced Black Olives', 'Celery Sticks', 'Fresh Carrot Sticks', 'Grape Tomatoes', 'Sliced English Cucumber', 'Chopped Kale', 'Mixed Field Greens', 'Chopped Iceberg Lettuce']}, 'dinner': {'500 Degrees': ['Cheese Pizza', 'Grilled Veggie Pizza', 'Chicken Pizza', 'Tomato Pie Style Pizza', "2Mato's Vegan Veggie Pizza", 'Parmesan Cheese'], 'Homestyle': ['Pollo Guisado', 'Garlic, Lemon and Parsley Shrimp', 'Arroz con Gandules', 'Maduros', 'French Fries'], 'Flame': ['Hamburger Patty', 'Whole Wheat Hamburger Bun', 'American Cheese Slice', 'Hot Dog', 'Grilled Chicken', 'Sliced Red Onion', 'Lettuce Leaf', 'Meatless Black Bean Burger', '3/8" French Fries, Fried', 'Grilled Tater Wedges'], 'Cucina': ['Beef Birria Tacos', 'Citrus Chicken Carnitas', 'Beyond Chorizo', 'refried black beans', 'Corn Esquites', 'Mexican Rice'], 'Delicious Without': ['Thai Red Chili Spiced Chicken', 'Stir Fry Vegetables', 'Jasmine Rice', 'Garden Salad', 'Chickpea Salad', 'Fresh Fruit Salad', 'Three Bean Chili']}, 'every day': {'Fresh 52': ['Spring Mix', 'Chopped Romaine Lettuce', 'Baby Spinach', 'Sliced Red Onion', 'Sliced Cucumber', 'Cherry Tomatoes', 'Mandarin Orange Sections', 'Croutons', 'Fat Free Raspberry Dressing', 'Fat Free Italian Dressing', 'Buttermilk Ranch Dressing', 'Caesar Dressing', 'Balsamic Vinegar', 'Extra Virgin Olive Oil'], 'Desserts': ['Blondie', "M&M's"], 'Soup': ['Chicken Vegetable Soup', 'Crackers, Oyster, Zesta, Keebler, 0.5 oz', 'Crackers, Saltine, 2 CT, Zesta', 'Chicken Rice Soup']}}, 'Diana Center Cafe': None}
-Data uploaded to S3 bucket 'liondine-data' successfully.
-scraping and upload completed
+WebDriverException occurred: Message: disconnected: not connected to DevTools
+  (failed to check if window was closed: disconnected: not connected to DevTools)
+  (Session info: chrome=129.0.6668.90)
+Stacktrace:
+	GetHandleVerifier [0x00835523+24195]
+	(No symbol) [0x007CAA04]
+	(No symbol) [0x006C2093]
+	(No symbol) [0x006ACF98]
+	(No symbol) [0x006ACEB9]
+	(No symbol) [0x006C4560]
+	(No symbol) [0x00744BD9]
+	(No symbol) [0x0072A8D6]
+	(No symbol) [0x006FBA27]
+	(No symbol) [0x006FC43D]
+	GetHandleVerifier [0x00AFCE13+2938739]
+	GetHandleVerifier [0x00B4EC69+3274185]
+	GetHandleVerifier [0x008C09C2+594722]
+	GetHandleVerifier [0x008C7EDC+624700]
+	(No symbol) [0x007D37CD]
+	(No symbol) [0x007D0528]
+	(No symbol) [0x007D06C5]
+	(No symbol) [0x007C2CA6]
+	BaseThreadInitThunk [0x76937BA9+25]
+	RtlInitializeExceptionChain [0x77A5C0CB+107]
+	RtlClearBits [0x77A5C04F+191]
+
+Traceback (most recent call last):
+  File "C:\Users\carol\lion-dine\lion-dine\lion-dine\scrape.py", line 214, in <module>
+    scrape_and_save()
+  File "C:\Users\carol\lion-dine\lion-dine\lion-dine\scrape.py", line 197, in scrape_and_save
+    data = scrape_all()
+           ^^^^^^^^^^^^
+  File "C:\Users\carol\lion-dine\lion-dine\lion-dine\scrape.py", line 185, in scrape_all
+    dict.update(hall_data)
+TypeError: 'NoneType' object is not iterable
