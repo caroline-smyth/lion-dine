@@ -18,6 +18,7 @@ import platform
 import json
 import boto3
 from barnard_scrape import scrape_barnard
+from diana_scrape import scrape_diana
 
 #dining hall URLs and names 
 cu_urls = {
@@ -185,6 +186,8 @@ def scrape_all():
   
   barnard_data = scrape_barnard()
   dict.update(barnard_data)
+  diana_data = scrape_diana()
+  dict.update(diana_data)
   print(dict)
   return dict
 
