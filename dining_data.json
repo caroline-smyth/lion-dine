@@ -2,27 +2,57 @@
     "John Jay": {
         "breakfast": {
             "Soup Station": [
-                "Oatmeal",
-                "Mango Oatmeal",
-                "Cream of Wheat"
+                "Italian Wedding",
+                "Cream of Mushroom"
             ],
             "Main Line": [
-                "Scramble Eggs",
-                "Egg White Scramble",
-                "Banana Pancakes",
-                "Green Beans w/ Tomatoes",
-                "Roasted Fingerling Potatoes",
-                "Chicken Sausage"
+                "Pernil",
+                "Sweet Plantains",
+                "Arroz Blanco",
+                "Stewed Eggplant",
+                "Habichuelas Guisadas"
             ],
             "Vegan Station": [
-                "Just Egg Patty",
-                "Vegan Sausage",
-                "Vegan Muffins",
-                "Green Beans with Tomatoes"
+                "Impossible Pastelon",
+                "Stewed Eggplant",
+                "Arroz Blanco"
             ],
             "Nook": [
                 "French Toast",
                 "Apple Turnovers"
+            ],
+            "Halal Station": [
+                "Pollo Asado",
+                "Sweet Plantains",
+                "Stewed Eggplant"
+            ],
+            "Gluten Free Station": [
+                "Pollo Asado",
+                "Sweet Plantains",
+                "Stewed Eggplant"
+            ],
+            "Grill": [
+                "ABC sandwich",
+                "Grilled Cheese Sandwich",
+                "Vegan Sausage"
+            ],
+            "Pasta Station": [
+                "Marinara Sauce",
+                "Sundried Tomato Pesto",
+                "Basil Oil",
+                "Ziti",
+                "Whole Wheat Pasta",
+                "Lentil and Mushroom"
+            ],
+            "Fusion Station": [
+                "Fried Pollock",
+                "Garbonzo Beans",
+                "Yellow Rice",
+                "Fiesta Blend Corn",
+                "Corn Tortillas"
+            ],
+            "Action Station": [
+                "Barbacoa Torta"
             ]
         },
         "lunch": {
