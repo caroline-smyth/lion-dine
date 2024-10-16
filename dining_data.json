@@ -137,19 +137,18 @@
     "Ferris": {
         "breakfast": {
             "Main Line": [
-                "Flank Steak in Peppercorn Sauce",
-                "Swai in Beurre Monte",
-                "Frites",
-                "Farro Pilaf",
-                "Haircots Verts"
+                "French Toast",
+                "Scrambled Eggs",
+                "Hash Brown Patty",
+                "Sliced Kielbasa and Peppers",
+                "Chicken Sausage Links",
+                "Biscuits and Sausage Gravy",
+                "Sliced Kielbasa & Peppers"
             ],
             "Vegan Station": [
-                "Seitan in Peppercorn Sauce",
-                "Frites",
-                "Haricots Verts"
-            ],
-            "Action Station": [
-                "Crepes"
+                "Curry Cauliflower",
+                "Just Egg",
+                "Beyond Sausage"
             ]
         },
         "lunch": {
