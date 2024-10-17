@@ -1,71 +1,36 @@
 john jay dining hall 
-Unexpected error while handling privacy notice: Message: disconnected: unable to send message to renderer
-  (failed to check if window was closed: disconnected: not connected to DevTools)
-  (Session info: chrome=129.0.6668.90)
-Stacktrace:
-	GetHandleVerifier [0x00835523+24195]
-	(No symbol) [0x007CAA04]
-	(No symbol) [0x006C2093]
-	(No symbol) [0x006AD53C]
-	(No symbol) [0x006AD4C6]
-	(No symbol) [0x006ABF93]
-	(No symbol) [0x006ACABD]
-	(No symbol) [0x006C5C1F]
-	(No symbol) [0x006C639D]
-	(No symbol) [0x006C9508]
-	(No symbol) [0x006C9580]
-	(No symbol) [0x00706AE5]
-	(No symbol) [0x0070711B]
-	(No symbol) [0x007476F2]
-	(No symbol) [0x0072AB84]
-	(No symbol) [0x00745280]
-	(No symbol) [0x0072A8D6]
-	(No symbol) [0x006FBA27]
-	(No symbol) [0x006FC43D]
-	GetHandleVerifier [0x00AFCE13+2938739]
-	GetHandleVerifier [0x00B4EC69+3274185]
-	GetHandleVerifier [0x008C09C2+594722]
-	GetHandleVerifier [0x008C7EDC+624700]
-	(No symbol) [0x007D37CD]
-	(No symbol) [0x007D0528]
-	(No symbol) [0x007D06C5]
-	(No symbol) [0x007C2CA6]
-	BaseThreadInitThunk [0x76937BA9+25]
-	RtlInitializeExceptionChain [0x77A5C0CB+107]
-	RtlClearBits [0x77A5C04F+191]
+privacy notice iframe detected
+javascript removal successful
+jj's place 
+privacy notice iframe detected
+javascript removal successful
+ferris booth commons 
+privacy notice iframe detected
+javascript removal successful
+faculty house 
+privacy notice iframe detected
+javascript removal successful
+chef mike's sub shop 
+privacy notice iframe detected
+javascript removal successful
+grace dodge dining hall 
+privacy notice iframe detected
+javascript removal successful
+the fac shack 
+privacy notice iframe detected
+javascript removal successful
+{'Hewitt Dining': {'breakfast': {'500 Degrees': ['Breakfast Pizza', 'Veggie Breakfast Pizza', 'Four Cheese Flat Bread'], 'Homestyle': ['Waffles', 'Crunchy French Toast', 'Buttermilk Pancakes', 'Turkey Bacon', 'Sauteed Breakfast Potatoes'], 'Flame': ['Scrambled Eggs', 'Free Range Eggs', 'Egg White Omelet', 'Chopped Onion', 'Diced Red Bell Peppers', 'Roasted Mushroom', 'Sauteed Spinach', 'Chopped Tomatoes', 'Cheddar Cheese', 'Shredded Mozzarella Cheese'], 'Cucina': ['French Toast Sticks', 'Waffles', 'Home Fries', 'Buttermilk Biscuit', 'Beef Breakfast Sausage'], 'Delicious Without': ['Vanilla Oat Churro Pancakes', 'Turkey Bacon', 'Roasted Brussels Sprouts', 'Oatmeal', 'Raisins', 'Dried Cranberries', 'Diced Apples', 'Mixed Berries', 'Green Seedless Grapes', 'Fresh Fruit Salad', 'Chia Pudding'], 'The Sweet Shoppe': ['Double Chocolate Chip Muffin', 'Blueberry Muffin', 'Cranberry Muffin', 'Corn Muffin', 'Croissant', 'Mini Chocolate Croissant', 'Apple Danish', 'Raspberry Danish', 'Apricot Danish'], 'Fuel': ['Low Fat Strawberry Yogurt', 'Low Fat Vanilla Yogurt', 'Homemade Granola', '4% Full Fat Cottage Cheese', '2% Greek Plain Yogurt', 'Cubed Honeydew', 'Cubed Cantaloupe', 'Cubed Pineapple']}, 'lunch': {'500 Degrees': ['Cheese Pizza', 'Grilled Veggie Pizza', 'Buffalo Chicken Pizza', 'Parmesan Cheese', 'Crushed Red Pepper', 'Dried Oregano'], 'Homestyle': ['Grilled Flank Steak', 'Lemon Baked Cod', 'Tapenade', 'Roasted Turkey Breast', 'Brown Gravy', 'Hot & Spicy Tofu', 'Rice Pilaf', 'Steamed Green Beans'], 'Flame': ['Hamburger Patty', 'Whole Wheat Hamburger Bun', 'American Cheese Slice', 'Hot Dog', 'Grilled Chicken', 'Sliced Red Onion', 'Lettuce Leaf', 'Meatless Black Bean Burger', '3/8" French Fries, Fried', 'Tater Tots'], 'Cucina': ['Penne Pasta', 'Vegan Meatballs', 'Beyond Sweet Italian Sausage', 'Sauteed Chicken Breast', 'Steamed Broccoli', 'Marinara Sauce', 'Alfredo Sauce', 'Pesto Sauce'], 'Delicious Without': ['Sweet Thai Chili Sauce', 'White Rice', 'Roasted Butternut Squash', 'Fresh Green Beans', 'Kale Salad', 'Marinated Tomato Salad', 'Oat Milk Chia Seed Pudding', 'Fresh Fruit Salad'], 'The Sweet Shoppe': ['Apple Fritters', 'Apple Turnover', 'Croissant', 'Caramel Brownie Cheesecake', 'Chocolate Brownie', 'Chocolate Cupcake', 'Vanilla Cupcake', 'Red Velvet Cupcake']}, 'dinner': {'500 Degrees': ['Cheese Pizza', 'Grilled Veggie Pizza', 'Chicken Pizza', 'Pappardelle and Mushrooms', 'Pasta with Marinara', 'Parmesan Cheese'], 'Homestyle': ['Marinated Chicken Thigh', 'Teriyaki Glaze', 'Jasmine Rice', 'Grilled Tofu', 'Steamed Broccoli'], 'Flame': ['Hamburger Patty', 'Whole Wheat Hamburger Bun', 'American Cheese Slice', 'Hot Dog', 'Grilled Chicken', 'Sliced Red Onion', 'Lettuce Leaf', 'Meatless Black Bean Burger', '3/8" French Fries, Fried', 'Grilled Tater Wedges'], 'Cucina': ['Penne Pasta', 'Vegan Meatballs', 'Beyond Sweet Italian Sausage', 'Sauteed Chicken Breast', 'Steamed Broccoli', 'Marinara Sauce', 'Alfredo Sauce', 'Pesto Sauce'], 'Delicious Without': ['NOLA Bowl', 'Cajun Chicken', 'New Orleans Red Beans', 'Brown Rice', 'Roasted Cauliflower Florets', 'Black Bean and Corn Salad', 'Fresh Fruit Salad']}, 'every day': {'Fresh 52': ['Spring Mix', 'Chopped Romaine Lettuce', 'Baby Spinach', 'Sliced Red Onion', 'Sliced Cucumber', 'Cherry Tomatoes', 'Mandarin Orange Sections', 'Croutons', 'Fat Free Raspberry Dressing', 'Fat Free Italian Dressing', 'Buttermilk Ranch Dressing', 'Caesar Dressing', 'Balsamic Vinegar', 'Extra Virgin Olive Oil', 'Fried Onions'], 'Desserts': ["M&M's"], 'Soup': ['Beef Vegetable Soup', 'Crackers, Saltine, 2 CT, Zesta', 'Crackers, Oyster, Zesta, Keebler, 0.5 oz']}}}
+Hewitt Dining
+Barnard Kosher @ Hewitt Food Hall
+Diana Center Cafe
 
-WebDriverException occurred: Message: disconnected: not connected to DevTools
-  (failed to check if window was closed: disconnected: not connected to DevTools)
-  (Session info: chrome=129.0.6668.90)
-Stacktrace:
-	GetHandleVerifier [0x00835523+24195]
-	(No symbol) [0x007CAA04]
-	(No symbol) [0x006C2093]
-	(No symbol) [0x006ACF98]
-	(No symbol) [0x006ACEB9]
-	(No symbol) [0x006C4560]
-	(No symbol) [0x00744BD9]
-	(No symbol) [0x0072A8D6]
-	(No symbol) [0x006FBA27]
-	(No symbol) [0x006FC43D]
-	GetHandleVerifier [0x00AFCE13+2938739]
-	GetHandleVerifier [0x00B4EC69+3274185]
-	GetHandleVerifier [0x008C09C2+594722]
-	GetHandleVerifier [0x008C7EDC+624700]
-	(No symbol) [0x007D37CD]
-	(No symbol) [0x007D0528]
-	(No symbol) [0x007D06C5]
-	(No symbol) [0x007C2CA6]
-	BaseThreadInitThunk [0x76937BA9+25]
-	RtlInitializeExceptionChain [0x77A5C0CB+107]
-	RtlClearBits [0x77A5C04F+191]
 
-Traceback (most recent call last):
-  File "C:\Users\carol\lion-dine\lion-dine\lion-dine\scrape.py", line 214, in <module>
-    scrape_and_save()
-  File "C:\Users\carol\lion-dine\lion-dine\lion-dine\scrape.py", line 197, in scrape_and_save
-    data = scrape_all()
-           ^^^^^^^^^^^^
-  File "C:\Users\carol\lion-dine\lion-dine\lion-dine\scrape.py", line 185, in scrape_all
-    dict.update(hall_data)
-TypeError: 'NoneType' object is not iterable
+['breakfast', 'lunch', 'dinner', 'late night']
+breakfast
+lunch
+dinner
+late night
+{'Diana Center Cafe': {'breakfast': {'Breakfast': ['Brioche Bun', 'cage-free fried egg', 'Bacon', 'Turkey Bacon', 'American Cheese Slice', 'Fried Hash Brown Patty', 'Pork Sausage Patty', 'Tater Tots', 'Eggs', 'Sliced American Cheese', 'Diced Tomatoes', 'Fresh Spinach', 'Diced Red Onion', 'Chopped Broccoli', 'Onions and Peppers'], 'Oatmeal Bar': ['Classic Oatmeal', 'Dried Cranberries', 'Light Brown Sugar', 'Hard Boiled Egg'], 'Smoothie Lab': ['Very Green Smoothie', 'Strawberry Banana Smoothie', 'Carrot and Apple Smoothie', 'Berry Blast Smoothie', 'Green Monster'], 'Fresh Juiced': ['Ruby Red Surge', 'Antioxidant Power', 'Green Detox', 'C Clearly Carrot Orange', 'B Cleansed']}, 'lunch': {'Sono': ['Yellow Rice', 'Black Beans', 'Cilantro Pesto Tofu', 'Pulled Chicken', 'Beef Taco Meat', 'Cheese Quesadillas', 'Chicken Quesadilla', 'CHE 19 Hard Shell Beef Taco'], 'Homestyle': ['BBQ Chicken', 'Macaroni & Cheese', 'Smoked BBQ Tofu', 'Roasted Broccoli', 'Roasted Corn'], 'Pizza': ['Margherita Pizza', 'Shredded Mozzarella Cheese', 'Sliced Pepperoni', 'Sausage Pork Crumbles', 'Grilled Chicken', 'Diced Ham', 'Plum Tomato', 'Sliced Mushrooms', 'Sliced Black Olives', 'Chopped Spinach', 'Roasted Red Peppers', 'Diced Red Onion', 'Chopped Chinese Broccoli', 'Nut Free Basil Pesto Sauce'], 'Sono Bar': ['Guacamole', 'Mild Picante Salsa', 'Sliced Jalapeno', 'Sour Cream', 'Pico de Gallo', 'Cheddar Cheese', 'Diced Red Onions', 'Roasted Salsa Verde', 'Chipotle Sour Cream', 'Shredded Iceberg Lettuce'], 'Fresh Juiced': ['Ruby Red Surge', 'Antioxidant Power', 'Green Detox', 'C Clearly Carrot Orange', 'B Cleansed'], 'Smoothie Lab': ['Very Green Smoothie', 'Strawberry Banana Smoothie', 'Carrot and Apple Smoothie', 'Berry Blast Smoothie', 'Green Monster']}, 'dinner': {'Sono': ['Yellow Rice', 'Black Beans', 'Cilantro Pesto Tofu', 'Pulled Chicken', 'Beef Taco Meat', 'Cheese Quesadillas', 'Chicken Quesadilla', 'CHE 19 Hard Shell Beef Taco'], 'Homestyle': ['BBQ Chicken', 'Macaroni & Cheese', 'Smoked BBQ Tofu', 'Roasted Broccoli', 'Roasted Corn'], 'Pizza': ['Margherita Pizza', 'Shredded Mozzarella Cheese', 'Sliced Pepperoni', 'Sausage Pork Crumbles', 'Grilled Chicken', 'Diced Ham', 'Plum Tomato', 'Sliced Mushrooms', 'Sliced Black Olives', 'Chopped Spinach', 'Roasted Red Peppers', 'Diced Red Onion', 'Chopped Chinese Broccoli', 'Nut Free Basil Pesto Sauce']}, 'late night': {'Diana Late grill': ['Chicken Tenders', 'Crispy Chicken Sandwich', 'Vegan Chicken Nugget', 'Hamburger on Bun', 'Philly Cheese Steak', 'Gardenburger on Brioche Bun', 'French Fries', 'Onion Rings', 'Grilled Cheese Sandwich', 'Bacon, Egg & Cheese Brioche', 'Cheese Nachos', 'Beef Taco Meat', 'Pulled Chicken', 'Breaded Mozzarella Cheese Sticks', 'Chicken & Cheese Quesadilla', 'Classic Cheese Quesadilla'], 'Acai Bowl': ['Acai Sorbet Berry Bowl']}}}
+{'John Jay': {'breakfast': {'Soup Station': ['Oatmeal', 'Cinnamon Oatmeal Raisin', 'Grits'], 'Main Line': ['Scrambled Eggs', 'Egg White Scramble', 'Chocolate Chip Pancakes', 'Fried Okra', 'Yucca Fries', 'Andouille Sausage'], 'Vegan Station': ['Just Egg Patty', 'Roasted Peppers and Spinach', 'Vegan Breakfast Sausage'], 'Nook': ['French Toast', 'Belgian Waffle']}, 'lunch': {'Main Line': ['Boneless Buffalo Wings', 'Sweet Potato Mash', 'Bulgur', 'Roasted Brussel Sprouts', 'Black Beans'], 'Halal Station': ['Grilled Buffalo Chicken', 'Roasted Brussel Sprouts', 'Sweet Potato Mash'], 'Gluten Free Station': ['Grilled Buffalo Chicken', 'Roasted Brussel Sprouts', 'Sweet Potato Mash'], 'Vegan Station': ['Buffalo Tofu Nuggets', 'Roasted Brussel Sprouts', 'Sweet Potato Mash']}, 'dinner': {'Main Line': ['Jerk Chicken', 'Pumpkin Rice', 'Cous Cous with Dried Fruits', 'Green Beans, Wax Beans, & Carrots', 'Pigeon Peas'], 'Halal Station': ['Jerk Chicken', 'Pumpkin Rice', 'Green Beans, Wax Beans, & Carrots'], 'Gluten Free Station': ['Jerk Chicken', 'Green Beans, Wax Beans, & Carrots', 'Roasted Potato Wedges'], 'Vegan Station': ['Stewed Peas with Root Veg', 'Green Beans, Wax Beans, & Carrots', 'Pumpkin Rice']}, 'lunch & dinner': {'Pasta Station': ['Marinara', 'Red Pepper Tomato Sauce', 'Cavatappi', 'Whole Wheat Pasta', 'Beef Bolognese', 'Shallot Oil'], 'Soup Station': ['Chicken Tortilla Soup', 'Carrot Ginger'], 'Fusion Station': ['Beef Fajita', 'Yellow Rice', 'Pinto Beans', 'Fiesta Blend', 'Corn Tortilla'], 'Grill': ['Loaded Baked Potato w/ Pulled Chicken', 'Vegan Burger', 'Grilled Cheese'], 'Action Station': ['Steak Quesadilla'], 'Deli': ['cheddar/swiss/ pepperjack', 'White pizza', 'Ricotta Cheese', 'Mozzarella', 'Basil, parmesan,garlic aioli']}}, "JJ's": {}, 'Ferris': {'breakfast': {'Main Line': ['Belgium Waffles', 'Scrambled Eggs', 'Potato Pancakes', 'Pork Sausage Patty', 'Turkey Bacon', 'Biscuits and Sausage Gravy'], 'Vegan Station': ['Baked Sweet Potato Wedge', 'Just Egg', 'Beyond Sausage']}, 'lunch': {'Action Station': ['Wraps'], 'Vegan Station': ['Vegan Chicken Nuggets', 'Latin Style Rice', 'Black Eyed Peas']}, 'dinner': {'Main Line': ['Oreganata Fish', 'Bowtie Pasta Primavera', 'Roasted Acorn Squash', 'Dinner Rolls', 'Garlic Broccoli'], 'Vegan Station': ['Sweet and Sour Tofu Nuggets', 'Roasted Acorn Squash', 'Garlic Broccoli'], 'Action Station': ['Quesadillas']}, 'lunch & dinner': {'Daily Pizzas': ['Pizza']}}, 'Faculty House': {}, "Chef Mike's": {'lunch & dinner': {'Build Your Own - Right Line': ['Protein', 'Cheese', 'Toppings', 'Dressings'], 'Cold Counter - Middle Line': ['The Bear', 'The Vegan Bear'], 'Hot Counter - Left Line': ["Chef Mike Grandma's special", "Chef Mike vegan Grandma's special"]}}, "Chef Don's": {'breakfast': {}, 'lunch': {}, 'dinner': {}}, 'Grace Dodge': {}, 'Fac Shack': {'lunch': {'Lunch Service': ['Chicken Tikka Masala', 'Served over White Rice with Peas and Carrots and Chana Masala', 'Chana Masala', 'Served over White Rice with Peas and Carrots with Stewed Eggplant', 'Served with a Side of', 'Caramelized Onion Naan (D, V, H) Coriander Chutney (VN, GF, H) Chocolate Chip Cookie (D, E, V, H)']}, 'dinner': {'Dinner Service': ['Fajita Chicken Burrito', 'Served with Yellow Rice, Bacon Bits, Black Beans, Guacamole and Chipotle Ranch on a Flour Tortilla', 'Chickpea Tinga Burrito', 'Served with Yellow Rice, Black Beans, and Guacamole on a Flour Tortilla', 'Served with a Side of', 'Tortilla Chips (VN, H, Contains Sunflower Oil) Salsa (VN, GF, H) Chocolate Chip Cookie (D, E, S, V, H)']}}, 'Hewitt Dining': {'breakfast': {'500 Degrees': ['Breakfast Pizza', 'Veggie Breakfast Pizza', 'Four Cheese Flat Bread'], 'Homestyle': ['Waffles', 'Crunchy French Toast', 'Buttermilk Pancakes', 'Turkey Bacon', 'Sauteed Breakfast Potatoes'], 'Flame': ['Scrambled Eggs', 'Free Range Eggs', 'Egg White Omelet', 'Chopped Onion', 'Diced Red Bell Peppers', 'Roasted Mushroom', 'Sauteed Spinach', 'Chopped Tomatoes', 'Cheddar Cheese', 'Shredded Mozzarella Cheese'], 'Cucina': ['French Toast Sticks', 'Waffles', 'Home Fries', 'Buttermilk Biscuit', 'Beef Breakfast Sausage'], 'Delicious Without': ['Vanilla Oat Churro Pancakes', 'Turkey Bacon', 'Roasted Brussels Sprouts', 'Oatmeal', 'Raisins', 'Dried Cranberries', 'Diced Apples', 'Mixed Berries', 'Green Seedless Grapes', 'Fresh Fruit Salad', 'Chia Pudding'], 'The Sweet Shoppe': ['Double Chocolate Chip Muffin', 'Blueberry Muffin', 'Cranberry Muffin', 'Corn Muffin', 'Croissant', 'Mini Chocolate Croissant', 'Apple Danish', 'Raspberry Danish', 'Apricot Danish'], 'Fuel': ['Low Fat Strawberry Yogurt', 'Low Fat Vanilla Yogurt', 'Homemade Granola', '4% Full Fat Cottage Cheese', '2% Greek Plain Yogurt', 'Cubed Honeydew', 'Cubed Cantaloupe', 'Cubed Pineapple']}, 'lunch': {'500 Degrees': ['Cheese Pizza', 'Grilled Veggie Pizza', 'Buffalo Chicken Pizza', 'Parmesan Cheese', 'Crushed Red Pepper', 'Dried Oregano'], 'Homestyle': ['Grilled Flank Steak', 'Lemon Baked Cod', 'Tapenade', 'Roasted Turkey Breast', 'Brown Gravy', 'Hot & Spicy Tofu', 'Rice Pilaf', 'Steamed Green Beans'], 'Flame': ['Hamburger Patty', 'Whole Wheat Hamburger Bun', 'American Cheese Slice', 'Hot Dog', 'Grilled Chicken', 'Sliced Red Onion', 'Lettuce Leaf', 'Meatless Black Bean Burger', '3/8" French Fries, Fried', 'Tater Tots'], 'Cucina': ['Penne Pasta', 'Vegan Meatballs', 'Beyond Sweet Italian Sausage', 'Sauteed Chicken Breast', 'Steamed Broccoli', 'Marinara Sauce', 'Alfredo Sauce', 'Pesto Sauce'], 'Delicious Without': ['Sweet Thai Chili Sauce', 'White Rice', 'Roasted Butternut Squash', 'Fresh Green Beans', 'Kale Salad', 'Marinated Tomato Salad', 'Oat Milk Chia Seed Pudding', 'Fresh Fruit Salad'], 'The Sweet Shoppe': ['Apple Fritters', 'Apple Turnover', 'Croissant', 'Caramel Brownie Cheesecake', 'Chocolate Brownie', 'Chocolate Cupcake', 'Vanilla Cupcake', 'Red Velvet Cupcake']}, 'dinner': {'500 Degrees': ['Cheese Pizza', 'Grilled Veggie Pizza', 'Chicken Pizza', 'Pappardelle and Mushrooms', 'Pasta with Marinara', 'Parmesan Cheese'], 'Homestyle': ['Marinated Chicken Thigh', 'Teriyaki Glaze', 'Jasmine Rice', 'Grilled Tofu', 'Steamed Broccoli'], 'Flame': ['Hamburger Patty', 'Whole Wheat Hamburger Bun', 'American Cheese Slice', 'Hot Dog', 'Grilled Chicken', 'Sliced Red Onion', 'Lettuce Leaf', 'Meatless Black Bean Burger', '3/8" French Fries, Fried', 'Grilled Tater Wedges'], 'Cucina': ['Penne Pasta', 'Vegan Meatballs', 'Beyond Sweet Italian Sausage', 'Sauteed Chicken Breast', 'Steamed Broccoli', 'Marinara Sauce', 'Alfredo Sauce', 'Pesto Sauce'], 'Delicious Without': ['NOLA Bowl', 'Cajun Chicken', 'New Orleans Red Beans', 'Brown Rice', 'Roasted Cauliflower Florets', 'Black Bean and Corn Salad', 'Fresh Fruit Salad']}, 'every day': {'Fresh 52': ['Spring Mix', 'Chopped Romaine Lettuce', 'Baby Spinach', 'Sliced Red Onion', 'Sliced Cucumber', 'Cherry Tomatoes', 'Mandarin Orange Sections', 'Croutons', 'Fat Free Raspberry Dressing', 'Fat Free Italian Dressing', 'Buttermilk Ranch Dressing', 'Caesar Dressing', 'Balsamic Vinegar', 'Extra Virgin Olive Oil', 'Fried Onions'], 'Desserts': ["M&M's"], 'Soup': ['Beef Vegetable Soup', 'Crackers, Saltine, 2 CT, Zesta', 'Crackers, Oyster, Zesta, Keebler, 0.5 oz']}}, 'Diana Center Cafe': {'breakfast': {'Breakfast': ['Brioche Bun', 'cage-free fried egg', 'Bacon', 'Turkey Bacon', 'American Cheese Slice', 'Fried Hash Brown Patty', 'Pork Sausage Patty', 'Tater Tots', 'Eggs', 'Sliced American Cheese', 'Diced Tomatoes', 'Fresh Spinach', 'Diced Red Onion', 'Chopped Broccoli', 'Onions and Peppers'], 'Oatmeal Bar': ['Classic Oatmeal', 'Dried Cranberries', 'Light Brown Sugar', 'Hard Boiled Egg'], 'Smoothie Lab': ['Very Green Smoothie', 'Strawberry Banana Smoothie', 'Carrot and Apple Smoothie', 'Berry Blast Smoothie', 'Green Monster'], 'Fresh Juiced': ['Ruby Red Surge', 'Antioxidant Power', 'Green Detox', 'C Clearly Carrot Orange', 'B Cleansed']}, 'lunch': {'Sono': ['Yellow Rice', 'Black Beans', 'Cilantro Pesto Tofu', 'Pulled Chicken', 'Beef Taco Meat', 'Cheese Quesadillas', 'Chicken Quesadilla', 'CHE 19 Hard Shell Beef Taco'], 'Homestyle': ['BBQ Chicken', 'Macaroni & Cheese', 'Smoked BBQ Tofu', 'Roasted Broccoli', 'Roasted Corn'], 'Pizza': ['Margherita Pizza', 'Shredded Mozzarella Cheese', 'Sliced Pepperoni', 'Sausage Pork Crumbles', 'Grilled Chicken', 'Diced Ham', 'Plum Tomato', 'Sliced Mushrooms', 'Sliced Black Olives', 'Chopped Spinach', 'Roasted Red Peppers', 'Diced Red Onion', 'Chopped Chinese Broccoli', 'Nut Free Basil Pesto Sauce'], 'Sono Bar': ['Guacamole', 'Mild Picante Salsa', 'Sliced Jalapeno', 'Sour Cream', 'Pico de Gallo', 'Cheddar Cheese', 'Diced Red Onions', 'Roasted Salsa Verde', 'Chipotle Sour Cream', 'Shredded Iceberg Lettuce'], 'Fresh Juiced': ['Ruby Red Surge', 'Antioxidant Power', 'Green Detox', 'C Clearly Carrot Orange', 'B Cleansed'], 'Smoothie Lab': ['Very Green Smoothie', 'Strawberry Banana Smoothie', 'Carrot and Apple Smoothie', 'Berry Blast Smoothie', 'Green Monster']}, 'dinner': {'Sono': ['Yellow Rice', 'Black Beans', 'Cilantro Pesto Tofu', 'Pulled Chicken', 'Beef Taco Meat', 'Cheese Quesadillas', 'Chicken Quesadilla', 'CHE 19 Hard Shell Beef Taco'], 'Homestyle': ['BBQ Chicken', 'Macaroni & Cheese', 'Smoked BBQ Tofu', 'Roasted Broccoli', 'Roasted Corn'], 'Pizza': ['Margherita Pizza', 'Shredded Mozzarella Cheese', 'Sliced Pepperoni', 'Sausage Pork Crumbles', 'Grilled Chicken', 'Diced Ham', 'Plum Tomato', 'Sliced Mushrooms', 'Sliced Black Olives', 'Chopped Spinach', 'Roasted Red Peppers', 'Diced Red Onion', 'Chopped Chinese Broccoli', 'Nut Free Basil Pesto Sauce']}, 'late night': {'Diana Late grill': ['Chicken Tenders', 'Crispy Chicken Sandwich', 'Vegan Chicken Nugget', 'Hamburger on Bun', 'Philly Cheese Steak', 'Gardenburger on Brioche Bun', 'French Fries', 'Onion Rings', 'Grilled Cheese Sandwich', 'Bacon, Egg & Cheese Brioche', 'Cheese Nachos', 'Beef Taco Meat', 'Pulled Chicken', 'Breaded Mozzarella Cheese Sticks', 'Chicken & Cheese Quesadilla', 'Classic Cheese Quesadilla'], 'Acai Bowl': ['Acai Sorbet Berry Bowl']}}}
+Data uploaded to S3 bucket 'liondine-data' successfully.
+scraping and upload completed
