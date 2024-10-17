@@ -65,12 +65,12 @@ def current_open_stations(now):
     ("Diana Center Cafe", diana_open)
     ]
   
-  hours = hours_dict()
+  hours = hours_dict(now.weekday())
 
   for hall_name, is_open_func in closed_check:
     # Initialize with hours for all halls
     filtered_halls[hall_name] = {
-        "status": "Open" if is_open_func() else "Closed",
+        "status": "Open" if is_open_func(now) else "Closed",
         "hours": hours.get(hall_name, "Hours not available"),
         "stations": {},
     }
@@ -330,10 +330,10 @@ def open_at_meal(now, meal):
 
   # CHECKS FOR CLOSED
   
-  b_hours = breakfast_hours()
-  l_hours = lunch_hours()
-  d_hours = dinner_hours()
-  ln_hours = latenight_hours()
+  b_hours = breakfast_hours(now.weekday())
+  l_hours = lunch_hours(now.weekday())
+  d_hours = dinner_hours(now.weekday())
+  ln_hours = latenight_hours(now.weekday())
 
   #filtered_halls[hall_name]["status"] = "Open" if meal in meal_list else f"Closed for {meal}"
   filtered_halls["John Jay"]["status"] = "Open" if now.weekday() in [6,0,1,2,3] else f"Closed for {meal}"
