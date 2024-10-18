@@ -56,7 +56,7 @@ def scrape_diana():
     
     for b in buttons:
       meal_time = b.text.strip().lower()
-      print(meal_time)
+      #print(meal_time)
       time_module.sleep(5)
       b.click()
       meal = {}
@@ -82,7 +82,7 @@ def scrape_diana():
   dining_hall_data["Diana Center Cafe"] = hall_data
 
   driver.quit()
-  print(dining_hall_data)
+  #print(dining_hall_data)
   return dining_hall_data
     
 #scrape_diana()

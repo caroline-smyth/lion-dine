@@ -41,7 +41,7 @@ def scrape_barnard():
         dining_hall_data[hall] = hall_data
 
   driver.quit()
-  print(dining_hall_data)
+  #print(dining_hall_data)
   return dining_hall_data
 
 def scrape_barnard_inside(driver, wait): 
