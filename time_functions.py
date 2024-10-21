@@ -162,8 +162,6 @@ def dinner_hours(weekday):
     d_hours["Diana Center Cafe"] = "Closed for dinner"
   elif weekday == 6:
     d_hours["Diana Center Cafe"] = "12:00 PM to 8:00 PM"
-  else:
-    d_hours["Diana Center Cafe"] = "Closed for dinner" 
 
   if weekday in [6, 0, 1, 2, 3]:
     d_hours["John Jay"] = "5:00 PM to 9:00 PM" 
