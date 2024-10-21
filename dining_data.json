@@ -1,19 +1,27 @@
 {
     "John Jay": {
         "breakfast": {
-            "Fusion Station": [
-                "Gochujang Chicken",
-                "Gochujang Tofu",
-                "Sticky Rice",
-                "Vegetable Medley"
+            "Hot Counter - Left Line": [
+                "Oatmeal",
+                "Vanilla Chai Oatmeal",
+                "Grits"
             ],
-            "Grill": [
-                "Buffalo Chicken Tacos",
-                "Vegan Burger"
+            "Main Line": [
+                "Scrambled Eggs",
+                "Egg White Scramble",
+                "Pancakes",
+                "Roasted Brussel Sprouts",
+                "Hash Browns",
+                "Turkey Patty"
             ],
-            "Action Station": [
-                "Hawaiian Sticky Pork",
-                "White Rice with Furikake"
+            "Vegan Station": [
+                "Just Egg Patty",
+                "Roasted Brussel Sprouts",
+                "Vegan Sausage"
+            ],
+            "Nook": [
+                "French Toast Sticks",
+                "Biscuits"
             ]
         },
         "lunch": {
@@ -143,17 +151,19 @@
     "Ferris": {
         "breakfast": {
             "Main Line": [
-                "Pancakes",
-                "Scrambled Eggs",
-                "Tater Tots",
-                "Pork Sausage Links",
-                "Turkey Sausage Links",
-                "Biscuits and Sausage Gravy"
+                "Roasted BBQ Chicken",
+                "Mac and Cheese",
+                "Corn Bread",
+                "Baked Beans",
+                "Steamed Vegetables"
             ],
             "Vegan Station": [
-                "Broccoli",
-                "Tofu Scramble",
-                "Beyond Sausage"
+                "BBQ Vegan Chicken",
+                "Sweet Corn",
+                "Green Beans"
+            ],
+            "Action Station": [
+                "Greek Cart"
             ]
         },
         "lunch": {
@@ -382,12 +392,14 @@
                 "Cheese Pizza",
                 "Grilled Veggie Pizza",
                 "Chicken Pizza",
+                "2Mato's Vegan Veggie Pizza",
+                "Margherita Pizza Vegan Cheese",
                 "Parmesan Cheese"
             ],
             "Homestyle": [
                 "Herb Citrus Chicken",
-                "Beef Stew",
-                "Smashed Potato with Leeks",
+                "Beef Brisket",
+                "Roasted Potatoes",
                 "Garlic Dijon Marinated Tofu",
                 "Roasted Cauliflower"
             ],
@@ -407,13 +419,12 @@
             ],
             "Cucina": [
                 "Cavatappi Pasta",
+                "Meatballs",
                 "Beyond Sweet Italian Sausage",
                 "Sauteed Chicken Breast",
-                "Meatballs",
                 "Steamed Broccoli",
                 "Marinara Sauce",
-                "Alfredo Sauce",
-                "Pesto Sauce"
+                "Alfredo Sauce"
             ],
             "Delicious Without": [
                 "Beef Birria",
@@ -422,31 +433,29 @@
                 "Roasted Vegetables",
                 "Garden Salad",
                 "Green Bean Salad",
-                "Fresh Fruit Salad"
+                "Fresh Fruit Salad",
+                "Oat Milk Chia Seed Pudding"
             ],
             "The Sweet Shoppe": [
-                "Country Corn Muffin",
-                "Blueberry Muffin",
-                "Cranberry Muffin",
                 "Assorted Donuts",
-                "Apple Turnover",
-                "Banana Cake"
+                "Vanilla Cupcake",
+                "Chocolate Cream Pie",
+                "Lemon Pound Cake",
+                "Apple Pie"
             ],
             "Fuel": [
-                "Fresh Herb Croutons"
+                "Fresh Herb Croutons",
+                "French Fried Onions"
             ],
             "Salad Bar": [
-                "Fresh Fruit Salad",
-                "Pasta Salad",
-                "Chili Lime Chicken",
-                "Roasted Vegetables",
-                "Sliced English Cucumber",
-                "Sliced Black Olives",
-                "Fresh Dill Pickle Slices",
-                "Shredded Cheddar Cheese",
-                "Grape Tomatoes",
                 "Mixed Field Greens",
-                "Baby Spinach"
+                "Chopped Romaine Lettuce",
+                "Fresh Fruit Salad",
+                "Grape Tomatoes",
+                "Sliced English Cucumber",
+                "Pesto Pasta Salad",
+                "Shredded Carrots",
+                "Roasted Vegetables"
             ]
         },
         "every day": {
@@ -486,5 +495,165 @@
             ]
         }
     },
-    "Diana Center Cafe": null
+    "Diana Center Cafe": {
+        "breakfast": {
+            "Breakfast": [
+                "Brioche Bun",
+                "cage-free fried egg",
+                "Bacon",
+                "Turkey Bacon",
+                "American Cheese Slice",
+                "Fried Hash Brown Patty",
+                "Pork Sausage Patty",
+                "Tater Tots",
+                "Eggs",
+                "Sliced American Cheese",
+                "Diced Tomatoes",
+                "Fresh Spinach",
+                "Diced Red Onion",
+                "Chopped Broccoli",
+                "Onions and Peppers"
+            ],
+            "Oatmeal Bar": [
+                "Classic Oatmeal",
+                "Dried Cranberries",
+                "Light Brown Sugar",
+                "Hard Boiled Egg"
+            ],
+            "Smoothie Lab": [
+                "Very Green Smoothie",
+                "Strawberry Banana Smoothie",
+                "Carrot and Apple Smoothie",
+                "Berry Blast Smoothie",
+                "Green Monster"
+            ],
+            "Fresh Juiced": [
+                "Ruby Red Surge",
+                "Antioxidant Power",
+                "Green Detox",
+                "C Clearly Carrot Orange",
+                "B Cleansed"
+            ]
+        },
+        "lunch": {
+            "Sono": [
+                "Grilled Chili Lime Chicken",
+                "Pork Carnitas",
+                "Cilantro Lime Rice",
+                "Slow Cooked Whole Pinto Beans",
+                "Latin Tofu Scramble",
+                "Cheese Quesadillas",
+                "Chicken Quesadilla",
+                "CHE 19 Hard Shell Beef Taco"
+            ],
+            "Homestyle": [
+                "Chicken Tikka Masala",
+                "Peri Peri Tofu",
+                "Vegetable Samosas",
+                "Chana Masala",
+                "White Rice",
+                "Mixed Vegetables",
+                "Baked Pita Triangles"
+            ],
+            "Pizza": [
+                "Margherita Pizza",
+                "Shredded Mozzarella Cheese",
+                "Sliced Pepperoni",
+                "Sausage Pork Crumbles",
+                "Grilled Chicken",
+                "Diced Ham",
+                "Plum Tomato",
+                "Sliced Mushrooms",
+                "Sliced Black Olives",
+                "Chopped Spinach",
+                "Roasted Red Peppers",
+                "Diced Red Onion",
+                "Chopped Chinese Broccoli",
+                "Nut Free Basil Pesto Sauce"
+            ],
+            "Sono Bar": [
+                "Guacamole",
+                "Mild Picante Salsa",
+                "Sliced Jalapeno",
+                "Sour Cream",
+                "Pico de Gallo",
+                "Cheddar Cheese",
+                "Diced Red Onions",
+                "Roasted Salsa Verde",
+                "Chipotle Sour Cream",
+                "Shredded Iceberg Lettuce"
+            ],
+            "Fresh Juiced": [
+                "Ruby Red Surge",
+                "Antioxidant Power",
+                "Green Detox",
+                "C Clearly Carrot Orange",
+                "B Cleansed"
+            ],
+            "Smoothie Lab": [
+                "Very Green Smoothie",
+                "Strawberry Banana Smoothie",
+                "Carrot and Apple Smoothie",
+                "Berry Blast Smoothie",
+                "Green Monster"
+            ]
+        },
+        "dinner": {
+            "Sono": [
+                "Grilled Chili Lime Chicken",
+                "Beef Barbacoa",
+                "Cilantro Lime Rice",
+                "Slow Cooked Whole Pinto Beans",
+                "Latin Tofu Scramble",
+                "Cheese Quesadillas",
+                "Chicken Quesadilla",
+                "CHE 19 Hard Shell Beef Taco"
+            ],
+            "Homestyle": [
+                "Chicken Tikka Masala",
+                "Peri Peri Tofu",
+                "Vegetable Samosas",
+                "Chana Masala",
+                "White Rice",
+                "Mixed Vegetables",
+                "Baked Pita Triangles"
+            ],
+            "Pizza": [
+                "Margherita Pizza",
+                "Shredded Mozzarella Cheese",
+                "Sliced Pepperoni",
+                "Sausage Pork Crumbles",
+                "Grilled Chicken",
+                "Diced Ham",
+                "Plum Tomato",
+                "Sliced Mushrooms",
+                "Sliced Black Olives",
+                "Chopped Spinach",
+                "Roasted Red Peppers",
+                "Diced Red Onion",
+                "Chopped Chinese Broccoli",
+                "Nut Free Basil Pesto Sauce"
+            ]
+        },
+        "late night": {
+            "Diana Late grill": [
+                "Chicken Tenders",
+                "Crispy Chicken Sandwich",
+                "Vegan Chicken Nugget",
+                "Hamburger on Bun",
+                "Philly Cheese Steak",
+                "Gardenburger on Brioche Bun",
+                "French Fries",
+                "Onion Rings",
+                "Grilled Cheese Sandwich",
+                "Bacon, Egg & Cheese Brioche",
+                "Cheese Nachos",
+                "Beef Taco Meat",
+                "Pulled Chicken",
+                "Breaded Mozzarella Cheese Sticks",
+                "Chicken & Cheese Quesadilla",
+                "Classic Cheese Quesadilla"
+            ]
+        }
+    }
 }
