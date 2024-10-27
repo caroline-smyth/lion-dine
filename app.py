@@ -429,7 +429,17 @@ def open_at_meal(now, meal):
             filtered_stations[station].extend(items)
           else:          
             filtered_stations[station] = items
+        for station, items in stations.get('daily',{}).items():
+          if station in filtered_stations:
+            filtered_stations[station].extend(items)
+          else:          
+            filtered_stations[station] = items
       if meal == 'dinner':
+        for station, items in stations.get('daily',{}).items():
+          if station in filtered_stations:
+            filtered_stations[station].extend(items)
+          else:          
+            filtered_stations[station] = items
         for station, items in stations.get('lunch & dinner',{}).items():
           if station in filtered_stations:
             filtered_stations[station].extend(items)
