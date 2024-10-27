@@ -1,33 +1,33 @@
 {
     "John Jay": {
         "brunch": {
-            "Pasta Station": [
-                "Marinara Sauce",
-                "Tomato Cream Sauce",
-                "Garlic Oil",
-                "Bowtie",
-                "Whole Wheat Pasta",
-                "Sunday Sauce"
+            "Main Line": [
+                "Scrambled Eggs",
+                "Roasted Potato Wedge",
+                "Roasted Broccoli w/ Tomatoes",
+                "Chicken Basil Vinaigrette"
+            ],
+            "Halal Station": [
+                "Scramble Eggs",
+                "Roasted Potato Wedges",
+                "Roasted Broccoli and Tomatoes",
+                "Chicken with Chili Basil Vinaigrette"
+            ],
+            "Gluten Free Station": [
+                "Scramble Eggs/ Chicken with Chili Basil Vinaigrette",
+                "Roasted Potato Wedges",
+                "Roasted Broccoli and Tomatoes",
+                "Chicken with Chili Basil Vinaigrette"
+            ],
+            "Vegan Station": [
+                "Tofu Scramble",
+                "Roasted Broccoli and Tomatoes",
+                "Vegan Breakfast Sausage"
             ],
             "Soup Station": [
-                "Chicken Noodle Soup",
-                "Broccoli Cheddar Soup"
-            ],
-            "Fusion Station": [
-                "Lamb and Beef Gyro",
-                "Tofu with Roasted Red Pepper Sauce",
-                "Dill Rice",
-                "Roasted Butternut Squash",
-                "Pita"
-            ],
-            "Action Station": [
-                "Butter Bean Curry",
-                "Basmati Rice"
-            ],
-            "Grill": [
-                "Grilled Cheese Sandwiches",
-                "Pancake Bar",
-                "Vegan Burger"
+                "Peach",
+                "Oatmeal",
+                "Farina"
             ]
         },
         "dinner": {
