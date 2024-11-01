@@ -1,0 +1,72 @@
+john jay dining hall 
+privacy notice iframe detected
+javascript removal successful
+jj's place 
+privacy notice iframe detected
+javascript removal successful
+ferris booth commons 
+privacy notice iframe detected
+javascript removal successful
+faculty house 
+privacy notice iframe detected
+javascript removal successful
+chef mike's sub shop 
+privacy notice iframe detected
+javascript removal successful
+grace dodge dining hall 
+privacy notice iframe detected
+javascript removal successful
+the fac shack 
+privacy notice iframe detected
+javascript removal successful
+Traceback (most recent call last):
+  File "C:\Users\carol\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\selenium_manager.py", line 137, in run
+    output = json.loads(stdout)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\carol\AppData\Local\Programs\Python\Python311\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\carol\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\carol\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\carol\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\driver_finder.py", line 38, in get_path
+    path = SeleniumManager().driver_location(options) if path is None else path
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\carol\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\selenium_manager.py", line 103, in driver_location
+    output = self.run(args)
+             ^^^^^^^^^^^^^^
+  File "C:\Users\carol\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\selenium_manager.py", line 140, in run
+    raise WebDriverException(f"Unsuccessful command executed: {command}") from err
+selenium.common.exceptions.WebDriverException: Message: Unsuccessful command executed: C:\Users\carol\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\windows\selenium-manager.exe --browser chrome --output json
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\carol\lion-dine\lion-dine\lion-dine\scrape.py", line 214, in <module>
+    scrape_and_save()
+  File "C:\Users\carol\lion-dine\lion-dine\lion-dine\scrape.py", line 197, in scrape_and_save
+    data = scrape_all()
+           ^^^^^^^^^^^^
+  File "C:\Users\carol\lion-dine\lion-dine\lion-dine\scrape.py", line 187, in scrape_all
+    barnard_data = scrape_barnard()
+                   ^^^^^^^^^^^^^^^^
+  File "C:\Users\carol\lion-dine\lion-dine\lion-dine\barnard_scrape.py", line 19, in scrape_barnard
+    driver = webdriver.Chrome()
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\carol\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 45, in __init__
+    super().__init__(
+  File "C:\Users\carol\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\chromium\webdriver.py", line 49, in __init__
+    self.service.path = DriverFinder.get_path(self.service, options)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\carol\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\driver_finder.py", line 41, in get_path
+    raise NoSuchDriverException(msg) from err
+selenium.common.exceptions.NoSuchDriverException: Message: Unable to obtain driver for chrome using Selenium Manager.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+
