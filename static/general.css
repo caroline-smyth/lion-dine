@@ -8,6 +8,7 @@ a{
   color: black;
   transition: color 0.15s;
 }
+
 a:hover{
   color: rgb(105, 179, 231); 
 }
@@ -20,6 +21,7 @@ a:hover{
   margin: 0 auto;
   column-gap: 2rem;
   max-width: 1200px;
+  /*color: rgb(247,95,28);  halloween */
 }
 
 .col {
@@ -46,7 +48,9 @@ a:hover{
 
 button {
   border: none;
-  background-color: rgb(105, 179, 231); 
+  /*background-color: rgb(105, 179, 231); */
+  /*color: rgb(247,95,28);  halloween */
+  color: rgb(105, 179, 231); 
   color: white;
   font-weight: medium;
   cursor: pointer;
@@ -73,6 +77,7 @@ h3 {
   margin-top: 0px;
   margin-bottom: 10px;
   font-size: 2rem;
+  /*color: rgb(247,95,28);  halloween */
 }
 
 .food-type {

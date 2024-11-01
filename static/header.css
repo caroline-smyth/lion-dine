@@ -10,6 +10,11 @@
   flex-direction: row;
   justify-content: center;
   letter-spacing: 2px;
+  color: rgb(247,95,28); /*halloween*/
+}
+
+#index-header{
+  color: rgb(247,95,28); /*halloween*/
 }
 
 #index-header:hover{
@@ -38,6 +43,7 @@
 
 body {
   margin-left: 1.5rem;
+  /*background-color: black;  halloween */
 }
 
 .sidebar {
@@ -59,6 +65,7 @@ body {
 .feedback {
   text-decoration: underline;
   margin-top:5px;
+  /*color: rgb(247,95,28); halloween*/
 }
 
 .feedback:hover{
