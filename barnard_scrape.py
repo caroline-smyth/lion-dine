@@ -13,10 +13,18 @@ import time as time_module
 import random
 from contextlib import contextmanager
 
+def get_driver():
+  chrome_options = Options()
+  chrome_options.add_argument("--headless")  # Run headless for efficiency
+  chrome_options.add_argument("--disable-gpu")
+  chrome_options.add_argument("--window-size=1920x1080")
+  driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+  return driver
+
 def scrape_barnard():
   barnard_hall_names = ["Hewitt Dining"]
   #barnard_hall_names = ["Diana Center Cafe"]
-  driver = webdriver.Chrome()
+  driver = get_driver()
   url = "https://dineoncampus.com/barnard/whats-on-the-menu"
   driver.get(url)
   dining_hall_data = {}
