@@ -158,7 +158,7 @@ def dinner_hours(weekday):
     d_hours["Diana Center Cafe"] = "5:00 PM to 12:00 AM"
   else:
     d_hours["Grace Dodge"] = "Closed for dinner"
-  if weekday == 4:
+  if weekday in [4, 5]:
     d_hours["Diana Center Cafe"] = "Closed for dinner"
   elif weekday == 6:
     d_hours["Diana Center Cafe"] = "12:00 PM to 8:00 PM"
@@ -242,10 +242,8 @@ def hewitt_open(now):
     return True
 
 def diana_open(now):
-  if (((now.weekday() in [0,1,2,3] and (now.hour < 9 or now.hour in [15,16])) or 
-       (now.weekday() == 4 and (now.hour < 9 or now.hour >= 15)) or 
-       (now.weekday() == 5) or 
-       (now.weekday() == 6 and (now.hour < 12 or now.hour >= 20)))
+  if (((now.weekday() in [0,1,2,3] and (now.hour < 9 or now.hour in [15,16])) or (now.weekday == 5) or 
+       (now.weekday() == 4 and (now.hour < 9 or now.hour >= 15)) or (now.weekday() == 6 and (now.hour < 12 or now.hour >= 20)))
   ):
     return False
   else:
