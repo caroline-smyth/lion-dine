@@ -79,6 +79,7 @@ def scrape_barnard_inside(driver, wait):
     print(f"Error occurred: {e}")
     dining_hall = None
 
+  #print(dining_hall)
   return dining_hall
 
 #scrape_barnard()
