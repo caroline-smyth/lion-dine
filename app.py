@@ -330,14 +330,15 @@ def open_at_meal(now, meal):
 
   # CHECKS FOR CLOSED
   
-  b_hours = breakfast_hours(now.weekday())
-  l_hours = lunch_hours(now.weekday())
-  d_hours = dinner_hours(now.weekday())
-  ln_hours = latenight_hours(now.weekday())
+  b_hours = breakfast_hours(now.weekday(), now)
+  l_hours = lunch_hours(now.weekday(), now)
+  d_hours = dinner_hours(now.weekday(), now)
+  ln_hours = latenight_hours(now.weekday(), now)
 
   #filtered_halls[hall_name]["status"] = "Open" if meal in meal_list else f"Closed for {meal}"
+
   filtered_halls["John Jay"]["status"] = "Open" if now.weekday() in [6,0,1,2,3] else f"Closed for {meal}"
-  filtered_halls["JJ's"]["status"] = "Open"
+  #filtered_halls["JJ's"]["status"] = "Open"
   filtered_halls["Ferris"]["status"] = "Open"
   filtered_halls["Hewitt Dining"]["status"] = "Open"
   if now.weekday() in [0,1,2] and meal == "lunch":
@@ -371,6 +372,13 @@ def open_at_meal(now, meal):
   if meal == "latenight":
     filtered_halls["Ferris"]["status"] = filtered_halls["John Jay"]["status"] = filtered_halls["Faculty House"]["status"] = filtered_halls["Chef Mike's"]["status"] = filtered_halls["Chef Don's"]["status"] = filtered_halls["Hewitt Dining"]["status"] = f"Closed for {meal}"
 
+  # FALL BREAK 
+  if now.month == 11 and now.day in [3, 4, 5]:
+    filtered_halls["Chef Don's"]["status"] = filtered_halls["Chef Mike's"]["status"] = filtered_halls["Ferris"]["status"] = filtered_halls["Faculty House"]["status"] = filtered_halls["Fac Shack"]["status"] = filtered_halls["Grace Dodge"]["status"] = filtered_halls["Diana Center Cafe"]["status"] = "Closed today"
+    if meal in ["breakfast", "lunch", "dinner"]:
+      filtered_halls["JJ's"]["status"] = "Open"
+    else:
+      filtered_halls["JJ's"]["status"] = "Closed for late night"
 
   for hall_name in halls.keys():
     if meal == "breakfast":
