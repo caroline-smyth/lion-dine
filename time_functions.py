@@ -60,12 +60,13 @@ def hours_dict(weekday):
   elif weekday == 6:
     hours["Fac Shack"] = "Closed today"
 
+  hours["Ferris"] = "Closed today" # FALL BREAK
   return hours
 
-def breakfast_hours(weekday):
+def breakfast_hours(weekday, now):
   b_hours = {}
 
-  b_hours["JJ's"] = "12:00 AM to 10:00 AM"
+  b_hours["JJ's"] = "12:00 AM to 10:00 AM" 
   b_hours["Faculty House"] = b_hours["Fac Shack"] = b_hours["Chef Mike's"] = b_hours["Grace Dodge"] = "Closed for breakfast"
 
   if weekday in [0, 1, 2, 3, 4]:
@@ -78,18 +79,26 @@ def breakfast_hours(weekday):
     b_hours["Ferris"] = "7:30 AM to 2:00 PM" # ????
     b_hours["Hewitt Dining"] = "10:30 AM to 3:00 PM"
     b_hours["Diana Center Cafe"] = "Closed for breakfast"
-  
+
   if weekday in [6, 0, 1, 2, 3]:
     b_hours["John Jay"] = "9:30 AM to 11:00 AM"
   else:
     b_hours["John Jay"] = "Closed for breakfast"
+  # FALL BREAK
+  if now.month == 11 and now.day in [3, 4,5]:
+    b_hours["John Jay"] = "10:00 AM to 12:00 PM"
+    b_hours["JJ's"] = "10:00 AM to 12:00 PM"
+    b_hours["Hewitt Dining"] = "10:30 AM to 12:30 PM"
+
+    b_hours["Ferris"] = b_hours["Chef Don's"] = b_hours["Chef Mike's"] = b_hours["Faculty House"] = b_hours["Fac Shack"] = b_hours["Grace Dodge"] = b_hours["Diana Center Cafe"] = "Closed for breakfast"
 
   return b_hours
 
-def lunch_hours(weekday):
+def lunch_hours(weekday, now):
   l_hours = {}
 
   l_hours["JJ's"] = "12:00 PM to midnight"
+  
   #m-f
   if weekday in [0, 1, 2, 3, 4]:
     l_hours["Chef Mike's"] = "10:30 AM to 10:00 PM"
@@ -127,14 +136,20 @@ def lunch_hours(weekday):
     l_hours["John Jay"] = "11:00 AM to 2:30 PM"
   else:
     l_hours["John Jay"] = "Closed for lunch"
-  
+
+  if now.month == 11 and now.day in [3, 4, 5]:
+    l_hours["Hewitt Dining"] = "12:30 PM to 3:00 PM"
+    l_hours["JJ's"] = "12:00 AM to 3:00 PM"
+    l_hours["John Jay"] = "12:00 PM to 3:00 PM"
+    l_hours["Ferris"] = l_hours["Chef Don's"] = l_hours["Chef Mike's"] = l_hours["Faculty House"] = l_hours["Fac Shack"] = l_hours["Grace Dodge"] = l_hours["Diana Center Cafe"] = "Closed for lunch"
 
   return l_hours
 
-def dinner_hours(weekday):
+def dinner_hours(weekday, now):
   d_hours = {}
 
-  d_hours["JJ's"] = "12:00 PM to midnight"
+  #d_hours["JJ's"] = "12:00 PM to midnight" FALL BREAK
+  d_hours["JJ's"] = "3:00 PM to 6:00 PM"
   d_hours["Hewitt Dining"] = "4:30 PM to 8:00 PM"
   d_hours["Faculty House"] = "Closed for dinner"
   d_hours["Ferris"] = "5:00 PM to 8:00 PM"
@@ -162,18 +177,25 @@ def dinner_hours(weekday):
     d_hours["Diana Center Cafe"] = "Closed for dinner"
   elif weekday == 6:
     d_hours["Diana Center Cafe"] = "12:00 PM to 8:00 PM"
-
+  
   if weekday in [6, 0, 1, 2, 3]:
     d_hours["John Jay"] = "5:00 PM to 9:00 PM" 
   else:
     d_hours["John Jay"] = "Closed for dinner" 
 
+  if now.month == 11 and now.day in [3, 4, 5]:
+    d_hours["Hewitt Dining"] = "4:30 PM to 8:00 PM"
+    d_hours["JJ's"] = d_hours["John Jay"] = "3:00 PM to 6:00 PM"
+    d_hours["Ferris"] = d_hours["Chef Don's"] = d_hours["Chef Mike's"] = d_hours["Faculty House"] = d_hours["Fac Shack"] = d_hours["Grace Dodge"] = d_hours["Diana Center Cafe"] = "Closed for dinner"
+  
+
   return d_hours
 
-def latenight_hours(weekday):
+def latenight_hours(weekday, now):
   ln_hours = {}
   ln_hours["Ferris"] = ln_hours["Faculty House"] = ln_hours["Chef Mike's"] = ln_hours["Chef Don's"] = ln_hours["John Jay"] = ln_hours["Hewitt Dining"] = ln_hours["Grace Dodge"] = "Closed for late night"
-  ln_hours["JJ's"] = "Midnight to 10:00 AM"
+  #ln_hours["JJ's"] = "Midnight to 10:00 AM"
+  ln_hours["JJ's"] = "Closed for late night"
 
   if weekday in [3, 4, 5]:
     ln_hours["Fac Shack"] = "7:00 PM to 11:00 PM"
@@ -185,6 +207,8 @@ def latenight_hours(weekday):
   else:
     ln_hours["Diana Center Cafe"] = "Closed for late night"
   
+  if now.month == 11 and now.weekday in [3, 4, 5]:
+    ln_hours["JJ's"] = ln_hours["Diana Center Cafe"] = ln_hours["Fac Shac"] = "Closed for late night"
   return ln_hours
 
 def john_jay_open(now):
@@ -202,35 +226,37 @@ def jjs_open(now):
 def ferris_open(now):
   if ((now.weekday() in [0,1,2,3,4] and (now.hour < 7 or now.hour >= 20 or (now.hour == 7 and now.minute < 30))) or (now.weekday() == 5 and (now.hour < 9 or now.hour >= 20)) or (now.weekday() == 6 and (now.hour < 10 or now.hour >= 20 or now.hour in [14,15]))):
     return False
+  elif (now.month == 11 and now.day in [3, 4, 5]):
+    return False
   else:
     return True
 
 def fac_house_open(now):
-  if now.weekday() > 2 or now.hour < 11 or now.hour > 15 or (now.hour == 14 and now.minute > 30):
+  if now.weekday() > 2 or now.hour < 11 or now.hour > 15 or (now.hour == 14 and now.minute > 30) or (now.month == 11 and now.day in [1, 2, 3, 4, 5]):
     return False
   else:
     return True
 
 def mikes_open(now):
-  if now.weekday() in [5,6] or now.hour < 10 or now.hour >= 22 or (now.hour == 10 and now.minute < 30):
+  if now.weekday() in [5,6] or now.hour < 10 or now.hour >= 22 or (now.hour == 10 and now.minute < 30)or (now.month == 11 and now.day in [2, 3, 4, 5]):
     return False
   else:
     return True
 
 def dons_open(now):
-  if now.weekday() in [5,6] or now.hour < 8 or now.hour >= 18:
+  if now.weekday() in [5,6] or now.hour < 8 or now.hour >= 18 or (now.month == 11 and now.day in [2, 3, 4, 5]):
     return False
   else:
     return True
 
 def grace_dodge_open(now):
-  if now.weekday() in [4,5,6] or now.hour < 11 or now.hour >= 19:
+  if now.weekday() in [4,5,6] or now.hour < 11 or now.hour >= 19 or (now.weekday == 11 and now.month in [1, 2, 3, 4, 5]):
     return False
   else:
     return True
 
 def fac_shack_open(now):
-  if ((now.weekday() == 6) or (now.weekday() in [0,1,2] and (now.hour < 11 or now.hour >= 14) or (now.weekday() in [4,5] and (now.hour < 19 or now.hour >= 23)) or (now.weekday() == 3 and (now.hour < 11 or now.hour >= 23 or now.hour in [14,15,16,17,18])))):
+  if ((now.weekday() == 6) or (now.weekday() in [0,1,2] and (now.hour < 11 or now.hour >= 14) or (now.weekday() in [4,5] and (now.hour < 19 or now.hour >= 23)) or (now.weekday() == 3 and (now.hour < 11 or now.hour >= 23 or now.hour in [14,15,16,17,18]))) or (now.month == 11 and now.weekday in [1, 2, 3, 4, 5])):
     return False
   else:
     return True
