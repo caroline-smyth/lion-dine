@@ -1,0 +1,48 @@
+just a moment...
+No privacy notice found or it didn't appear in time
+jj's place 
+privacy notice iframe detected
+javascript removal successful
+WebDriverException occurred: Message: disconnected: Unable to receive message from renderer
+  (failed to check if window was closed: disconnected: not connected to DevTools)
+  (Session info: chrome=130.0.6723.92)
+Stacktrace:
+	GetHandleVerifier [0x007F38B3+24035]
+	(No symbol) [0x0077BC44]
+	(No symbol) [0x0065C2D3]
+	(No symbol) [0x0064DCC5]
+	(No symbol) [0x0064D9F8]
+	(No symbol) [0x0064BE67]
+	(No symbol) [0x0064C50D]
+	(No symbol) [0x00661636]
+	(No symbol) [0x006635E8]
+	(No symbol) [0x00663660]
+	(No symbol) [0x00698E66]
+	(No symbol) [0x006BFE8C]
+	(No symbol) [0x00693C04]
+	(No symbol) [0x006C0124]
+	(No symbol) [0x006D953F]
+	(No symbol) [0x006BFC26]
+	(No symbol) [0x0069218C]
+	(No symbol) [0x0069310D]
+	GetHandleVerifier [0x00A996D3+2800643]
+	GetHandleVerifier [0x00AF428E+3172286]
+	GetHandleVerifier [0x00AECEA2+3142610]
+	GetHandleVerifier [0x00896C60+692624]
+	(No symbol) [0x00784C5D]
+	(No symbol) [0x00781968]
+	(No symbol) [0x00781B00]
+	(No symbol) [0x00773FB0]
+	BaseThreadInitThunk [0x76AC7BA9+25]
+	RtlInitializeExceptionChain [0x777AC0CB+107]
+	RtlClearBits [0x777AC04F+191]
+
+Traceback (most recent call last):
+  File "C:\Users\carol\lion-dine\lion-dine\lion-dine\scrape.py", line 215, in <module>
+    scrape_and_save()
+  File "C:\Users\carol\lion-dine\lion-dine\lion-dine\scrape.py", line 198, in scrape_and_save
+    data = scrape_all()
+           ^^^^^^^^^^^^
+  File "C:\Users\carol\lion-dine\lion-dine\lion-dine\scrape.py", line 186, in scrape_all
+    dict.update(hall_data)
+TypeError: 'NoneType' object is not iterable
