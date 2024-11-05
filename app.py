@@ -338,7 +338,7 @@ def open_at_meal(now, meal):
   #filtered_halls[hall_name]["status"] = "Open" if meal in meal_list else f"Closed for {meal}"
 
   filtered_halls["John Jay"]["status"] = "Open" if now.weekday() in [6,0,1,2,3] else f"Closed for {meal}"
-  #filtered_halls["JJ's"]["status"] = "Open"
+  filtered_halls["JJ's"]["status"] = "Open" #FALL BREAK
   filtered_halls["Ferris"]["status"] = "Open"
   filtered_halls["Hewitt Dining"]["status"] = "Open"
   if now.weekday() in [0,1,2] and meal == "lunch":

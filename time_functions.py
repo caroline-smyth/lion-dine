@@ -207,8 +207,8 @@ def latenight_hours(weekday, now):
   else:
     ln_hours["Diana Center Cafe"] = "Closed for late night"
   
-  if now.month == 11 and now.weekday in [3, 4, 5]:
-    ln_hours["JJ's"] = ln_hours["Diana Center Cafe"] = ln_hours["Fac Shac"] = "Closed for late night"
+  if now.month == 11 and now.day in [3, 4, 5]:
+    ln_hours["JJ's"] = ln_hours["Diana Center Cafe"] = ln_hours["Fac Shack"] = "Closed for late night"
   return ln_hours
 
 def john_jay_open(now):
