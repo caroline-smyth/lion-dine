@@ -101,17 +101,6 @@
                 "Breakfast BLT",
                 "Peaches and Cream French Toast",
                 "Mediterranean Tofu Scramble"
-            ],
-            "Main Line": [
-                "Jamaican Chicken Patty"
-            ],
-            "Fry Station": [
-                "Chicken Tenders",
-                "Onion Rings",
-                "Curly Fries"
-            ],
-            "Grill": [
-                "Cannoli Pancakes"
             ]
         },
         "lunch & dinner": {
@@ -140,17 +129,22 @@
     "Ferris": {
         "breakfast": {
             "Main Line": [
-                "Pancakes",
-                "Scrambled Eggs",
-                "Tater Tots",
-                "Pork Sausage Links",
-                "Turkey Sausage Links",
-                "Biscuits and Sausage Gravy"
+                "Roasted Pork",
+                "Mashed Potatoes",
+                "Quinoa Pilaf",
+                "Red Lentils",
+                "Asparagus Tomato Mushroom"
             ],
             "Vegan Station": [
-                "Broccoli",
-                "Tofu Scramble",
-                "Beyond Sausage"
+                "Korean BBQ Seitan",
+                "Rice",
+                "Asparagus Tomato Mushroom"
+            ],
+            "Action Station": [
+                "Greek Cart"
+            ],
+            "Daily Pizzas": [
+                "Pizza"
             ]
         },
         "lunch": {
@@ -271,7 +265,7 @@
                 "Cubed Cantaloupe",
                 "Cubed Pineapple"
             ],
-            "Kosher - homestyle breakfast": [
+            "Kosher: homestyle breakfast": [
                 "Scrambled Eggs",
                 "Scrambled Egg Whites",
                 "Tofu Scramble",
@@ -358,7 +352,7 @@
                 "Chopped Romaine Lettuce",
                 "Chopped Kale"
             ],
-            "Kosher - dairy homestyle": [
+            "Kosher: dairy homestyle": [
                 "Baked Salmon w/ Lemon and Olive Oil",
                 "Grilled Teriyaki Tofu",
                 "Vegan Chicken Nugget",
@@ -435,7 +429,7 @@
                 "Cubed Tofu",
                 "Vegan Chicken Nugget"
             ],
-            "Kosher - meat homestyle": [
+            "Kosher: meat homestyle": [
                 "Breaded Chicken Patty",
                 "Penne Pasta",
                 "Marinara Sauce",
@@ -443,7 +437,7 @@
                 "Rice Pilaf",
                 "Roasted Vegetables"
             ],
-            "Kosher - dairy homestyle": [
+            "Kosher: dairy homestyle": [
                 "Penne Pasta",
                 "Beef Meatballs in Marinara",
                 "Breaded Chicken Patty",
