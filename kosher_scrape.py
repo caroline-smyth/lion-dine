@@ -70,7 +70,7 @@ def scrape_kosher():
         food_elements = m.find_elements(By.TAG_NAME, "strong")
         foods = [food.text.strip() for food in food_elements]
     
-        meal[station_name] = foods
+        meal["[Kosher] " + station_name] = foods
       hall_data[meal_time] = meal
 
   except Exception as e:
@@ -82,7 +82,7 @@ def scrape_kosher():
   dining_hall_data["Hewitt Kosher"] = hall_data
 
   driver.quit()
-  print(dining_hall_data)
+  #print(dining_hall_data)
   return dining_hall_data
     
 #scrape_kosher()
