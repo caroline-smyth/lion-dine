@@ -1,48 +1,26 @@
-just a moment...
+john jay dining hall 
 No privacy notice found or it didn't appear in time
 jj's place 
+No privacy notice found or it didn't appear in time
+ferris booth commons 
+No privacy notice found or it didn't appear in time
+faculty house 
 privacy notice iframe detected
 javascript removal successful
-WebDriverException occurred: Message: disconnected: Unable to receive message from renderer
-  (failed to check if window was closed: disconnected: not connected to DevTools)
-  (Session info: chrome=130.0.6723.92)
-Stacktrace:
-	GetHandleVerifier [0x007F38B3+24035]
-	(No symbol) [0x0077BC44]
-	(No symbol) [0x0065C2D3]
-	(No symbol) [0x0064DCC5]
-	(No symbol) [0x0064D9F8]
-	(No symbol) [0x0064BE67]
-	(No symbol) [0x0064C50D]
-	(No symbol) [0x00661636]
-	(No symbol) [0x006635E8]
-	(No symbol) [0x00663660]
-	(No symbol) [0x00698E66]
-	(No symbol) [0x006BFE8C]
-	(No symbol) [0x00693C04]
-	(No symbol) [0x006C0124]
-	(No symbol) [0x006D953F]
-	(No symbol) [0x006BFC26]
-	(No symbol) [0x0069218C]
-	(No symbol) [0x0069310D]
-	GetHandleVerifier [0x00A996D3+2800643]
-	GetHandleVerifier [0x00AF428E+3172286]
-	GetHandleVerifier [0x00AECEA2+3142610]
-	GetHandleVerifier [0x00896C60+692624]
-	(No symbol) [0x00784C5D]
-	(No symbol) [0x00781968]
-	(No symbol) [0x00781B00]
-	(No symbol) [0x00773FB0]
-	BaseThreadInitThunk [0x76AC7BA9+25]
-	RtlInitializeExceptionChain [0x777AC0CB+107]
-	RtlClearBits [0x777AC04F+191]
+chef mike's sub shop 
+No privacy notice found or it didn't appear in time
+grace dodge dining hall 
+privacy notice iframe detected
+javascript removal successful
+the fac shack 
+No privacy notice found or it didn't appear in time
+Hewitt Dining
+Barnard Kosher @ Hewitt Food Hall
+LeFrak Center
+Diana Center Cafe
 
-Traceback (most recent call last):
-  File "C:\Users\carol\lion-dine\lion-dine\lion-dine\scrape.py", line 215, in <module>
-    scrape_and_save()
-  File "C:\Users\carol\lion-dine\lion-dine\lion-dine\scrape.py", line 198, in scrape_and_save
-    data = scrape_all()
-           ^^^^^^^^^^^^
-  File "C:\Users\carol\lion-dine\lion-dine\lion-dine\scrape.py", line 186, in scrape_all
-    dict.update(hall_data)
-TypeError: 'NoneType' object is not iterable
+
+['lunch', 'brunch']
+{'John Jay': {'breakfast': {'Soup Station': ['Oatmeal', 'Tropical', 'Farina'], 'Nook': ['French Toast Sticks', 'Biscuits']}, 'brunch': {'Halal Station': ['Scrambled Eggs', 'Red Rice', 'Roasted Corn and Tomatoes', 'Green Chili Chicken'], 'Gluten Free Station': ['Scrambled Eggs', 'Roasted Corn and Tomatoes', 'Red Rice', 'Green Chili Chicken'], 'Vegan Station': ['Just Egg Patty', 'Roasted Corn and Tomatoes', 'Vegan Breakfast Sausage'], 'Main Line': ['Scrambled Eggs', 'Green Chili Chicken', 'Roasted Corn and Tomatoes', 'Red Rice']}, 'dinner': {'Main Line': ['Meat Lovers Baked Ziti', 'Garlic Bread', 'Farro w/ Roasted Vegetables', 'Vegetable Medley', 'White Beans'], 'Halal Station': ['Meat Lovers Sauce', 'Vegetable Medley', 'Garlic Herb Pasta'], 'Gluten Free Station': ['Meat Lovers Baked Ziti', 'Vegetable Medley'], 'Vegan Station': ['Vegan Mac and Cheese', 'Vegetable Medley', 'Garlic Bread']}, 'lunch & dinner': {'Pasta Station': ['Marinara Sauce', 'Fra Diavalo', 'Garlic Oil', 'Spaghetti', 'Whole Wheat Pasta', 'Chicken Alfredo'], 'Soup Station': ['Loaded Potato', 'Butternut Squash Apple'], 'Fusion Station': ['Chipotle Chicken', 'Black Beans', 'Sweet Plantain', 'Fiesta Blend', 'Flour Tortilla'], 'Action Station': ['Jerk Beef Burrito'], 'Grill': ['Grilled Cheese Sandwiches', 'Vegan Burger', 'Chocolate Pancakes']}}, "JJ's": {'lunch & dinner': {'Main Line': ['Pulled pork and cheddar burger', 'Creole chicken Sandwich', 'Kicked up tuna melt', 'Beyond Sausage and peppers', 'Jalapeno Poppers grilled cheese']}, 'late night': {'Main Line': ['Potato and cheese Pierogies']}, 'daily': {'Fry Station': ['Dino Nuggets', 'Mac and Cheese Bites', 'Krinkle Coated Fries'], 'Action Station': ['Bacon Egg and Cheese on a English Muffin', 'strawberry cheesecake stuffed French toast', 'Vegan banana Pancakes'], 'Grill': ['Jerk Chicken Quesadilla']}}, 'Ferris': {'breakfast': {'Main Line': ['Pancakes', 'Scrambled Eggs', 'Roasted Potatoes', 'Pork Bacon', 'Turkey Sausage Patties', 'Biscuits and Sausage Gravy']}, 'lunch': {'Action Station': ['Waffle Bar'], 'Vegan Station': ['Garlic Broccoli', 'Just Egg', 'Vegan Sausage']}, 'dinner': {'Main Line': ['Chipotle Cinnamon Chicken', 'Lebanese Spiced Potatoes', 'Brown Rice Pilaf', 'Garbanzo Beans', 'Roasted Vegetables'], 'Vegan Station': ['Chipotle Cinnamon Tofu', 'Lebanese Spiced Potatoes', 'Roasted Vegetables'], 'Action Station': ['Breakfast Burrito']}, 'lunch & dinner': {'Daily Pizzas': ['Pizza']}}, 'Faculty House': {}, "Chef Mike's": {}, "Chef Don's": {'breakfast': {}, 'lunch': {}, 'dinner': {}}, 'Grace Dodge': {}, 'Fac Shack': {}, 'Hewitt Dining': {'breakfast': {'Delicious Without': ['Southwestern Breakfast Bowl', 'Poblano Brown Rice and Beans', 'Turkey Bacon', 'Green Chili Adobo', 'Pickled Onions with Jalapenos', 'Fresh Guacamole', 'Oatmeal', 'Strawberries', 'Strawberry Melon Agua Fresca'], 'The Sweet Shoppe': ['Double Chocolate Chip Muffin', 'Blueberry Muffin', 'Cranberry Muffin', 'Corn Muffin', 'Croissant'], 'Fuel': ['Low Fat Strawberry Yogurt', 'Low Fat Vanilla Yogurt', 'Homemade Granola', '4% Full Fat Cottage Cheese', 'Cubed Honeydew', 'Cubed Cantaloupe', 'Cubed Pineapple']}, 'lunch': {'Homestyle': ['Buttermilk Pancakes'], 'Flame': ['Scrambled Eggs', 'Egg Omelette', 'Egg White Omelet', 'Chopped Onion', 'Diced Red Bell Peppers', 'Roasted Mushroom', 'Sauteed Spinach', 'Chopped Tomatoes', 'Cheddar Cheese'], 'Cucina': ['Cavatappi Pasta', 'Vegan Meatballs', 'Beyond Sweet Italian Sausage', 'Sauteed Chicken Breast', 'Steamed Broccoli', 'Marinara Sauce', 'Alfredo Sauce', 'Pesto Sauce'], 'Delicious Without': ['Cubed Pineapple', 'Cubed Watermelon', 'Mixed Berries', 'Raisins', 'Golden Raisins', 'Dried Cranberries', 'Sugar, In The Raw', 'Oatmeal', 'Lemon Rosemary Chicken Breast', 'Roasted Brussels Sprouts', 'Roasted Butternut Squash'], 'The Sweet Shoppe': ['Cheese Danish', 'Croissant', 'Country Corn Muffin', 'Cranberry Muffin', 'Chocolate Croissant', 'Blueberry Muffin'], 'Fuel': ['Hummus', 'Garlic Hummus', 'Fresh Carrot Sticks', 'Celery Sticks', 'Cubed Pineapple', 'Cubed Honeydew', 'Cubed Watermelon']}, 'dinner': {'500 Degrees': ['Cheese Pizza', 'Chicken Pizza', 'Grilled Veggie Pizza', "2Mato's Vegan Veggie Pizza", 'Margherita Pizza Vegan Cheese'], 'Homestyle': ['Chicken & Sweet Potato Stew', 'Seafood Paella', 'White Rice', 'Adobo Spiced Tofu', 'Roasted Vegetables'], 'Flame': ['Hamburger Patty', 'Whole Wheat Hamburger Bun', 'American Cheese Slice', 'Hot Dog', 'Grilled Chicken', 'Sliced Red Onion', 'Lettuce Leaf', 'Meatless Black Bean Burger', '3/8" French Fries, Fried', 'Grilled Tater Wedges'], 'Cucina': ['Cavatappi Pasta', 'Vegan Meatballs', 'Beyond Sweet Italian Sausage', 'Sauteed Chicken Breast', 'Steamed Broccoli', 'Marinara Sauce', 'Alfredo Sauce', 'Pesto Sauce'], 'Delicious Without': ['Lemon Rosemary Chicken Breast', 'Three Bean Vegetarian Chili', 'White Rice', 'Quinoa & Corn Salad', 'Roasted Brussels Sprouts', 'Three Bean Salad', 'Garden Salad']}, 'every day': {'Fresh 52': ['Spring Mix', 'Chopped Romaine Lettuce', 'Baby Spinach', 'Sliced Red Onion', 'Sliced Cucumber', 'Cherry Tomatoes', 'Mandarin Orange Sections', 'Croutons', 'Fat Free Raspberry Dressing', 'Fat Free Italian Dressing', 'Buttermilk Ranch Dressing', 'Caesar Dressing', 'Balsamic Vinegar', 'Extra Virgin Olive Oil'], 'Soup': ['Vegetarian Vegetable Soup', 'Beef Chili', 'Crackers, Saltine, 2 CT, Zesta', 'Crackers, Oyster, Zesta, Keebler, 0.5 oz']}, 'brunch': {'500 Degrees': ['Chicken Caesar Pizza', 'Mushroom Pizza', 'Cheeseburger Pizza'], 'Homestyle': ['Scrambled Eggs', 'Beef Patty', 'Tofu Scramble', 'French Toast', 'Pesto Primavera', 'BBQ Chicken', 'Green Bean Saute', 'Crispy Baked Tofu'], 'Cucina': ['Waffles', 'Buttermilk Pancakes', 'French Toast', 'Buttermilk Biscuit', 'Turkey Bacon'], 'Flame': ['Scrambled Eggs', 'Free Range Eggs', 'Egg White Omelet', 'Chopped Onion', 'Diced Red Bell Peppers', 'Roasted Mushroom', 'Sauteed Spinach', 'Chopped Tomatoes', 'Cheddar Cheese', 'Shredded Mozzarella Cheese']}}, 'Diana Center Cafe': {'lunch': {'Sono': ['Cilantro Pesto Tofu'], 'Homestyle': ['Grilled Teriyaki Tofu']}, 'brunch': {'Diana Late grill': ['Chicken Tenders', 'Crispy Chicken Sandwich', 'Vegan Chicken Nugget', 'Hamburger on Bun', 'Philly Cheese Steak', 'Gardenburger on Brioche Bun', 'French Fries', 'Onion Rings', 'Grilled Cheese Sandwich', 'Bacon, Egg & Cheese Brioche', 'Cheese Nachos', 'Beef Taco Meat', 'Pulled Chicken', 'Breaded Mozzarella Cheese Sticks', 'Chicken & Cheese Quesadilla', 'Classic Cheese Quesadilla', 'Tomato Soup']}}}
+Data uploaded to S3 bucket 'liondine-data' successfully.
+scraping and upload completed

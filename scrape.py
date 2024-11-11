@@ -19,6 +19,7 @@ import json
 import boto3
 from barnard_scrape import scrape_barnard
 from diana_scrape import scrape_diana
+from kosher_scrape import scrape_kosher
 
 #dining hall URLs and names 
 cu_urls = {
@@ -189,6 +190,8 @@ def scrape_all():
   dict.update(barnard_data)
   diana_data = scrape_diana()
   dict.update(diana_data)
+  #kosher_data = scrape_kosher()
+  #dict.update(kosher_data)
   print(dict)
   return dict
 
