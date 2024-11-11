@@ -101,6 +101,17 @@
                 "Breakfast BLT",
                 "Peaches and Cream French Toast",
                 "Mediterranean Tofu Scramble"
+            ],
+            "Main Line": [
+                "Jamaican Chicken Patty"
+            ],
+            "Fry Station": [
+                "Chicken Tenders",
+                "Onion Rings",
+                "Curly Fries"
+            ],
+            "Grill": [
+                "Cannoli Pancakes"
             ]
         },
         "lunch & dinner": {
@@ -259,6 +270,14 @@
                 "Cubed Honeydew",
                 "Cubed Cantaloupe",
                 "Cubed Pineapple"
+            ],
+            "Kosher - homestyle breakfast": [
+                "Scrambled Eggs",
+                "Scrambled Egg Whites",
+                "Tofu Scramble",
+                "Meatless Vegetarian Sausage Patty",
+                "Hash Brown Patty",
+                "French Toast"
             ]
         },
         "lunch": {
@@ -338,6 +357,14 @@
                 "Sliced English Cucumber",
                 "Chopped Romaine Lettuce",
                 "Chopped Kale"
+            ],
+            "Kosher - dairy homestyle": [
+                "Baked Salmon w/ Lemon and Olive Oil",
+                "Grilled Teriyaki Tofu",
+                "Vegan Chicken Nugget",
+                "White Rice",
+                "Potato Pancakes",
+                "Roasted Vegetables"
             ]
         },
         "dinner": {
@@ -407,6 +434,22 @@
                 "Chopped Iceberg Lettuce",
                 "Cubed Tofu",
                 "Vegan Chicken Nugget"
+            ],
+            "Kosher - meat homestyle": [
+                "Breaded Chicken Patty",
+                "Penne Pasta",
+                "Marinara Sauce",
+                "Vegan Meatballs in Marinara",
+                "Rice Pilaf",
+                "Roasted Vegetables"
+            ],
+            "Kosher - dairy homestyle": [
+                "Penne Pasta",
+                "Beef Meatballs in Marinara",
+                "Breaded Chicken Patty",
+                "Rice Pilaf",
+                "Roast Butternut Squash",
+                "Roasted Vegetables"
             ]
         },
         "every day": {

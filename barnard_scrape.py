@@ -92,7 +92,7 @@ def scrape_barnard_inside(driver, wait):
     print(f"Error occurred: {e}")
     dining_hall = None
 
-  #print(dining_hall)
+  #print(dining_hal
   return dining_hall
 
-#scrape_barnard()
+#scrape_barnard
