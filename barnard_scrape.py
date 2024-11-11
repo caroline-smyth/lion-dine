@@ -49,7 +49,18 @@ def scrape_barnard():
           dining_hall_data[hall] = {}
         dining_hall_data[hall] = hall_data
     kosher_data = scrape_kosher()
-    dining_hall_data["Hewitt Dining"].update(kosher_data)
+    hewitt_kosher_data = kosher_data["Hewitt Kosher"]
+    #print(hewitt_kosher_data)
+
+    for meal_time in hewitt_kosher_data:
+      #print("hiii " + meal_time)
+      if "Hewitt Dining" not in dining_hall_data:
+        dining_hall_data["Hewitt Dining"] = {}
+
+      if meal_time in dining_hall_data["Hewitt Dining"]:
+        dining_hall_data["Hewitt Dining"][meal_time].update(hewitt_kosher_data[meal_time])
+
+
     #print(dining_hall_data)
   driver.quit()
   return dining_hall_data
