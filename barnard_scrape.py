@@ -12,6 +12,7 @@ from datetime import datetime, time
 import time as time_module
 import random
 from contextlib import contextmanager
+from kosher_scrape import scrape_kosher
 
 def get_driver():
   chrome_options = Options()
@@ -47,9 +48,10 @@ def scrape_barnard():
         if hall_data is None:
           dining_hall_data[hall] = {}
         dining_hall_data[hall] = hall_data
-
+    kosher_data = scrape_kosher()
+    dining_hall_data["Hewitt Dining"].update(kosher_data)
+    #print(dining_hall_data)
   driver.quit()
-  #print(dining_hall_data)
   return dining_hall_data
 
 def scrape_barnard_inside(driver, wait): 
