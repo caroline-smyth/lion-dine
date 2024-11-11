@@ -153,13 +153,28 @@ def scrape_columbia(hall_name):
 
       for s in station_elements:
         station_name = s.find_element(By.CLASS_NAME, "station-title").text.strip()
-        #meal_items = s.find_elements(By.CLASS_NAME, "meal-item")
-        meal_titles = s.find_elements(By.CLASS_NAME, "meal-title")
-        meal_preferences = s.find_elements(By.CLASS_NAME, "meal-prefs")
-        meal_p_text = [preferences.text.strip() for preferences in meal_preferences]
-        print(meal_p_text)
+        meal_items = s.find_elements(By.CLASS_NAME, "meal-item")
+        meal_items_text = [items.text.strip() for items in meal_items]
+        #print(meal_items_text)
 
-        meal_items_text = [item.text.strip() for item in meal_titles]
+        for meal_item in meal_items:
+
+          meal_title = meal_item.find_element(By.CLASS_NAME, "meal-title").text.strip()
+          print(meal_title)
+
+          try:
+            meal_preferences = meal_item.find_element(By.CLASS_NAME, "meal-prefs").text.strip()
+            print(meal_preferences)
+          except:
+            meal_preferences = None
+            #print("no preferences")
+
+          try:
+            meal_allergens = meal_item.find_element(By.CLASS_NAME, "meal-allergens").text.strip()
+            print(meal_allergens)
+          except: 
+            meal_allergens = None
+            #print("no allergens")
 
         if "fac shack" in actual_name:
           meal_descriptions = s.find_elements(By.CLASS_NAME, "meal-description")
@@ -172,7 +187,14 @@ def scrape_columbia(hall_name):
           meal_descriptions_text = [desc.text.strip() for desc in meal_descriptions]
           meal_dictionary[station_name] = meal_descriptions_text
         else:
-          meal_dictionary[station_name] = meal_items_text
+          if station_name not in meal_dictionary:
+              meal_dictionary[station_name] = []
+          meal_dictionary[station_name].append({
+              'title': meal_title,
+              'preferences': meal_preferences,
+              'allergens': meal_allergens
+          })
+
       dining_hall[meal] = meal_dictionary
 
     #print(dining_hall)
@@ -201,7 +223,7 @@ def scrape_all():
 #stores scraped data in a json file
 def scrape_and_save():
   data = scrape_all()
-  with open('dining_data.json', 'w') as f:
+  with open('nutritional_dining_data.json', 'w') as f:
     json.dump(data, f, indent=4)
   #upload_to_s3('dining_data.json', 'liondine-data')
 
