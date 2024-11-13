@@ -54,7 +54,7 @@ body {
   left: 0;
 }
 
-.top {
+.right-top {
   margin-right: 2.5rem;
   display: flex;
   flex-direction: column;
@@ -62,10 +62,20 @@ body {
   font-size: 22px;
 }
 
+.top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 22px;
+}
+
 .feedback {
   text-decoration: underline;
   margin-top:5px;
-  /*color: rgb(247,95,28); halloween*/
+}
+
+.contest {
+  font-size: 24px;
 }
 
 .feedback:hover{

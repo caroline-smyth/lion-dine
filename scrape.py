@@ -22,6 +22,7 @@ from diana_scrape import scrape_diana
 from kosher_scrape import scrape_kosher
 
 #dining hall URLs and names 
+
 cu_urls = {
   "John Jay" : "https://dining.columbia.edu/content/john-jay-dining-hall",
   "JJ's" : "https://dining.columbia.edu/content/jjs-place-0", 
@@ -156,6 +157,12 @@ def scrape_columbia(hall_name):
         station_name = s.find_element(By.CLASS_NAME, "station-title").text.strip()
         meal_items = s.find_elements(By.CLASS_NAME, "meal-title")
         meal_items_text = [item.text.strip() for item in meal_items]
+
+        if "ferris" in actual_name:
+          if "Action" in station_name or "Pizza" in station_name:
+            meal_description = s.find_element(By.CLASS_NAME, "meal-description").text.strip()
+            meal_items_text[0] = meal_items_text[0] + ": " + meal_description
+            meal_dictionary[station_name] = meal_items_text[0]
 
         if "fac shack" in actual_name:
           meal_descriptions = s.find_elements(By.CLASS_NAME, "meal-description")

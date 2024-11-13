@@ -39,11 +39,9 @@ def scrape_diana():
   hall_buttons = dropdown_menu.find_elements(By.TAG_NAME, "button")
 
   for h_button in hall_buttons:
-    print(h_button.text.strip())
     if hall_name in h_button.text.strip():
       time_module.sleep(5)
       h_button.click()
-      #print("hello " + h_button.text.strip())
     else:
       continue
   hall_data = {}
@@ -52,11 +50,10 @@ def scrape_diana():
     nav_bar = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "nav.nav-tabs")))
     buttons = nav_bar.find_elements(By.CLASS_NAME, "nav-link")
     meal_times = [btn.text.strip().lower() for btn in buttons]
-    print(meal_times)
+    #print(meal_times)
     
     for b in buttons:
       meal_time = b.text.strip().lower()
-      #print(meal_time)
       time_module.sleep(5)
       b.click()
       meal = {}
