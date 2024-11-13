@@ -90,6 +90,10 @@ h3 {
   font-style: italic !important;
 }
 
+.deadline {
+  margin-left: 5px;
+}
+
 .meal-button {
   display: inline-block;
   padding: 10px 30px 10px 30px;

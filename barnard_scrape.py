@@ -24,7 +24,6 @@ def get_driver():
 
 def scrape_barnard():
   barnard_hall_names = ["Hewitt Dining"]
-  #barnard_hall_names = ["Diana Center Cafe"]
   driver = get_driver()
   url = "https://dineoncampus.com/barnard/whats-on-the-menu"
   driver.get(url)
@@ -50,10 +49,8 @@ def scrape_barnard():
         dining_hall_data[hall] = hall_data
     kosher_data = scrape_kosher()
     hewitt_kosher_data = kosher_data["Hewitt Kosher"]
-    #print(hewitt_kosher_data)
 
     for meal_time in hewitt_kosher_data:
-      #print("hiii " + meal_time)
       if "Hewitt Dining" not in dining_hall_data:
         dining_hall_data["Hewitt Dining"] = {}
 
@@ -61,7 +58,7 @@ def scrape_barnard():
         dining_hall_data["Hewitt Dining"][meal_time].update(hewitt_kosher_data[meal_time])
 
 
-    #print(dining_hall_data)
+    print(dining_hall_data)
   driver.quit()
   return dining_hall_data
 
@@ -84,15 +81,22 @@ def scrape_barnard_inside(driver, wait):
         station_name = m.find_element(By.TAG_NAME, "caption").text.strip()
         food_elements = m.find_elements(By.TAG_NAME, "strong")
         foods = [food.text.strip() for food in food_elements]
+        for meal_title in foods:
+          """
+          meal[station_name].append({
+              'title': meal_title,
+              'preferences': None,
+              'allergens': None
+          })"""
     
         meal[station_name] = foods
       dining_hall[meal_time] = meal
+      #print(dining_hall)
  
   except Exception as e:
     print(f"Error occurred: {e}")
     dining_hall = None
 
-  #print(dining_hal
   return dining_hall
 
-#scrape_barnard
+#scrape_barnard()

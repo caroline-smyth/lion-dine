@@ -21,6 +21,7 @@ from barnard_scrape import scrape_barnard
 from diana_scrape import scrape_diana
 
 #dining hall URLs and names 
+"""
 cu_urls = {
   "John Jay" : "https://dining.columbia.edu/content/john-jay-dining-hall",
   "JJ's" : "https://dining.columbia.edu/content/jjs-place-0", 
@@ -43,7 +44,11 @@ hall_names = [
   "Hewitt Dining", 
   "Diana Center Cafe"
   ]
-
+"""
+cu_urls = {
+  "Fac Shack" : "https://dining.columbia.edu/content/fac-shack"
+}
+hall_names = ["Fac Shack"]
 #configures webdriver for a headless environment 
 @contextmanager
 def managed_webdriver():
@@ -158,31 +163,24 @@ def scrape_columbia(hall_name):
         #print(meal_items_text)
 
         for meal_item in meal_items:
-
           meal_title = meal_item.find_element(By.CLASS_NAME, "meal-title").text.strip()
-          print(meal_title)
-
           try:
             meal_preferences = meal_item.find_element(By.CLASS_NAME, "meal-prefs").text.strip()
-            print(meal_preferences)
           except:
             meal_preferences = None
-            #print("no preferences")
-
           try:
             meal_allergens = meal_item.find_element(By.CLASS_NAME, "meal-allergens").text.strip()
-            print(meal_allergens)
           except: 
             meal_allergens = None
-            #print("no allergens")
 
-        if "fac shack" in actual_name:
-          meal_descriptions = s.find_elements(By.CLASS_NAME, "meal-description")
-          meal_descriptions_text = [desc.text.strip() for desc in meal_descriptions]
-          combined_items = [element for pair in zip(meal_items_text, meal_descriptions_text) for element in pair]
+          meal_info = [meal_title, meal_preferences, meal_allergens]
+          if "fac shack" in actual_name:
+             meal_description = meal_item.find_element(By.CLASS_NAME, "meal-description").text.strip()
+             meal_title = meal_title + " " + meal_description
 
-          meal_dictionary[station_name] = combined_items
-        elif "grace dodge" in actual_name:
+          print(meal_info)
+          
+        if "grace dodge" in actual_name:
           meal_descriptions = s.find_elements(By.CLASS_NAME, "meal-description")
           meal_descriptions_text = [desc.text.strip() for desc in meal_descriptions]
           meal_dictionary[station_name] = meal_descriptions_text
