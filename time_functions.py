@@ -215,8 +215,8 @@ def dinner_hours(weekday, now):
 def latenight_hours(weekday, now):
   ln_hours = {}
   ln_hours["Ferris"] = ln_hours["Faculty House"] = ln_hours["Chef Mike's"] = ln_hours["Chef Don's"] = ln_hours["John Jay"] = ln_hours["Kosher @ Hewitt"] = ln_hours["Hewitt Dining"] = ln_hours["Grace Dodge"] = "Closed for late night"
-  #ln_hours["JJ's"] = "Midnight to 10:00 AM"
-  ln_hours["JJ's"] = "Closed for late night"
+  ln_hours["JJ's"] = "Midnight to 10:00 AM"
+  #ln_hours["JJ's"] = "Closed for late night"
 
   if weekday in [3, 4, 5]:
     ln_hours["Fac Shack"] = "7:00 PM to 11:00 PM"

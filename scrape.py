@@ -74,7 +74,9 @@ def managed_webdriver():
     
 
     # Determine the OS and set Chrome binary location
+    
     current_os = platform.system()
+    
     if current_os == "Linux":
         chrome_options.binary_location = '/usr/bin/google-chrome'
     elif current_os == "Darwin":
@@ -83,7 +85,7 @@ def managed_webdriver():
         chrome_options.binary_location = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
     else:
         raise Exception(f"Unsupported OS: {current_os}")
-
+    
     service = ChromeService(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
