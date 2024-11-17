@@ -77,7 +77,6 @@ def breakfast_hours(weekday, now):
     b_hours["Diana Center Cafe"] = "9:00 AM to 3:00 PM" # ???
   else:
     b_hours["Chef Don's"] = "Closed for breakfast"
-    b_hours["Ferris"] = "7:30 AM to 2:00 PM" # ????
     #b_hours["Hewitt Dining"] = "10:30 AM to 3:00 PM"
     b_hours["Diana Center Cafe"] = "Closed for breakfast"
 
@@ -88,7 +87,10 @@ def breakfast_hours(weekday, now):
     b_hours["Hewitt Dining"] = b_hours["Kosher @ Barnard"] = "10:30 AM to 3:00 PM"
   
   if weekday == 5:
+    b_hours["Ferris"] = "9:00 AM to 11:00 AM" # ????
     b_hours["Kosher @ Barnard"] = "Closed for breakfast"
+  if weekday == 6:
+    b_hours["Ferris"] = "10:00 AM to 2:00 PM"
 
   if weekday in [6, 0, 1, 2, 3]:
     b_hours["John Jay"] = "9:30 AM to 11:00 AM"
