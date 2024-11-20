@@ -103,6 +103,27 @@ def breakfast_hours(weekday, now):
     b_hours["Hewitt Dining"] = "10:30 AM to 12:30 PM"
 
     b_hours["Ferris"] = b_hours["Chef Don's"] = b_hours["Chef Mike's"] = b_hours["Faculty House"] = b_hours["Fac Shack"] = b_hours["Grace Dodge"] = b_hours["Diana Center Cafe"] = "Closed for breakfast"
+  # THANKSGIVING BREAK
+
+  if now.month == 11 and now.day in [26, 27, 28, 29, 30]:
+    b_hours["Chef Mike's"] = b_hours["Faculty House"] = b_hours["Fac Shack"] = b_hours["Grace Dodge"] = b_hours["Chef Don's"] = b_hours["Diana Center Cafe"] = "Closed for breakfast"
+  if now.month == 11 and now.day == 26:
+    b_hours["Chef Don's"] = "8:00 AM to 11:00 AM"
+    b_hours["Ferris"] = "7:30 AM to 11:00 AM"
+    b_hours["JJ's"] = "4:00 AM to 10:00 AM"
+    b_hours["John Jay"] = "9:30 AM to 11:30 AM"
+    b_hours["Diana Center Cafe"] = "9:00 AM to 11:00 AM"
+    b_hours["Hewitt Dining"] = "7:30 AM to 10:00 AM"
+  if now.month == 11 and now.day == 27:
+    b_hours["Hewitt Dining"] = "8:00 AM to 2:00 PM"
+  if now.month == 11 and now.day == 28:
+    b_hours["Hewitt Dining"] = "Closed for breakfast"
+  if now.month == 11 and now.day in [29, 30]:
+    b_hours["Hewitt Dining"] = "10:30 AM to 3:00 PM"
+  if now.month == 12 and now.day == 1:
+    b_hours["John Jay"] = "9:30 AM to 11:30 AM"
+    b_hours["JJ's"] = b_hours["Faculty House"] = b_hours["Fac Shack"] = b_hours["Grace Dodge"] = b_hours["Chef Don's"] = b_hours["Ferris"] = b_hours["Chef Mikes"] = "Closed for breakfast"
+
 
   return b_hours
 
@@ -155,11 +176,16 @@ def lunch_hours(weekday, now):
   else:
     l_hours["John Jay"] = "Closed for lunch"
 
+  # FALL BREAK
   if now.month == 11 and now.day in [3, 4, 5]:
     l_hours["Hewitt Dining"] = "12:30 PM to 3:00 PM"
     l_hours["JJ's"] = "12:00 AM to 3:00 PM"
     l_hours["John Jay"] = "12:00 PM to 3:00 PM"
     l_hours["Ferris"] = l_hours["Chef Don's"] = l_hours["Chef Mike's"] = l_hours["Faculty House"] = l_hours["Fac Shack"] = l_hours["Grace Dodge"] = l_hours["Diana Center Cafe"] = "Closed for lunch"
+
+  # THANKSGIVING BREAK
+  if now.month == 11 and now.day in [26, 27, 28, 29, 30]:
+    l_hours["Chef Don's"] = l_hours["Chef Mike's"]
 
   return l_hours
 
