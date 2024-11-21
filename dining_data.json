@@ -181,7 +181,17 @@
             ]
         }
     },
-    "Faculty House": {},
+    "Faculty House": {
+        "lunch": {
+            "Daily Offerings": [
+                "Butter Chicken",
+                "Chana Masala",
+                "Basmati Rice",
+                "Aloo Baigan",
+                "Naan Bread"
+            ]
+        }
+    },
     "Chef Mike's": {
         "lunch & dinner": {
             "Build Your Own - Right Line": [
@@ -230,8 +240,8 @@
                 "French Toast",
                 "Buttermilk Biscuit",
                 "Crispy Hashbrowns",
-                "Egg White Fritatta",
-                "Beef Breakfast Sausage"
+                "Beef Breakfast Sausage",
+                "Tater Tots"
             ],
             "Flame": [
                 "Scrambled Eggs",
@@ -297,7 +307,7 @@
             ],
             "Homestyle": [
                 "Smoky Barbecue Spiced Short Rib",
-                "Lemon Pepper Fish",
+                "Spicy Salmon",
                 "Herbed Brown Rice",
                 "Crispy Baked Tofu",
                 "Steamed Broccoli"
@@ -328,7 +338,7 @@
                 "Pesto Sauce"
             ],
             "Delicious Without": [
-                "Smoky Barbecue Spiced Short Rib",
+                "Lemon Chicken",
                 "Stewed Black Beans with Tomatoes and Onions",
                 "Cilantro Brown Rice",
                 "Roasted Chimichurri Cauliflower",
