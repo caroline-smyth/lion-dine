@@ -54,7 +54,7 @@ body {
   left: 0;
 }
 
-.right-top {
+.top {
   margin-right: 2.5rem;
   display: flex;
   flex-direction: column;
@@ -62,12 +62,13 @@ body {
   font-size: 22px;
 }
 
+/*
 .top {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   font-size: 22px;
-}
+}*/
 
 .feedback {
   text-decoration: underline;
