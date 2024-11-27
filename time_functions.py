@@ -184,8 +184,16 @@ def lunch_hours(weekday, now):
     l_hours["Ferris"] = l_hours["Chef Don's"] = l_hours["Chef Mike's"] = l_hours["Faculty House"] = l_hours["Fac Shack"] = l_hours["Grace Dodge"] = l_hours["Diana Center Cafe"] = "Closed for lunch"
 
   # THANKSGIVING BREAK
-  if now.month == 11 and now.day in [26, 27, 28, 29, 30]:
-    l_hours["Chef Don's"] = l_hours["Chef Mike's"]
+  if (now.month == 11 and now.day in [26, 27, 28, 29, 30]) or (now.month == 12 and now.day == 1):
+    l_hours["Chef Don's"] = l_hours["Chef Mike's"] = l_hours["Faculty House"] = l_hours["Fac Shack"] = l_hours["Grace Dodge"] = l_hours["Ferris"] = l_hours["John Jay"] = l_hours["Diana Center Cafe"] = "Closed for lunch"
+  if now.month == 11 and now.day == 27:
+    l_hours["Ferris"] = "11:00 AM to 4:00 PM"
+  if now.month == 11 and now.day == 28:
+    l_hours["Hewitt Dining"] = "Closed for lunch"
+  if now.month == 11 and now.day in [29, 30]:
+    l_hours["JJ's"] = "10:00 AM to 6:00 PM"
+  if now.month == 12 and now.day == 1:
+    l_hours["John Jay"] = "12:00 PM to 3:00 PM"
 
   return l_hours
 
@@ -237,6 +245,16 @@ def dinner_hours(weekday, now):
     d_hours["JJ's"] = d_hours["John Jay"] = "3:00 PM to 6:00 PM"
     d_hours["Ferris"] = d_hours["Chef Don's"] = d_hours["Chef Mike's"] = d_hours["Faculty House"] = d_hours["Fac Shack"] = d_hours["Grace Dodge"] = d_hours["Diana Center Cafe"] = "Closed for dinner"
   
+  # THANKSGIVING BREAK
+  if (now.month == 11 and now.day in [26, 27, 28, 29, 30]) or (now.month == 12 and now.day == 1):
+    d_hours["Chef Don's"] = d_hours["Chef Mike's"] = d_hours["Faculty House"] = d_hours["Fac Shack"] = d_hours["Grace Dodge"] = d_hours["Ferris"] = d_hours["John Jay"] = d_hours["Diana Center Cafe"] = "Closed for dinner"
+  if now.month == 11 and now.day == 27:
+    d_hours["Ferris"] = "4:00 PM to 6:00 PM"
+  if now.month == 11 and now.day in [29, 30]:
+    d_hours["JJ's"] = "10:00 AM to 6:00 PM"
+  if now.month == 12 and now.day == 1:
+    d_hours["John Jay"] = "4:00 PM to 7:00 PM"
+  
 
   return d_hours
 
@@ -256,8 +274,13 @@ def latenight_hours(weekday, now):
   else:
     ln_hours["Diana Center Cafe"] = "Closed for late night"
   
+  # FALL BREAK 
   if now.month == 11 and now.day in [3, 4, 5]:
     ln_hours["JJ's"] = ln_hours["Diana Center Cafe"] = ln_hours["Fac Shack"] = "Closed for late night"
+  
+  if (now.month == 11 and now.day in [27, 28, 29, 30]) or (now.month == 12 and now.day == 1):
+    ln_hours["JJ's"] = ln_hours["Diana Center Cafe"] = ln_hours["Fac Shack"] = "Closed for late night"
+
   return ln_hours
 
 def john_jay_open(now):
