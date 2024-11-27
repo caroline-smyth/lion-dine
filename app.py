@@ -387,6 +387,18 @@ def open_at_meal(now, meal):
     else:
       filtered_halls["JJ's"]["status"] = "Closed for late night"
 
+  if now.month == 11 and now.day in [27, 28, 29, 30]:
+    filtered_halls["Chef Don's"]["status"] = filtered_halls["Chef Mike's"]["status"] = filtered_halls["Ferris"]["status"] = filtered_halls["Faculty House"]["status"] = filtered_halls["Fac Shack"]["status"] = filtered_halls["Grace Dodge"]["status"] = filtered_halls["Diana Center Cafe"]["status"] = "Closed today"
+  if now.month == 11 and now.day == 27:
+    filtered_halls["Ferris"]["status"] = "Open"
+  if now.month == 11 and now.day in [29, 30]:
+    if meal in ["breakfast", "lunch", "dinner"]:
+      filtered_halls["JJ's"]["status"] = "Open"
+    else:
+      filtered_halls["JJ's"]["status"] = "Closed for late night"
+  if now.month == 12 and now.day == 1:
+    filtered_halls["John Jay"]["status"] = "Open"
+
   for hall_name in halls.keys():
     if meal == "breakfast":
       filtered_halls[hall_name]["hours"] = b_hours.get(hall_name, "Hours not available")
