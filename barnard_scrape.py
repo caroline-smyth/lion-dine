@@ -60,7 +60,7 @@ def scrape_barnard():
     except:
       continue
 
-    print(dining_hall_data)
+    #print(dining_hall_data)
   driver.quit()
   return dining_hall_data
 
