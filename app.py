@@ -386,11 +386,14 @@ def open_at_meal(now, meal):
       filtered_halls["JJ's"]["status"] = "Open"
     else:
       filtered_halls["JJ's"]["status"] = "Closed for late night"
-
+  
   if now.month == 11 and now.day in [27, 28, 29, 30]:
-    filtered_halls["Chef Don's"]["status"] = filtered_halls["Chef Mike's"]["status"] = filtered_halls["Ferris"]["status"] = filtered_halls["Faculty House"]["status"] = filtered_halls["Fac Shack"]["status"] = filtered_halls["Grace Dodge"]["status"] = filtered_halls["Diana Center Cafe"]["status"] = "Closed today"
+    filtered_halls["Chef Don's"]["status"] = filtered_halls["Chef Mike's"]["status"] = filtered_halls["Ferris"]["status"] = filtered_halls["Faculty House"]["status"] = filtered_halls["Fac Shack"]["status"] = filtered_halls["Grace Dodge"]["status"] = filtered_halls["Diana Center Cafe"]["status"] = filtered_halls["John Jay"]["status"] = filtered_halls["JJ's"]["status"] = "Closed today"
+  
   if now.month == 11 and now.day == 27:
     filtered_halls["Ferris"]["status"] = "Open"
+    if meal == "latenight":
+      filtered_halls["Ferris"]["status"] = "Closed for late night"
   if now.month == 11 and now.day in [29, 30]:
     if meal in ["breakfast", "lunch", "dinner"]:
       filtered_halls["JJ's"]["status"] = "Open"
@@ -635,12 +638,6 @@ def set_current_time():
 
 @app.route('/') 
 def index():
-  """
-  now = datetime.now(ny_tz)
-  filtered_halls = current_open_stations(now) # returns closed/missing data/meal info for each dining hall
-  return render_template('index.html', halls=filtered_halls, current_time=now)
-
-  """
   now = get_current_time()
   if now.hour >= 4 and now.hour < 11:
     return breakfast()
@@ -650,14 +647,6 @@ def index():
     return dinner()
   else:
     return latenight()
-  """
-  filtered_halls = current_open_stations(now)
-  response = make_response(render_template('index.html', halls=filtered_halls, current_time=now))
-  response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
-  response.headers['Pragma'] = 'no-cache'
-  response.headers['Expires'] = '0'
-  return response
-  """
   
 @app.route('/breakfast')
 def breakfast():
