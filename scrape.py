@@ -60,7 +60,7 @@ def managed_webdriver():
     chrome_options.add_argument("--disable-infobars")
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     """
-    #chrome_options.add_argument("--headless")  # Use the new headless mode
+    # chrome_options.add_argument("--headless")  # Use the new headless mode
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--enable-unsafe-swiftshader")
     chrome_options.add_argument("--disable-dev-shm-usage")
@@ -205,8 +205,6 @@ def scrape_all():
   dict.update(barnard_data)
   diana_data = scrape_diana()
   dict.update(diana_data)
-  #kosher_data = scrape_kosher()
-  #dict.update(kosher_data)
   print(dict)
   return dict
 

@@ -3,122 +3,275 @@
         "breakfast": {
             "Soup Station": [
                 "Oatmeal",
-                "Chunky Monkey",
-                "Farina"
+                "Blueberry Oatmeal",
+                "Grits"
             ],
             "Main Line": [
-                "Scrambled Eggs",
-                "String Beans and Carrots w/ Garlic",
-                "Brown Rice Pilaf",
-                "Chicken Fajita"
+                "Scramble Eggs",
+                "Egg White Scramble",
+                "Pancakes",
+                "Roasted Carrots",
+                "Tater Tots",
+                "Sausage"
             ],
             "Vegan Station": [
-                "Just Egg Patty",
-                "Vegan Chorizo",
-                "String Beans and Carrots w/ Garlic",
-                "Brown Rice Pilaf"
+                "Tofu Scramble",
+                "Vegan Sausage",
+                "Vegan Muffins",
+                "Roasted Carrots"
             ],
             "Nook": [
-                "Sausage, Egg, and Cheese Biscuits",
+                "Cherry Blossom Tarts",
                 "Belgian Waffles"
             ]
         },
         "lunch": {
+            "Main Line": [
+                "Spicy Pork Stew",
+                "Vegetable Lo Mein",
+                "Vegetable Medley",
+                "Black Beans",
+                "Bulgur"
+            ],
             "Halal Station": [
-                "Scrambled Eggs",
-                "Chicken Fajita",
-                "String Beans and Carrots w/ Garlic",
-                "Brown Rice pilaf"
+                "Sweet Chili Chicken",
+                "Vegetable Lo Mein",
+                "Vegetable Medley"
             ],
             "Gluten Free Station": [
-                "Scrambled Eggs",
-                "Chicken Fajita",
-                "String Beans and Carrots w/ Garlic",
-                "Brown Rice Pilaf"
+                "Sweet Chili Chicken",
+                "Rice",
+                "Vegetable Medley"
             ],
             "Vegan Station": [
-                "Just Egg Patty/Vegan Sausage Patty",
-                "String Beans and Carrots w/ Garlic",
-                "Brown Rice Pilaf"
+                "Sweet Chili Tofu",
+                "Vegetable Lo Mein",
+                "Vegetable Medley"
             ]
         },
         "dinner": {
             "Main Line": [
-                "Mussels Fra Diavalo",
-                "Balsamic Roasted Carrots and Fennel",
-                "Polenta",
-                "Quinoa Pilaf",
-                "Pinto Beans"
+                "Creamy Chipotle Chicken",
+                "Corn",
+                "Yellow Rice",
+                "Freekeh",
+                "Black Eyed Beans"
             ],
             "Halal Station": [
-                "Neapolitan Cod Loin",
-                "Balsamic Roasted Carrots and Fennel",
-                "Polenta"
+                "Creamy Chipotle Chicken",
+                "Corn",
+                "Yellow Rice"
             ],
             "Gluten Free Station": [
-                "Mussels Fra Diavalo",
-                "Balsamic Roasted Carrots and Fennel",
-                "Polenta"
+                "Creamy Chipotle Chicken",
+                "Corn",
+                "Yellow Rice"
             ],
             "Vegan Station": [
-                "Vegan Chicken Parmesan",
-                "Balsamic Roasted Carrots and Fennel",
-                "Polenta"
+                "Rajma Kidney Beans",
+                "Yellow Rice",
+                "Corn"
             ]
         },
         "lunch & dinner": {
             "Pasta Station": [
                 "Marinara Sauce",
-                "Pesto Cream",
-                "Garlic Oil",
-                "Linguine",
+                "Chicken Alfredo",
+                "Shallot Oil",
+                "Cavatappi",
                 "Whole Wheat Pasta",
-                "Sunday Sauce"
+                "Pomodoro"
             ],
             "Soup Station": [
-                "Chicken Noodle Soup",
-                "Minestrone"
+                "Hot & Sour",
+                "Egg Drop"
             ],
             "Fusion Station": [
-                "Lamb and Beef Gyro",
-                "Tofu with Roasted Red Pepper Sauce",
-                "Dill Rice",
-                "Roasted Butternut Squash",
-                "Pita"
-            ],
-            "Action Station": [
-                "Chicken Tangine w/ Chickpeas"
+                "Chicken Shawarma",
+                "Lemon Potatoes",
+                "Falafel",
+                "Roasted Green Beans",
+                "Pita Bread"
             ]
         }
     },
-    "JJ's": {},
-    "Ferris": {},
-    "Faculty House": {},
-    "Chef Mike's": {},
+    "JJ's": {
+        "lunch & dinner": {
+            "Main Line": [
+                "Truffle Burger",
+                "Pot Roast Panini",
+                "Chicken Caesar Salad Sandwich",
+                "Chana Masala Fries",
+                "Truffle Beyond Burger"
+            ]
+        },
+        "late night": {
+            "Grill": [
+                "Potato Skins"
+            ]
+        },
+        "daily": {
+            "Fry Station": [
+                "Chicken tenders",
+                "Onion Rings",
+                "Curly Fries"
+            ],
+            "Action Station": [
+                "Bacon Egg and Cheese on a English Muffin",
+                "Strawberry Cheesecake Stuffed French Toast",
+                "Vegan Pancakes"
+            ],
+            "Grill": [
+                "Spinach Mozz and Mushroom Quesadilla"
+            ]
+        }
+    },
+    "Ferris": {
+        "breakfast": {
+            "Main Line": [
+                "Pancakes",
+                "Scrambled Eggs",
+                "Tater Tots",
+                "Pork Sausage Links",
+                "Turkey Sausage Links",
+                "Biscuits and Sausage Gravy"
+            ],
+            "Vegan Station": [
+                "Broccoli",
+                "Tofu Scramble",
+                "Beyond Sausage"
+            ]
+        },
+        "lunch": {
+            "Action Station": [
+                "Falafel Bowl: Falafel, onion, cucumbers, kale, diced tomatoes, yellow rice, hummus, tzatziki sauce"
+            ],
+            "Vegan Station": [
+                "Chickpea Chana Masala",
+                "Jasmine Rice",
+                "Naan Bread"
+            ]
+        },
+        "dinner": {
+            "Main Line": [
+                "Thai Basil Chicken",
+                "Raviolo Pomodoro",
+                "Farro Pilaf",
+                "Pinto Beans",
+                "Roasted Broccoli"
+            ],
+            "Vegan Station": [
+                "Beyond Sausage & Peppers",
+                "Polenta",
+                "Roasted Broccoli"
+            ],
+            "Action Station": [
+                "Baked Potato Bar: Baked potato, beef chili, bacon bits, butter, sliced jalapenos, cheddar cheese, sour cream, scallions, steamed broccoli"
+            ]
+        },
+        "lunch & dinner": {
+            "Daily Pizzas": [
+                "Pizza: Cheese, Halal Pepperoni, BBQ Chicken, Vegan Banana Curry, Cheesy Bread"
+            ]
+        }
+    },
+    "Faculty House": {
+        "lunch": {
+            "Daily Offerings": [
+                "Palak Chicken",
+                "Aloo Gobi",
+                "Yellow Dal",
+                "Basmati Rice",
+                "Naan Bread"
+            ]
+        }
+    },
+    "Chef Mike's": {
+        "lunch & dinner": {
+            "Build Your Own - Right Line": [
+                "Protein",
+                "Cheese",
+                "Toppings",
+                "Dressings"
+            ],
+            "Cold Counter - Middle Line": [
+                "Roast Beef and Blue Cheese Crumble",
+                "Chinese Garlic Broccoli"
+            ],
+            "Hot Counter - Left Line": [
+                "BBQ Pork",
+                "BBQ Jackfruit"
+            ]
+        }
+    },
     "Chef Don's": {
         "breakfast": {},
         "lunch": {},
         "dinner": {}
     },
     "Grace Dodge": {},
-    "Fac Shack": {},
+    "Fac Shack": {
+        "lunch": {
+            "Lunch Service": [
+                "Butter Chicken",
+                "Served Over Basmati Rice with Cumin and Lentil Dahl",
+                "Lentil Dahl",
+                "Served Over Basmati Rice with Cumin and Stewed Eggplant",
+                "Served with a Side of",
+                "Coriander Chutney (VN, GF, H) Caramelized Onion Naan (D, V, S, H) Chocolate Chip Cookie (D, V, E, S, H)"
+            ]
+        }
+    },
     "Hewitt Dining": {
         "breakfast": {
             "500 Degrees": [
-                "Veggie Breakfast Pizza",
-                "Pepper and Onion Pizza",
-                "Grilled Cheese Sandwich"
+                "Cheese Flatbread",
+                "Scrambled Egg",
+                "Chicken Sausage Patty",
+                "Margherita Flat Bread Pizza"
+            ],
+            "Homestyle": [
+                "Waffles",
+                "Biscuit",
+                "Buttermilk Pancakes",
+                "Home Fries",
+                "Chicken Sausage Patty"
+            ],
+            "Flame": [
+                "Scrambled Eggs",
+                "Free Range Eggs",
+                "Egg White Omelet",
+                "Chopped Onion",
+                "Diced Red Bell Peppers",
+                "Roasted Mushroom",
+                "Sauteed Spinach",
+                "Chopped Tomatoes",
+                "Cheddar Cheese",
+                "Shredded Mozzarella Cheese"
+            ],
+            "Cucina": [
+                "Scrambled Eggs with Cheese",
+                "Scrambled Eggs",
+                "Home Fries with Onions & Peppers",
+                "Chicken Sausage Patty",
+                "Meatless Vegetarian Sausage Patty",
+                "Tofu Scramble"
             ],
             "Delicious Without": [
-                "Breakfast Fried Rice",
-                "White Rice",
-                "Potato Stirfry Banchan",
-                "Sauteed Crimini Mushrooms",
-                "Spicy Braised Bok Choy",
-                "Grilled Scallions",
-                "Corn Grits",
-                "Mango Refresher Smoothie",
-                "Cubed Watermelon"
+                "Turkey Bacon",
+                "Oatmeal",
+                "Crispy Hashbrowns",
+                "Steamed Green Beans",
+                "Golden Raisins",
+                "Sugar, In The Raw",
+                "Ground Cinnamon",
+                "Chickpea Salad",
+                "Red Quinoa, Corn, Tomato"
+            ],
+            "Fruit & Yogurt": [
+                "Classic Oatmeal",
+                "Grits",
+                "Blueberry Muffin"
             ],
             "The Sweet Shoppe": [
                 "Double Chocolate Chip Muffin",
@@ -139,73 +292,87 @@
             ]
         },
         "lunch": {
+            "500 Degrees": [
+                "Cheese Flatbread",
+                "Scrambled Egg",
+                "Chicken Sausage Patty",
+                "Margherita Flat Bread Pizza"
+            ],
             "Homestyle": [
-                "Belgian Waffle",
-                "French Toast",
-                "Buttermilk Biscuit",
+                "Waffles",
+                "Biscuit",
                 "Buttermilk Pancakes",
-                "Beef Breakfast Sausage"
+                "Home Fries",
+                "Chicken Sausage Patty"
             ],
             "Flame": [
                 "Scrambled Eggs",
-                "Egg Omelette",
+                "Free Range Eggs",
                 "Egg White Omelet",
                 "Chopped Onion",
                 "Diced Red Bell Peppers",
                 "Roasted Mushroom",
                 "Sauteed Spinach",
                 "Chopped Tomatoes",
-                "Cheddar Cheese"
+                "Cheddar Cheese",
+                "Shredded Mozzarella Cheese"
             ],
             "Cucina": [
-                "Spaghetti with Marinara Sauce",
-                "Pasta Primavera",
-                "Alfredo Shells",
-                "Sauteed Chicken Breast",
-                "Italian Meatball",
-                "Vegan Meatballs"
+                "Scrambled Eggs with Cheese",
+                "Scrambled Eggs",
+                "Home Fries with Onions & Peppers",
+                "Chicken Sausage Patty",
+                "Meatless Vegetarian Sausage Patty",
+                "Tofu Scramble"
             ],
             "Delicious Without": [
-                "Lemon Pepper Chicken Thigh",
-                "White Rice",
-                "Three Bean Chili",
-                "Steamed Carrots",
-                "Garden Salad",
-                "Fresh Fruit Salad"
+                "Turkey Bacon",
+                "Oatmeal",
+                "Crispy Hashbrowns",
+                "Steamed Green Beans",
+                "Golden Raisins",
+                "Sugar, In The Raw",
+                "Ground Cinnamon",
+                "Chickpea Salad",
+                "Red Quinoa, Corn, Tomato"
             ],
-            "The Sweet Shoppe": [
-                "Cheese Danish",
-                "Croissant",
-                "Country Corn Muffin",
-                "Cranberry Muffin",
-                "Chocolate Croissant",
+            "Fruit & Yogurt": [
+                "Classic Oatmeal",
+                "Grits",
                 "Blueberry Muffin"
             ],
+            "The Sweet Shoppe": [
+                "Double Chocolate Chip Muffin",
+                "Blueberry Muffin",
+                "Cranberry Muffin",
+                "Corn Muffin",
+                "Croissant",
+                "Chocolate Croissant"
+            ],
             "Fuel": [
-                "Hummus",
-                "Garlic Hummus",
-                "Fresh Carrot Sticks",
-                "Celery Sticks",
-                "Cubed Pineapple",
+                "Low Fat Strawberry Yogurt",
+                "Low Fat Vanilla Yogurt",
+                "Homemade Granola",
+                "4% Full Fat Cottage Cheese",
                 "Cubed Honeydew",
-                "Cubed Watermelon"
+                "Cubed Cantaloupe",
+                "Cubed Pineapple"
             ]
         },
         "dinner": {
             "500 Degrees": [
                 "Cheese Pizza",
-                "Chef's Choice",
                 "Grilled Veggie Pizza",
-                "Cheese Pizza",
+                "Pesto Chicken Pizza",
                 "2Mato's Vegan Veggie Pizza",
-                "Margherita Pizza Vegan Cheese"
+                "Parmesan Cheese"
             ],
             "Homestyle": [
-                "Curry Chicken",
-                "Tofu Curry",
-                "Grilled Flat Bread",
-                "Basmati Rice with Cumin",
-                "Roasted Vegetables"
+                "Teriyaki Flat Iron Steak",
+                "Sweet Thai Chili Sauce",
+                "Vegetable Lo Mein",
+                "White Rice",
+                "Steamed Broccoli"
             ],
             "Flame": [
                 "Hamburger Patty",
@@ -230,30 +397,41 @@
                 "Vegan Meatballs"
             ],
             "Delicious Without": [
-                "Roast Chicken Breast",
-                "Three Bean Vegetarian Chili",
-                "Steamed Rice",
-                "Middle Eastern Roasted Vegetables",
-                "Red Quinoa, Corn, Tomatoes",
-                "Chickpea Cucumber Salad",
-                "Garden Salad",
-                "Oat Milk Chia Seed Pudding"
+                "chicken tinga rice bowl",
+                "Red Rice",
+                "Vegetable Chili",
+                "Roasted Corn",
+                "Pico de Gallo",
+                "Shredded Iceberg Lettuce",
+                "Black Bean and Corn Salad"
             ],
-            "Kosher - meat homestyle": [
-                "Cajun Grilled Tilapia",
-                "Southwestern Bean and Tomato Stew",
-                "White Rice",
-                "Macaroni & Cheese",
-                "Lentil Soup",
-                "Roasted Vegetable Blend"
+            "The Sweet Shoppe": [
+                "Croissant",
+                "Cheese Danish",
+                "Country Corn Muffin",
+                "Double Chocolate Chip Muffin"
             ],
-            "Kosher - dairy homestyle": [
-                "Baked Tilapia",
-                "White Rice",
-                "White Bean Soup",
-                "Vegetable Tofu Fajita",
-                "Roast Butternut Squash",
-                "Roasted Vegetable Blend"
+            "Fuel": [
+                "Salted Caramel Apple Bundt Cake",
+                "Cheesecake",
+                "Cherry Pie",
+                "Vanilla Cupcake",
+                "Chocolate cupcakes"
+            ],
+            "Salad Bar": [
+                "Cubed Honeydew",
+                "Cubed Pineapple",
+                "Mixed Field Greens",
+                "Chopped Kale",
+                "Shredded Carrots",
+                "Grape Tomatoes",
+                "Fresh Dill Pickle Slices",
+                "Black Beans",
+                "Hard Boiled Egg",
+                "Dark Red Kidney Beans",
+                "Shaved Brussel Sprouts & Kale Salad",
+                "Sliced Cucumber",
+                "Black Bean and Corn Salad"
             ]
         },
         "every day": {
@@ -273,41 +451,184 @@
                 "Balsamic Vinegar",
                 "Extra Virgin Olive Oil"
             ],
+            "Desserts": [
+                "Chocolate Chip Cookies",
+                "Oatmeal Raisin Cookies",
+                "Sugar Cookies",
+                "Semi Sweet Chocolate Chips",
+                "Peppermint Candy Bark",
+                "Coffee Cake",
+                "Oreo Crumbles",
+                "Maraschino Cherries",
+                "Rainbow Sprinkles",
+                "Chocolate Sprinkles"
+            ],
             "Soup": [
-                "Chicken Noodle Soup",
-                "Vegetarian Chili",
+                "Vegetarian Vegetable Soup",
                 "Crackers, Saltine, 2 CT, Zesta",
-                "Crackers, Oyster, Zesta, Keebler, 0.5 oz"
-            ]
-        },
-        "brunch": {
-            "500 Degrees": [
-                "Cheese Pizza",
-                "Roasted Veggie",
-                "Pesto Chicken Pizza"
-            ],
-            "Homestyle": [
-                "Scrambled Eggs",
-                "Egg and Cheese Scramble Bowl",
-                "Tofu Scramble",
-                "Baked Tater Tots",
-                "Meatless Vegetarian Sausage Patty",
-                "Turkey Bacon",
-                "Chicken Sausage Patty"
-            ],
-            "Flame": [
-                "Scrambled Eggs",
-                "Free Range Eggs",
-                "Egg White Omelet",
-                "Chopped Onion",
-                "Diced Red Bell Peppers",
-                "Roasted Mushroom",
-                "Sauteed Spinach",
-                "Chopped Tomatoes",
-                "Cheddar Cheese",
-                "Shredded Mozzarella Cheese"
+                "Crackers, Oyster, Zesta, Keebler, 0.5 oz",
+                "Chicken Noodle Soup"
             ]
         }
     },
-    "Diana Center Cafe": null
+    "Diana Center Cafe": {
+        "breakfast": {
+            "Breakfast": [
+                "Brioche Bun",
+                "cage-free fried egg",
+                "Bacon",
+                "Turkey Bacon",
+                "American Cheese Slice",
+                "Fried Hash Brown Patty",
+                "Pork Sausage Patty",
+                "Tater Tots",
+                "Eggs",
+                "Sliced American Cheese",
+                "Diced Tomatoes",
+                "Fresh Spinach",
+                "Diced Red Onion",
+                "Chopped Broccoli",
+                "Onions and Peppers"
+            ],
+            "Oatmeal Bar": [
+                "Classic Oatmeal",
+                "Dried Cranberries",
+                "Light Brown Sugar",
+                "Hard Boiled Egg"
+            ],
+            "Smoothie Lab": [
+                "Very Green Smoothie",
+                "Strawberry Banana Smoothie",
+                "Carrot and Apple Smoothie",
+                "Berry Blast Smoothie",
+                "Green Monster"
+            ],
+            "Fresh Juiced": [
+                "Ruby Red Surge",
+                "Antioxidant Power",
+                "Green Detox",
+                "C Clearly Carrot Orange",
+                "B Cleansed"
+            ]
+        },
+        "lunch": {
+            "Sono": [
+                "Yellow Rice",
+                "Black Beans",
+                "Cilantro Pesto Tofu",
+                "Pulled Chicken",
+                "Beef Taco Meat",
+                "Cheese Quesadillas",
+                "Chicken Quesadilla",
+                "CHE 19 Hard Shell Beef Taco"
+            ],
+            "Homestyle": [
+                "Penne Pasta",
+                "Roasted Chicken",
+                "Alfredo Sauce",
+                "Steamed Broccoli",
+                "Marinara Sauce",
+                "Nut Free Basil Pesto Sauce"
+            ],
+            "Pizza": [
+                "Margherita Pizza",
+                "Shredded Mozzarella Cheese",
+                "Sliced Pepperoni",
+                "Sausage Pork Crumbles",
+                "Grilled Chicken",
+                "Diced Ham",
+                "Plum Tomato",
+                "Sliced Mushrooms",
+                "Sliced Black Olives",
+                "Chopped Spinach",
+                "Roasted Red Peppers",
+                "Diced Red Onion",
+                "Chopped Chinese Broccoli",
+                "Nut Free Basil Pesto Sauce"
+            ],
+            "Sono Bar": [
+                "Guacamole",
+                "Mild Picante Salsa",
+                "Sliced Jalapeno",
+                "Sour Cream",
+                "Pico de Gallo",
+                "Cheddar Cheese",
+                "Diced Red Onions",
+                "Roasted Salsa Verde",
+                "Chipotle Sour Cream",
+                "Shredded Iceberg Lettuce"
+            ],
+            "Fresh Juiced": [
+                "Ruby Red Surge",
+                "Antioxidant Power",
+                "Green Detox",
+                "C Clearly Carrot Orange",
+                "B Cleansed"
+            ],
+            "Smoothie Lab": [
+                "Very Green Smoothie",
+                "Strawberry Banana Smoothie",
+                "Carrot and Apple Smoothie",
+                "Berry Blast Smoothie",
+                "Green Monster"
+            ]
+        },
+        "dinner": {
+            "Sono": [
+                "Yellow Rice",
+                "Black Beans",
+                "Cilantro Pesto Tofu",
+                "Pulled Chicken",
+                "Beef Taco Meat",
+                "Cheese Quesadillas",
+                "Chicken Quesadilla",
+                "CHE 19 Hard Shell Beef Taco"
+            ],
+            "Homestyle": [
+                "Penne Pasta",
+                "Roasted Chicken",
+                "Alfredo Sauce",
+                "Marinara Sauce",
+                "Nut Free Basil Pesto Sauce",
+                "Steamed Broccoli"
+            ],
+            "Pizza": [
+                "Margherita Pizza",
+                "Shredded Mozzarella Cheese",
+                "Sliced Pepperoni",
+                "Sausage Pork Crumbles",
+                "Grilled Chicken",
+                "Diced Ham",
+                "Plum Tomato",
+                "Sliced Mushrooms",
+                "Sliced Black Olives",
+                "Chopped Spinach",
+                "Roasted Red Peppers",
+                "Diced Red Onion",
+                "Chopped Chinese Broccoli",
+                "Nut Free Basil Pesto Sauce"
+            ]
+        },
+        "late night": {
+            "Diana Late grill": [
+                "Chicken Tenders",
+                "Crispy Chicken Sandwich",
+                "Vegan Chicken Nugget",
+                "Hamburger on Bun",
+                "Philly Cheese Steak",
+                "Gardenburger on Brioche Bun",
+                "French Fries",
+                "Onion Rings",
+                "American Cheese Slice",
+                "Grilled Cheese Sandwich",
+                "Bacon, Egg & Cheese Brioche",
+                "Cheese Nachos",
+                "Beef Taco Meat",
+                "Pulled Chicken",
+                "Breaded Mozzarella Cheese Sticks",
+                "Chicken & Cheese Quesadilla",
+                "Classic Cheese Quesadilla"
+            ]
+        }
+    }
 }
