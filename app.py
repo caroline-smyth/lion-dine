@@ -396,6 +396,8 @@ def open_at_meal(now, meal):
     filtered_halls["Fac Shack"]["status"] = "Open"
     if meal == "latenight":
       filtered_halls["Fac Shack"]["status"] = "Closed for late night"
+    elif meal == "breakfast":
+      filtered_halls["Fac Shack"]["status"] = "Closed for breakfast"
   if now.month == 1 and (now.day > 4 and now.day <= 17):
     if meal in ["breakfast", "lunch", "dinner"]:
       filtered_halls["JJ's"]["status"] = "Open"

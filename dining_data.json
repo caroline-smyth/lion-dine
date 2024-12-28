@@ -10,7 +10,24 @@
         "dinner": {}
     },
     "Grace Dodge": {},
-    "Fac Shack": {},
+    "Fac Shack": {
+        "lunch": {
+            "Lunch Service": [
+                "Chicken Shawarma",
+                "Served over basmati rice with shredded lettuce, cucumber and tomato",
+                "Seitan Shawarma",
+                "Served over basmati rice with shredded lettuce, cucumber and tomato"
+            ]
+        },
+        "dinner": {
+            "Dinner Service": [
+                "Spicy Dan Dan Beef",
+                "Served over jasmine rice with bok choy and shredded carrots",
+                "Spicy Impossible Meat",
+                "Served over jasmine rice with bok choy and shredded carrots"
+            ]
+        }
+    },
     "Hewitt Dining": null,
     "Diana Center Cafe": null
 }
