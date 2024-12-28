@@ -100,8 +100,7 @@ def breakfast_hours(weekday, now):
 
   # CHRISTMAS BREAK
   if now.month == 12 and now.day <= 31:
-    b_hours["Chef Mike's"] = b_hours["Faculty House"] = b_hours["Grace Dodge"] = b_hours["Chef Don's"] = b_hours["Diana Center Cafe"] = b_hours["John Jay"] = b_hours["JJ's"] = b_hours["Ferris"] = b_hours["Hewitt Dining"] = b_hours["Diana Center Cafe"] = "Closed for breakfast"
-    b_hours["Fac Shack"] = "11:00 AM to 2:00 PM"
+    b_hours["Chef Mike's"] = b_hours["Faculty House"] = b_hours["Grace Dodge"] = b_hours["Chef Don's"] = b_hours["Diana Center Cafe"] = b_hours["John Jay"] = b_hours["JJ's"] = b_hours["Ferris"] = b_hours["Hewitt Dining"] = b_hours["Diana Center Cafe"] = b_hours["Fac Shack"]= "Closed for breakfast"
   # NEED TO ADD FOR JANUARY
 
   return b_hours
