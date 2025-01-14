@@ -1,6 +1,19 @@
 {
     "John Jay": {},
-    "JJ's": {},
+    "JJ's": {
+        "daily": {
+            "Fry Station": [
+                "Chicken Tenders",
+                "Onion Rings",
+                "Curly Fries"
+            ],
+            "Main Line": [
+                "Salmon Burger with Thai Chili",
+                "Greek Chicken Sandwich",
+                "Vegan Buffalo Sandwich"
+            ]
+        }
+    },
     "Ferris": {},
     "Faculty House": {},
     "Chef Mike's": {},

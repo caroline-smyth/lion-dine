@@ -46,9 +46,9 @@ hall_names = [
   ]
 """
 cu_urls = {
-  "Fac Shack" : "https://dining.columbia.edu/content/fac-shack"
+  "JJ's" : "https://dining.columbia.edu/content/jjs-place-0"
 }
-hall_names = ["Fac Shack"]
+hall_names = ["JJ's"]
 #configures webdriver for a headless environment 
 @contextmanager
 def managed_webdriver():
