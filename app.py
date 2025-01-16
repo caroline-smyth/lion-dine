@@ -28,7 +28,7 @@ dining_halls = [
   "Hewitt Kosher"
 ]
 
-#gets dining data from dropbox json file
+#gets dining data from aws s3 json file
 def get_dining_data():
   bucket_name = 'liondine-data'
   object_name = 'dining_data.json'
