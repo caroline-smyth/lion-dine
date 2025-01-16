@@ -13,6 +13,7 @@ from datetime import datetime, time
 import time as time_module
 import random
 from contextlib import contextmanager
+import uuid
 import os
 import platform
 import json
@@ -76,6 +77,9 @@ def managed_webdriver():
     chrome_options.add_argument("--disable-infobars")
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     
+    #replacement for headless? forces each run to use a fresh profile
+    unique_profile = os.path.join("/tmp", f"chrome_profile_{uuid.uuid4().hex}")
+    chrome_options.add_argument(f"--user-data-dir={unique_profile}")
 
     # Determine the OS and set Chrome binary location
     
