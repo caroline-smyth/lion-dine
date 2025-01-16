@@ -65,7 +65,7 @@ def managed_webdriver():
     chrome_options.add_argument("--disable-infobars")
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     """
-    #chrome_options.add_argument("--headless")  # Use headless mode
+    chrome_options.add_argument("--headless=new")  # Use *new* headless mode
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--enable-unsafe-swiftshader")
     chrome_options.add_argument("--disable-dev-shm-usage")
@@ -77,9 +77,9 @@ def managed_webdriver():
     chrome_options.add_argument("--disable-infobars")
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     
-    #replacement for headless? forces each run to use a fresh profile
+    '''#replacement for headless? forces each run to use a fresh profile
     unique_profile = os.path.join("/tmp", f"chrome_profile_{uuid.uuid4().hex}")
-    chrome_options.add_argument(f"--user-data-dir={unique_profile}")
+    chrome_options.add_argument(f"--user-data-dir={unique_profile}")'''
 
     # Determine the OS and set Chrome binary location
     
@@ -116,6 +116,7 @@ def scrape_columbia(hall_name):
     #go to the URL and print the title of the page
     url = cu_urls[hall_name]
     driver.get(url)
+    time.sleep(5)
     title = driver.title
     dining_hall_name = title.split("|")
     actual_name = dining_hall_name[0].lower()
