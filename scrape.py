@@ -64,7 +64,7 @@ def managed_webdriver():
     chrome_options.add_argument("--disable-infobars")
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     """
-    chrome_options.add_argument("--headless")  # Use headless mode
+    #chrome_options.add_argument("--headless")  # Use headless mode
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--enable-unsafe-swiftshader")
     chrome_options.add_argument("--disable-dev-shm-usage")
