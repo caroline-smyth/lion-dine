@@ -33,7 +33,7 @@ def get_dining_data():
   bucket_name = 'liondine-data'
   object_name = 'dining_data.json'
   s3_client = boto3.client('s3')
-
+  #boto3 automatically looks for credentials stored locally
   try:
     response = s3_client.get_object(Bucket=bucket_name, Key=object_name)
     content = response['Body'].read().decode('utf-8')
