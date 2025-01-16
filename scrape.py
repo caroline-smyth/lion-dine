@@ -58,13 +58,13 @@ def managed_webdriver():
     chrome_options = Options()
     chrome_options = Options()
     """
-    chrome_options.add_argument("--headless")  # Use standard headless mode
+    chrome_options.add_argument("--headless")  # Use headless mode
     chrome_options.add_argument("--window-size=1920,1080")
     chrome_options.add_argument("--disable-extensions")
     chrome_options.add_argument("--disable-infobars")
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     """
-    #chrome_options.add_argument("--headless=new")  # Use the new headless mode
+    # chrome_options.add_argument("--headless")  # Use the new headless mode
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--enable-unsafe-swiftshader")
     chrome_options.add_argument("--disable-dev-shm-usage")
@@ -224,10 +224,10 @@ def scrape_all():
     hall_data = scrape_columbia(hall)
     dict.update(hall_data)
 
-  barnard_data = scrape_barnard()
+  '''barnard_data = scrape_barnard()
   dict.update(barnard_data)
   diana_data = scrape_diana()
-  dict.update(diana_data)
+  dict.update(diana_data)'''
   print(dict)
   return dict
 
@@ -243,6 +243,7 @@ def scrape_and_save():
 def upload_to_s3(file_path, bucket_name, object_name=None):
   if object_name is None:
     object_name = os.path.basename(file_path)
+  #boto3 automatically looks for credentials stored locally
   s3_client = boto3.client('s3')
   try:
     s3_client.upload_file(file_path, bucket_name, object_name)
