@@ -3,14 +3,14 @@
     "JJ's": {
         "daily": {
             "Fry Station": [
-                "Chicken Tenders",
-                "Onion Rings",
-                "Curly Fries"
+                "Chicken Nuggets",
+                "Mozzarella Sticks",
+                "Waffle Fries"
             ],
             "Main Line": [
-                "Salmon Burger with Thai Chili",
-                "Greek Chicken Sandwich",
-                "Vegan Buffalo Sandwich"
+                "Muenster, Bacon, Crispy Onion Burger",
+                "Chipotle Salmon Sliders",
+                "Vegan Southwest Chorizo"
             ]
         }
     },
@@ -23,7 +23,5 @@
         "dinner": {}
     },
     "Grace Dodge": {},
-    "Fac Shack": {},
-    "Hewitt Dining": null,
-    "Diana Center Cafe": null
+    "Fac Shack": {}
 }

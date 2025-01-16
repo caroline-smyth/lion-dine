@@ -82,3 +82,16 @@ body {
 .feedback:hover{
   opacity: .75;
 }
+
+.prefs-alls {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;  
+}
+
+.pa-menu{
+  font-size: 24px;
+}
