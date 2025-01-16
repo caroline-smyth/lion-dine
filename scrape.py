@@ -116,7 +116,7 @@ def scrape_columbia(hall_name):
     #go to the URL and print the title of the page
     url = cu_urls[hall_name]
     driver.get(url)
-    time.sleep(5)
+    time_module.sleep(5)
     title = driver.title
     dining_hall_name = title.split("|")
     actual_name = dining_hall_name[0].lower()
