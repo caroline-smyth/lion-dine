@@ -52,7 +52,7 @@ def current_open_stations(now):
   filtered_halls = {} #to be filled
 
   #if a dining hall is closed, give it value "Closed" instead of a list of food
-
+  #the following functions are from the time_functions.py file
   closed_check = [
     ("John Jay", john_jay_open),
     ("JJ's", jjs_open),
@@ -87,7 +87,6 @@ def current_open_stations(now):
   
     filtered_stations = {}
     
-    #this code will replace the below code once we have all scraped data.
     #here, we hard-code the times of each station of each dining hall.
     if hall_name == "John Jay":
       if now.weekday() == 6:
@@ -147,7 +146,6 @@ def current_open_stations(now):
           else:          
             filtered_stations[station] = items
       #return data to the filtered dictionary
-
       if filtered_stations:
         filtered_halls[hall_name]["stations"] = filtered_stations
       else:
@@ -622,14 +620,14 @@ def open_at_meal(now, meal):
 
 #mapping URLs to functions that display the HTML we want for that URL
 def get_current_time():
-  """Helper to fetch or reuse the current time for this request."""
+  #Helper to fetch or reuse the current time for this request.
   if not hasattr(g, 'now'):
       g.now = datetime.now(ny_tz)
   return g.now
 
 @app.before_request
 def set_current_time():
-  """Set the current time once per request."""
+  #Set the current time once per request.
   g.now = datetime.now(ny_tz)
 
 
