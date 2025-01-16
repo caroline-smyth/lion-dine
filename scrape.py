@@ -58,13 +58,6 @@ def managed_webdriver():
     #determine OS and set chrome binary location based on that
     chrome_options = Options()
     chrome_options = Options()
-    """
-    chrome_options.add_argument("--headless")  # Use headless mode
-    chrome_options.add_argument("--window-size=1920,1080")
-    chrome_options.add_argument("--disable-extensions")
-    chrome_options.add_argument("--disable-infobars")
-    chrome_options.add_argument("--disable-blink-features=AutomationControlled")
-    """
     chrome_options.add_argument("--headless=new")  # Use *new* headless mode
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--enable-unsafe-swiftshader")
@@ -76,6 +69,19 @@ def managed_webdriver():
     chrome_options.add_argument("--disable-setuid-sandbox")
     chrome_options.add_argument("--disable-infobars")
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+
+    #anti-bots for headless mode
+    chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    chrome_options.add_experimental_option("useAutomationExtension", False)
+
+    #user-agent?
+    chrome_options.add_argument(
+      "user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/115.0.5790.102 Safari/537.36"
+    )
+
+
     
     '''#replacement for headless? forces each run to use a fresh profile
     unique_profile = os.path.join("/tmp", f"chrome_profile_{uuid.uuid4().hex}")
