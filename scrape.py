@@ -13,6 +13,7 @@ from datetime import datetime, time
 import time as time_module
 import random
 from contextlib import contextmanager
+import uuid
 import os
 import platform
 import json
@@ -57,6 +58,7 @@ def managed_webdriver():
     #determine OS and set chrome binary location based on that
     chrome_options = Options()
     chrome_options = Options()
+<<<<<<< HEAD
     """
     chrome_options.add_argument("--headless")  # Use headless mode
     chrome_options.add_argument("--window-size=1920,1080")
@@ -65,6 +67,9 @@ def managed_webdriver():
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     """
     # chrome_options.add_argument("--headless")  # Use the new headless mode
+=======
+    chrome_options.add_argument("--headless=new")  # Use *new* headless mode
+>>>>>>> 55ab7d4646cb35d97850d84a7490e3df7fa0897d
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--enable-unsafe-swiftshader")
     chrome_options.add_argument("--disable-dev-shm-usage")
@@ -75,7 +80,23 @@ def managed_webdriver():
     chrome_options.add_argument("--disable-setuid-sandbox")
     chrome_options.add_argument("--disable-infobars")
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+
+    #anti-bots for headless mode
+    chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    chrome_options.add_experimental_option("useAutomationExtension", False)
+
+    #user-agent?
+    chrome_options.add_argument(
+      "user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/115.0.5790.102 Safari/537.36"
+    )
+
+
     
+    '''#replacement for headless? forces each run to use a fresh profile
+    unique_profile = os.path.join("/tmp", f"chrome_profile_{uuid.uuid4().hex}")
+    chrome_options.add_argument(f"--user-data-dir={unique_profile}")'''
 
     # Determine the OS and set Chrome binary location
     
@@ -112,6 +133,7 @@ def scrape_columbia(hall_name):
     #go to the URL and print the title of the page
     url = cu_urls[hall_name]
     driver.get(url)
+    time_module.sleep(5)
     title = driver.title
     dining_hall_name = title.split("|")
     actual_name = dining_hall_name[0].lower()
