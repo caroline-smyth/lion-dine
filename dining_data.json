@@ -3,14 +3,14 @@
     "JJ's": {
         "daily": {
             "Fry Station": [
-                "Chicken Nuggets",
-                "Mozzarella Sticks",
-                "Waffle Fries"
+                "Boneless Wings",
+                "Onion Rings",
+                "Sour Cream and Onion Wedges"
             ],
             "Main Line": [
-                "Muenster, Bacon, Crispy Onion Burger",
-                "Chipotle Salmon Sliders",
-                "Vegan Southwest Chorizo"
+                "Chipotle Bacon Burger",
+                "Fried Chicken Bruschetta Sandwich",
+                "Buffalo Chickpea Wrap"
             ]
         }
     },
@@ -23,5 +23,6 @@
         "dinner": {}
     },
     "Grace Dodge": {},
-    "Fac Shack": {}
+    "Fac Shack": {},
+    "Johnny's": {}
 }

@@ -33,7 +33,6 @@ cu_urls = {
   "Chef Don's" : "https://dining.columbia.edu/content/chef-dons-pizza-pi",
   "Grace Dodge" : "https://dining.columbia.edu/content/grace-dodge-dining-hall-0", 
   "Fac Shack" : "https://dining.columbia.edu/content/fac-shack", 
-  "Johnny's" : "https://dining.columbia.edu/johnnys"
 }
 hall_names = [
   "John Jay", 
@@ -46,7 +45,6 @@ hall_names = [
   "Fac Shack", 
   "Hewitt Dining", 
   "Diana Center Cafe",
-  "Johnny's"
   ]
 """
 cu_urls = {"Chef Mike's" : "https://dining.columbia.edu/chef-mikes"}
