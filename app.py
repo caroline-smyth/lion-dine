@@ -6,7 +6,7 @@ import os
 import requests
 import json
 import boto3
-from time_functions import john_jay_open, jjs_open, ferris_open, fac_house_open, mikes_open, dons_open, grace_dodge_open, fac_shack_open, hewitt_open, diana_open, hours_dict, breakfast_hours, lunch_hours, dinner_hours, latenight_hours
+from time_functions import john_jay_open, jjs_open, ferris_open, fac_house_open, mikes_open, dons_open, grace_dodge_open, fac_shack_open, hewitt_open, diana_open, hours_dict, breakfast_hours, lunch_hours, dinner_hours, latenight_hours, johnnys_open
 import pytz
 from flask import make_response, g, render_template
 
@@ -25,7 +25,8 @@ dining_halls = [
   "Fac Shack", 
   "Hewitt Dining", 
   "Diana Center Cafe",
-  "Hewitt Kosher"
+  "Hewitt Kosher",
+  "Johnny's"
 ]
 
 #gets dining data from aws s3 json file
@@ -63,7 +64,8 @@ def current_open_stations(now):
     ("Grace Dodge", grace_dodge_open),
     ("Fac Shack", fac_shack_open),
     ("Hewitt Dining", hewitt_open),
-    ("Diana Center Cafe", diana_open)
+    ("Diana Center Cafe", diana_open),
+    ("Johnny's", johnnys_open)
     ]
   
   hours = hours_dict(now.weekday())

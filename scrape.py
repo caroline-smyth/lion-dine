@@ -32,7 +32,8 @@ cu_urls = {
   "Chef Mike's" : "https://dining.columbia.edu/chef-mikes",
   "Chef Don's" : "https://dining.columbia.edu/content/chef-dons-pizza-pi",
   "Grace Dodge" : "https://dining.columbia.edu/content/grace-dodge-dining-hall-0", 
-  "Fac Shack" : "https://dining.columbia.edu/content/fac-shack"
+  "Fac Shack" : "https://dining.columbia.edu/content/fac-shack", 
+  "Johnny's" : "https://dining.columbia.edu/johnnys"
 }
 hall_names = [
   "John Jay", 
@@ -44,7 +45,8 @@ hall_names = [
   "Grace Dodge", 
   "Fac Shack", 
   "Hewitt Dining", 
-  "Diana Center Cafe"
+  "Diana Center Cafe",
+  "Johnny's"
   ]
 """
 cu_urls = {"Chef Mike's" : "https://dining.columbia.edu/chef-mikes"}
@@ -58,18 +60,7 @@ def managed_webdriver():
     #determine OS and set chrome binary location based on that
     chrome_options = Options()
     chrome_options = Options()
-<<<<<<< HEAD
-    """
-    chrome_options.add_argument("--headless")  # Use headless mode
-    chrome_options.add_argument("--window-size=1920,1080")
-    chrome_options.add_argument("--disable-extensions")
-    chrome_options.add_argument("--disable-infobars")
-    chrome_options.add_argument("--disable-blink-features=AutomationControlled")
-    """
-    # chrome_options.add_argument("--headless")  # Use the new headless mode
-=======
     chrome_options.add_argument("--headless=new")  # Use *new* headless mode
->>>>>>> 55ab7d4646cb35d97850d84a7490e3df7fa0897d
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--enable-unsafe-swiftshader")
     chrome_options.add_argument("--disable-dev-shm-usage")
@@ -112,7 +103,6 @@ def managed_webdriver():
         raise Exception(f"Unsupported OS: {current_os}")
     
     service = ChromeService(ChromeDriverManager().install())
-    #service = ChromeService("C:\\Users\\carol\\OneDrive\\Desktop\\chromedriver.exe")
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
     try:
