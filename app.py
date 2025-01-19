@@ -380,8 +380,8 @@ def open_at_meal(now, meal):
     filtered_halls["Ferris"]["status"] = filtered_halls["John Jay"]["status"] = filtered_halls["Faculty House"]["status"] = filtered_halls["Chef Mike's"]["status"] = filtered_halls["Chef Don's"]["status"] = filtered_halls["Hewitt Dining"]["status"] = filtered_halls["Hewitt Kosher"]["status"] = f"Closed for {meal}"
 
   
-  if now.month == 12 or now.month == 1:
-    filtered_halls["Chef Don's"]["status"] = filtered_halls["Chef Mike's"]["status"] = filtered_halls["Ferris"]["status"] = filtered_halls["Faculty House"]["status"] = filtered_halls["Fac Shack"]["status"] = filtered_halls["Grace Dodge"]["status"] = filtered_halls["Diana Center Cafe"]["status"] = filtered_halls["John Jay"]["status"] = filtered_halls["JJ's"]["status"] = filtered_halls["Diana Center Cafe"]["status"] = filtered_halls["Hewitt Dining"]["status"] = "Closed today"
+  if now.month == 1 and now.day <= 20:
+    filtered_halls["Chef Don's"]["status"] = filtered_halls["Chef Mike's"]["status"] = filtered_halls["Ferris"]["status"] = filtered_halls["Faculty House"]["status"] = filtered_halls["Fac Shack"]["status"] = filtered_halls["Grace Dodge"]["status"] = filtered_halls["Diana Center Cafe"]["status"] = filtered_halls["John Jay"]["status"] = filtered_halls["JJ's"]["status"] = filtered_halls["Diana Center Cafe"]["status"] = "Closed today"
   
   if now.month == 1 and now.day >1 and now.day <=4:
     filtered_halls["Fac Shack"]["status"] = "Open"
@@ -394,7 +394,8 @@ def open_at_meal(now, meal):
       filtered_halls["JJ's"]["status"] = "Open"
     else:
       filtered_halls["JJ's"]["status"] = "Closed for late night"
-  if now.month == 1 and now.day in [18,19,20]:
+  if now.month == 1 and now.day <= 20 :
+    filtered_halls["Ferris"]["status"] = "Open"
     filtered_halls["Ferris"]["status"] = "Open"
     if meal == "latenight":
       filtered_halls["Ferris"]["status"] = "Closed for late night"
