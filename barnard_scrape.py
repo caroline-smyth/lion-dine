@@ -13,12 +13,21 @@ import time as time_module
 import random
 from contextlib import contextmanager
 from kosher_scrape import scrape_kosher
+from selenium.webdriver.common.action_chains import ActionChains
+import platform
 
 def get_driver():
   chrome_options = Options()
-  chrome_options.add_argument("--headless")  # Run headless for efficiency
+  chrome_options.add_argument("--headless=new")  # Run headless for efficiency
+  chrome_options.add_argument("--headless=chrome")
   chrome_options.add_argument("--disable-gpu")
   chrome_options.add_argument("--window-size=1920x1080")
+  chrome_options.add_argument("--no-sandbox")
+  chrome_options.add_argument("--disable-dev-shm-usage")
+  chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+  chrome_options.add_argument("--user-agent=Mozilla/5.0 ...")
+  chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+  chrome_options.add_experimental_option("useAutomationExtension", False)
   driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
   return driver
 
@@ -33,9 +42,17 @@ def scrape_barnard():
   for hall_name in barnard_hall_names:
     driver.get(url)
     dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
-    dropdown.click()
-    
+
+    #dropdown.click()
+    driver.execute_script("arguments[0].click();", dropdown)
+
+    time_module.sleep(2)
+
+    # Debug screenshot
+    #driver.save_screenshot("debug_dropdown.png")
+
     dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
+
 
     items = dropdown_menu.find_elements(By.TAG_NAME, "button")
     for item in items:
