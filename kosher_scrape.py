@@ -15,9 +15,16 @@ from contextlib import contextmanager
 
 def get_driver():
   chrome_options = Options()
-  chrome_options.add_argument("--headless")  # Run headless for efficiency
+  chrome_options.add_argument("--headless=new")  # Run headless for efficiency
+  chrome_options.add_argument("--headless=chrome")
   chrome_options.add_argument("--disable-gpu")
   chrome_options.add_argument("--window-size=1920x1080")
+  chrome_options.add_argument("--no-sandbox")
+  chrome_options.add_argument("--disable-dev-shm-usage")
+  chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+  chrome_options.add_argument("--user-agent=Mozilla/5.0 ...")
+  chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+  chrome_options.add_experimental_option("useAutomationExtension", False)
   driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
   return driver
 
@@ -32,7 +39,8 @@ def scrape_kosher():
   wait = WebDriverWait(driver, 40)
 
   dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
-  dropdown.click()
+  #dropdown.click()
+  driver.execute_script("arguments[0].click();", dropdown)
   
   dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
   
