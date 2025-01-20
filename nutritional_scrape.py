@@ -43,12 +43,11 @@ hall_names = [
   "Fac Shack", 
   "Hewitt Dining", 
   "Diana Center Cafe"
-  ]
-"""
+  ]"""
 cu_urls = {
-  "JJ's" : "https://dining.columbia.edu/content/jjs-place-0"
+  "Ferris" : "https://dining.columbia.edu/content/ferris-booth-commons-0",
 }
-hall_names = ["JJ's"]
+hall_names = ["Ferris"]
 #configures webdriver for a headless environment 
 @contextmanager
 def managed_webdriver():
@@ -210,10 +209,10 @@ def scrape_all():
     hall_data = scrape_columbia(hall)
     dict.update(hall_data)
   
-  barnard_data = scrape_barnard()
-  dict.update(barnard_data)
-  diana_data = scrape_diana()
-  dict.update(diana_data)
+  #barnard_data = scrape_barnard()
+  #dict.update(barnard_data)
+  #diana_data = scrape_diana()
+  #dict.update(diana_data)
   print(dict)
   return dict
 
@@ -221,9 +220,10 @@ def scrape_all():
 #stores scraped data in a json file
 def scrape_and_save():
   data = scrape_all()
+  '''
   with open('nutritional_dining_data.json', 'w') as f:
     json.dump(data, f, indent=4)
-  #upload_to_s3('dining_data.json', 'liondine-data')
+  upload_to_s3('dining_data.json', 'liondine-data')'''
 
 
 def upload_to_s3(file_path, bucket_name, object_name=None):
