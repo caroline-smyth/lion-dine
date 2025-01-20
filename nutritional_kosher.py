@@ -31,8 +31,8 @@ def get_driver():
   driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
   return driver
 
-def scrape_bn():
-  hall_name = "Hewitt Dining"
+def scrape_kn():
+  hall_name = "Kosher @ Hewitt"
   driver = get_driver()
   url = "https://dineoncampus.com/barnard/whats-on-the-menu"
   driver.get(url)
@@ -52,7 +52,7 @@ def scrape_bn():
     
     if hall_name in hall:
       item.click()
-      hall_data = scrape_bn_inside(driver, wait)
+      hall_data = scrape_kn_inside(driver, wait)
       if hall_data is None:
         dining_hall_data[hall] = {}
       dining_hall_data[hall] = hall_data
@@ -73,7 +73,7 @@ def scrape_bn():
   driver.quit()
   return dining_hall_data
 
-def scrape_bn_inside(driver, wait): 
+def scrape_kn_inside(driver, wait): 
   dining_hall = {}
   
   try:
@@ -86,6 +86,7 @@ def scrape_bn_inside(driver, wait):
       meal = {}
       b.click()
       menu_elements = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "table")))
+
 
       for m in menu_elements:
         station_name = m.find_element(By.TAG_NAME, "caption").text.strip()
@@ -104,6 +105,7 @@ def scrape_bn_inside(driver, wait):
           food_name = row.find_element(By.TAG_NAME, "strong").text.strip()
           images = row.find_elements(By.TAG_NAME, "img")
           preferences = []
+          preferences.append("Kosher")
           for image in images:
             src = image.get_attribute("src")
             if src in icon_map:
@@ -114,9 +116,9 @@ def scrape_bn_inside(driver, wait):
           #print(food_info)
           station_foods.append(food_info)
     
-        meal[station_name] = station_foods
+        meal["Kosher - "+ station_name] = station_foods
       dining_hall[meal_time] = meal
-      #print(dining_hall)
+      print(dining_hall)
  
   except Exception as e:
     print(f"Error occurred: {e}")
@@ -124,4 +126,4 @@ def scrape_bn_inside(driver, wait):
   print(dining_hall)
   return dining_hall
 
-scrape_bn()
+scrape_kn()

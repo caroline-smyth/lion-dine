@@ -47,11 +47,9 @@ def scrape_kosher():
   hall_buttons = dropdown_menu.find_elements(By.TAG_NAME, "button")
 
   for h_button in hall_buttons:
-    #print(h_button.text.strip())
     if hall_name in h_button.text.strip():
       time_module.sleep(5)
       h_button.click()
-      #print("hello " + h_button.text.strip())
     else:
       continue
   hall_data = {}
