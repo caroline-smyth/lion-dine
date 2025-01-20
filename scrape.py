@@ -32,7 +32,8 @@ cu_urls = {
   "Chef Mike's" : "https://dining.columbia.edu/chef-mikes",
   "Chef Don's" : "https://dining.columbia.edu/content/chef-dons-pizza-pi",
   "Grace Dodge" : "https://dining.columbia.edu/content/grace-dodge-dining-hall-0", 
-  "Fac Shack" : "https://dining.columbia.edu/content/fac-shack", 
+  "Fac Shack" : "https://dining.columbia.edu/content/fac-shack",
+  "Johnny's": "https://dining.columbia.edu/content/johnnys" 
 }
 hall_names = [
   "John Jay", 
@@ -81,8 +82,6 @@ def managed_webdriver():
       "(KHTML, like Gecko) Chrome/115.0.5790.102 Safari/537.36"
     )
 
-
-    
     '''#replacement for headless? forces each run to use a fresh profile
     unique_profile = os.path.join("/tmp", f"chrome_profile_{uuid.uuid4().hex}")
     chrome_options.add_argument(f"--user-data-dir={unique_profile}")'''
