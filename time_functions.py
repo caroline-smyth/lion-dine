@@ -218,6 +218,7 @@ def dinner_hours(weekday, now):
     d_hours["Johnny's"] = "7:00 PM to 11:00 PM"
 
   # CHRISTMAS BREAK
+  '''
   if now.month == 1:
     d_hours["Chef Don's"] = d_hours["Chef Mike's"] = d_hours["Faculty House"] = d_hours["Fac Shack"] = d_hours["Grace Dodge"] = d_hours["Ferris"] = d_hours["John Jay"] = d_hours["JJ's"] = d_hours["Diana Center Cafe"] = d_hours["Hewitt Dining"]= d_hours["Fac Shack"] = d_hours["Johnny's"]= "Closed for dinner"
     if now.day > 1 and now.day <=4:
@@ -227,6 +228,7 @@ def dinner_hours(weekday, now):
     if now.day > 17 and now.day <=20:
       d_hours["Ferris"] = "3:00 PM to 6:00 PM"
       d_hours["Hewitt Dining"] = "4:30 PM to 7:30 PM"
+  '''
   
   return d_hours
 
