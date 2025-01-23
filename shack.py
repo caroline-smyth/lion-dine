@@ -23,7 +23,7 @@ from diana_scrape import scrape_diana
 from kosher_scrape import scrape_kosher
 
 #dining hall URLs and names 
-
+"""
 cu_urls = {
   "John Jay" : "https://dining.columbia.edu/content/john-jay-dining-hall",
   "JJ's" : "https://dining.columbia.edu/content/jjs-place-0", 
@@ -32,8 +32,8 @@ cu_urls = {
   "Chef Mike's" : "https://dining.columbia.edu/chef-mikes",
   "Chef Don's" : "https://dining.columbia.edu/content/chef-dons-pizza-pi",
   "Grace Dodge" : "https://dining.columbia.edu/content/grace-dodge-dining-hall-0", 
-  "Fac Shack" : "https://dining.columbia.edu/content/fac-shack-0",
-  "Johnny's": "https://dining.columbia.edu/johnnys"  
+  "Fac Shack" : "https://dining.columbia.edu/content/fac-shack",
+  "Johnny's": "https://dining.columbia.edu/content/johnnys" 
 }
 hall_names = [
   "John Jay", 
@@ -48,9 +48,10 @@ hall_names = [
   "Diana Center Cafe",
   ]
 """
-cu_urls = {"Chef Mike's" : "https://dining.columbia.edu/chef-mikes"}
-hall_names = ["Chef Mike's"]
-"""
+cu_urls = { "Fac Shack" : "https://dining.columbia.edu/content/fac-shack-0",
+  "Johnny's": "https://dining.columbia.edu/johnnys"}
+hall_names = ["Fac Shack", "Johnny's"]
+
 
 #configures webdriver for a headless environment 
 @contextmanager
@@ -152,6 +153,7 @@ def scrape_columbia(hall_name):
       print(f"Unexpected error while handling privacy notice: {e}")
 
     #continue with scraping 
+    driver.save_screenshot("debug_dropdown.png")
     buttons = driver.find_elements(By.TAG_NAME, "button")
     meal_buttons = []
 
@@ -233,10 +235,12 @@ def scrape_all():
     hall_data = scrape_columbia(hall)
     dict.update(hall_data)
 
+  '''
   barnard_data = scrape_barnard()
   dict.update(barnard_data)
   diana_data = scrape_diana()
   dict.update(diana_data)
+  print(dict)'''
   print(dict)
   return dict
 
@@ -246,7 +250,7 @@ def scrape_and_save():
   data = scrape_all()
   with open('dining_data.json', 'w') as f:
     json.dump(data, f, indent=4)
-  upload_to_s3('dining_data.json', 'liondine-data')
+  #upload_to_s3('dining_data.json', 'liondine-data')
 
 
 def upload_to_s3(file_path, bucket_name, object_name=None):
