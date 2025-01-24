@@ -236,7 +236,6 @@ def current_open_stations(now):
         filtered_stations["Lunch/Dinner Service"] = ["Build your own pizza", "Toasted Cuban sandwich", "Piece of fruit", "Milkshake or Freestyle machine beverage", "Dessert"]
       if filtered_stations:
         filtered_halls[hall_name]["stations"] = filtered_stations
-        #filtered_halls[hall_name]["stations"]["Missing Data"] = ""
       else:
         filtered_halls[hall_name]["stations"] = "Missing Data"
 
@@ -264,11 +263,11 @@ def current_open_stations(now):
         filtered_halls[hall_name]["stations"] = "Missing Data"
     if hall_name == "Johnny's":
       if(now.weekday() <= 4):
-        for station, items in stations.get('lunch',{}).items():
-          filtered_stations[station] = items
+        for station, items in stations.get('dinner',{}).items():
+          filtered_stations[station]["stations"] = items
       elif now.weekday() >= 4 and now.weekday() < 6:
         for station, items in stations.get('dinner',{}).items():
-          filtered_stations[station] = items
+          filtered_stations[station]["stations"] = items
       
       if filtered_stations:
         filtered_halls[hall_name]["stations"] = filtered_stations
@@ -308,10 +307,10 @@ def current_open_stations(now):
           filtered_stations[station] = items  
       if (now.weekday() in [0, 1, 2, 3] and ((now.hour > 11 and now.hour < 17) or (now.hour == 11 and now.minute > 30))) or (now.weekday() == 4 and (now.hour >= 12 and now.hour < 15) or (now.weekday() == 6 and (now.hour >= 12 and now.hour < 17))):
         for station, items in stations.get('lunch',{}).items():
-          filtered_stations[station] = items   
+          filtered_stations[station]["stations"] = items   
       if now.weekday() in [0, 1, 2, 3, 6] and ((now.hour >= 17 and now.hour < 20)):
         for station, items in stations.get('dinner',{}).items():
-          filtered_stations[station] = items       
+          filtered_stations[station]["stations"] = items       
       if now.weekday() in [0, 1, 2, 3] and (now.hour >= 20):
         for station, items in stations.get('late night',{}).items():
           filtered_stations[station] = items
@@ -351,9 +350,9 @@ def open_at_meal(now, meal):
   filtered_halls["John Jay"]["status"] = "Open" if now.weekday() in [6,0,1,2,3] else f"Closed for {meal}"
   filtered_halls["JJ's"]["status"] = "Open" #FALL BREAK
   filtered_halls["Ferris"]["status"] = "Open"
-  if (now.weekday() <= 4 and meal == "lunch"):
+  if (now.weekday() <= 3 and meal == "lunch"):
     filtered_halls["Johnny's"]["status"] = "Open"
-  elif (now.weekday() >= 4 and now.weekday()< 6 and meal in ["dinner", "latenight"]):
+  elif (now.weekday() in [3, 4, 5] and meal in ["dinner", "latenight"]):
     filtered_halls["Johnny's"]["status"] = "Open"
   else:
     filtered_halls["Johnny's"]["status"] = f"Closed for {meal}"
@@ -382,13 +381,7 @@ def open_at_meal(now, meal):
     filtered_halls["Grace Dodge"]["status"] = "Open"
   else:
     filtered_halls["Grace Dodge"]["status"] = f"Closed for {meal}"
-  '''
-  if (now.weekday() in [0,1,2,3] and meal =="lunch"):
-    filtered_halls["Johnny's"]["status"] = "Open"
-  else:
-    filtered_halls["Johnny's"]["status"] = f"Closed for {meal}"
-  # or (now.weekday() in [3,4,5] and meal in ["dinner", "latenight"])
-  '''
+
   if (now.weekday() in [0,1,2,3] and meal == "lunch"):
     filtered_halls["Fac Shack"]["status"] = "Open"
   else:
@@ -401,7 +394,7 @@ def open_at_meal(now, meal):
   else:
     filtered_halls["Diana Center Cafe"]["status"] = f"Closed for {meal}"
   if meal == "latenight":
-    filtered_halls["Ferris"]["status"] = filtered_halls["John Jay"]["status"] = filtered_halls["Faculty House"]["status"] = filtered_halls["Chef Mike's"]["status"] = filtered_halls["Chef Don's"]["status"] = filtered_halls["Hewitt Dining"]["status"] = filtered_halls["Hewitt Kosher"]["status"] = filtered_halls["Johnny's"]["status"] = f"Closed for {meal}"
+    filtered_halls["Ferris"]["status"] = filtered_halls["John Jay"]["status"] = filtered_halls["Faculty House"]["status"] = filtered_halls["Chef Mike's"]["status"] = filtered_halls["Chef Don's"]["status"] = filtered_halls["Hewitt Dining"]["status"] = filtered_halls["Hewitt Kosher"]["status"] = f"Closed for {meal}"
 
   for hall_name in halls.keys():
     if meal == "breakfast":
