@@ -48,10 +48,8 @@ hall_names = [
   "Diana Center Cafe",
   ]
 """
-cu_urls = { "Fac Shack" : "https://dining.columbia.edu/content/fac-shack-0",
-  "Johnny's": "https://dining.columbia.edu/johnnys",
-  "Grace Dodge" : "https://dining.columbia.edu/content/grace-dodge-dining-hall-0"}
-hall_names = ["Fac Shack", "Johnny's", "Grace Dodge"]
+cu_urls = {"John Jay" : "https://dining.columbia.edu/content/john-jay-dining-hall"}
+hall_names = ["John Jay"]
 
 
 #configures webdriver for a headless environment 
@@ -167,11 +165,10 @@ def scrape_columbia(hall_name):
     for button in meal_buttons:
       button.click()
       meal = button.text.strip().lower()
-      
       meal_dictionary = {}
       wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "wrapper")))
       station_elements = driver.find_elements(By.CLASS_NAME, "wrapper")
-
+      driver.save_screenshot("debug2.png")
       for s in station_elements:
         station_name = s.find_element(By.CLASS_NAME, "station-title").text.strip()
         meal_items = s.find_elements(By.CLASS_NAME, "meal-title")
@@ -207,7 +204,7 @@ def scrape_columbia(hall_name):
                 meal_items = s.find_elements(By.CLASS_NAME, "meal-title")
                 meal_items_text = [item.text.strip() for item in meal_items]
 
-        if "john" in actual_name:
+        if "johnny" in actual_name:
           meal_descriptions = s.find_elements(By.CLASS_NAME, "meal-description")
           meal_descriptions_text = [desc.text.strip() for desc in meal_descriptions]
           combined_items = [element for pair in zip(meal_items_text, meal_descriptions_text) for element in pair]
