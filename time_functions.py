@@ -146,7 +146,6 @@ def lunch_hours(weekday, now):
 
 def dinner_hours(weekday, now):
   d_hours = {}
-  d_hours["Johnny's"] = "Closed for dinner (TBD)"
   d_hours["JJ's"] = "12:00 PM to midnight" 
   #d_hours["JJ's"] = "3:00 PM to 6:00 PM"
   d_hours["Hewitt Dining"] = "4:30 PM to 8:00 PM"
@@ -183,9 +182,9 @@ def dinner_hours(weekday, now):
   else:
     d_hours["John Jay"] = "Closed for dinner" 
 
-  if weekday < 4:
+  if weekday < 3:
     d_hours["Johnny's"] = "Closed for dinner"
-  elif weekday >= 4 and weekday < 6:
+  elif weekday >= 3 and weekday < 6:
     d_hours["Johnny's"] = "7:00 PM to 11:00 PM"
   
   return d_hours
@@ -203,9 +202,9 @@ def latenight_hours(weekday, now):
   else:
     ln_hours["Diana Center Cafe"] = "Closed for late night"
   
-  if weekday < 4:
+  if weekday < 3:
     ln_hours["Johnny's"] = "Closed for late night"
-  elif weekday >= 4 and weekday < 6:
+  elif weekday >= 3 and weekday < 6:
     ln_hours["Johnny's"] = "7:00 PM to 11:00 PM"
   
   # CHRISTMAS BREAK
