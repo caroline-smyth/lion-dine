@@ -1,32 +1,16 @@
 {
-    "Fac Shack": {
-        "lunch": {
-            "Daily Offerings": [
-                "Chicken Teriyaki",
-                "Jasmine Rice",
-                "Steamed Broccoli",
-                "Tofu Teriyaki"
+    "Fac Shack": {},
+    "Johnny's": {
+        "dinner": {
+            "Dinner Service": [
+                "Beef Birria Burrito",
+                "Served with Yellow Rice, Pinto Beans, Onions & Cilantro on a Flour Tortilla",
+                "Fable Mushroom Birria",
+                "Served with Yellow Rice, Pinto Beans, Onions & Cilantro on a Flour Tortilla",
+                "Served with a Side of",
+                "Tortilla Chips VN GF H **Contains Sunflower Oil** Salsa VN GF H Chocolate Chip Cookie D E S V H"
             ]
         }
     },
-    "Johnny's": {
-        "lunch": {
-            "Lunch Service": [
-                "Chicken Tagine",
-                "Served over saffron couscous with roasted zucchini, red pepper, and onion",
-                "Chickpea Tagine",
-                "Served over saffron couscous with roasted zucchini, red pepper, and onion"
-            ]
-        },
-        "dinner": {
-            "Dinner Service": [
-                "Fajita Chicken Burrito",
-                "Served with Bacon, Cilantro Lime Rice, Black Beans and Chipotle Ranch Sauce on a Flour Tortilla",
-                "Chickpea Tinga Burrito",
-                "Served with Yellow Rice, Black Beans and Vegan Chipotle Mayo on a Flour Tortilla",
-                "Served with a Side of",
-                "Tortilla Chips VN GF H **Contains Sunflower Oil** Guacamole VN GF H Salsa VN GF H Chocolate Chip Cookie D E S V H"
-            ]
-        }
-    }
+    "Grace Dodge": {}
 }

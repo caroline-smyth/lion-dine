@@ -18,7 +18,7 @@ import platform
 
 def get_driver():
   chrome_options = Options()
-  chrome_options.add_argument("--headless=new")  # Run headless for efficiency
+  #chrome_options.add_argument("--headless=new")  # Run headless for efficiency
   chrome_options.add_argument("--headless=chrome")
   chrome_options.add_argument("--disable-gpu")
   chrome_options.add_argument("--window-size=1920x1080")
@@ -41,7 +41,9 @@ def scrape_barnard():
 
   for hall_name in barnard_hall_names:
     driver.get(url)
+    driver.save_screenshot("b1.png")
     dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
+    driver.save_screenshot("b2.png")
 
     #dropdown.click()
     driver.execute_script("arguments[0].click();", dropdown)
@@ -49,7 +51,7 @@ def scrape_barnard():
     time_module.sleep(2)
 
     # Debug screenshot
-    #driver.save_screenshot("debug_dropdown.png")
+    driver.save_screenshot("barnardproblem.png")
 
     dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
 
