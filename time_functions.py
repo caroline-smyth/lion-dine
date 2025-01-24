@@ -192,7 +192,6 @@ def dinner_hours(weekday, now):
 
 def latenight_hours(weekday, now):
   ln_hours = {}
-  ln_hours["Johnny's"] = "Closed for late night (TBD)"
   ln_hours["Ferris"] = ln_hours["Faculty House"] = ln_hours["Chef Mike's"] = ln_hours["Chef Don's"] = ln_hours["John Jay"] = ln_hours["Kosher @ Hewitt"] = ln_hours["Hewitt Dining"] = ln_hours["Grace Dodge"] = "Closed for late night"
   ln_hours["JJ's"] = "Midnight to 10:00 AM"
   #ln_hours["JJ's"] = "Closed for late night"
