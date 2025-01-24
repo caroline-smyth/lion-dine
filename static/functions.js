@@ -7,8 +7,8 @@ function updateTime() {
       day: 'numeric', 
       hour: '2-digit', 
       minute: '2-digit', 
-      //second: '2-digit',
-      hour12: true  
+      hour12: true,
+      timeZone: 'America/New_York'
   };
   var currentTimeString = now.toLocaleString('en-US', options);
   document.getElementById('current-time').textContent = currentTimeString;
