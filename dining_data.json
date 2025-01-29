@@ -1,3 +1,12 @@
 {
-    "John Jay": {}
+    "Johnny's": {
+        "lunch": {
+            "Lunch Service": [
+                "Steak, Pepper, and Onion Bowl",
+                "beef, peppers, & onions, 4 cheese mac & cheese, garlic broccoli and carrots, topped with crispy onions and scallions",
+                "Impossible Pepper and Onion Bowl",
+                "impossible beef, peppers, & onions, vegan mac & cheese, garlic broccoli and carrots, topped with crispy onions and scallions"
+            ]
+        }
+    }
 }
