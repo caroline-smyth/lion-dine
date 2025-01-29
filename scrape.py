@@ -46,10 +46,11 @@ hall_names = [
   "Fac Shack", 
   "Hewitt Dining", 
   "Diana Center Cafe",
+  "Johnny's"
   ]
 """
-cu_urls = {"Chef Mike's" : "https://dining.columbia.edu/chef-mikes"}
-hall_names = ["Chef Mike's"]
+cu_urls = {"Johnny's": "https://dining.columbia.edu/johnnys" }
+hall_names = ["Johnny's"]
 """
 
 #configures webdriver for a headless environment 
