@@ -233,11 +233,11 @@ def scrape_all():
       continue
     hall_data = scrape_columbia(hall)
     dict.update(hall_data)
-
+  '''
   barnard_data = scrape_barnard()
   dict.update(barnard_data)
   diana_data = scrape_diana()
-  dict.update(diana_data)
+  dict.update(diana_data)'''
   print(dict)
   return dict
 
@@ -247,7 +247,7 @@ def scrape_and_save():
   data = scrape_all()
   with open('dining_data.json', 'w') as f:
     json.dump(data, f, indent=4)
-  upload_to_s3('dining_data.json', 'liondine-data')
+  #upload_to_s3('dining_data.json', 'liondine-data')
 
 
 def upload_to_s3(file_path, bucket_name, object_name=None):
