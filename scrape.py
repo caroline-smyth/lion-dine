@@ -216,8 +216,9 @@ def scrape_columbia(hall_name):
           meal_descriptions = s.find_elements(By.CLASS_NAME, "meal-description")
           meal_descriptions_text = [desc.text.strip() for desc in meal_descriptions]
           meal_dictionary[station_name] = meal_descriptions_text
+        '''
         else:
-          meal_dictionary[station_name] = meal_items_text'''
+          meal_dictionary[station_name] = meal_items_text
           
       dining_hall[meal] = meal_dictionary
 
