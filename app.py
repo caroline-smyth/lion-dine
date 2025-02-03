@@ -531,6 +531,7 @@ def open_at_meal(now, meal):
     if hall_name == "Grace Dodge":
       #filter for only open stations
       if meal == 'lunch' or meal == 'dinner':
+        '''
         filtered_stations["Salad Base"] = ["Spinach", "Spring Green Mix", "Romaine"]
         filtered_stations["Grains"] = ["Brown Rice", "White Rice"]
         filtered_stations["Cold Toppings & Protein"] = ["Bell Peppers", "Black Beans", "Chickpeas", "Corn", "Cucumbers", "Red Onion", "Shredded Carrots", "Tofu", "Tomatoes"]
@@ -539,7 +540,7 @@ def open_at_meal(now, meal):
         filtered_stations["Noodles"] = ["Yakisoba", "Vermicelli"]
         filtered_stations["Toppings"] = ["Bok Choy","Bean Sprouts","Cilantro","Corn","Kimchi","Marinated Egg", "Scallions","Sauteed Shiitake Mushrooms","Shredded Carrots","Tofu"]
         filtered_stations["Protein"] = ["Rotates Daily"]
-        filtered_stations["Sides"] = ["Fruit","Beverage","Dessert"]
+        filtered_stations["Sides"] = ["Fruit","Beverage","Dessert"]'''
         for station, items in stations.get('lunch & dinner',{}).items():
           filtered_stations[station] = items
         

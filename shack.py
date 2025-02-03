@@ -48,8 +48,8 @@ hall_names = [
   "Diana Center Cafe",
   ]
 """
-cu_urls = {"Johnny's": "https://dining.columbia.edu/johnnys" }
-hall_names = ["Johnny's"]
+cu_urls = {"Grace Dodge" : "https://dining.columbia.edu/content/grace-dodge-dining-hall-0"}
+hall_names = ["Grace Dodge"]
 
 #configures webdriver for a headless environment 
 @contextmanager
