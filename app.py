@@ -260,7 +260,7 @@ def current_open_stations(now):
       if filtered_stations:
         filtered_halls[hall_name]["stations"] = filtered_stations
       else:
-        filtered_halls[hall_name]["stations"] = "Missing Data TESTTTTTT"
+        filtered_halls[hall_name]["stations"] = "Missing Data"
     if hall_name == "Johnny's":
       if(now.weekday() <= 4):
         for station, items in stations.get('dinner',{}).items():
@@ -496,7 +496,7 @@ def open_at_meal(now, meal):
         filtered_halls[hall_name]["stations"] = filtered_stations
       else:
         filtered_halls[hall_name]["stations"] = "Missing data"
-    if hall_name == "Faculty House":
+    if hall_name == "Faculty House" or hall_name == "Johnny's":
       #filter for only open stations
       if meal == 'lunch':
         for station, items in stations.get('lunch',{}).items():
