@@ -250,7 +250,7 @@ def current_open_stations(now):
         filtered_halls[hall_name]["stations"] = "Missing Data"
     
     if hall_name == "Fac Shack":
-      if now.weekday() in [0,1,2,3] and now.hour >= 11 and now.hour < 14:
+      if now.weekday() < 4:
         #filtered_stations["all hours"] = "11 am - 2 pm"
         for station, items in stations.get('lunch',{}).items():
           filtered_stations[station] = items
@@ -260,7 +260,7 @@ def current_open_stations(now):
       if filtered_stations:
         filtered_halls[hall_name]["stations"] = filtered_stations
       else:
-        filtered_halls[hall_name]["stations"] = "Missing Data"
+        filtered_halls[hall_name]["stations"] = "Missing Data TESTTTTTT"
     if hall_name == "Johnny's":
       if(now.weekday() <= 4):
         for station, items in stations.get('dinner',{}).items():
@@ -271,7 +271,6 @@ def current_open_stations(now):
       
       if filtered_stations:
         filtered_halls[hall_name]["stations"] = filtered_stations
-        #filtered_halls[hall_name]["stations"]["Missing Data"] = ""
       else:
         filtered_halls[hall_name]["stations"] = "Missing Data"    
 
@@ -551,15 +550,15 @@ def open_at_meal(now, meal):
         filtered_halls[hall_name]["stations"] = "Missing data"
     if hall_name == "Fac Shack":
       if meal == 'lunch':
-        for station, items in stations.get('lunch',{}).items():
+        for station, items in stations.get('lunch & dinner',{}).items():
           filtered_stations[station] = items
       if meal == 'dinner' or meal == 'latenight':
-        for station, items in stations.get('dinner',{}).items():
+        for station, items in stations.get('lunch & dinner',{}).items():
           filtered_stations[station] = items
       if filtered_stations:
         filtered_halls[hall_name]["stations"] = filtered_stations
       else:
-        filtered_halls[hall_name]["stations"] = "Missing data"
+        filtered_halls[hall_name]["stations"] = "Missing data TEST"
     if hall_name == "Hewitt Dining":
       if meal == 'breakfast':
         for station, items in stations.get('breakfast',{}).items():

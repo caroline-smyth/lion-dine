@@ -41,6 +41,7 @@ def scrape_diana():
 
 
   driver.get(url)
+  driver.save_screenshot("nutritional.png")
   dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
   driver.execute_script("arguments[0].click();", dropdown)
   time_module.sleep(2)
