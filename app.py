@@ -381,7 +381,7 @@ def open_at_meal(now, meal):
   else:
     filtered_halls["Grace Dodge"]["status"] = f"Closed for {meal}"
 
-  if (now.weekday() in [0,1,2,3] and meal == "lunch"):
+  if (now.weekday() in [0,1,2,3] and (meal == "lunch" or meal =="dinner")):
     filtered_halls["Fac Shack"]["status"] = "Open"
   else:
     filtered_halls["Fac Shack"]["status"] = f"Closed for {meal}"
