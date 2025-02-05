@@ -45,7 +45,7 @@ hall_names = [
   "Grace Dodge", 
   "Fac Shack", 
   "Hewitt Dining", 
-  "Diana",
+  "Diana Center Cafe",
   "Johnny's"
   ]
 """

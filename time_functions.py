@@ -25,7 +25,7 @@ def hours_dict(weekday):
   elif weekday == 5:
     hours["Chef Mike's"] = "Closed today"
     hours["Chef Don's"] = "Closed today"
-    hours["Diana"] = "Closed today"
+    hours["Diana Center Cafe"] = "Closed today"
     hours["Hewitt Dining"] = "10:30 AM to 3:00 PM, 4:30 PM to 8:00 PM"
     hours["Ferris"] = "9:00 AM to 8:00 PM"
   # just sunday
@@ -33,7 +33,7 @@ def hours_dict(weekday):
     hours["Ferris"] = "10:00 AM to 2:00 PM, 4:00 PM to 8:00 PM"
     hours["Chef Mike's"] = "Closed today"
     hours["Chef Don's"] = "Closed today"
-    hours["Diana"] = "12:00 PM to 8:00 PM"
+    hours["Diana Center Cafe"] = "12:00 PM to 8:00 PM"
     hours["Hewitt Dining"] = "10:30 AM to 3:00 PM, 4:30 PM to 8:00 PM"
   # mon - wed
   if weekday in [0, 1, 2]:
@@ -45,7 +45,7 @@ def hours_dict(weekday):
   # mon - thurs
   if weekday in [0, 1, 2, 3]:
     hours["Grace Dodge"] = "11:00 AM to 7:00 PM"
-    hours["Diana"] = "9:00 AM to 3:00 PM, 5:00 PM to midnight"
+    hours["Diana Center Cafe"] = "9:00 AM to 3:00 PM, 5:00 PM to midnight"
     hours["Johnny's"] = "11:00 AM to 11:00 PM" 
     #necessary?
     #hours["Kosher @ Hewitt"] = "10:30 AM to 3:00 PM, 11:00 AM to 2:30 PM, 4:30 PM to 8:00 PM"
@@ -54,7 +54,7 @@ def hours_dict(weekday):
     hours["Grace Dodge"] = "Closed today"
   #just friday
   if weekday == 4:
-    hours["Diana"] = "9:00 AM to 3:00 PM"
+    hours["Diana Center Cafe"] = "9:00 AM to 3:00 PM"
   # weds - sat
   if weekday < 4:
     hours["Fac Shack"] = "11:30 AM to 5:30 PM"
@@ -76,11 +76,11 @@ def breakfast_hours(weekday, now):
     b_hours["Chef Don's"] = "8:00 AM to 11:00 AM"
     b_hours["Ferris"] = "7:30 AM to 11:00 AM" # ???
     b_hours["Hewitt Dining"] = "7:30 AM to 10:00 AM"
-    b_hours["Diana"] = "9:00 AM to 3:00 PM" # ???
+    b_hours["Diana Center Cafe"] = "9:00 AM to 3:00 PM" # ???
   else:
     b_hours["Chef Don's"] = "Closed for breakfast"
     b_hours["Hewitt Dining"] = "10:30 AM to 3:00 PM"
-    b_hours["Diana"] = "Closed for breakfast"
+    b_hours["Diana Center Cafe"] = "Closed for breakfast"
 
   if weekday == 5:
     b_hours["Ferris"] = "9:00 AM to 11:00 AM" # ????
@@ -104,7 +104,7 @@ def lunch_hours(weekday, now):
     l_hours["Chef Don's"] = "11:00 AM to 6:00 PM"
     l_hours["Ferris"] = "11:00 AM to 5:00 PM"
     l_hours["Hewitt Dining"] = "11:00 AM to 2:30 PM"
-    l_hours["Diana"] = "12:00 PM to 3:00 PM" # not fully correct, all i see is 9-3 and 3-12am
+    l_hours["Diana Center Cafe"] = "12:00 PM to 3:00 PM" # not fully correct, all i see is 9-3 and 3-12am
   #s-s
   else:
     l_hours["Chef Mike's"] = "Closed for lunch"
@@ -112,10 +112,10 @@ def lunch_hours(weekday, now):
     l_hours["Hewitt Dining"] = "10:30 AM to 3:00 PM"
     if weekday == 5:
       l_hours["Ferris"] = "11:00 AM to 5:00 PM"
-      l_hours["Diana"] = "Closed for lunch"
+      l_hours["Diana Center Cafe"] = "Closed for lunch"
     if weekday == 6:
       l_hours["Ferris"] = "10:00 AM to 2:00 PM" #????
-      l_hours["Diana"] = "12:00 PM to 8:00 PM" # again not quite right
+      l_hours["Diana Center Cafe"] = "12:00 PM to 8:00 PM" # again not quite right
   
   if weekday == 5:
     l_hours["Kosher @ Hewitt"] = "Closed for lunch"
@@ -168,15 +168,15 @@ def dinner_hours(weekday, now):
   #m-th
   if weekday in [0, 1, 2, 3]:
     d_hours["Grace Dodge"] = "11:00 AM to 7:00 PM"
-    d_hours["Diana"] = "5:00 PM to 12:00 AM"
+    d_hours["Diana Center Cafe"] = "5:00 PM to 12:00 AM"
     d_hours["Fac Shack"] = "4:00 PM to 7:00 PM"
   else:
     d_hours["Grace Dodge"] = "Closed for dinner"
     d_hours["Fac Shack"] = "Closed for dinner"
   if weekday in [4, 5]:
-    d_hours["Diana"] = "Closed for dinner"
+    d_hours["Diana Center Cafe"] = "Closed for dinner"
   elif weekday == 6:
-    d_hours["Diana"] = "12:00 PM to 8:00 PM"
+    d_hours["Diana Center Cafe"] = "12:00 PM to 8:00 PM"
   
   if weekday in [6, 0, 1, 2, 3]:
     d_hours["John Jay"] = "5:00 PM to 9:00 PM" 
@@ -199,9 +199,9 @@ def latenight_hours(weekday, now):
   ln_hours["Fac Shack"] = "Closed for late night"
 
   if weekday in [0, 1, 2, 3]:
-    ln_hours["Diana"] = "8:00 PM to midnight"
+    ln_hours["Diana Center Cafe"] = "8:00 PM to midnight"
   else:
-    ln_hours["Diana"] = "Closed for late night"
+    ln_hours["Diana Center Cafe"] = "Closed for late night"
   
   if weekday < 3:
     ln_hours["Johnny's"] = "Closed for late night"
@@ -210,7 +210,7 @@ def latenight_hours(weekday, now):
   
   # CHRISTMAS BREAK
   if now.month == 1 and now.day < 21:
-    ln_hours["JJ's"] = ln_hours["Diana"] = ln_hours["Fac Shack"] = ln_hours["Johnny's"]= "Closed for late night"
+    ln_hours["JJ's"] = ln_hours["Diana Center Cafe"] = ln_hours["Fac Shack"] = ln_hours["Johnny's"]= "Closed for late night"
 
   return ln_hours
 

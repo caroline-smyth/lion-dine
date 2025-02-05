@@ -32,7 +32,7 @@ def get_driver():
   return driver
 
 def scrape_diana():
-  hall_name = "Diana"
+  hall_name = "Diana Center Cafe"
   driver = get_driver()
   url = "https://dineoncampus.com/barnard/whats-on-the-menu"
   driver.get(url)
