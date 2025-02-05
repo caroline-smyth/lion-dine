@@ -36,7 +36,7 @@
         "Faculty House": "https://dining.columbia.edu/content/faculty-house-0",
         "Fac Shack": "https://dining.columbia.edu/fac-shack-0",
         "Hewitt Dining": "https://dineoncampus.com/barnard/whats-on-the-menu",
-        "Diana": "https://dineoncampus.com/barnard/whats-on-the-menu",
+        "Diana Center Cafe": "https://dineoncampus.com/barnard/whats-on-the-menu",
         "Johnny's": "https://dining.columbia.edu/johnnys"
       } %}
       {% set hall_order = [
@@ -49,7 +49,7 @@
         "John Jay",
         "Hewitt Dining",
         "Grace Dodge",
-        "Diana",
+        "Diana Center Cafe",
         "Chef Don's"
       ] %}
       <p id="output"></p>
@@ -86,7 +86,7 @@
           <a href="{{ hall_links.get(hall_name,'https://dining.columbia.edu/') }}" target="_blank">
             {% if hall_name == "Hewitt Dining" %}
               <h3>Hewitt</h3>
-            {% elif hall_name == "Diana Center Cafe" %}
+            {% elif hall_name == "Diana Center Cafe Center Cafe" %}
               <h3>Diana</h3>
             {% else %}
               <h3>{{ hall_name }}</h3>

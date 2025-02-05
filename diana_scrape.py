@@ -29,7 +29,7 @@ def get_driver():
   return driver
 
 def scrape_diana():
-  hall_name = "Diana"
+  hall_name = "Diana Center Cafe"
   url = "https://dineoncampus.com/barnard/whats-on-the-menu"
 
   driver = get_driver()
@@ -83,8 +83,8 @@ def scrape_diana():
     hall_data = None
 
   if hall_data is None:
-    dining_hall_data["Diana"] = {}
-  dining_hall_data["Diana"] = hall_data
+    dining_hall_data["Diana Center Cafe"] = {}
+  dining_hall_data["Diana Center Cafe"] = hall_data
 
   driver.quit()
   #print(dining_hall_data)
