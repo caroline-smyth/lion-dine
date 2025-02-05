@@ -32,7 +32,7 @@ def get_driver():
   return driver
 
 def scrape_diana():
-  hall_name = "Diana Center Cafe"
+  hall_name = "Diana"
   driver = get_driver()
   url = "https://dineoncampus.com/barnard/whats-on-the-menu"
   driver.get(url)
@@ -60,7 +60,7 @@ def scrape_diana():
   
   try:
     kosher_data = scrape_kosher()
-    hewitt_kosher_data = kosher_data["Hewitt Kosher"]
+    hewitt_kosher_data = kosher_data["Kosher"]
     for meal_time in hewitt_kosher_data:
       if "Hewitt Dining" not in dining_hall_data:
         dining_hall_data["Hewitt Dining"] = {}

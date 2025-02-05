@@ -45,7 +45,7 @@ hall_names = [
   "Grace Dodge", 
   "Fac Shack", 
   "Hewitt Dining", 
-  "Diana Center Cafe",
+  "Diana",
   ]
 """
 cu_urls = {"Grace Dodge" : "https://dining.columbia.edu/content/grace-dodge-dining-hall-0"}
