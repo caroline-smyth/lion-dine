@@ -69,7 +69,7 @@ def scrape_barnard():
     
     try:
       kosher_data = scrape_kosher()
-      hewitt_kosher_data = kosher_data["Hewitt Kosher"]
+      hewitt_kosher_data = kosher_data["Kosher"]
       for meal_time in hewitt_kosher_data:
         if "Hewitt Dining" not in dining_hall_data:
           dining_hall_data["Hewitt Dining"] = {}

@@ -42,7 +42,7 @@ hall_names = [
   "Grace Dodge", 
   "Fac Shack", 
   "Hewitt Dining", 
-  "Diana Center Cafe"
+  "Diana"
   ]"""
 cu_urls = {
   "Ferris" : "https://dining.columbia.edu/content/ferris-booth-commons-0",
