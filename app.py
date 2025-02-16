@@ -660,5 +660,9 @@ def latenight():
   filtered_halls = open_at_meal(now, "latenight")
   return render_template('index.html', halls=filtered_halls, meal="latenight", current_time=now)
 
+@app.route('/swipemarket')
+def swipemarket():
+  return render_template('swipemarket.html')
+
 if __name__ == '__main__':
    app.run(host='0.0.0.0',port=5000)
