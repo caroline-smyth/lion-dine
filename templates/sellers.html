@@ -62,7 +62,7 @@
         <form action="/submit_seller" method="POST">
             <div>
                 <label for="dining_hall">Dining hall:</label>
-                <select id="dining_hall" name="dining_hall" required>
+                <select id="dining_hall" name="dining_hall[]" multiple required>
                     <option value="" disabled selected>Select a dining hall</option>
                     <option value="John Jay">John Jay</option>
                     <option value="JJ's">JJ's</option>
@@ -82,7 +82,7 @@
                 <input type="text" id="time_frame" name="time_frame" placeholder="e.g., 4:00 pm - 6:00 pm" required>
             </div>
             <div>
-                <label for="price">Price:</label>
+                <label for="price">Price in dollars:</label>
                 <input type="number" id="price" name="price" step="0.01" placeholder="Enter price" required>
             </div>
             <div>
