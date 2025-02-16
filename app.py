@@ -724,6 +724,10 @@ def submit_seller():
 def swipemarket():
   return render_template('swipemarket.html')
 
+@app.route('/sellers')
+def sellers():
+  return render_template('sellers.html')
+
 if __name__ == '__main__':
    with app.app_context():
      db.create_all()
