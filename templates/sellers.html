@@ -57,6 +57,59 @@
           Happy selling!
         </p>
       </section>
+      <section style="max-width: 800px; margin: 20px auto; padding: 20px;">
+        <h2>Swipe posting form</h2>
+        <form action="/submit_seller" method="POST">
+            <div>
+                <label for="dining_hall">Dining hall:</label>
+                <select id="dining_hall" name="dining_hall" required>
+                    <option value="" disabled selected>Select a dining hall</option>
+                    <option value="John Jay">John Jay</option>
+                    <option value="JJ's">JJ's</option>
+                    <option value="Ferris">Ferris</option>
+                    <option value="Faculty House">Faculty House</option>
+                    <option value="Chef Mike's">Chef Mike's</option>
+                    <option value="Chef Don's">Chef Don's</option>
+                    <option value="Grace Dodge">Grace Dodge</option>
+                    <option value="Fac Shack">Fac Shack</option>
+                    <option value="Johnny's">Johnny's</option>
+                    <option value="Hewitt">Hewitt Dining</option>
+                    <option value="Diana">Diana</option>
+                </select>
+            </div>
+            <div>
+                <label for="time_frame">Time Frame:</label>
+                <input type="text" id="time_frame" name="time_frame" placeholder="e.g., 4:00 pm - 6:00 pm" required>
+            </div>
+            <div>
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" step="0.01" placeholder="Enter price" required>
+            </div>
+            <div>
+                <label for="location">Where You'll Be:</label>
+                <input type="text" id="location" name="location" placeholder="e.g., Butler 6" required>
+            </div>
+            <div>
+                <label for="payment_methods">Payment Methods:</label>
+                <input type="text" id="payment_methods" name="payment_methods" placeholder="e.g., Venmo, PayPal, Cash App" required>
+            </div>
+            <div>
+                <label for="seller_name">Your Name:</label>
+                <input type="text" id="seller_name" name="seller_name" required>    
+            </div>
+            <div>
+                <label for="seller_email">Your Email:</label>
+                <input type="email" id="seller_email" name="seller_email" required>    
+            </div>
+            <div>
+                <label for="seller_phone">Your Phone Number:</label>
+                <input type="text" id="seller_phone" name="seller_phone" placeholder="Optional">    
+            </div>
+            <div>
+                <button type="submit">Submit Listing</button>
+            </div>
+        </form>
+      </section>
       <div class="footer"><p></p></div>
     </main>
     <script src="../static/functions.js" type="text/javascript"></script>
