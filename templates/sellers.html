@@ -63,7 +63,7 @@
             <div>
                 <label for="dining_hall">Dining hall:</label>
                 <select id="dining_hall" name="dining_hall[]" multiple required>
-                    <option value="" disabled selected>Select a dining hall</option>
+                    <option value="" disabled selected>Select dining halls</option>
                     <option value="John Jay">John Jay</option>
                     <option value="JJ's">JJ's</option>
                     <option value="Ferris">Ferris</option>
@@ -91,7 +91,15 @@
             </div>
             <div>
                 <label for="payment_methods">Payment Methods:</label>
-                <input type="text" id="payment_methods" name="payment_methods" placeholder="e.g., Venmo, PayPal, Cash App" required>
+                <select id="payment_methods" name="payment_methods[]" multiple required>
+                    <option value="" disabled selected>Select payment methods</option>
+                    <option value="Venmo">Venmo</option>
+                    <option value="PayPal">PayPal</option>
+                    <option value="Cash App">Zelle</option>
+                    <option value="Zelle">Zelle</option>
+                    <option value="Cash">Cash</option>
+                    <option value="Other">Other</option>
+                </select>
             </div>
             <div>
                 <label for="seller_name">Your Name:</label>
