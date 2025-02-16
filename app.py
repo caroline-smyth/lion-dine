@@ -11,7 +11,6 @@ import string
 import pytz
 from  flask_sqlalchemy import SQLAlchemy
 from flask import make_response, g, render_template
-from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__) #sets up a flask application 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///invitations.db'  # For SQLite
@@ -683,6 +682,42 @@ class SwipeListing(db.Model):
     def __repr__(self):
         return f'<SwipeListing {self.id} - {self.seller_name}>'
 
+@app.route('/submit_seller', methods=['POST'])
+def submit_seller():
+  #get values from the form
+  dining_halls = request.form.getlist('dining_hall[]')
+  dining_halls_str = ", ".join(dining_halls)
+  time_frame = request.form.get('time_frame')
+  price = request.form.get('price')
+  location = request.form.get('location')
+  payment_methods = request.form.get('payment_methods')
+  seller_name = request.form.get('seller_name')
+  seller_email = request.form.get('seller_email')
+  seller_phone = request.form.get('seller_phone')
+
+  try:
+    price_value = float(price)
+  except (ValueError, TypeError):
+    price_value = -1.0 
+
+  #create new SwipeListing instance
+  new_listing = SwipeListing(
+    dining_hall=dining_halls_str,
+    time_frame=time_frame,
+    price=price_value,
+    location=location,
+    payment_methods=payment_methods,
+    seller_name=seller_name,
+    seller_email=seller_email,
+    seller_phone=seller_phone
+  )
+
+  #add new listing to database
+  db.session.add(new_listing)
+  db.session.commit()
+
+  #redirect to Swipe Market page
+  return redirect(url_for('swipemarket'))
 
 
 @app.route('/swipemarket')
