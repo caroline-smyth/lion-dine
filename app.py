@@ -11,6 +11,7 @@ import string
 import pytz
 from  flask_sqlalchemy import SQLAlchemy
 from flask import make_response, g, render_template
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__) #sets up a flask application 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///invitations.db'  # For SQLite
@@ -659,6 +660,30 @@ def latenight():
   now = get_current_time()
   filtered_halls = open_at_meal(now, "latenight")
   return render_template('index.html', halls=filtered_halls, meal="latenight", current_time=now)
+
+
+
+#########
+###SWIPE MARKET CODE BELOW
+#########
+
+class SwipeListing(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    # Store multiple dining halls as a comma-separated string.
+    dining_hall = db.Column(db.String(200), nullable=False)
+    time_frame = db.Column(db.String(100), nullable=False)
+    price = db.Column(db.Float, nullable=False)
+    location = db.Column(db.String(100), nullable=False)
+    payment_methods = db.Column(db.String(200), nullable=False)
+    seller_name = db.Column(db.String(100), nullable=False)
+    seller_email = db.Column(db.String(100), nullable=False)
+    seller_phone = db.Column(db.String(50))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f'<SwipeListing {self.id} - {self.seller_name}>'
+
+
 
 @app.route('/swipemarket')
 def swipemarket():
