@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Lion Dine</title>
-    <link rel="stylesheet" href="..\static\header.css">
-    <link rel="stylesheet" href="..\static\general.css">
+    <title>Swipe Market</title>
+    <link rel="stylesheet" href="../static/header.css">
+    <link rel="stylesheet" href="../static/general.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
@@ -15,108 +15,56 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D26R1LF247"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-D26R1LF247');
+    </script>
+    <style>
+      table {
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+        margin-top: 20px; /* optional, for spacing */
+      }
+      th, td {
+        border: 1px solid #ccc;
+        text-align: center;
+        padding: 10px;
+      }
+    </style>
   </head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D26R1LF247"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-D26R1LF247');
-  </script>
   <body>
     <main>
-      {% set hall_links = {
-        "John Jay": "https://dining.columbia.edu/content/john-jay-dining-hall",
-        "Ferris": "https://dining.columbia.edu/content/ferris-booth-commons-0",
-        "Grace Dodge": "https://dining.columbia.edu/content/grace-dodge-dining-hall-0",
-        "JJ's": "https://dining.columbia.edu/content/jjs-place-0",
-        "Chef Mike's": "https://dining.columbia.edu/chef-mikes",
-        "Chef Don's": "https://dining.columbia.edu/content/chef-dons-pizza-pi",
-        "Faculty House": "https://dining.columbia.edu/content/faculty-house-0",
-        "Fac Shack": "https://dining.columbia.edu/fac-shack-0",
-        "Hewitt Dining": "https://dineoncampus.com/barnard/whats-on-the-menu",
-        "Diana": "https://dineoncampus.com/barnard/whats-on-the-menu",
-        "Johnny's": "https://dining.columbia.edu/johnnys"
-      } %}
-      {% set hall_order = [
-        "Ferris", 
-        "JJ's",  
-        "Faculty House", 
-        "Chef Mike's", 
-        "Johnny's",
-        "Fac Shack", 
-        "John Jay",
-        "Hewitt Dining",
-        "Grace Dodge",
-        "Diana",
-        "Chef Don's"
-      ] %}
-      <p id="output"></p>
-      <div class="top">
-          <div id="current-time"></div>
-          <a href="https://forms.gle/PFbWKbaXN1EeYEcu6" target="blank">
-          <div class="feedback">Feedback</div>
-        </a>
-      </div>
       <header class="header" id="index-header">
-          <a href="/">Lion Dine &#129409;</a> 
+        <a href="/swipemarket">Swipe Market &#129409;</a> 
       </header>
-      <div class="var" id="halls"></div>
-      <div class="meals-container">
-        <a href="/breakfast" class="meal-button {% if meal == 'breakfast' %}active{% endif %}">Breakfast</a>
-        <a href="/lunch" class="meal-button {% if meal == 'lunch' %}active{% endif %}">Lunch</a>
-        <a href="/dinner" class="meal-button {% if meal == 'dinner' %}active{% endif %}">Dinner</a> 
-        <a href="/latenight" class="meal-button {% if meal == 'latenight' %}active{% endif %}">Late Night</a>           
-      </div>
-      <!--
-      <div class="prefs-alls">
-        <i class="fa-regular fa-square"></i>
-        <div class="pa-menu">Preferences</div>
-        <i class="fa-regular fa-square"></i>
-        <div class="pa-menu">Allergens</div>
-      </div>
-      -->
-      <div class="barrier"></div>
-      <div class="container">
-        {% for hall_name in hall_order %}
-          {% set hall_info = halls.get(hall_name, {"status": "Unknown", "hours": "Hours not available", "stations": "No data available"}) %}
-        <div class="col">
-          <a href="{{ hall_links.get(hall_name,'https://dining.columbia.edu/') }}" target="_blank">
-            {% if hall_name == "Hewitt Dining" %}
-              <h3>Hewitt</h3>
-            {% else %}
-              <h3>{{ hall_name }}</h3>
-            {% endif %}
-          </a>
-          <div class="timing">
-            <div class="hours">{{ hall_info.hours }}</div>
-            {% if hall_info.hours == "Closed today" %}
-              <div class="status"></div>
-            {% elif hall_info.status == "Closed" %}
-             <div class="status">{{ hall_info.status }}</div>
-            {% endif %}
-          </div>
-          {% if hall_info.status.startswith("Closed") %}
-            <div class="menu"></div>
-          {% elif hall_info.stations is mapping and hall_info.stations %}
-            <div class="menu">
-              {% for station_name, items in hall_info.stations.items() %}
-                <div class="food-type">{{ station_name }}</div>
-                {% for item in items %}
-                  <div class="food-name">{{ item }}</div>
-                {% endfor %}
-              {% endfor %}
-            </div>
-          {% else %}
-          <div class="menu">
-            No data available.
-          </div>
-          {% endif %}
-        </div>
-      {% endfor %}
-    </div>
-    <div class="footer"><p></p></div>
+      <table>
+        <thead>
+          <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>a</td>
+            <td>b</td>
+            <td>c</td>
+            <td>d</td>
+            <td>e</td>
+            <td>f</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="footer"><p></p></div>
     </main>
     <script src="../static/functions.js" type="text/javascript"></script>
   </body>
