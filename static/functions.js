@@ -72,3 +72,40 @@ function reorder() {
   });
   
 }
+
+const form = document.getElementById("valentineForm");
+    const linkContainer = document.getElementById("linkContainer");
+    let generatedLink = "";
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = {
+        senderName: document.getElementById("senderName").value,
+        valentineName: document.getElementById("valentineName").value,
+        diningHall: document.getElementById("diningHall").value,
+        mealTime: document.getElementById("mealTime").value
+      };
+
+      try {
+        const response = await fetch("/api/valentine", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData)
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+          generatedLink = data.inviteLink;
+          linkContainer.innerHTML = `
+            <p>Your custom Valentine invitation link:</p>
+            <a href="${generatedLink}" target="_blank">${generatedLink}</a>
+          `;
+        } else {
+          linkContainer.innerHTML = `<p style="color:red;">Error: ${data.error || 'Unknown error'}</p>`;
+        }
+      } catch (err) {
+        linkContainer.innerHTML = `<p style="color:red;">Something went wrong. Check console.</p>`;
+        console.error(err);
+      }
+    });
