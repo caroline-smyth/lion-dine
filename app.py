@@ -720,11 +720,11 @@ def submit_seller():
   return redirect(url_for('swipemarket'))
 
 
-@app.route('/swipemarket')
+@app.route('/swipemarket/')
 def swipemarket():
   return render_template('swipemarket.html')
 
-@app.route('/sellers')
+@app.route('/sellers/')
 def sellers():
   return render_template('sellers.html')
 
