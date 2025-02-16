@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 from datetime import datetime, time 
 import time as time_module
 import random
@@ -7,11 +7,15 @@ import requests
 import json
 import boto3
 from time_functions import john_jay_open, jjs_open, ferris_open, fac_house_open, mikes_open, dons_open, grace_dodge_open, fac_shack_open, hewitt_open, diana_open, hours_dict, breakfast_hours, lunch_hours, dinner_hours, latenight_hours, johnnys_open
+import string
 import pytz
+from  flask_sqlalchemy import SQLAlchemy
 from flask import make_response, g, render_template
 
 app = Flask(__name__) #sets up a flask application 
-
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///invitations.db'  # For SQLite
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 ny_tz = pytz.timezone('America/New_York')
 
 dining_halls = [
@@ -530,16 +534,6 @@ def open_at_meal(now, meal):
     if hall_name == "Grace Dodge":
       #filter for only open stations
       if meal == 'lunch' or meal == 'dinner':
-        '''
-        filtered_stations["Salad Base"] = ["Spinach", "Spring Green Mix", "Romaine"]
-        filtered_stations["Grains"] = ["Brown Rice", "White Rice"]
-        filtered_stations["Cold Toppings & Protein"] = ["Bell Peppers", "Black Beans", "Chickpeas", "Corn", "Cucumbers", "Red Onion", "Shredded Carrots", "Tofu", "Tomatoes"]
-        filtered_stations["Hot Toppings & Protein"] = ["Rotates Daily"]
-        filtered_stations["Ramen Broth"] = ["Tonkatsu", "Shiro Miso Kombu Dashi"]
-        filtered_stations["Noodles"] = ["Yakisoba", "Vermicelli"]
-        filtered_stations["Toppings"] = ["Bok Choy","Bean Sprouts","Cilantro","Corn","Kimchi","Marinated Egg", "Scallions","Sauteed Shiitake Mushrooms","Shredded Carrots","Tofu"]
-        filtered_stations["Protein"] = ["Rotates Daily"]
-        filtered_stations["Sides"] = ["Fruit","Beverage","Dessert"]'''
         for station, items in stations.get('lunch & dinner',{}).items():
           filtered_stations[station] = items
         
