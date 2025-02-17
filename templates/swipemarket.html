@@ -74,6 +74,19 @@
             <td>Cash, Zelle</td>
             <td>[button]</td>
           </tr>
+          {% for listing in listings %}
+          <tr>
+            <td>{{ listing.dining_hall }}</td>
+            <td>{{ listing.start_time }} - {{ listing.end_time }}</td>
+            <td>{{ listing.price }}</td>
+            <td>{{ listing.payment_methods }}</td>
+            <td>[button]</td>
+          </tr>
+          {% else %}
+          <tr>
+            <td colspan='6'>No listings available at the moment.</td>
+          </tr>
+          {% endfor %}
         </tbody>
       </table>
       <div class="footer"><p></p></div>
