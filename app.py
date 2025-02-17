@@ -730,7 +730,8 @@ with app.app_context():
 
 @app.route('/swipemarket')
 def swipemarket():
-  return render_template('swipemarket.html')
+  listings = SwipeListing.query.order_by(SwipeListing.created_at.desc()).all()
+  return render_template('swipemarket.html', listings=listings)
 
 @app.route('/sellers')
 def sellers():
