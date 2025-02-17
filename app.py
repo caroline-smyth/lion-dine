@@ -722,6 +722,9 @@ def submit_seller():
   #redirect to Swipe Market page
   return redirect(url_for('swipemarket'))
 
+with app.app_context():
+    db.drop_all()
+    db.create_all()
 
 @app.route('/swipemarket')
 def swipemarket():
