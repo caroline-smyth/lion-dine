@@ -687,7 +687,7 @@ def submit_seller():
   #get values from the form
   dining_halls = request.form.getlist('dining_hall[]')
   dining_halls_str = ", ".join(dining_halls)
-  time_frame = request.form.get('time_frame')
+  start_time = request.form.get('time_frame')
   price = request.form.get('price')
   location = request.form.get('location')
   payment_methods = request.form.get('payment_methods')
