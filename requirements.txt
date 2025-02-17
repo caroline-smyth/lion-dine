@@ -23,7 +23,7 @@ executing==2.0.1
 fake-useragent==1.5.1
 filelock==3.13.1
 Flask==3.0.3
-Flask-SQLAlchemy==3.1.1
+Flask-SQLAlchemy
 fonttools==4.53.0
 greenlet==3.1.1
 gunicorn==23.0.0
@@ -69,7 +69,6 @@ PySocks==1.7.1
 python-dateutil==2.9.0.post0
 python-dotenv==1.0.0
 pytz==2024.1
-pywin32==306
 pyzmq==26.0.3
 requests==2.31.0
 requests-html==0.10.0
