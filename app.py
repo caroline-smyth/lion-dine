@@ -670,7 +670,8 @@ class SwipeListing(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # Store multiple dining halls as a comma-separated string.
     dining_hall = db.Column(db.String(200), nullable=False)
-    time_frame = db.Column(db.String(100), nullable=False)
+    start_time = db.Column(db.String(100), nullable=False)
+    end_time = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float, nullable=False)
     location = db.Column(db.String(100), nullable=False)
     payment_methods = db.Column(db.String(200), nullable=False)
@@ -687,7 +688,8 @@ def submit_seller():
   #get values from the form
   dining_halls = request.form.getlist('dining_hall[]')
   dining_halls_str = ", ".join(dining_halls)
-  start_time = request.form.get('time_frame')
+  start_time = request.form.get('start_time')
+  end_time = request.form.get('end_time')
   price = request.form.get('price')
   location = request.form.get('location')
   payment_methods = request.form.get('payment_methods')
@@ -703,7 +705,8 @@ def submit_seller():
   #create new SwipeListing instance
   new_listing = SwipeListing(
     dining_hall=dining_halls_str,
-    time_frame=time_frame,
+    start_time=start_time,
+    end_time=end_time,
     price=price_value,
     location=location,
     payment_methods=payment_methods,
