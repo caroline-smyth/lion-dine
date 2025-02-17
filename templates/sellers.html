@@ -48,7 +48,7 @@
         </a>
       </div>
       <section id="terms-of-service" style="max-width: 800px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
-        <h2 style="text-align: center;">How To Sell Your Swipes</h2>
+        <h2 style="text-align: center;">How it Works</h2>
         <p style="line-height: 1.6; text-align: justify;">
           Freshman with extra swipes left at the end of the week? Upperclassman with a meal plan you're
           not going to finish? Fill out our seller's form and we'll connect you with people looking to 
@@ -69,7 +69,8 @@
         </p>
       </section>
       <section style="max-width: 800px; margin: 20px auto; padding: 20px;">
-        <h2>Details</h2>
+        <div class="seller-form">
+          <h2>Details</h2>
         <form action="/submit_seller" method="POST">
             <div>
                 <label for="dining_hall">Dining hall:</label>
@@ -129,9 +130,10 @@
                 <input type="text" id="seller_phone" name="seller_phone" placeholder="Optional">    
             </div>
             <div>
-                <button type="submit">Submit Listing</button>
+                <button type="submit" class="sell-button">Post Listing</button>
             </div>
         </form>
+        </div>
       </section>
       <div class="footer"><p></p></div>
     </main>
