@@ -1,0 +1,32 @@
+.back-button-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin-top: 20px; 
+}
+th, td {
+  border: 1px solid #ccc;
+  text-align: center;
+  padding: 10px;
+}
+.sell-button-container {
+  text-align: center;
+  margin: 20px 0;
+}
+.sell-button {
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.sell-button:hover {
+  background-color: #45a049;
+}
