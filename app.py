@@ -692,7 +692,9 @@ def submit_seller():
   end_time = request.form.get('end_time')
   price = request.form.get('price')
   location = request.form.get('location')
-  payment_methods = request.form.get('payment_methods')
+  payment_methods_list = request.form.getlist('payment_methods[]')
+  payment_methods=', '.join(payment_methods_list)
+  
   seller_name = request.form.get('seller_name')
   seller_email = request.form.get('seller_email')
   seller_phone = request.form.get('seller_phone')
