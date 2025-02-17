@@ -57,15 +57,14 @@ body {
   margin: 0 2.5rem;
   font-size: 22px;
 }
-/*
-.top {
+
+.top-right {
   margin-right: 2.5rem;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   font-size: 22px;
-}*/
-
+}
 
 .feedback {
   text-decoration: underline;
