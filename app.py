@@ -673,7 +673,6 @@ class SwipeListing(db.Model):
     start_time = db.Column(db.String(100), nullable=False)
     end_time = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float, nullable=False)
-    location = db.Column(db.String(100), nullable=False)
     payment_methods = db.Column(db.String(200), nullable=False)
     seller_name = db.Column(db.String(100), nullable=False)
     seller_email = db.Column(db.String(100), nullable=False)
@@ -691,7 +690,6 @@ def submit_seller():
   start_time = request.form.get('start_time')
   end_time = request.form.get('end_time')
   price = request.form.get('price')
-  location = request.form.get('location')
   payment_methods_list = request.form.getlist('payment_methods[]')
   payment_methods=', '.join(payment_methods_list)
   
@@ -710,7 +708,6 @@ def submit_seller():
     start_time=start_time,
     end_time=end_time,
     price=price_value,
-    location=location,
     payment_methods=payment_methods,
     seller_name=seller_name,
     seller_email=seller_email,
