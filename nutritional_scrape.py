@@ -21,7 +21,7 @@ from barnard_scrape import scrape_barnard
 from diana_scrape import scrape_diana
 
 #dining hall URLs and names 
-"""
+
 cu_urls = {
   "John Jay" : "https://dining.columbia.edu/content/john-jay-dining-hall",
   "JJ's" : "https://dining.columbia.edu/content/jjs-place-0", 
@@ -43,11 +43,13 @@ hall_names = [
   "Fac Shack", 
   "Hewitt Dining", 
   "Diana"
-  ]"""
+  ]
+"""
 cu_urls = {
   "Ferris" : "https://dining.columbia.edu/content/ferris-booth-commons-0",
 }
 hall_names = ["Ferris"]
+"""
 #configures webdriver for a headless environment 
 @contextmanager
 def managed_webdriver():
@@ -55,14 +57,7 @@ def managed_webdriver():
     #determine OS and set chrome binary location based on that
     chrome_options = Options()
     chrome_options = Options()
-    """
-    chrome_options.add_argument("--headless")  # Use standard headless mode
-    chrome_options.add_argument("--window-size=1920,1080")
-    chrome_options.add_argument("--disable-extensions")
-    chrome_options.add_argument("--disable-infobars")
-    chrome_options.add_argument("--disable-blink-features=AutomationControlled")
-    """
-    #chrome_options.add_argument("--headless")  # Use the new headless mode
+    chrome_options.add_argument("--headless=new")  # Use *new* headless mode
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--enable-unsafe-swiftshader")
     chrome_options.add_argument("--disable-dev-shm-usage")
@@ -73,10 +68,26 @@ def managed_webdriver():
     chrome_options.add_argument("--disable-setuid-sandbox")
     chrome_options.add_argument("--disable-infobars")
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
-    
+
+    #anti-bots for headless mode
+    chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    chrome_options.add_experimental_option("useAutomationExtension", False)
+
+    #user-agent?
+    chrome_options.add_argument(
+      "user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/115.0.5790.102 Safari/537.36"
+    )
+
+    '''#replacement for headless? forces each run to use a fresh profile
+    unique_profile = os.path.join("/tmp", f"chrome_profile_{uuid.uuid4().hex}")
+    chrome_options.add_argument(f"--user-data-dir={unique_profile}")'''
 
     # Determine the OS and set Chrome binary location
+    
     current_os = platform.system()
+    
     if current_os == "Linux":
         chrome_options.binary_location = '/usr/bin/google-chrome'
     elif current_os == "Darwin":
@@ -85,7 +96,7 @@ def managed_webdriver():
         chrome_options.binary_location = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
     else:
         raise Exception(f"Unsupported OS: {current_os}")
-
+    
     service = ChromeService(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
@@ -194,7 +205,7 @@ def scrape_columbia(hall_name):
 
       dining_hall[meal] = meal_dictionary
 
-    #print(dining_hall)
+    print(dining_hall)
 
     return {hall_name : dining_hall}
 

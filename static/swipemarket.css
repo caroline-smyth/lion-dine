@@ -50,3 +50,14 @@ th, td {
   border-radius: 8px;
   background-color: #d2d2d2;
 }
+
+table {
+  margin: 0 auto;
+  /*
+  border-width: thick;
+  border: 2px solid black;
+  border-collapse: separate;
+  border-radius: 10px;
+  */
+  border-spacing: 0;
+}
