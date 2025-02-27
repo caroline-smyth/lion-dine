@@ -46,10 +46,12 @@
       </header>
       <div class="sell-button-container">
         <a href="/sellers">
-          <button type="button" class="sell-button">Sell Your Swipes</button>
+          <button type="button" class="sell-button">Post Listing</button>
         </a>
       </div>
+      
       <table>
+        <caption>Seller Listings</caption>
         <thead>
           <tr>
             <th>Dining hall(s)</th>
@@ -66,15 +68,43 @@
             <td>{{ listing.start_time }} - {{ listing.end_time }}</td>
             <td>{{ listing.price }}</td>
             <td>{{ listing.payment_methods }}</td>
-            <td><div class="sell-button">Contact</td>
+            <td><div class="sell-button">Contact</div>
           </tr>
           {% else %}
           <tr>
-            <td colspan='6'>No listings available at the moment.</td>
+            <td colspan="5">No listings available at the moment.</td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
+      <table>
+        <caption>Buyer Listings</caption>
+        <thead>
+          <tr>
+            <th>Dining hall(s)</th>
+            <th>Time</th>
+            <th>Price</th>
+            <th>Payment methods</th>
+            <th>Contact seller</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for listing in listings %}
+          <tr>
+            <td>{{ listing.dining_hall }}</td>
+            <td>{{ listing.start_time }} - {{ listing.end_time }}</td>
+            <td>{{ listing.price }}</td>
+            <td>{{ listing.payment_methods }}</td>
+            <td><div class="buy-button">Contact</div>
+          </tr>
+          {% else %}
+          <tr>
+            <td colspan="5">No listings available at the moment.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      
       <div class="footer"><p></p></div>
     </main>
     <script src="../static/functions.js" type="text/javascript"></script>
