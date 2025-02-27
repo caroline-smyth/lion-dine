@@ -53,11 +53,17 @@ th, td {
 
 table {
   margin: 0 auto;
-  /*
-  border-width: thick;
-  border: 2px solid black;
-  border-collapse: separate;
-  border-radius: 10px;
-  */
-  border-spacing: 0;
+}
+
+.buy-button {
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.buy-button:hover {
+  background-color: #45a049;
 }
