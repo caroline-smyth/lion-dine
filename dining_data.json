@@ -1,9 +1,9 @@
 {
-    "Grace Dodge": {
+    "Chef Mike's": {
         "lunch & dinner": {
-            "Hot Station": [
-                "Tofu, Marinated Egg Scallion, Shredded Carrots, Sauteed Shiitake, Bean Sprouts, Edamame, Corn, Kim Chi"
-            ]
+            "Build Your Own - Right Line": "Protein: Turkey, Roast beef, Tuna, Ham, Buffalo Chicken, Grilled Vegetables, Chipotle Tofu, Italian Tofu",
+            "Hot Counter - Left Line": "Meatball Parm: Meatball, Marinara Sauce, Parmesan, Mozzarella",
+            "Cold Counter - Middle Line": "The Abbey Shu: Tuna, Pepper Jack Cheese, Hot Peppers"
         }
     }
 }

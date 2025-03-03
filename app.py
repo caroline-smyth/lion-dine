@@ -230,8 +230,6 @@ def current_open_stations(now):
         filtered_halls[hall_name]["stations"] = "Missing data"
 
     if hall_name == "Chef Mike's":
-      #filter for only open stations
-      #filtered_stations["all hours"] = "10:30 am - 10 pm"
       for station, items in stations.get('lunch & dinner',{}).items():
         filtered_stations[station] = items
       #return data to the filtered dictionary
