@@ -808,7 +808,7 @@ def send_connection_email():
     "Swipe Market Team"
   )
   recipients = [sender_email, other_email]
-  msg = Message(subject, sender=app.config['MAIL_USERNAME'], recipients)
+  msg = Message(subject, sender=app.config['MAIL_USERNAME'], recipients=recipients)
   msg.body = body
 
   try:
