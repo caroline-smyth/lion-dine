@@ -10,7 +10,7 @@ from time_functions import john_jay_open, jjs_open, ferris_open, fac_house_open,
 import string
 import pytz
 from  flask_sqlalchemy import SQLAlchemy
-from flask import make_response, g, render_template
+from flask import make_response, g, render_template, flash
 
 app = Flask(__name__) #sets up a flask application 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///invitations.db'  # For SQLite
