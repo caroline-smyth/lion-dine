@@ -708,9 +708,9 @@ def submit_buyer():
   payment_methods_list = request.form.getlist('payment_methods[]')
   payment_methods=', '.join(payment_methods_list)
   
-  buyer_name = request.form.get('seller_name')
-  buyer_email = request.form.get('seller_email')
-  buyer_phone = request.form.get('seller_phone')
+  buyer_name = request.form.get('name')
+  buyer_email = request.form.get('email')
+  buyer_phone = request.form.get('phone_number')
 
   try:
     price_value = float(price)
@@ -751,9 +751,9 @@ def submit_seller():
   payment_methods_list = request.form.getlist('payment_methods[]')
   payment_methods=', '.join(payment_methods_list)
   
-  seller_name = request.form.get('seller_name')
-  seller_email = request.form.get('seller_email')
-  seller_phone = request.form.get('seller_phone')
+  seller_name = request.form.get('name')
+  seller_email = request.form.get('email')
+  seller_phone = request.form.get('phone_number')
 
   try:
     price_value = float(price)
