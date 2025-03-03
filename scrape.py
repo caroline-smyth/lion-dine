@@ -187,6 +187,7 @@ def scrape_columbia(hall_name):
               meal_items_text = [item.text.strip() for item in meal_items]
 
         if "chef mike's" in actual_name:
+          """
           if "Hot Counter" in station_name or "Cold Counter" in station_name:
               try:
                 n = 0
@@ -208,11 +209,11 @@ def scrape_columbia(hall_name):
           try:
             meal_description = s.find_element(By.CLASS_NAME, "meal-description").text.strip()
             meal_items_text[0] = meal_items_text[0] + ": " + meal_description
-            meal_dictionary[station_name] = meal_items_text[0]
-            except:
-              station_name = s.find_element(By.CLASS_NAME, "station-title").text.strip()
-              meal_items = s.find_elements(By.CLASS_NAME, "meal-title")
-              meal_items_text = [item.text.strip() for item in meal_items"""
+            meal_dictionary[station_name] = [meal_items_text[0]]
+          except:
+            station_name = s.find_element(By.CLASS_NAME, "station-title").text.strip()
+            meal_items = s.find_elements(By.CLASS_NAME, "meal-title")
+            meal_items_text = [item.text.strip() for item in meal_items]
 
         elif "johnny" in actual_name:
           meal_descriptions = s.find_elements(By.CLASS_NAME, "meal-description")
