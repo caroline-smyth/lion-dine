@@ -717,7 +717,7 @@ def submit_buyer():
   except (ValueError, TypeError):
     price_value = -1.0 
 
-  #create new SwipeListing instance
+  #create new BuyerListing instance
   new_listing = BuyerListing(
     dining_hall=dining_halls_str,
     start_time=start_time,
@@ -760,7 +760,7 @@ def submit_seller():
   except (ValueError, TypeError):
     price_value = -1.0 
 
-  #create new SwipeListing instance
+  #create new SellerListing instance
   new_listing = SellerListing(
     dining_hall=dining_halls_str,
     start_time=start_time,
@@ -785,8 +785,9 @@ with app.app_context():
 
 @app.route('/swipemarket')
 def swipemarket():
-  listings = SwipeListing.query.order_by(SwipeListing.created_at.desc()).all()
-  return render_template('swipemarket.html', listings=listings)
+  seller_listings = SellerListing.query.order_by(SellerListing.created_at.desc()).all()
+  buyer_listings = BuyerListing.query.order_by(BuyerListing.created_at.desc()).all()
+  return render_template('swipemarket.html', seller_listings=seller_listings, buyer_listings=buyer_listings)
 
 @app.route('/sellers')
 def sellers():

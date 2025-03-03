@@ -65,7 +65,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for listing in listings %}
+          {% for listing in seller_listings %}
           <tr>
             <td>{{ listing.dining_hall }}</td>
             <td>{{ listing.start_time }} - {{ listing.end_time }}</td>
@@ -92,7 +92,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for listing in listings %}
+          {% for listing in buyer_listings %}
           <tr>
             <td>{{ listing.dining_hall }}</td>
             <td>{{ listing.start_time }} - {{ listing.end_time }}</td>
