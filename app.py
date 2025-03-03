@@ -661,12 +661,11 @@ def latenight():
   return render_template('index.html', halls=filtered_halls, meal="latenight", current_time=now)
 
 
-
 #########
 ###SWIPE MARKET CODE BELOW
 #########
 
-class SwipeListing(db.Model):
+class SellerListing(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # Store multiple dining halls as a comma-separated string.
     dining_hall = db.Column(db.String(200), nullable=False)
@@ -680,7 +679,66 @@ class SwipeListing(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
-        return f'<SwipeListing {self.id} - {self.seller_name}>'
+        return f'<SellerListing {self.id} - {self.seller_name}>'
+
+class BuyerListing(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    # Store multiple dining halls as a comma-separated string.
+    dining_hall = db.Column(db.String(200), nullable=False)
+    start_time = db.Column(db.String(100), nullable=False)
+    end_time = db.Column(db.String(100), nullable=False)
+    price = db.Column(db.Float, nullable=False)
+    payment_methods = db.Column(db.String(200), nullable=False)
+    buyer_name = db.Column(db.String(100), nullable=False)
+    buyer_email = db.Column(db.String(100), nullable=False)
+    buyer_phone = db.Column(db.String(50))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f'<BuyerListing {self.id} - {self.buyer_name}>'
+
+@app.route('/submit_buyer', methods=['POST'])
+def submit_buyer():
+  #get values from the form
+  dining_halls = request.form.getlist('dining_hall[]')
+  dining_halls_str = ", ".join(dining_halls)
+  start_time = request.form.get('start_time')
+  end_time = request.form.get('end_time')
+  price = request.form.get('price')
+  payment_methods_list = request.form.getlist('payment_methods[]')
+  payment_methods=', '.join(payment_methods_list)
+  
+  buyer_name = request.form.get('buyer_name')
+  buyer_email = request.form.get('buyer_email')
+  buyer_phone = request.form.get('buyer_phone')
+
+  try:
+    price_value = float(price)
+  except (ValueError, TypeError):
+    price_value = -1.0 
+
+  #create new SwipeListing instance
+  new_listing = BuyerListing(
+    dining_hall=dining_halls_str,
+    start_time=start_time,
+    end_time=end_time,
+    price=price_value,
+    payment_methods=payment_methods,
+    buyer_name=buyer_name,
+    buyer_email=buyer_email,
+    buyer_phone=buyer_phone
+  )
+
+  #add new listing to database
+  db.session.add(new_listing)
+  db.session.commit()
+
+  #redirect to Swipe Market page
+  return redirect(url_for('swipemarket'))
+
+with app.app_context():
+    db.drop_all()
+    db.create_all()
 
 @app.route('/submit_seller', methods=['POST'])
 def submit_seller():
@@ -703,7 +761,7 @@ def submit_seller():
     price_value = -1.0 
 
   #create new SwipeListing instance
-  new_listing = SwipeListing(
+  new_listing = SellerListing(
     dining_hall=dining_halls_str,
     start_time=start_time,
     end_time=end_time,
