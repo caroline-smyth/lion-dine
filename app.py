@@ -712,6 +712,7 @@ def submit_buyer():
   buyer_email = request.form.get('email')
   buyer_phone = request.form.get('phone_number')
 
+  '''
   time_format = "%H:%M"
   try:
     start_dt = datetime.strptime(start_time, time_format)
@@ -724,6 +725,7 @@ def submit_buyer():
   if end_dt < start_dt:
     flash("Error: End time cannot be earlier than start time.", "error")
     return redirect(url_for('sellers'))
+  '''
   try:
     price_value = float(price)
   except (ValueError, TypeError):
@@ -768,6 +770,7 @@ def submit_seller():
   seller_email = request.form.get('email')
   seller_phone = request.form.get('phone_number')
 
+  '''
   time_format = "%H:%M"
   try:
     start_dt = datetime.strptime(start_time, time_format)
@@ -780,6 +783,7 @@ def submit_seller():
   if end_dt < start_dt:
     flash("Error: End time cannot be earlier than start time.", "error")
     return redirect(url_for('sellers'))
+  '''
 
   try:
     price_value = float(price)
