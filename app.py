@@ -17,6 +17,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///invitations.db'  # For SQLite
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 ny_tz = pytz.timezone('America/New_York')
+app.secret_key = os.environ.get('SECRET_KEY','fallback-secret-key')
 
 dining_halls = [
   "John Jay",
