@@ -11,13 +11,21 @@ import string
 import pytz
 from  flask_sqlalchemy import SQLAlchemy
 from flask import make_response, g, render_template, flash
+from flask_mail import Mail, Message
 
-app = Flask(__name__) #sets up a flask application 
+app = Flask(__name__) #sets up a flask application
+app.secret_key = os.environ.get('SECRET_KEY','fallback-secret-key') 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///invitations.db'  # For SQLite
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAM'] = os.environ.get('liondinecu@gmail.com')
+app.config['MAIL_PASSWORD'] = os.environ.get('Iiacrn123!')
+mail = Mail(app)
+
 ny_tz = pytz.timezone('America/New_York')
-app.secret_key = os.environ.get('SECRET_KEY','fallback-secret-key')
 
 dining_halls = [
   "John Jay",
@@ -713,20 +721,6 @@ def submit_buyer():
   buyer_email = request.form.get('email')
   buyer_phone = request.form.get('phone_number')
 
-  '''
-  time_format = "%H:%M"
-  try:
-    start_dt = datetime.strptime(start_time, time_format)
-    end_dt = datetime.strptime(end_time, time_format)
-  except ValueError:
-    flash("Invalid time format.", "error")
-    return redirect(url_for('sellers'))
-
-  #check if the end time is before the start time
-  if end_dt < start_dt:
-    flash("Error: End time cannot be earlier than start time.", "error")
-    return redirect(url_for('sellers'))
-  '''
   try:
     price_value = float(price)
   except (ValueError, TypeError):
@@ -749,7 +743,6 @@ def submit_buyer():
   db.session.commit()
 
   #redirect to Swipe Market page
-  flash('Success!')
   return redirect(url_for('swipemarket'))
 
 with app.app_context():
@@ -770,21 +763,6 @@ def submit_seller():
   seller_name = request.form.get('name')
   seller_email = request.form.get('email')
   seller_phone = request.form.get('phone_number')
-
-  '''
-  time_format = "%H:%M"
-  try:
-    start_dt = datetime.strptime(start_time, time_format)
-    end_dt = datetime.strptime(end_time, time_format)
-  except ValueError:
-    flash("Invalid time format.", "error")
-    return redirect(url_for('sellers'))
-
-  #check if the end time is before the start time.
-  if end_dt < start_dt:
-    flash("Error: End time cannot be earlier than start time.", "error")
-    return redirect(url_for('sellers'))
-  '''
 
   try:
     price_value = float(price)
@@ -808,12 +786,39 @@ def submit_seller():
   db.session.commit()
 
   #redirect to Swipe Market page
-  flash('Success!')
   return redirect(url_for('swipemarket'))
 
 with app.app_context():
     db.drop_all()
     db.create_all()
+
+@app.route('/send_connection_email', methods=['POST'])
+def send_connection_email():
+  sender_name = request.form.get('sender_name')
+  sender_email = request.form.get('sender_email')
+  receiver_name = request.form.get('receiver_name') # maybe shouldn't come from form but the database of listings?
+  receiver_email = request.form.get('receiver_email')
+
+  subject = "[Swipe Market] You have a new connection!"
+  body = (
+    f"Hello {sender_name},\n\n"
+    f"Thank you for your interest. Here is the contact information for {receiver_name}:\n"
+    f"Email: {receiver_email}\n\n"
+    "Best regards,\n"
+    "Swipe Market Team"
+  )
+  recipients = [sender_email, other_email]
+  msg = Message(subject, sender=app.config['MAIL_USERNAME'], recipients)
+  msg.body = body
+
+  try:
+    mail.send(msg)
+    flash("Connection email sent successfully!", "success")
+  except Exception as e:
+    flash("Error sending email. Please try again later.", "error")
+    print("Email sending error:", e)
+  
+  return redirect(url_for('swipemarket'))
 
 @app.route('/swipemarket')
 def swipemarket():

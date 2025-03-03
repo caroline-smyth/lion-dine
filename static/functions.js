@@ -6,6 +6,39 @@ function onSignIn(googleUser) {
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
 
+var sellModal = document.getElementById("sellModal");
+var buyModal = document.getElementById("buyModal");
+var sellButton = document.getElementById("sellButton");
+var buyButton = document.getElementById("buyButton");
+var sellClose = document.getElementById("sellClose");
+var buyClose = document.getElementById("buyClose");
+
+// Open modals when buttons are clicked
+sellButton.onclick = function() {
+  sellModal.style.display = "block";
+}
+buyButton.onclick = function() {
+  buyModal.style.display = "block";
+}
+
+// Close modals when close (×) is clicked
+sellClose.onclick = function() {
+  sellModal.style.display = "none";
+}
+buyClose.onclick = function() {
+  buyModal.style.display = "none";
+}
+
+// Close modal when clicking outside the modal content
+window.onclick = function(event) {
+  if (event.target == sellModal) {
+    sellModal.style.display = "none";
+  }
+  if (event.target == buyModal) {
+    buyModal.style.display = "none";
+  }
+}
+
 function updateTime() {
   var now = new Date();
   var options = { 
