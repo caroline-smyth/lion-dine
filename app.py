@@ -712,6 +712,18 @@ def submit_buyer():
   buyer_email = request.form.get('email')
   buyer_phone = request.form.get('phone_number')
 
+  time_format = "%H:%M"
+  try:
+    start_dt = datetime.strptime(start_time, time_format)
+    end_dt = datetime.strptime(end_time, time_format)
+  except ValueError:
+    flash("Invalid time format.", "error")
+    return redirect(url_for('sellers'))
+
+  #check if the end time is before the start time
+  if end_dt < start_dt:
+    flash("Error: End time cannot be earlier than start time.", "error")
+    return redirect(url_for('sellers'))
   try:
     price_value = float(price)
   except (ValueError, TypeError):
@@ -734,6 +746,7 @@ def submit_buyer():
   db.session.commit()
 
   #redirect to Swipe Market page
+  flash('Success!')
   return redirect(url_for('swipemarket'))
 
 with app.app_context():
@@ -754,6 +767,19 @@ def submit_seller():
   seller_name = request.form.get('name')
   seller_email = request.form.get('email')
   seller_phone = request.form.get('phone_number')
+
+  time_format = "%H:%M"
+  try:
+    start_dt = datetime.strptime(start_time, time_format)
+    end_dt = datetime.strptime(end_time, time_format)
+  except ValueError:
+    flash("Invalid time format.", "error")
+    return redirect(url_for('sellers'))
+
+  #check if the end time is before the start time.
+  if end_dt < start_dt:
+    flash("Error: End time cannot be earlier than start time.", "error")
+    return redirect(url_for('sellers'))
 
   try:
     price_value = float(price)
@@ -777,6 +803,7 @@ def submit_seller():
   db.session.commit()
 
   #redirect to Swipe Market page
+  flash('Success!')
   return redirect(url_for('swipemarket'))
 
 with app.app_context():
