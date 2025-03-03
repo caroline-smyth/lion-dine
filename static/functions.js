@@ -6,6 +6,7 @@ function onSignIn(googleUser) {
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
 
+/*
 var sellModal = document.getElementById("sellModal");
 var buyModal = document.getElementById("buyModal");
 var sellButton = document.getElementById("sellButton");
@@ -37,7 +38,7 @@ window.onclick = function(event) {
   if (event.target == buyModal) {
     buyModal.style.display = "none";
   }
-}
+}*/
 
 function updateTime() {
   var now = new Date();
