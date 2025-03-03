@@ -75,3 +75,10 @@ table {
 .buy-button:hover {
   background-color: #45a049;
 }
+
+.tables-container {
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* optional spacing between tables */
+}
