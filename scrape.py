@@ -186,42 +186,7 @@ def scrape_columbia(hall_name):
               meal_items = s.find_elements(By.CLASS_NAME, "meal-title")
               meal_items_text = [item.text.strip() for item in meal_items]
 
-        if "chef mike's" in actual_name:
-          """
-          if "Hot Counter" in station_name or "Cold Counter" in station_name:
-              try:
-                n = 0
-                for item in meal_items:
-                  meal_item = item.text.strip()
-                  meal_descriptions = s.find_elements(By.CLASS_NAME, "meal-description")
-                  meal_desc_text = [desc.text.strip() for desc in meal_descriptions]
-                  meal_item = meal_item + ": " + meal_desc_text[n]
-                  meal_items_text[n] = meal_item
-                  n+=1
-                meal_dictionary[station_name] = meal_items_text
-                #print(meal_dictionary)
-                
-              except:
-                station_name = s.find_element(By.CLASS_NAME, "station-title").text.strip()
-                meal_items = s.find_elements(By.CLASS_NAME, "meal-title")
-                meal_items_text = [item.text.strip() for item in meal_items]
-
-          try:
-            meal_description = s.find_element(By.CLASS_NAME, "meal-description").text.strip()
-            meal_items_text[0] = meal_items_text[0] + ": " + meal_description
-            meal_dictionary[station_name] = [meal_items_text[0]]
-          except:
-            station_name = s.find_element(By.CLASS_NAME, "station-title").text.strip()
-            meal_items = s.find_elements(By.CLASS_NAME, "meal-title")
-            meal_items_text = [item.text.strip() for item in meal_items]
-            """
-          meal_descriptions = s.find_elements(By.CLASS_NAME, "meal-description")
-          meal_descriptions_text = [desc.text.strip() for desc in meal_descriptions]
-          combined_items = [element for pair in zip(meal_items_text, meal_descriptions_text) for element in pair]
-
-          meal_dictionary[station_name] = combined_items
-
-        elif "johnny" in actual_name:
+        elif "johnny" or "chef mike's" in actual_name:
           meal_descriptions = s.find_elements(By.CLASS_NAME, "meal-description")
           meal_descriptions_text = [desc.text.strip() for desc in meal_descriptions]
           combined_items = [element for pair in zip(meal_items_text, meal_descriptions_text) for element in pair]
