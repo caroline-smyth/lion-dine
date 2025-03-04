@@ -794,8 +794,6 @@ with app.app_context():
 @app.route('/contact_form', methods=['POST'])
 def contact_form():
   email = request.form.get('email')
-  #print('woohoo!')
-  #return f"Email: {email}"
   flash('Success! Your email has been submitted', 'success')
   return redirect(url_for('swipemarket'))
 
@@ -803,13 +801,20 @@ def contact_form():
 def send_connection_email():
   sender_name = request.form.get('sender_name')
   sender_email = request.form.get('sender_email')
-  receiver_name = request.form.get('receiver_name') # maybe shouldn't come from form but the database of listings?
-  receiver_email = request.form.get('receiver_email')
+  listing_id = request.form.get('listing_id')
 
-  subject = "[Swipe Market] You have a new connection!"
+  #unsure about this, but surely won't override 
+  receiver_listing = SellerListing.query.get(listing_id)
+  receiver_listing = SellerListing.query.get(listing_id)
+
+  receiver_name = receiver_listing.name
+  receiver_email = receiver_listing.email
+  # wil prob have to pull other info from listing to buff out email 
+
+  subject = "[Swipe Market] Potential Sale"
   body = (
     f"Hello {sender_name},\n\n"
-    f"Thank you for your interest. Here is the contact information for {receiver_name}:\n"
+    f"Thanks for your interest in buying a swipe! Here's the contact information for {receiver_name}:\n"
     f"Email: {receiver_email}\n\n"
     "Best regards,\n"
     "Swipe Market Team"
