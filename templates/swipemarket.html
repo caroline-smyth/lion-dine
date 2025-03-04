@@ -71,7 +71,7 @@
             <td>{{ listing.start_time }} - {{ listing.end_time }}</td>
             <td>{{ listing.price }}</td>
             <td>{{ listing.payment_methods }}</td>
-            <td><div class="contact-seller" data-other-name="{{ listing.name }}" data-other-email="{{ listing.email }}">Contact</div>
+            <td><button class="contact-seller" onclick="openForm()">Contact</button></td></td>
           </tr>
           {% else %}
           <tr>
@@ -98,7 +98,7 @@
             <td>{{ listing.start_time }} - {{ listing.end_time }}</td>
             <td>{{ listing.price }}</td>
             <td>{{ listing.payment_methods }}</td>
-            <td><button class="contact-seller" onclick="openForm()">Open Form</button></td>
+            <td><button class="contact-seller" onclick="openForm()">Contact</button></td>
             <!--
             <td><div class="contact-buyer" data-other-name="{{ listing.name }}" data-other-email="{{ listing.email }}">Contact</div>
             -->
@@ -113,10 +113,12 @@
     </div>
     <button class="contact-seller" onclick="openForm()">Open Form</button>
     <div class="form-popup" id="myForm">
-      <form action="/contact_form" method="POST" class="form-container">
+      <form action="/send_connection_email" method="POST" class="form-container">
         <h1>Login</h1>
-        <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" required>
+        <label for="sender_name"><b>Name</b></label>
+        <input type="text" placeholder="Your Name" name="sender_name" required> <br>
+        <label for="sender_email"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="sender_email" required>
         <button type="submit" class="btn">Login</button>
         <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
       </form>
