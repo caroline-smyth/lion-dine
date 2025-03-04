@@ -790,6 +790,12 @@ with app.app_context():
     db.drop_all()
     db.create_all()
 
+
+@app.route('/contact_form', methods=['POST'])
+def contact_form():
+  email = request.form.get('email')
+  return f"Form submitted. Email: {email}"
+
 @app.route('/send_connection_email', methods=['POST'])
 def send_connection_email():
   sender_name = request.form.get('sender_name')
