@@ -118,60 +118,10 @@ const form = document.getElementById("valentineForm");
       }
     });
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Get modal elements
-  const sellModal = document.getElementById("sellModal");
-  const sellClose = document.getElementById("sellClose");
-  const buyModal = document.getElementById("buyModal");
-  const buyClose = document.getElementById("buyClose");
-  console.log('sellModal:' + sellModal)
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
 
-  // Attach event listener for seller listing buttons
-  document.querySelectorAll(".contact-seller").forEach(function (button) {
-    button.addEventListener("click", function () {
-      // Retrieve data attributes from the clicked button
-      console.log('clicked')
-      const otherName = button.getAttribute("data-other-name");
-      const otherEmail = button.getAttribute("data-other-email");
-      console.log(otherName + ' ' + otherEmail)
-      // Populate the hidden fields in the seller modal
-      sellModal.querySelector("input[name='other_name']").value = otherName;
-      sellModal.querySelector("input[name='other_email']").value = otherEmail;
-      // Display the modal
-      sellModal.style.display = "block";
-    });
-  });
-
-  // Attach event listener for buyer listing buttons
-  document.querySelectorAll(".contact-buyer").forEach(function (button) {
-    button.addEventListener("click", function () {
-      // Retrieve data attributes from the clicked button
-      const otherName = button.getAttribute("data-other-name");
-      const otherEmail = button.getAttribute("data-other-email");
-      // Populate the hidden fields in the buyer modal
-      buyModal.querySelector("input[name='other_name']").value = otherName;
-      buyModal.querySelector("input[name='other_email']").value = otherEmail;
-      // Display the modal
-      buyModal.style.display = "block";
-    });
-  });
-
-  // Close modal when clicking on the close icon
-  sellClose.addEventListener("click", function () {
-    sellModal.style.display = "none";
-  });
-
-  buyClose.addEventListener("click", function () {
-    buyModal.style.display = "none";
-  });
-
-  // Close modal when clicking anywhere outside the modal content
-  window.addEventListener("click", function (event) {
-    if (event.target === sellModal) {
-      sellModal.style.display = "none";
-    }
-    if (event.target === buyModal) {
-      buyModal.style.display = "none";
-    }
-  });
-});
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}

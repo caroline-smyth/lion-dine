@@ -108,54 +108,18 @@
         </tbody>
       </table>
     </div>
-    <!-- Seller Contact Modal -->
-    <div id="sellModal" class="modal">
-      <div class="modal-content">
-        <span class="close" id="sellClose">&times;</span>
-        <h2>Seller Contact Form</h2>
-        <form action="/send_connection_email" method="POST">
-          <div>
-            <label for="seller_name">Your Name:</label>
-            <input type="text" id="seller_name" name="name" required>
-          </div>
-          <div>
-            <label for="seller_email">Your Email:</label>
-            <input type="email" id="seller_email" name="email" required>
-          </div>
-          <!-- Hidden fields for the buyer’s contact details -->
-          <input type="hidden" name="other_name" value="">
-          <input type="hidden" name="other_email" value="">
-          <div>
-            <button type="submit">Submit</button>
-          </div>
-        </form>
-      </div>
+    <button class="contact-seller" onclick="openForm()">Open Form</button>
+    <div class="form-popup" id="myForm">
+      <form action="/action_page.php" class="form-container">
+        <h1>Login</h1>
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" required>
+        <button type="submit" class="btn">Login</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+      </form>
     </div>
     
-    <!-- Buyer Contact Modal -->
-    <div id="buyModal" class="modal">
-      <div class="modal-content">
-        <span class="close" id="buyClose">&times;</span>
-        <h2>Buyer Contact Form</h2>
-        <form action="/send_connection_email" method="POST">
-          <div>
-            <label for="buyer_name">Your Name:</label>
-            <input type="text" id="buyer_name" name="name" required>
-          </div>
-          <div>
-            <label for="buyer_email">Your Email:</label>
-            <input type="email" id="buyer_email" name="email" required>
-          </div>
-          <!-- Hidden fields for the seller’s contact details -->
-          <input type="hidden" name="other_name" value="">
-          <input type="hidden" name="other_email" value="">
-          <div>
-            <button type="submit">Submit</button>
-          </div>
-        </form>
-      </div>
-    </div>
-      <div class="footer"><p></p></div>
+    <div class="footer"><p></p></div>
     </main>
     <script src="../static/functions.js" type="text/javascript"></script>
   </body>
