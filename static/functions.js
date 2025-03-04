@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log('sellModal:' + sellModal)
 
   // Attach event listener for seller listing buttons
-  document.querySelectorAll(".sell-button").forEach(function (button) {
+  document.querySelectorAll(".contact-seller").forEach(function (button) {
     button.addEventListener("click", function () {
       // Retrieve data attributes from the clicked button
       console.log('clicked')
@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Attach event listener for buyer listing buttons
-  document.querySelectorAll(".buy-button").forEach(function (button) {
+  document.querySelectorAll(".contact-buyer").forEach(function (button) {
     button.addEventListener("click", function () {
       // Retrieve data attributes from the clicked button
       const otherName = button.getAttribute("data-other-name");
