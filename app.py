@@ -803,6 +803,7 @@ def send_connection_email():
   sender_name = request.form.get('sender_name')
   sender_email = request.form.get('sender_email')
   listing_id = request.form.get('listing_id')
+  """
   subject ="Test email"
   body = (
     f"Testing testing"
@@ -831,8 +832,7 @@ def send_connection_email():
   recipients = [sender_email, other_email]
   msg = Message(subject, sender=app.config['MAIL_USERNAME'], recipients=recipients)
   msg.body = body
-  """
-
+  
   try:
     mail.send(msg)
     flash("Connection email sent successfully!", "success")
