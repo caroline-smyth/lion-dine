@@ -124,13 +124,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const sellClose = document.getElementById("sellClose");
   const buyModal = document.getElementById("buyModal");
   const buyClose = document.getElementById("buyClose");
+  console.log('sellModal:' + sellModal)
 
   // Attach event listener for seller listing buttons
   document.querySelectorAll(".sell-button").forEach(function (button) {
     button.addEventListener("click", function () {
       // Retrieve data attributes from the clicked button
+      console.log('clicked')
       const otherName = button.getAttribute("data-other-name");
       const otherEmail = button.getAttribute("data-other-email");
+      console.log(otherName + ' ' + otherEmail)
       // Populate the hidden fields in the seller modal
       sellModal.querySelector("input[name='other_name']").value = otherName;
       sellModal.querySelector("input[name='other_email']").value = otherEmail;
