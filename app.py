@@ -817,8 +817,12 @@ def send_connection_email():
   receiver_listing = SellerListing.query.get(listing_id)
   receiver_listing = SellerListing.query.get(listing_id)
 
-  receiver_name = receiver_listing.name
-  receiver_email = receiver_listing.email
+  if isinstance(receiver_listing, BuyerListing):
+    receiver_name = receiver_listing.buyer_name
+    receiver_email = receiver_listing.buyer_email
+  else:
+    receiver_name = receiver_listing.seller_name
+    receiver_email = receiver_listing.seller_email
   # wil prob have to pull other info from listing to buff out email 
 
   subject = "[Swipe Market] Potential Sale"
@@ -829,7 +833,7 @@ def send_connection_email():
     "Best regards,\n"
     "Swipe Market Team"
   )
-  recipients = [sender_email, other_email]
+  recipients = [sender_email, receiver_email]
   msg = Message(subject, sender=app.config['MAIL_USERNAME'], recipients=recipients)
   msg.body = body
   
