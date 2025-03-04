@@ -742,7 +742,7 @@ def submit_buyer():
   db.session.commit()
 
   #redirect to Swipe Market page
-  return redirect(url_for('swipemarket'))
+  return redirect(url_for('market'))
 
 with app.app_context():
     db.drop_all()
@@ -785,7 +785,7 @@ def submit_seller():
   db.session.commit()
 
   #redirect to Swipe Market page
-  return redirect(url_for('swipemarket'))
+  return redirect(url_for('market'))
 
 with app.app_context():
     db.drop_all()
@@ -796,7 +796,7 @@ with app.app_context():
 def contact_form():
   email = request.form.get('email')
   flash('Success! Your email has been submitted', 'success')
-  return redirect(url_for('swipemarket'))
+  return redirect(url_for('market'))
 
 @app.route('/send_connection_email', methods=['POST'])
 def send_connection_email():
@@ -840,13 +840,13 @@ def send_connection_email():
     flash("Error sending email. Please try again later.", "error")
     print("Email sending error:", e)
   
-  return redirect(url_for('swipemarket'))
+  return redirect(url_for('market'))
 
-@app.route('/swipemarket')
-def swipemarket():
+@app.route('/market')
+def market():
   seller_listings = SellerListing.query.order_by(SellerListing.created_at.desc()).all()
   buyer_listings = BuyerListing.query.order_by(BuyerListing.created_at.desc()).all()
-  return render_template('swipemarket.html', seller_listings=seller_listings, buyer_listings=buyer_listings)
+  return render_template('market.html', seller_listings=seller_listings, buyer_listings=buyer_listings)
 
 @app.route('/sellers')
 def sellers():
