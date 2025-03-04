@@ -71,7 +71,7 @@
             <td>{{ listing.start_time }} - {{ listing.end_time }}</td>
             <td>{{ listing.price }}</td>
             <td>{{ listing.payment_methods }}</td>
-            <td><div class="sell-button">Contact</div>
+            <td><div class="sell-button" data-other-name="{{ listing.name }}" data-other-email="{{ listing.email }}">Contact</div>
           </tr>
           {% else %}
           <tr>
@@ -98,7 +98,7 @@
             <td>{{ listing.start_time }} - {{ listing.end_time }}</td>
             <td>{{ listing.price }}</td>
             <td>{{ listing.payment_methods }}</td>
-            <td><div class="buy-button">Contact</div>
+            <td><div class="buy-button" data-other-name="{{ listing.name }}" data-other-email="{{ listing.email }}">Contact</div>
           </tr>
           {% else %}
           <tr>
@@ -123,8 +123,8 @@
             <input type="email" id="seller_email" name="email" required>
           </div>
           <!-- Hidden fields for the buyer’s contact details -->
-          <input type="hidden" name="other_name" value="{{ buyer_name }}">
-          <input type="hidden" name="other_email" value="{{ buyer_email }}">
+          <input type="hidden" name="other_name" value="">
+          <input type="hidden" name="other_email" value="">
           <div>
             <button type="submit">Submit</button>
           </div>
@@ -147,8 +147,8 @@
             <input type="email" id="buyer_email" name="email" required>
           </div>
           <!-- Hidden fields for the seller’s contact details -->
-          <input type="hidden" name="other_name" value="{{ seller_name }}">
-          <input type="hidden" name="other_email" value="{{ seller_email }}">
+          <input type="hidden" name="other_name" value="">
+          <input type="hidden" name="other_email" value="">
           <div>
             <button type="submit">Submit</button>
           </div>
