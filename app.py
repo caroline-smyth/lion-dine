@@ -802,6 +802,15 @@ def send_connection_email():
   sender_name = request.form.get('sender_name')
   sender_email = request.form.get('sender_email')
   listing_id = request.form.get('listing_id')
+  subject ="Test email"
+  body = (
+    f"hiiiii testing\n"
+    f"xoxo Caroline"
+  )
+  recipients = [sender_email]
+  msg = Message(subject, sender=app.config['MAIL_USERNAME'], recipients=recipients)
+  msg.body = body
+  """
 
   #unsure about this, but surely won't override 
   receiver_listing = SellerListing.query.get(listing_id)
@@ -822,6 +831,7 @@ def send_connection_email():
   recipients = [sender_email, other_email]
   msg = Message(subject, sender=app.config['MAIL_USERNAME'], recipients=recipients)
   msg.body = body
+  """
 
   try:
     mail.send(msg)
