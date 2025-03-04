@@ -6,40 +6,6 @@ function onSignIn(googleUser) {
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
 
-/*
-var sellModal = document.getElementById("sellModal");
-var buyModal = document.getElementById("buyModal");
-var sellButton = document.getElementById("sellButton");
-var buyButton = document.getElementById("buyButton");
-var sellClose = document.getElementById("sellClose");
-var buyClose = document.getElementById("buyClose");
-
-// Open modals when buttons are clicked
-sellButton.onclick = function() {
-  sellModal.style.display = "block";
-}
-buyButton.onclick = function() {
-  buyModal.style.display = "block";
-}
-
-// Close modals when close (×) is clicked
-sellClose.onclick = function() {
-  sellModal.style.display = "none";
-}
-buyClose.onclick = function() {
-  buyModal.style.display = "none";
-}
-
-// Close modal when clicking outside the modal content
-window.onclick = function(event) {
-  if (event.target == sellModal) {
-    sellModal.style.display = "none";
-  }
-  if (event.target == buyModal) {
-    buyModal.style.display = "none";
-  }
-}*/
-
 function updateTime() {
   var now = new Date();
   var options = { 
@@ -151,3 +117,58 @@ const form = document.getElementById("valentineForm");
         console.error(err);
       }
     });
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Get modal elements
+  const sellModal = document.getElementById("sellModal");
+  const sellClose = document.getElementById("sellClose");
+  const buyModal = document.getElementById("buyModal");
+  const buyClose = document.getElementById("buyClose");
+
+  // Attach event listener for seller listing buttons
+  document.querySelectorAll(".sell-button").forEach(function (button) {
+    button.addEventListener("click", function () {
+      // Retrieve data attributes from the clicked button
+      const otherName = button.getAttribute("data-other-name");
+      const otherEmail = button.getAttribute("data-other-email");
+      // Populate the hidden fields in the seller modal
+      sellModal.querySelector("input[name='other_name']").value = otherName;
+      sellModal.querySelector("input[name='other_email']").value = otherEmail;
+      // Display the modal
+      sellModal.style.display = "block";
+    });
+  });
+
+  // Attach event listener for buyer listing buttons
+  document.querySelectorAll(".buy-button").forEach(function (button) {
+    button.addEventListener("click", function () {
+      // Retrieve data attributes from the clicked button
+      const otherName = button.getAttribute("data-other-name");
+      const otherEmail = button.getAttribute("data-other-email");
+      // Populate the hidden fields in the buyer modal
+      buyModal.querySelector("input[name='other_name']").value = otherName;
+      buyModal.querySelector("input[name='other_email']").value = otherEmail;
+      // Display the modal
+      buyModal.style.display = "block";
+    });
+  });
+
+  // Close modal when clicking on the close icon
+  sellClose.addEventListener("click", function () {
+    sellModal.style.display = "none";
+  });
+
+  buyClose.addEventListener("click", function () {
+    buyModal.style.display = "none";
+  });
+
+  // Close modal when clicking anywhere outside the modal content
+  window.addEventListener("click", function (event) {
+    if (event.target === sellModal) {
+      sellModal.style.display = "none";
+    }
+    if (event.target === buyModal) {
+      buyModal.style.display = "none";
+    }
+  });
+});
