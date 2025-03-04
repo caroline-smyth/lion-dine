@@ -98,7 +98,10 @@
             <td>{{ listing.start_time }} - {{ listing.end_time }}</td>
             <td>{{ listing.price }}</td>
             <td>{{ listing.payment_methods }}</td>
+            <td><button class="contact-seller" onclick="openForm()">Open Form</button></td>
+            <!--
             <td><div class="contact-buyer" data-other-name="{{ listing.name }}" data-other-email="{{ listing.email }}">Contact</div>
+            -->
           </tr>
           {% else %}
           <tr>
