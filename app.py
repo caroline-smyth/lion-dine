@@ -795,7 +795,9 @@ with app.app_context():
 def contact_form():
   email = request.form.get('email')
   #print('woohoo!')
-  return f"Email: {email}"
+  #return f"Email: {email}"
+  flash('Success! Your email has been submitted', 'success')
+  return redirect(url_for('swipemarket'))
 
 @app.route('/send_connection_email', methods=['POST'])
 def send_connection_email():
