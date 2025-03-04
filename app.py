@@ -794,7 +794,8 @@ with app.app_context():
 @app.route('/contact_form', methods=['POST'])
 def contact_form():
   email = request.form.get('email')
-  return f"Form submitted. Email: {email}"
+  #print('woohoo!')
+  return f"Email: {email}"
 
 @app.route('/send_connection_email', methods=['POST'])
 def send_connection_email():
