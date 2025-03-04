@@ -21,8 +21,9 @@ db = SQLAlchemy(app)
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = os.environ.get('liondinecu@gmail.com')
-app.config['MAIL_PASSWORD'] = os.environ.get('Iiacrn123!')
+app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME','liondinecu@gmail.com')
+app.config['MAIL_DEFAULT_SENDER'] = 'liondinecu@gmail.com'
+app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD','***REDACTED***')
 mail = Mail(app)
 
 ny_tz = pytz.timezone('America/New_York')
@@ -804,8 +805,7 @@ def send_connection_email():
   listing_id = request.form.get('listing_id')
   subject ="Test email"
   body = (
-    f"hiiiii testing\n"
-    f"xoxo Caroline"
+    f"Testing testing"
   )
   recipients = [sender_email]
   msg = Message(subject, sender=app.config['MAIL_USERNAME'], recipients=recipients)
