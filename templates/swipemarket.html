@@ -71,7 +71,7 @@
             <td>{{ listing.start_time }} - {{ listing.end_time }}</td>
             <td>{{ listing.price }}</td>
             <td>{{ listing.payment_methods }}</td>
-            <td><div class="sell-button" data-other-name="{{ listing.name }}" data-other-email="{{ listing.email }}">Contact</div>
+            <td><div class="contact-seller" data-other-name="{{ listing.name }}" data-other-email="{{ listing.email }}">Contact</div>
           </tr>
           {% else %}
           <tr>
@@ -98,7 +98,7 @@
             <td>{{ listing.start_time }} - {{ listing.end_time }}</td>
             <td>{{ listing.price }}</td>
             <td>{{ listing.payment_methods }}</td>
-            <td><div class="buy-button" data-other-name="{{ listing.name }}" data-other-email="{{ listing.email }}">Contact</div>
+            <td><div class="contact-buyer" data-other-name="{{ listing.name }}" data-other-email="{{ listing.email }}">Contact</div>
           </tr>
           {% else %}
           <tr>

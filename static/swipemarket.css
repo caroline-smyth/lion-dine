@@ -118,3 +118,17 @@ table {
   text-decoration: none;
   cursor: pointer;
 }
+
+.contact-seller,.contact-buyer {
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.contact-seller:hover, .contact-buyer:hover {
+  background-color: #45a049;
+}
