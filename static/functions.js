@@ -9,6 +9,49 @@ function onSignIn(googleUser) {
 
 }
 
+function handleCredentialResponse(response) {
+  // Decode the credential response
+  const responsePayload = jwt_decode(response.credential);
+  
+  // Store the credential in localStorage
+  localStorage.setItem('googleCredential', response.credential);
+  
+  // Change background color to blue when logged in
+  document.body.style.backgroundColor = '#FF0000';  // red
+  console.log('User logged in:', responsePayload.email);  // Debug log
+}
+
+function handleSignOut() {
+  localStorage.removeItem('googleCredential');
+  
+  // Change background back to white when logged out
+  document.body.style.backgroundColor = 'white';
+  console.log('User logged out');  // Debug log
+
+  google.accounts.id.revoke(localStorage.getItem('googleCredential'), done => {
+    console.log('Token revoked');
+  });
+}
+
+// Check authentication state on page load
+window.onload = function() {
+  const credential = localStorage.getItem('googleCredential');
+  if (credential) {
+    const payload = jwt_decode(credential);
+    // Check if token is expired
+    const expirationTime = payload.exp * 1000;
+    if (Date.now() < expirationTime) {
+      document.body.style.backgroundColor = '#e6f3ff';  // light blue
+      console.log('User is logged in:', payload.email);  // Debug log
+    } else {
+      // Token expired, remove it
+      localStorage.removeItem('googleCredential');
+      document.body.style.backgroundColor = 'white';
+      console.log('Token expired');  // Debug log
+    }
+  }
+};
+
 function updateTime() {
   var now = new Date();
   var options = { 
