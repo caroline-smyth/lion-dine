@@ -15,6 +15,12 @@ function onSignIn(googleUser) {
 function handleCredentialResponse(response) {
   // Decode the credential response
   const responsePayload = jwt_decode(response.credential);
+
+  //enforce columbia/barnard email
+  if (!responsePayload.email.endsWith('@columbia.edu') && !responsePayload.email.endsWith('@barnard.edu')) {
+    alert('Please use your Columbia or Barnard email to sign in.');
+    return;
+  }
   
   // Store the credential in localStorage
   localStorage.setItem('googleCredential', response.credential);
