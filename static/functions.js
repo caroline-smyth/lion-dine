@@ -18,6 +18,8 @@ function handleCredentialResponse(response) {
   
   // Store the credential in localStorage
   localStorage.setItem('googleCredential', response.credential);
+  localStorage.setItem('userName', responsePayload.name);
+  localStorage.setItem('userImage', responsePayload.picture);
   
   // Change background color to red when logged in
   document.body.style.backgroundColor = '#FF0000';  // red
