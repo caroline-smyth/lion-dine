@@ -801,8 +801,8 @@ def submit_seller():
   #redirect to Swipe Market page
   return redirect(url_for('market'))
 
+#create all tables in the database
 with app.app_context():
-    db.drop_all()
     db.create_all()
 
 
