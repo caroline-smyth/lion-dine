@@ -29,10 +29,21 @@ function handleCredentialResponse(response) {
   
   // Change background color to light blue when logged in
   document.body.style.backgroundColor = '#e6f3ff';  // light blue
-  console.log('User logged in:', responsePayload.email);  // Debug log
 
   //hide sign in button
   document.getElementById('signInButton').style.display = 'none';
+
+  //display profile icon
+  const profileIcon = document.getElementById('profile-icon');
+  profileIcon.src = responsePayload.picture;
+  document.getElementById('profile-menu').style.display = 'inline-block';
+
+  //toggle dropdown
+  profileIcon.addEventListener('click', function() {
+    this.parentElement.classList.toggle('active');
+  });
+
+  console.log('User logged in:', responsePayload.email);  // Debug log
 }
 
 //removes user's google credential from localStorage when they sign out.
