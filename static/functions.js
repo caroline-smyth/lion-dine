@@ -75,6 +75,17 @@ window.onload = function() {
     if (Date.now() < expirationTime) {
       document.body.style.backgroundColor = '#e6f3ff';  // light blue
       document.getElementById('signInButton').style.display = 'none';
+
+      //display profile icon
+      const profileIcon = document.getElementById('profile-icon');
+      profileIcon.src = payload.picture;
+      document.getElementById('profile-menu').style.display = 'inline-block';
+
+      //toggle dropdown
+      profileIcon.addEventListener('click', function() {
+        this.parentElement.classList.toggle('active');
+      });
+
       console.log('User is logged in:', payload.email);  // Debug log
     } else {
       // Token expired, remove it
