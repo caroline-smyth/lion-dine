@@ -812,27 +812,22 @@ def send_connection_email():
   sender_name = request.form.get('sender_name')
   sender_email = request.form.get('sender_email')
   listing_id = request.form.get('listing_id')
-  """
-  subject ="Test email"
-  body = (
-    f"Testing testing"
-  )
-  recipients = [sender_email]
-  msg = Message(subject, sender=app.config['MAIL_USERNAME'], recipients=recipients)
-  msg.body = body
-  """
 
-  #unsure about this, but surely won't override 
+  # Try to find the listing in both buyer and seller tables
   receiver_listing = SellerListing.query.get(listing_id)
-  receiver_listing = SellerListing.query.get(listing_id)
+  if not receiver_listing:
+    receiver_listing = BuyerListing.query.get(listing_id)
+    if not receiver_listing:
+      flash("Error: Listing not found.", "error")
+      return redirect(url_for('market'))
 
+  # Get the receiver's information based on the listing type
   if isinstance(receiver_listing, BuyerListing):
     receiver_name = receiver_listing.buyer_name
     receiver_email = receiver_listing.buyer_email
   else:
     receiver_name = receiver_listing.seller_name
     receiver_email = receiver_listing.seller_email
-  # wil prob have to pull other info from listing to buff out email 
 
   subject = "[Swipe Market] Potential Sale"
   body = (
