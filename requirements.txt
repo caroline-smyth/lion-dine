@@ -23,6 +23,7 @@ executing==2.0.1
 fake-useragent==1.5.1
 filelock==3.13.1
 Flask
+Flask-CAS
 Flask-Dance
 Flask-Mail
 Flask-SQLAlchemy
