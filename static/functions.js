@@ -39,3 +39,20 @@ setInterval(updateTime, 1000);
 function closeForm() {
   document.getElementById("myForm").style.display = "none";
 }
+
+function openForm(button) {
+  const form = document.getElementById("myForm");
+  const listingIdInput = form.querySelector('input[name="listing_id"]');
+  const listingId = button.getAttribute('data-listing-id');
+  
+  listingIdInput.value = listingId;
+  form.style.display = "block";
+}
+
+// Close the form when clicking outside of it
+window.onclick = function(event) {
+  const form = document.getElementById("myForm");
+  if (event.target == form) {
+    closeForm();
+  }
+}
