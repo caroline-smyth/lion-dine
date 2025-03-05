@@ -1,4 +1,6 @@
-//google sign in function
+//triggered when user signs in.
+//gets user's basic profile info.
+//hides sign in button.
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -9,6 +11,7 @@ function onSignIn(googleUser) {
 
 }
 
+//gets user's google credential and stores it in localStorage.
 function handleCredentialResponse(response) {
   // Decode the credential response
   const responsePayload = jwt_decode(response.credential);
@@ -16,11 +19,12 @@ function handleCredentialResponse(response) {
   // Store the credential in localStorage
   localStorage.setItem('googleCredential', response.credential);
   
-  // Change background color to blue when logged in
+  // Change background color to red when logged in
   document.body.style.backgroundColor = '#FF0000';  // red
   console.log('User logged in:', responsePayload.email);  // Debug log
 }
 
+//removes user's google credential from localStorage when they sign out.
 function handleSignOut() {
   localStorage.removeItem('googleCredential');
   
@@ -33,7 +37,8 @@ function handleSignOut() {
   });
 }
 
-// Check authentication state on page load
+//checks if user is logged in when page loads.
+//if user is logged in, changes background color to light blue.
 window.onload = function() {
   const credential = localStorage.getItem('googleCredential');
   if (credential) {
@@ -52,6 +57,7 @@ window.onload = function() {
   }
 };
 
+//updates the time on the page.
 function updateTime() {
   var now = new Date();
   var options = { 
@@ -68,13 +74,17 @@ function updateTime() {
   document.getElementById('current-time').textContent = currentTimeString;
 }
 
+//updates the time on the page immediately, then every second.
 updateTime();
 setInterval(updateTime, 1000);
 
+//closes the form when the user clicks outside of it.
 function closeForm() {
   document.getElementById("myForm").style.display = "none";
 }
 
+//opens popup form when button is clicked,
+//and populates the form with the listing id.
 function openForm(button) {
   const form = document.getElementById("myForm");
   const listingIdInput = form.querySelector('input[name="listing_id"]');
