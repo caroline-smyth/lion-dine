@@ -7,7 +7,7 @@ function onSignIn(googleUser) {
   console.log('Name: ' + profile.getName());
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-  document.getElementById('signInButton').style.display = 'none';
+  document.getElementById('g_id_signin').style.display = 'none';
 
 }
 
@@ -31,7 +31,7 @@ function handleCredentialResponse(response) {
   document.body.style.backgroundColor = '#e6f3ff';  // light blue
 
   //hide sign in button
-  document.getElementById('signInButton').style.display = 'none';
+  document.getElementById('g_id_signin').style.display = 'none';
 
   //display profile icon
   const profileIcon = document.getElementById('profile-icon');
@@ -55,7 +55,7 @@ function handleSignOut() {
 
   //hide profile icon and show sign in button
   document.getElementById('profile-menu').style.display = 'none';
-  document.getElementById('signInButton').style.display = 'block';
+  document.getElementById('g_id_signin').style.display = 'block';
 
   console.log('User logged out');  // Debug log
 
@@ -74,7 +74,7 @@ window.onload = function() {
     const expirationTime = payload.exp * 1000;
     if (Date.now() < expirationTime) {
       document.body.style.backgroundColor = '#e6f3ff';  // light blue
-      document.getElementById('signInButton').style.display = 'none';
+      document.getElementById('g_id_signin').style.display = 'none';
 
       //display profile icon
       const profileIcon = document.getElementById('profile-icon');
