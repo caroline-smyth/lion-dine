@@ -753,9 +753,8 @@ def submit_buyer():
   #redirect to Swipe Market page
   return redirect(url_for('market'))
 
-#WHAT DOES THIS DO?
+#create all tables in the database
 with app.app_context():
-    db.drop_all()
     db.create_all()
 
 #route for taking seller listings from the form
