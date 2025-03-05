@@ -52,6 +52,11 @@ function handleSignOut() {
   
   // Change background back to white when logged out
   document.body.style.backgroundColor = 'white';
+
+  //hide profile icon and show sign in button
+  document.getElementById('profile-menu').style.display = 'none';
+  document.getElementById('signInButton').style.display = 'block';
+
   console.log('User logged out');  // Debug log
 
   google.accounts.id.revoke(localStorage.getItem('googleCredential'), done => {
