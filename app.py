@@ -673,6 +673,7 @@ def latenight():
 ###SWIPE MARKET CODE BELOW
 #########
 
+#class for seller listings
 class SellerListing(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # Store multiple dining halls as a comma-separated string.
@@ -689,6 +690,7 @@ class SellerListing(db.Model):
     def __repr__(self):
         return f'<SellerListing {self.id} - {self.seller_name}>'
 
+#class for buyer listings
 class BuyerListing(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # Store multiple dining halls as a comma-separated string.
@@ -705,6 +707,9 @@ class BuyerListing(db.Model):
     def __repr__(self):
         return f'<BuyerListing {self.id} - {self.buyer_name}>'
 
+#route for taking buyer listings from the form
+#and putting them into the database, then send
+#the user back to the Swipe Market page
 @app.route('/submit_buyer', methods=['POST'])
 def submit_buyer():
   #get values from the form
@@ -744,10 +749,14 @@ def submit_buyer():
   #redirect to Swipe Market page
   return redirect(url_for('market'))
 
+#WHAT DOES THIS DO?
 with app.app_context():
     db.drop_all()
     db.create_all()
 
+#route for taking seller listings from the form
+#and putting them into the database, then send
+#the user back to the Swipe Market page
 @app.route('/submit_seller', methods=['POST'])
 def submit_seller():
   #get values from the form
@@ -846,12 +855,14 @@ def send_connection_email():
   
   return redirect(url_for('market'))
 
+#regular route for the Swipe Market page
 @app.route('/market')
 def market():
   seller_listings = SellerListing.query.order_by(SellerListing.created_at.desc()).all()
   buyer_listings = BuyerListing.query.order_by(BuyerListing.created_at.desc()).all()
   return render_template('market.html', seller_listings=seller_listings, buyer_listings=buyer_listings)
 
+#regular route for the Sellers page
 @app.route('/sellers')
 def sellers():
   return render_template('sellers.html')
