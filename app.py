@@ -678,6 +678,7 @@ class SellerListing(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # Store multiple dining halls as a comma-separated string.
     dining_hall = db.Column(db.String(200), nullable=False)
+    date = db.Column(db.String(100), nullable=False)
     start_time = db.Column(db.String(100), nullable=False)
     end_time = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float, nullable=False)
@@ -695,6 +696,7 @@ class BuyerListing(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # Store multiple dining halls as a comma-separated string.
     dining_hall = db.Column(db.String(200), nullable=False)
+    date = db.Column(db.String(100), nullable=False)
     start_time = db.Column(db.String(100), nullable=False)
     end_time = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float, nullable=False)
@@ -715,6 +717,7 @@ def submit_buyer():
   #get values from the form
   dining_halls = request.form.getlist('dining_hall[]')
   dining_halls_str = ", ".join(dining_halls)
+  date = request.form.get('date')
   start_time = request.form.get('start_time')
   end_time = request.form.get('end_time')
   price = request.form.get('price')
@@ -733,6 +736,7 @@ def submit_buyer():
   #create new BuyerListing instance
   new_listing = BuyerListing(
     dining_hall=dining_halls_str,
+    date=date,
     start_time=start_time,
     end_time=end_time,
     price=price_value,
@@ -762,6 +766,7 @@ def submit_seller():
   #get values from the form
   dining_halls = request.form.getlist('dining_hall[]')
   dining_halls_str = ", ".join(dining_halls)
+  date = request.form.get('date')
   start_time = request.form.get('start_time')
   end_time = request.form.get('end_time')
   price = request.form.get('price')
@@ -780,6 +785,7 @@ def submit_seller():
   #create new SellerListing instance
   new_listing = SellerListing(
     dining_hall=dining_halls_str,
+    date=date,
     start_time=start_time,
     end_time=end_time,
     price=price_value,
