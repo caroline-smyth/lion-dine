@@ -59,6 +59,7 @@
         <thead>
           <tr>
             <th>Dining hall(s)</th>
+            <th>Date</th>
             <th>Time</th>
             <th>Price</th>
             <th>Payment methods</th>
@@ -69,6 +70,7 @@
           {% for listing in seller_listings %}
           <tr>
             <td>{{ listing.dining_hall }}</td>
+            <td>{{ listing.date }}</td>
             <td>{{ listing.start_time }} - {{ listing.end_time }}</td>
             <td>{{ listing.price }}</td>
             <td>{{ listing.payment_methods }}</td>
@@ -76,7 +78,7 @@
           </tr>
           {% else %}
           <tr>
-            <td colspan="5">No listings available at the moment.</td>
+            <td colspan="6">No listings available at the moment.</td>
           </tr>
           {% endfor %}
         </tbody>
@@ -86,6 +88,7 @@
         <thead>
           <tr>
             <th>Dining hall(s)</th>
+            <th>Date</th>
             <th>Time</th>
             <th>Price</th>
             <th>Payment methods</th>
@@ -96,6 +99,7 @@
           {% for listing in buyer_listings %}
           <tr>
             <td>{{ listing.dining_hall }}</td>
+            <td>{{ listing.date }}</td>
             <td>{{ listing.start_time }} - {{ listing.end_time }}</td>
             <td>{{ listing.price }}</td>
             <td>{{ listing.payment_methods }}</td>
@@ -106,7 +110,7 @@
           </tr>
           {% else %}
           <tr>
-            <td colspan="5">No listings available at the moment.</td>
+            <td colspan="6">No listings available at the moment.</td>
           </tr>
           {% endfor %}
         </tbody>
