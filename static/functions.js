@@ -30,6 +30,9 @@ function handleCredentialResponse(response) {
   // Change background color to light blue when logged in
   document.body.style.backgroundColor = '#e6f3ff';  // light blue
   console.log('User logged in:', responsePayload.email);  // Debug log
+
+  //hide sign in button
+  document.getElementById('signInButton').style.display = 'none';
 }
 
 //removes user's google credential from localStorage when they sign out.
