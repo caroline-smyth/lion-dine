@@ -21,8 +21,8 @@ function handleCredentialResponse(response) {
   localStorage.setItem('userName', responsePayload.name);
   localStorage.setItem('userImage', responsePayload.picture);
   
-  // Change background color to red when logged in
-  document.body.style.backgroundColor = '#FF0000';  // red
+  // Change background color to light blue when logged in
+  document.body.style.backgroundColor = '#e6f3ff';  // light blue
   console.log('User logged in:', responsePayload.email);  // Debug log
 }
 
@@ -49,6 +49,7 @@ window.onload = function() {
     const expirationTime = payload.exp * 1000;
     if (Date.now() < expirationTime) {
       document.body.style.backgroundColor = '#e6f3ff';  // light blue
+      document.getElementById('signInButton').style.display = 'none';
       console.log('User is logged in:', payload.email);  // Debug log
     } else {
       // Token expired, remove it
