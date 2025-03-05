@@ -47,8 +47,8 @@
         Swipe Market	&#128722; 
       </header>
       <div class="sell-button-container">
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
-        <a href="#" onclick="signOut();">Sign out</a>
+        <div id="signInButton" class="g-signin2" data-onsuccess="onSignIn"></div>
+        <button id="signOutButton" style="display:none;" onclick="signOut();">Sign Out</button>
         <a href="/sellers">
           <button type="button" class="sell-button">Post Listing</button>
         </a>
