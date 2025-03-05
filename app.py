@@ -12,7 +12,6 @@ import pytz
 from  flask_sqlalchemy import SQLAlchemy
 from flask import make_response, g, render_template, flash
 from flask_mail import Mail, Message
-from flask_cas import CAS
 
 app = Flask(__name__) #sets up a flask application
 app.secret_key = os.environ.get('SECRET_KEY','fallback-secret-key') 
@@ -27,14 +26,6 @@ app.config['MAIL_DEFAULT_SENDER'] = 'liondinecu@gmail.com'
 app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD','***REDACTED***')
 mail = Mail(app)
 
-"""
-# cas configuration for Columbia login
-cas = CAS(app)
-app.config['CAS_SERVER'] = 'https://cas.columbia.edu/cas'
-app.config['CAS_AFTER_LOGIN'] = 'market'  # Route to redirect to after login
-app.config['CAS_TOKEN_SESSION_KEY'] = '_CAS_TOKEN'
-app.config['CAS_USERNAME_SESSION_KEY'] = 'CAS_USERNAME'
-"""
 ny_tz = pytz.timezone('America/New_York')
 
 dining_halls = [
