@@ -84,6 +84,9 @@ function updateTime() {
   const currentTimeString = now.toLocaleString('en-US', options);
   document.getElementById('current-time').textContent = currentTimeString;
 }
+//updates the time on the page immediately, then every second.
+updateTime();
+setInterval(updateTime, 1000);
 
 //closes the form when the user clicks outside of it.
 function closeForm() {
@@ -130,11 +133,7 @@ window.onload = function() {
       localStorage.removeItem('googleCredential');
       console.log('Token expired');  // Debug log
     }
-  }
-
-  //updates the time on the page immediately, then every second.
-  updateTime();
-  setInterval(updateTime, 1000);
+  };
 
 
   document.getElementById('postListingsButton').addEventListener('click', function(event) {
