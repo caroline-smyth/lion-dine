@@ -217,6 +217,7 @@ h3 {
   padding: 10px;
   text-align: left;
   cursor: pointer;
+  color: black;
 }
 
 .profile-menu.active .profile-dropdown {
