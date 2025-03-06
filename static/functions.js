@@ -138,6 +138,7 @@ document.getElementById('postListingsButton').addEventListener('click', function
   if (!credential) {
     event.preventDefault(); // Stop the default navigation.
     alert('Please sign in to post listings.');
-    window.location.href = '/market';
+    //window.location.href = '/market';
+    document.getElementById('g_id_signin').style.display = 'block';
   }
 });
