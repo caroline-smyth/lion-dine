@@ -189,59 +189,6 @@ function updateTime() {
 updateTime();
 setInterval(updateTime, 1000);
 
-//closes the form when the user clicks outside of it.
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
-
-document.getElementById('contactButton').addEventListener('click', function(event){
-  //pull name/user from local storage set during signin
-  var userName = localStorage.getItem('userName');
-  var userEmail = localStorage.getItem('userEmail');
-
-  // if not signed in, prompt to sign in 
-  if(!userName || !userEmail || (!userEmail.endsWith('@columbia.edu') && !userEmail.endsWith('@barnard.edu'))) {
-    alert('Please sign in with your Columbia/Barnard email.')
-    document.getElementById('g_id_signin').style.display='block';
-    return;
-  }
-
-  //populate hidden fields in contact form
-  document.getElementById('sender_name').value = userName;
-  document.getElementById('sender_email').value = userEmail;
-
-  //pull listing id from contact button
-  var listingId = this.getAttribute('data-listing-id');
-  if (listingId) {
-    document.getElementById('listing_id').value = listingId;
-  }
-
-  //for debugging, display text in popup
-  document.getElementById('userNameDisplay').textContent = userName;
-  document.getElementById('userEmailDisplay').textContent = userEmail;
-
-  document.getElementById('myForm').style.display = 'block';
-});
-
-//opens popup form when button is clicked,
-//and populates the form with the listing id.
-function openForm(button) {
-  const form = document.getElementById("myForm");
-  const listingIdInput = form.querySelector('input[name="listing_id"]');
-  const listingId = button.getAttribute('data-listing-id');
-  
-  listingIdInput.value = listingId;
-  form.style.display = "block";
-}
-
-// Close the form when clicking outside of it
-window.onclick = function(event) {
-  const form = document.getElementById("myForm");
-  if (event.target == form) {
-    closeForm();
-  }
-}
-
 document.getElementById('postListingsButton').addEventListener('click', function(event) {
   const credential = localStorage.getItem('googleCredential');
   if (!credential) {
@@ -295,7 +242,7 @@ document.getElementById('contactButton').addEventListener('click', function(even
   var userName = localStorage.getItem('userName');
   var userEmail = localStorage.getItem('userEmail');
 
-  // if not signed in, prompt to sign in (this maybe doesn't work)
+  // if not signed in, prompt to sign in
   if(!userName || !userEmail || (!userEmail.endsWith('@columbia.edu') && !userEmail.endsWith('@barnard.edu'))) {
     alert('Please sign in with your Columbia/Barnard email.')
     document.getElementById('g_id_signin').style.display='block';
