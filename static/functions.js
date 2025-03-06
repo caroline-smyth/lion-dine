@@ -156,6 +156,7 @@ document.querySelectorAll('.contact-button').forEach(function(button) {
 
   // if not signed in, prompt to sign in
   if(!userName || !userEmail || (!userEmail.endsWith('@columbia.edu') && !userEmail.endsWith('@barnard.edu'))) {
+    event.preventDefault();
     alert('Please sign in with your Columbia/Barnard email.')
     document.getElementById('g_id_signin').style.display='block';
     return;
@@ -170,10 +171,6 @@ document.querySelectorAll('.contact-button').forEach(function(button) {
   if (listingId) {
     document.getElementById('listing_id').value = listingId;
   }
-
-  //for debugging, display text in popup
-  document.getElementById('userNameDisplay').textContent = userName;
-  document.getElementById('userEmailDisplay').textContent = userEmail;
 
     document.getElementById('myForm').style.display = 'block';
   });
