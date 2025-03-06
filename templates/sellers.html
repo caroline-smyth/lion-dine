@@ -26,6 +26,14 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-D26R1LF247');
+      document.addEventListener('DOMContentLoaded', function() {
+        var customLoginButton = document.getElementById("custom-login-button");
+        if (customLoginButton) {
+          customLoginButton.addEventListener("click", function() {
+            google.accounts.id.prompt();
+          });
+        }
+      });
     </script>
   </head>
   <body>
