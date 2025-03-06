@@ -26,14 +26,6 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-D26R1LF247');
-      document.addEventListener('DOMContentLoaded', function() {
-        var customLoginButton = document.getElementById("custom-login-button");
-        if (customLoginButton) {
-          customLoginButton.addEventListener("click", function() {
-            google.accounts.id.prompt();
-          });
-        }
-      });
     </script>
   </head>
   <body>
@@ -48,9 +40,7 @@
           <a href="https://forms.gle/7M3JpiJ9RoapZmxF6" target="blank">
             <div class="feedback">Feedback</div>
           </a>
-          <div id="custom-login-container">
-            <button id="custom-login-button" class="custom-login-button">Log In</button>
-          </div>
+          <div id="g_id_signin" class="g_id_signin" data-type="standard"></div>
           <div id="profile-menu" class="profile-menu">
             <img id="profile-icon" src="" alt="Profile" />
             <div id="profile-dropdown" class="profile-dropdown">
