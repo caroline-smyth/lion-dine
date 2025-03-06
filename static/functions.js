@@ -43,6 +43,26 @@ function handleCredentialResponse(response) {
   console.log('User logged in:', responsePayload.email);  // Debug log
 }
 
+// checks if user is logged in
+function checkLoginState() {
+  const credential = localStorage.getItem('googleCredential');
+  if (credential) {
+    const payload = jwt_decode(credential);
+    const expirationTime = payload.exp * 1000;
+    if (Date.now() < expirationTime) {
+      return true;
+    } else {
+      localStorage.removeItem('googleCredential');
+    }
+  }
+  return false;
+}
+
+//check login state when page loads
+window.onload = function() {
+  checkLoginState(); 
+}
+
 //removes user's google credential from localStorage when they sign out.
 function handleSignOut() {
   localStorage.removeItem('googleCredential');
