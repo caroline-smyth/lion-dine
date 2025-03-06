@@ -84,7 +84,7 @@ table {
   /*gap: 20px; optional spacing between tables */
 }
 
-.contact-seller,.contact-buyer {
+.contact-button {
   font-size: 1.5rem;
   padding: 10px 20px;
   background-color: #4CAF50;
@@ -94,7 +94,7 @@ table {
   cursor: pointer;
   margin-top: 20px;
 }
-.contact-seller:hover, .contact-buyer:hover {
+.contact-button:hover {
   background-color: #45a049;
 }
 
