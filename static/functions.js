@@ -91,39 +91,6 @@ function onSignIn(googleUser) {
 
 }
 
-//gets user's google credential and stores it in localStorage.
-function handleCredentialResponse(response) {
-  // Decode the credential response
-  const responsePayload = jwt_decode(response.credential);
-
-  //enforce columbia/barnard email
-  if (!responsePayload.email.endsWith('@columbia.edu') && !responsePayload.email.endsWith('@barnard.edu')) {
-    alert('Please use your Columbia or Barnard email to sign in.');
-    return;
-  }
-  
-  // Store the credential in localStorage
-  localStorage.setItem('googleCredential', response.credential);
-  localStorage.setItem('userName', responsePayload.name);
-  localStorage.setItem('userImage', responsePayload.picture);
-  localStorage.setItem('userEmail', responsePayload.email);
-
-  //hide sign in button
-  document.getElementById('g_id_signin').style.display = 'none';
-
-  //display profile icon
-  const profileIcon = document.getElementById('profile-icon');
-  profileIcon.src = responsePayload.picture;
-  document.getElementById('profile-menu').style.display = 'inline-block';
-
-  //toggle dropdown
-  profileIcon.addEventListener('click', function() {
-    this.parentElement.classList.toggle('active');
-  });
-
-  console.log('User logged in:', responsePayload.email);  // Debug log
-}
-
 //removes user's google credential from localStorage when they sign out.
 function handleSignOut() {
   localStorage.removeItem('googleCredential');
