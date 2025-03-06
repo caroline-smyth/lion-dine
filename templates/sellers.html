@@ -50,37 +50,6 @@
         </div>
       </div>
       <header class="header" id="index-header">
-        <!--force user to sign in when they try to post listings-->
-        <script>
-        // Check if user is logged in when page loads
-        window.onload = function() {
-          const credential = localStorage.getItem('googleCredential');
-          if (!credential) {
-            // If not logged in, show sign in button and hide profile menu
-            document.getElementById('g_id_signin').style.display = 'block';
-            document.getElementById('profile-menu').style.display = 'none';
-            
-            // Disable form submission
-            const form = document.querySelector('form');
-            form.addEventListener('submit', function(e) {
-              e.preventDefault();
-              alert('Please sign in with your Columbia/Barnard email to post listings.');
-            });
-          } else {
-            // If logged in, show profile menu and hide sign in button
-            document.getElementById('g_id_signin').style.display = 'none';
-            
-            // Set profile icon
-            const payload = jwt_decode(credential);
-            const profileIcon = document.getElementById('profile-icon');
-            profileIcon.src = payload.picture;
-            
-            // Enable form submission
-            const form = document.querySelector('form');
-            form.onsubmit = null;
-          }
-        };
-        </script>
         <a href="/sellers">Post Listings</a> 
       </header>
       <div class="back-button-container">
