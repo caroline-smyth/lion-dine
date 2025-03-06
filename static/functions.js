@@ -132,3 +132,12 @@ window.onclick = function(event) {
     closeForm();
   }
 }
+
+document.getElementById('postListingsButton').addEventListener('click', function(event) {
+  const credential = localStorage.getItem('googleCredential');
+  if (!credential) {
+    event.preventDefault(); // Stop the default navigation.
+    alert('Please sign in to post listings.');
+    window.location.href = '/market';
+  }
+});
