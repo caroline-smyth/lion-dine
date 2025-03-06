@@ -26,9 +26,6 @@ function handleCredentialResponse(response) {
   localStorage.setItem('googleCredential', response.credential);
   localStorage.setItem('userName', responsePayload.name);
   localStorage.setItem('userImage', responsePayload.picture);
-  
-  // Change background color to light blue when logged in
-  document.body.style.backgroundColor = '#e6f3ff';  // light blue
 
   //hide sign in button
   document.getElementById('g_id_signin').style.display = 'none';
@@ -49,9 +46,6 @@ function handleCredentialResponse(response) {
 //removes user's google credential from localStorage when they sign out.
 function handleSignOut() {
   localStorage.removeItem('googleCredential');
-  
-  // Change background back to white when logged out
-  document.body.style.backgroundColor = 'white';
 
   //hide profile icon and show sign in button
   document.getElementById('profile-menu').style.display = 'none';
@@ -65,7 +59,6 @@ function handleSignOut() {
 }
 
 //checks if user is logged in when page loads.
-//if user is logged in, changes background color to light blue.
 window.onload = function() {
   const credential = localStorage.getItem('googleCredential');
   if (credential) {
@@ -73,7 +66,6 @@ window.onload = function() {
     // Check if token is expired
     const expirationTime = payload.exp * 1000;
     if (Date.now() < expirationTime) {
-      document.body.style.backgroundColor = '#e6f3ff';  // light blue
       document.getElementById('g_id_signin').style.display = 'none';
 
       //display profile icon
@@ -90,7 +82,6 @@ window.onload = function() {
     } else {
       // Token expired, remove it
       localStorage.removeItem('googleCredential');
-      document.body.style.backgroundColor = 'white';
       console.log('Token expired');  // Debug log
     }
   }
