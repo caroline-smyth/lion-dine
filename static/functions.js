@@ -114,6 +114,31 @@ function closeForm() {
   document.getElementById("myForm").style.display = "none";
 }
 
+document.getElementById('contactButton').addEventListener('click', function(event){
+  //pull name/user from local storage set during signin
+  var userName = localStorage.getItem('userName');
+  var userEmail = localStorage.getItem('userEmail');
+
+  // if not signed in, prompt to sign in (this maybe doesn't work)
+  if(!userName || !userEmail) {
+    alert('Please sign in with your Columbia/Barnard email.')
+    document.getElementById('g_id_signin').style.display='block';
+    return;
+  }
+
+  //populate hidden fields in contact form
+  document.getElementById('sender_name').value = userName;
+  document.getElementById('sender_email').value = userEmail;
+
+  //pull listing id from contact button
+  var listingId = this.getAttribute('data-listing-id');
+  if (listingId) {
+    document.getElementById('listing_id').value = listingId;
+  }
+  
+  document.getElementById('myForm').style.display = 'block';
+});
+
 //opens popup form when button is clicked,
 //and populates the form with the listing id.
 function openForm(button) {
