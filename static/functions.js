@@ -237,10 +237,12 @@ function closeForm() {
   document.getElementById("myForm").style.display = "none";
 }
 
-document.getElementById('contactButton').addEventListener('click', function(event){
-  //pull name/user from local storage set during signin
-  var userName = localStorage.getItem('userName');
-  var userEmail = localStorage.getItem('userEmail');
+
+document.querySelectorAll('.contact-button').forEach(function(button) {
+  button.addEventListener('click', function(event) {
+    //pull name/user from local storage set during signin
+    var userName = localStorage.getItem('userName');
+    var userEmail = localStorage.getItem('userEmail');
 
   // if not signed in, prompt to sign in
   if(!userName || !userEmail || (!userEmail.endsWith('@columbia.edu') && !userEmail.endsWith('@barnard.edu'))) {
@@ -263,7 +265,8 @@ document.getElementById('contactButton').addEventListener('click', function(even
   document.getElementById('userNameDisplay').textContent = userName;
   document.getElementById('userEmailDisplay').textContent = userEmail;
 
-  document.getElementById('myForm').style.display = 'block';
+    document.getElementById('myForm').style.display = 'block';
+  });
 });
 
 //opens popup form when button is clicked,
