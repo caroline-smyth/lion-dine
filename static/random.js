@@ -92,11 +92,3 @@ const form = document.getElementById("valentineForm");
         console.error(err);
       }
     });
-
-function openForm(button) {
-  if (button) {
-    const listingId = button.getAttribute('data-listing-id');
-    document.querySelector("#myForm input[name='listing_id']").value = listingId;
-  }
-  document.getElementById("myForm").style.display = "block";
-}
