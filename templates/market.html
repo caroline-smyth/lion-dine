@@ -81,7 +81,7 @@
             <td>{{ listing.start_time }} - {{ listing.end_time }}</td>
             <td>{{ listing.price }}</td>
             <td>{{ listing.payment_methods }}</td>
-            <td><button class="contact-button" data-listing-id="{{ listing.id }}" onclick="openForm(this)" id="contactButton">Contact</button></td>
+            <td><button type="button" class="contact-button" data-listing-id="{{ listing.id }}" onclick="openForm(this)" id="contactButton">Contact</button></td>
           </tr>
           {% else %}
           <tr>
@@ -110,7 +110,7 @@
             <td>{{ listing.start_time }} - {{ listing.end_time }}</td>
             <td>{{ listing.price }}</td>
             <td>{{ listing.payment_methods }}</td>
-            <td><button class="contact-button" data-listing-id="{{ listing.id }}" onclick="openForm(this)" id="contactButton">Contact</button></td>
+            <td><button type="button" class="contact-button" data-listing-id="{{ listing.id }}" onclick="openForm(this)" id="contactButton">Contact</button></td>
             <!--
             <td><div class="contact-buyer" data-other-name="{{ listing.name }}" data-other-email="{{ listing.email }}">Contact</div>
             -->

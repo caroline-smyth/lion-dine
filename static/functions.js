@@ -150,16 +150,16 @@ window.onload = function() {
 // attach click listeners to all contact buttons
 document.querySelectorAll('.contact-button').forEach(function(button) {
   button.addEventListener('click', function(event) {
-    //pull name/user from local storage set during signin
-    var userName = localStorage.getItem('userName');
-    var userEmail = localStorage.getItem('userEmail');
+  //pull name/user from local storage set during signin
+  var userName = localStorage.getItem('userName');
+  var userEmail = localStorage.getItem('userEmail');
 
   // if not signed in, prompt to sign in
   if(!userName || !userEmail || (!userEmail.endsWith('@columbia.edu') && !userEmail.endsWith('@barnard.edu'))) {
     event.preventDefault();
     alert('Please sign in with your Columbia/Barnard email.')
     document.getElementById('g_id_signin').style.display='block';
-    return;
+    return false;
   }
 
   //populate hidden fields in contact form
