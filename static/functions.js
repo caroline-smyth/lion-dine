@@ -91,21 +91,6 @@ function onSignIn(googleUser) {
 
 }
 
-//removes user's google credential from localStorage when they sign out.
-function handleSignOut() {
-  localStorage.removeItem('googleCredential');
-
-  //hide profile icon and show sign in button
-  document.getElementById('profile-menu').style.display = 'none';
-  document.getElementById('g_id_signin').style.display = 'block';
-
-  console.log('User logged out');  // Debug log
-
-  google.accounts.id.revoke(localStorage.getItem('googleCredential'), done => {
-    console.log('Token revoked');
-  });
-}
-
 //checks if user is logged in when page loads.
 window.onload = function() {
   const credential = localStorage.getItem('googleCredential');
