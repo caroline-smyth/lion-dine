@@ -86,14 +86,6 @@ window.onload = function() {
       console.log('Token expired');  // Debug log
     }
   }
-
-  //add event listener to custom login button
-  var customLoginButton = document.getElementById("custom-login-button");
-  if (customLoginButton) {
-    customLoginButton.addEventListener("click", function() {
-      google.accounts.id.prompt();
-    });
-  }
 };
 
 //updates the time on the page.

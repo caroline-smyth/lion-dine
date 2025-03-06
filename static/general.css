@@ -223,18 +223,4 @@ h3 {
   display: block;
 }
 
-.custom-login-button {
-  background-color: #4285F4;  /* Google blue */
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.custom-login-button:hover {
-  background-color: #357ae8;
-}
 
