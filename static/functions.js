@@ -43,7 +43,7 @@ function handleCredentialResponse(response) {
   console.log('User logged in:', responsePayload.email);  // Debug log
 }
 
-// checks if user is logged in
+/*
 function checkLoginState() {
   const credential = localStorage.getItem('googleCredential');
   if (credential) {
@@ -61,7 +61,7 @@ function checkLoginState() {
 //check login state when page loads
 window.onload = function() {
   checkLoginState(); 
-}
+}*/
 
 //removes user's google credential from localStorage when they sign out.
 function handleSignOut() {
