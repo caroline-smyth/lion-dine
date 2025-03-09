@@ -96,6 +96,13 @@ function closeForm() {
 //opens popup form when button is clicked,
 //and populates the form with the listing id.
 function openForm(button) {
+  const credential = localStorage.getItem('googleCredential');
+  if (!credential) {
+    alert('Please sign in with your Columbia/Barnard email.');
+    document.getElementById('g_id_signin').style.display = 'block';
+    return false; // Stop the function from continuing.
+  }
+  if (!requireSignIn(event)) return;
   const form = document.getElementById("myForm");
   const listingIdInput = form.querySelector('input[name="listing_id"]');
   const listingId = button.getAttribute('data-listing-id');
