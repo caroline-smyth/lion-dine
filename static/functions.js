@@ -162,8 +162,6 @@ window.onload = function() {
 // attach click listeners to all contact buttons
 document.querySelectorAll('.contact-button').forEach(function(button) {
   button.addEventListener('click', function(event) {
-  // check if not signed in
-  if (!requireSignIn(event)) return;
   //pull name/user from local storage set during signin
   var userName = localStorage.getItem('userName');
   var userEmail = localStorage.getItem('userEmail');
