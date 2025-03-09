@@ -64,8 +64,6 @@ function handleSignOut() {
     console.log('Token revoked');
   });
 }
-
-
 // --- UTILITY FUNCTIONS ---
 
 //updates the time on the page.
@@ -98,11 +96,15 @@ function closeForm() {
 function openForm(button) {
   const credential = localStorage.getItem('googleCredential');
   if (!credential) {
-    alert('Please sign in with your Columbia/Barnard email.');
+    //alert('Please sign in with your Columbia/Barnard email.');
     document.getElementById('g_id_signin').style.display = 'block';
-    return false; // Stop the function from continuing.
+    google.accounts.id.prompt();
+    if (window.google && google.accounts && google.accounts.id) {
+      alert('inside if')
+      google.accounts.id.prompt();
+    }
+    return false; // Stop the function from continuing
   }
-  if (!requireSignIn(event)) return;
   const form = document.getElementById("myForm");
   const listingIdInput = form.querySelector('input[name="listing_id"]');
   const listingId = button.getAttribute('data-listing-id');
@@ -118,6 +120,11 @@ function requireSignIn(event) {
     event.preventDefault(); // Stop the default navigation
     alert('Please sign in with your Columbia/Barnard email to post listings.');
     document.getElementById('g_id_signin').style.display = 'block';
+    google.accounts.id.prompt();
+    if (window.google && google.accounts && google.accounts.id) {
+      alert('inside if2')
+      google.accounts.id.prompt();
+    }
     return false;
   }
   return true;
@@ -128,6 +135,15 @@ function requireSignIn(event) {
 //checks if user is logged in when page loads.
 //initialize time and set up event listeners.
 window.onload = function() {
+  //initialize Google Identity Services
+  if (window.google && google.accounts && google.accounts.id) {
+    google.accounts.id.initialize({
+      client_id: '362313378422-s5g6ki5lkph6vaeoad93lfirrtugvnfl.apps.googleusercontent.com', // Replace with your Client ID
+      callback: handleCredentialResponse,
+      auto_select: false
+    });
+  }
+
   const credential = localStorage.getItem('googleCredential');
   if (credential) {
     const payload = jwt_decode(credential);
