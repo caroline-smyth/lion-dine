@@ -104,6 +104,18 @@ function openForm(button) {
   form.style.display = "block";
 }
 
+// checks for valid credential
+function requireSignIn(event) {
+  const credential = localStorage.getItem('googleCredential');
+  if (!credential) {
+    event.preventDefault(); // Stop the default navigation
+    alert('Please sign in with your Columbia/Barnard email to post listings.');
+    document.getElementById('g_id_signin').style.display = 'block';
+    return false;
+  }
+  return true;
+}
+
 // --- INITIALIZATION AND EVENT LISTENERS ---
 
 //checks if user is logged in when page loads.
@@ -135,32 +147,28 @@ window.onload = function() {
     }
   };
 
-
   document.getElementById('postListingsButton').addEventListener('click', function(event) {
-    const credential = localStorage.getItem('googleCredential');
-    if (!credential) {
-      event.preventDefault(); // Stop the default navigation.
-      alert('Please sign in with your Columbia/Barnard email to post listings.');
-      //window.location.href = '/market';
-      document.getElementById('g_id_signin').style.display = 'block';
-    }
+    if(!requireSignIn(event)) return;
   });
 };
 
 // attach click listeners to all contact buttons
 document.querySelectorAll('.contact-button').forEach(function(button) {
   button.addEventListener('click', function(event) {
+  // check if not signed in
+  if (!requireSignIn(event)) return;
   //pull name/user from local storage set during signin
   var userName = localStorage.getItem('userName');
   var userEmail = localStorage.getItem('userEmail');
 
   // if not signed in, prompt to sign in
+  /*
   if(!userName || !userEmail || (!userEmail.endsWith('@columbia.edu') && !userEmail.endsWith('@barnard.edu'))) {
     event.preventDefault();
     alert('Please sign in with your Columbia/Barnard email.')
     document.getElementById('g_id_signin').style.display='block';
     return false;
-  }
+  }*/
 
   //populate hidden fields in contact form
   document.getElementById('sender_name').value = userName;
