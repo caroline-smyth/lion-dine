@@ -837,11 +837,11 @@ def send_connection_email():
 
   subject = "[Swipe Market] Potential Sale"
   body = (
-    f"Hello {receiver_name},\n\n"
-    f"{sender_name} is interested in buying a swipe from you. You can reach them at {sender_email}.\n"
-    f"{sender_name}, you can reach {receiver_name} at {receiver_email}.\n"
+    f"Hello <receiver>{receiver_name},\n\n"
+    f"<sender> {sender_name} is interested in buying a swipe from you. You can reach them at <sender email>{sender_email}.\n"
+    f"<sender>{sender_name}, you can reach <receiver>{receiver_name} at <receiver email>{receiver_email}.\n"
     "As a reminder, the listing is for DINING HALL from START TIME to END TIME and costs PRICE."
-    f"{receiver_name} takes PAYMENT MEHTODS.\n\n"
+    f"<receiver>{receiver_name} takes PAYMENT MEHTODS.\n\n"
     "Best regards,\n"
     "Swipe Market Team"
   )

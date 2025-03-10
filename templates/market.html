@@ -55,7 +55,14 @@
         <a href="/market">Swipe Market &#128722;</a> 
       </header>
       <div class="sell-button-container">
-        <div id="g_id_signin" class="g_id_signin" style="background-color:green;" >Post Listing Test</div>
+        <div id="g_id_signin" class="g_id_signin" style="font-size: 1.5rem;
+        width: 100px;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;" ></div>
         <a href="/sellers">
           <button type="button" class="sell-button" id="postListingsButton">Post Listing</button>
         </a>
@@ -111,9 +118,6 @@
             <td>{{ listing.price }}</td>
             <td>{{ listing.payment_methods }}</td>
             <td><button type="button" class="contact-button" data-listing-id="{{ listing.id }}" onclick="openForm(this)" id="contactButton">Contact</button></td>
-            <!--
-            <td><div class="contact-buyer" data-other-name="{{ listing.name }}" data-other-email="{{ listing.email }}">Contact</div>
-            -->
           </tr>
           {% else %}
           <tr>
@@ -128,12 +132,6 @@
         <input type="hidden" name="listing_id" id="listing_id" value="">
         <input type="hidden" name="sender_name" id="sender_name" value="">
         <input type="hidden" name="sender_email" id="sender_email" value="">
-        <!--
-        <label for="sender_name"><b>Name</b></label>
-        <input type="text" placeholder="Your Name" name="sender_name" required> <br>
-        <label for="sender_email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="sender_email" required>
-        -->
         <button type="submit" class="btn">Confirm</button>
         <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
       </form>
