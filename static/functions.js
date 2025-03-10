@@ -150,6 +150,8 @@ window.onload = function() {
     // Check if token is expired
     const expirationTime = payload.exp * 1000;
     if (Date.now() < expirationTime) {
+      document.getElementById('poster_name').value = payload.name;
+      document.getElementById('poster_email').value = payload.email;
       document.getElementById('g_id_signin').style.display = 'none';
 
       //display profile icon
@@ -175,7 +177,28 @@ window.onload = function() {
   });
 };
 
-// attach click listeners to all contact buttons
+// attach click listener to sell button
+
+/*
+document.getElementById('.sellerForm').addEventListener('submit', function() {
+
+  var userName = localStorage.getItem('userName');
+  var userEmail = localStorage.getItem('userEmail');
+
+
+  document.getElementById('name').value = userName;
+  document.getElementById('email').value = userEmail;
+});
+*/
+
+var sellerForm = document.getElementById('.sellerForm');
+function inputFormValues(){
+  var userName = localStorage.getItem('userName');
+  var userEmail = localStorage.getItem('userEmail');
+  sellerForm.setAttribute('name') = userName;
+  sellerForm.setAttribute('email') = userEmail;
+}
+
 document.querySelectorAll('.contact-button').forEach(function(button) {
   button.addEventListener('click', function(event) {
   if (!requireSignIn(event)) return;
@@ -192,7 +215,6 @@ document.querySelectorAll('.contact-button').forEach(function(button) {
   if (listingId) {
     document.getElementById('listing_id').value = listingId;
   }
-
     document.getElementById('myForm').style.display = 'block';
   });
 });
