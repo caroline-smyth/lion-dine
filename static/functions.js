@@ -120,7 +120,7 @@ function requireSignIn(event) {
     event.preventDefault(); // Stop the default navigation
     alert('Please sign in with your Columbia/Barnard email to post listings.');
     document.getElementById('g_id_signin').style.display = 'block';
-    google.accounts.id.prompt();
+    //google.accounts.id.prompt();
     if (window.google && google.accounts && google.accounts.id) {
       alert('inside if2')
       google.accounts.id.prompt();
