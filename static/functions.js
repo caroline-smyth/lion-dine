@@ -150,8 +150,8 @@ window.onload = function() {
     // Check if token is expired
     const expirationTime = payload.exp * 1000;
     if (Date.now() < expirationTime) {
-      document.getElementById('poster_name').value = payload.name;
-      document.getElementById('poster_email').value = payload.email;
+      //document.getElementById('poster_name').value = payload.name;
+      //document.getElementById('poster_email').value = payload.email;
       document.getElementById('g_id_signin').style.display = 'none';
 
       //display profile icon
