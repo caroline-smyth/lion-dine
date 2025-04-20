@@ -53,9 +53,15 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  margin: 0 2.5rem;
-  font-size: 22px;
+  align-items: start;
+  padding: 20px 40px;
+  position: static;
+  z-index: 1000;
+}
+
+.top-left {
+  max-width: 400px;
+  align-items: flex-end;
 }
 
 .top-right {
