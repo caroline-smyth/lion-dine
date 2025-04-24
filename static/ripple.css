@@ -1,0 +1,21 @@
+.ripple-letter {
+  display: inline-block;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+@keyframes ripple {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+#ripple-text {
+  display: inline-block;
+} 
