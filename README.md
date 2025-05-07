@@ -1,6 +1,6 @@
 # Lion Dine
 
-<a href="https://liondine.com">Lion Dine</a> displays all the Columbia Dining menus on one page to let students compare options instantly, rather than having to click through 11 separate menus on https://dining.columbia.edu and https://dineoncampus.com/barnard/whats-on-the-menu. We receive 6,000+ views from 2,000+ users per day, out of ~7,500 meal plan holders. Over 500,000 total views since launching on October 14, 2024.
+<a href="https://liondine.com">Lion Dine</a> displays all the Columbia Dining menus on one page to let students compare options instantly, rather than having to click through 11 separate menus on <a href="https://dining.columbia.edu">dining.columbia.edu</a> and <a href="https://dineoncampus.com/barnard/whats-on-the-menu">dineoncampus.com/barnard/whats-on-the-menu</a>. We receive 6,000+ views from 2,000+ users per day, out of ~7,500 meal plan holders. Over 500,000 total views since launching on October 14, 2024.
 
 # How it works
 
