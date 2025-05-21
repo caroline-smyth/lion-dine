@@ -6,7 +6,7 @@ import os
 import requests
 import json
 import boto3
-from time_functions import john_jay_open, jjs_open, ferris_open, fac_house_open, mikes_open, dons_open, grace_dodge_open, fac_shack_open, hewitt_open, diana_open, hours_dict, breakfast_hours, lunch_hours, dinner_hours, latenight_hours, johnnys_open
+from time_functions import hours_dict, breakfast_hours, lunch_hours, dinner_hours, latenight_hours, all_closed
 import string
 import pytz
 from  flask_sqlalchemy import SQLAlchemy
@@ -76,7 +76,9 @@ def current_open_stations(now):
   for hall_name, is_open_func in closed_check:
     # Initialize with hours for all halls
     filtered_halls[hall_name] = {
-        "status": "Open" if is_open_func(now) else "Closed",
+      """
+        "status": "Open" if is_open_func(now) else "Closed","""
+        "status": "Closed",
         "hours": hours.get(hall_name, "Hours not available"),
         "stations": {},
     }
@@ -130,8 +132,6 @@ def current_open_stations(now):
         filtered_halls[hall_name]["stations"] = "Missing Data"
     
     if hall_name == "JJ's":
-      #filter for only open stations
-      #filtered_stations["all hours"] = "12 pm - 10 am"
       if now.hour >= 12 or now.hour < 4:
         for station, items in stations.get('lunch & dinner',{}).items():
           if station in filtered_stations:
@@ -327,13 +327,11 @@ def current_open_stations(now):
 
 def open_at_meal(now, meal):
   halls = get_dining_data()
-  print("Dining hall names: ", halls.keys())
-  print(halls)
   filtered_halls = {} #to be filled
 
   for hall_name in dining_halls:
     filtered_halls[hall_name] = {
-      'status': 'Unknown',
+      'status': f'Closed for {meal}', # was Unknown
       'hours': 'Hours not available',
       'stations': {},
     }
@@ -344,8 +342,7 @@ def open_at_meal(now, meal):
   l_hours = lunch_hours(now.weekday(), now)
   d_hours = dinner_hours(now.weekday(), now)
   ln_hours = latenight_hours(now.weekday(), now)
-
-  #filtered_halls[hall_name]["status"] = "Open" if meal in meal_list else f"Closed for {meal}"
+  
 
   filtered_halls["John Jay"]["status"] = "Open" if now.weekday() in [6,0,1,2,3] else f"Closed for {meal}"
   filtered_halls["JJ's"]["status"] = "Open" #FALL BREAK
@@ -393,8 +390,8 @@ def open_at_meal(now, meal):
     filtered_halls["Diana"]["status"] = "Open"
   else:
     filtered_halls["Diana"]["status"] = f"Closed for {meal}"
-  if meal == "latenight":
-    filtered_halls["Ferris"]["status"] = filtered_halls["John Jay"]["status"] = filtered_halls["Faculty House"]["status"] = filtered_halls["Chef Mike's"]["status"] = filtered_halls["Chef Don's"]["status"] = filtered_halls["Hewitt Dining"]["status"] = filtered_halls["Kosher"]["status"] = f"Closed for {meal}"
+  # if meal == "latenight":
+  filtered_halls["Ferris"]["status"] = filtered_halls["John Jay"]["status"] = filtered_halls["Faculty House"]["status"] = filtered_halls["Chef Mike's"]["status"] = filtered_halls["Chef Don's"]["status"] = filtered_halls["Hewitt Dining"]["status"] = filtered_halls["Kosher"]["status"] = filtered_halls["Diana"] ["status"] = filtered_halls["Fac Shack"]["status"] = filtered_halls["Johnny's"]["status"] = filtered_halls["JJ's"]["status"] = filtered_halls["Grace Dodge"]["status"] = f"Closed for {meal}"
 
   for hall_name in halls.keys():
     if meal == "breakfast":
@@ -405,7 +402,7 @@ def open_at_meal(now, meal):
       filtered_halls[hall_name]["hours"] = d_hours.get(hall_name, "Hours not available")
     elif meal == "latenight":
       filtered_halls[hall_name]["hours"] = ln_hours.get(hall_name, "Hours not available")
-
+  
   #for each dining hall, skipping the closed ones, find each
   #station that's currently open and add it to the filtered dictionary
   for hall_name, stations in halls.items():
@@ -549,7 +546,7 @@ def open_at_meal(now, meal):
       if filtered_stations:
         filtered_halls[hall_name]["stations"] = filtered_stations
       else:
-        filtered_halls[hall_name]["stations"] = "Missing data TEST"
+        filtered_halls[hall_name]["stations"] = "Missing data"
     if hall_name == "Hewitt Dining":
       if meal == 'breakfast':
         for station, items in stations.get('breakfast',{}).items():
@@ -605,6 +602,7 @@ def open_at_meal(now, meal):
         filtered_halls[hall_name]["stations"] = filtered_stations
       else:
         filtered_halls[hall_name]["stations"] = "Missing data"
+        
   
   return filtered_halls
 
