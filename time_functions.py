@@ -7,7 +7,7 @@ def all_closed(weekday, now):
     hours = {}
     all_halls = get_all_hall_names()
     for hall in all_halls:
-        hours[hall] = "Closed today"
+        hours[hall] = "Closed for summer"
     return hours
 
 def breakfast_hours(weekday, now):
