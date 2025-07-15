@@ -11,26 +11,17 @@ import string
 import pytz
 from  flask_sqlalchemy import SQLAlchemy
 from flask import make_response, g, render_template, flash
+from dining_config import (
+    is_hall_open, get_station_mapping, get_hardcoded_menu, 
+    get_all_hall_names, DINING_SCHEDULES
+)
 
 app = Flask(__name__) #sets up a flask application
 app.secret_key = os.environ.get('SECRET_KEY','fallback-secret-key') 
 
 ny_tz = pytz.timezone('America/New_York')
 
-dining_halls = [
-  "John Jay",
-  "JJ's",
-  "Ferris",
-  "Faculty House",
-  "Chef Mike's",
-  "Chef Don's",
-  "Grace Dodge",
-  "Fac Shack", 
-  "Hewitt Dining", 
-  "Diana",
-  "Kosher",
-  "Johnny's"
-]
+dining_halls = get_all_hall_names()
 
 #gets dining data from aws s3 json file
 def get_dining_data():
@@ -47,289 +38,88 @@ def get_dining_data():
     print(f"Error fetching data from AWS S3: {e}")
     return {}
 
-#takes the dictionary of all food items and filters it to only include
-#stations that are open at the given meal
-
 def open_at_meal(now, meal):
-  halls = get_dining_data()
-  filtered_halls = {} #to be filled
-
-  for hall_name in dining_halls:
-    filtered_halls[hall_name] = {
-      'status': f'Closed for {meal}', # was Unknown
-      'hours': 'Hours not available',
-      'stations': {},
-    }
-
-  # CHECKS FOR CLOSED
-  
-  b_hours = breakfast_hours(now.weekday(), now)
-  l_hours = lunch_hours(now.weekday(), now)
-  d_hours = dinner_hours(now.weekday(), now)
-  ln_hours = latenight_hours(now.weekday(), now)
-  
-
-  filtered_halls["John Jay"]["status"] = "Open" if now.weekday() in [6,0,1,2,3] else f"Closed for {meal}"
-  filtered_halls["JJ's"]["status"] = "Open" #FALL BREAK
-  filtered_halls["Ferris"]["status"] = "Open"
-  if (now.weekday() <= 3 and meal == "lunch"):
-    filtered_halls["Johnny's"]["status"] = "Open"
-  elif (now.weekday() in [3, 4, 5] and meal in ["dinner", "latenight"]):
-    filtered_halls["Johnny's"]["status"] = "Open"
-  else:
-    filtered_halls["Johnny's"]["status"] = f"Closed for {meal}"
-  if meal == "breakfast":
-    filtered_halls["Johnny's"]["status"]= f"Closed for {meal}"
-  filtered_halls["Hewitt Dining"]["status"] = "Open"
-  if (now.weekday() == 5 and meal in ["breakfast", "lunch", "dinner", "latenight"]):
-    filtered_halls["Kosher"]["status"] = f"Closed for {meal}"
-  elif (now.weekday() == 4 and meal == "dinner"):
-    filtered_halls["Kosher"]["status"] = f"Closed for {meal}"
-  else:
-    filtered_halls["Kosher"]["status"] = "Open"
-  if now.weekday() in [0,1,2] and meal == "lunch":
-    filtered_halls["Faculty House"]["status"] = "Open"
-  else:
-    filtered_halls["Faculty House"]["status"] = f"Closed for {meal}"
-  if now.weekday() in [0,1,2,3,4] and meal in ["lunch","dinner"]:
-    filtered_halls["Chef Mike's"]["status"] = "Open"
-  else:
-    filtered_halls["Chef Mike's"]["status"] = f"Closed for {meal}"
-  if now.weekday() in [0,1,2,3,4]:
-    filtered_halls["Chef Don's"]["status"] = "Open"
-  else:
-    filtered_halls["Chef Don's"]["status"] = f"Closed for {meal}"
-  if now.weekday() in [0,1,2,3] and meal in ["lunch","dinner"]:
-    filtered_halls["Grace Dodge"]["status"] = "Open"
-  else:
-    filtered_halls["Grace Dodge"]["status"] = f"Closed for {meal}"
-
-  if (now.weekday() in [0,1,2,3] and (meal == "lunch" or meal =="dinner")):
-    filtered_halls["Fac Shack"]["status"] = "Open"
-  else:
-    filtered_halls["Fac Shack"]["status"] = f"Closed for {meal}"
-  if (now.weekday() in [0,1,2,3] or (now.weekday() == 4 and meal in ["breakfast", "lunch"]) or 
-      now.weekday() == 6 and meal in ["lunch","dinner"]):
-    filtered_halls["Diana"]["status"] = "Open"
-  elif now.weekday() in [0, 1, 2, 3] and meal == "latenight":
-    filtered_halls["Diana"]["status"] = "Open"
-  else:
-    filtered_halls["Diana"]["status"] = f"Closed for {meal}"
-  # if meal == "latenight":
-  filtered_halls["Ferris"]["status"] = filtered_halls["John Jay"]["status"] = filtered_halls["Faculty House"]["status"] = filtered_halls["Chef Mike's"]["status"] = filtered_halls["Chef Don's"]["status"] = filtered_halls["Hewitt Dining"]["status"] = filtered_halls["Kosher"]["status"] = filtered_halls["Diana"] ["status"] = filtered_halls["Fac Shack"]["status"] = filtered_halls["Johnny's"]["status"] = filtered_halls["JJ's"]["status"] = filtered_halls["Grace Dodge"]["status"] = f"Closed for {meal}"
-
-  for hall_name in halls.keys():
-    if meal == "breakfast":
-      filtered_halls[hall_name]["hours"] = b_hours.get(hall_name, "Hours not available")
-    elif meal == "lunch":
-      filtered_halls[hall_name]["hours"] = l_hours.get(hall_name, "Hours not available")
-    elif meal == "dinner":
-      filtered_halls[hall_name]["hours"] = d_hours.get(hall_name, "Hours not available")
-    elif meal == "latenight":
-      filtered_halls[hall_name]["hours"] = ln_hours.get(hall_name, "Hours not available")
-  
-  #for each dining hall, skipping the closed ones, find each
-  #station that's currently open and add it to the filtered dictionary
-  for hall_name, stations in halls.items():
-    if hall_name in filtered_halls and filtered_halls[hall_name]["status"].startswith("Closed"):
-      continue
-    filtered_stations = {}
+    """
+    Filter dining halls to only include those open at the given meal time.
+    Uses configuration-based approach for better maintainability.
     
-    if stations is None:
-      filtered_halls[hall_name]["stations"] = "Missing data"
-      continue
-
-    #this code will replace the below code once we have all scraped data.
-    #here, we hard-code the times of each station of each dining hall.
-    if hall_name == "John Jay" or hall_name == "Ferris":
-      #filter for only open stations
-      if meal == 'breakfast':
-        for station, items in stations.get('breakfast',{}).items():
-          filtered_stations[station] = items
-        for station, items in stations.get('brunch',{}).items():
-          filtered_stations[station] = items         
-      if meal == 'lunch':
-        for station, items in stations.get('lunch',{}).items():
-          filtered_stations[station] = items
-        for station, items in stations.get('lunch & dinner',{}).items():
-          filtered_stations[station] = items
-      if meal == 'dinner':
-        for station, items in stations.get('dinner',{}).items():
-          filtered_stations[station] = items
-        for station, items in stations.get('lunch & dinner',{}).items():
-          filtered_stations[station] = items
-      #return data to the filtered dictionary
-      if filtered_stations:
-        filtered_halls[hall_name]["stations"] = filtered_stations
-      else:
-        filtered_halls[hall_name]["stations"] = "Missing data"  
-    if hall_name == "JJ's":
-      #filter for only open stations
-      if meal == 'breakfast':
-        for station, items in stations.get('breakfast',{}).items():
-          if station in filtered_stations:
-            filtered_stations[station].extend(items)
-          else:
-            filtered_stations[station] = items
-        for station, items in stations.get('daily',{}).items():
-          if station in filtered_stations:
-            filtered_stations[station].extend(items)
-          else:
-            filtered_stations[station] = items 
-      if meal == 'lunch':
-        for station, items in stations.get('lunch & dinner',{}).items():
-          if station in filtered_stations:
-            filtered_stations[station].extend(items)
-          else:          
-            filtered_stations[station] = items
-        for station, items in stations.get('daily',{}).items():
-          if station in filtered_stations:
-            filtered_stations[station].extend(items)
-          else:          
-            filtered_stations[station] = items
-      if meal == 'dinner':
-        for station, items in stations.get('daily',{}).items():
-          if station in filtered_stations:
-            filtered_stations[station].extend(items)
-          else:          
-            filtered_stations[station] = items
-        for station, items in stations.get('lunch & dinner',{}).items():
-          if station in filtered_stations:
-            filtered_stations[station].extend(items)
-          else:
-            filtered_stations[station] = items
-        for station, items in stations.get('late night',{}).items():
-          if station in filtered_stations:
-            filtered_stations[station].extend(items)
-          else:          
-            filtered_stations[station] = items
-      if meal == 'latenight':
-        for station, items in stations.get('lunch & dinner',{}).items():
-          if station in filtered_stations:
-            filtered_stations[station].extend(items)
-          else:
-            filtered_stations[station] = items
-        for station, items in stations.get('late night',{}).items():
-          if station in filtered_stations:
-            filtered_stations[station].extend(items)
-          else:          
-            filtered_stations[station] = items
-      #return data to the filtered dictionary
-      if filtered_stations:
-        filtered_halls[hall_name]["stations"] = filtered_stations
-      else:
-        filtered_halls[hall_name]["stations"] = "Missing data"
-    if hall_name == "Faculty House" or hall_name == "Johnny's":
-      #filter for only open stations
-      if meal == 'lunch':
-        for station, items in stations.get('lunch',{}).items():
-            filtered_stations[station] = items
-      #return data to the filtered dictionary
-      if filtered_stations:
-        filtered_halls[hall_name]["stations"] = filtered_stations
-      else:
-        filtered_halls[hall_name]["stations"] = "Missing data" 
-    if hall_name == "Chef Mike's":
-      #filter for only open stations
-      if meal == 'lunch' or meal == 'dinner':
-        for station, items in stations.get('lunch & dinner',{}).items():
-          filtered_stations[station] = items
-      #return data to the filtered dictionary
-      if filtered_stations:
-        filtered_halls[hall_name]["stations"] = filtered_stations
-      else:
-        filtered_halls[hall_name]["stations"] = "Missing data"      
-    if hall_name == "Chef Don's":
-      if meal == 'breakfast':
-        filtered_stations["Sandwiches"] = ["Bacon egg and cheese bagel", "Ham egg and cheese bagel", "Vegan breakfast bagel"]
-        filtered_stations["Sides"] = ["Cup of oatmeal", "Piece of fruit","Danish pastry","Small coffee or tea"]
-      if meal == 'lunch' or meal == 'dinner':
-        filtered_stations["Entree"] = ["Build your own pizza", "Toasted Cuban sandwich"]
-        filtered_stations["Sides"] = ["Piece of fruit", "Soup","Milkshake","Freestyle machine beverage", "Dessert"]
-      if filtered_stations:
-        filtered_halls[hall_name]["stations"] = filtered_stations
-      else:
-        filtered_halls[hall_name]["stations"] = "Missing data"    
-    if hall_name == "Grace Dodge":
-      #filter for only open stations
-      if meal == 'lunch' or meal == 'dinner':
-        for station, items in stations.get('lunch & dinner',{}).items():
-          filtered_stations[station] = items
+    Args:
+        now: Current datetime object
+        meal: Meal period ("breakfast", "lunch", "dinner", "latenight")
+    
+    Returns:
+        Dictionary of filtered dining halls with their status, hours, and stations
+    """
+    halls = get_dining_data()
+    filtered_halls = {}
+    weekday = now.weekday()
+    
+    # Get hours for the current meal
+    meal_hours = {
+       "breakfast": all_closed(weekday, now),
+       "lunch": all_closed(weekday, now),
+       "dinner": all_closed(weekday, now),
+       "latenight": all_closed(weekday, now)
+    }
+    """   # uncomment after summer break
+        "breakfast": breakfast_hours(weekday, now),
+        "lunch": lunch_hours(weekday, now),
+        "dinner": dinner_hours(weekday, now),
+        "latenight": latenight_hours(weekday, now)
+        """
+    
+    
+    # Initialize all halls as closed
+    for hall_name in dining_halls:
+        filtered_halls[hall_name] = {
+            'status': f'Closed for {meal}',
+            'hours': meal_hours[meal].get(hall_name, "Hours not available"),
+            'stations': {},
+        }
+    
+    # Check which halls are open for this meal
+    for hall_name in dining_halls:
+        if is_hall_open(hall_name, weekday, meal):
+            filtered_halls[hall_name]["status"] = "Open"
+    
+    # Process stations for open halls
+    for hall_name, stations in halls.items():
+        if hall_name not in filtered_halls:
+            continue
+            
+        if filtered_halls[hall_name]["status"].startswith("Closed"):
+            continue
+            
+        if stations is None:
+            filtered_halls[hall_name]["stations"] = "Missing data"
+            continue
         
-      #return data to the filtered dictionary
-      if filtered_stations:
-        filtered_halls[hall_name]["stations"] = filtered_stations
-      else:
-        filtered_halls[hall_name]["stations"] = "Missing data"
-    if hall_name == "Fac Shack":
-      if meal == 'lunch':
-        for station, items in stations.get('lunch & dinner',{}).items():
-          filtered_stations[station] = items
-      if meal == 'dinner' or meal == 'latenight':
-        for station, items in stations.get('lunch & dinner',{}).items():
-          filtered_stations[station] = items
-      if filtered_stations:
-        filtered_halls[hall_name]["stations"] = filtered_stations
-      else:
-        filtered_halls[hall_name]["stations"] = "Missing data"
-    if hall_name == "Hewitt Dining":
-      if meal == 'breakfast':
-        for station, items in stations.get('breakfast',{}).items():
-          filtered_stations[station] = items
-        for station, items in stations.get('brunch',{}).items():
-          filtered_stations[station] = items
-      elif meal == 'lunch':
-        for station, items in stations.get('lunch',{}).items():
-          filtered_stations[station] = items
-        for station, items in stations.get('brunch',{}).items():
-          filtered_stations[station] = items
-      elif meal == 'dinner':
-        for station, items in stations.get('dinner',{}).items():
-          filtered_stations[station] = items
-      for station, items in stations.get('every day',{}).items():
-        filtered_stations[station] = items
-      if filtered_stations:
-        filtered_halls[hall_name]["stations"] = filtered_stations
-      else:
-        filtered_halls[hall_name]["stations"] = "Missing data"
-    if hall_name == "Kosher":
-      if meal == 'breakfast':
-        for station, items in stations.get('breakfast',{}).items():
-          filtered_stations[station] = items
-      if meal == 'lunch':
-        for station, items in stations.get('brunch',{}).items():
-          filtered_stations[station] = items
-        for station, items in stations.get('lunch',{}).items():
-          filtered_stations[station] = items
-      if meal == 'dinner':
-        for station, items in stations.get('brunch',{}).items():
-          filtered_stations[station] = items
-        for station, items in stations.get('dinner',{}).items():
-          filtered_stations[station] = items
-    if hall_name == "Diana":
-      if meal == 'breakfast':
-        for station, items in stations.get('breakfast',{}).items():
-          filtered_stations[station] = items
-      if meal == 'lunch':
-        for station, items in stations.get('brunch',{}).items():
-          filtered_stations[station] = items
-        for station, items in stations.get('lunch',{}).items():
-          filtered_stations[station] = items
-      if meal == 'dinner':
-        for station, items in stations.get('brunch',{}).items():
-          filtered_stations[station] = items
-        for station, items in stations.get('dinner',{}).items():
-          filtered_stations[station] = items
-      if meal == 'latenight':
-        for station, items in stations.get('late night',{}).items():
-          filtered_stations[station] = items
-      if filtered_stations:
-        filtered_halls[hall_name]["stations"] = filtered_stations
-      else:
-        filtered_halls[hall_name]["stations"] = "Missing data"
+        # Get station mapping for this hall and meal
+        station_types = get_station_mapping(hall_name, meal)
+        filtered_stations = {}
         
-  
-  return filtered_halls
+        # Check if this hall uses hardcoded menus
+        hardcoded_menu = get_hardcoded_menu(hall_name, meal)
+        if hardcoded_menu:
+            filtered_stations = hardcoded_menu
+        else:
+            # Process scraped data based on station mapping
+            for station_type in station_types:
+                if station_type in stations:
+                    for station_name, items in stations[station_type].items():
+                        if station_name in filtered_stations:
+                            # Merge items if station already exists
+                            filtered_stations[station_name].extend(items)
+                        else:
+                            filtered_stations[station_name] = items
+        
+        # Set stations data
+        if filtered_stations:
+            filtered_halls[hall_name]["stations"] = filtered_stations
+        else:
+            filtered_halls[hall_name]["stations"] = "Missing data"
+    
+    return filtered_halls
 
 #mapping URLs to functions that display the HTML we want for that URL
 def get_current_time():

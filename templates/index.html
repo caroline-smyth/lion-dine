@@ -113,11 +113,9 @@
             <div class="hours">{{ hall_info.hours }}</div>
             {% if hall_info.hours == "Closed today" %}
               <div class="status"></div>
-            {% elif hall_info.status == "Closed" %}
-             <div class="status">{{ hall_info.status }}</div>
             {% endif %}
           </div>
-          {% if hall_info.status.startswith("Closed") %}
+          {% if hall_info.hours.startswith("Closed") %}
             <div class="menu"></div>
           {% elif hall_info.stations is mapping and hall_info.stations %}
             <div class="menu">
@@ -138,7 +136,6 @@
     </div>
     <div class="footer"><p></p></div>
     </main>
-    <script src="../static/ripple.js" type="text/javascript"></script>
     <script src="../static/functions.js" type="text/javascript"></script>
   </body>
 </html>
