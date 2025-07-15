@@ -6,7 +6,7 @@ import os
 import requests
 import json
 import boto3
-from time_functions import hours_dict, breakfast_hours, lunch_hours, dinner_hours, latenight_hours, all_closed
+from time_functions import breakfast_hours, lunch_hours, dinner_hours, latenight_hours, all_closed
 import string
 import pytz
 from  flask_sqlalchemy import SQLAlchemy
@@ -41,8 +41,7 @@ def get_dining_data():
 def open_at_meal(now, meal):
     """
     Filter dining halls to only include those open at the given meal time.
-    Uses configuration-based approach for better maintainability.
-    
+
     Args:
         now: Current datetime object
         meal: Meal period ("breakfast", "lunch", "dinner", "latenight")
@@ -56,10 +55,10 @@ def open_at_meal(now, meal):
     
     # Get hours for the current meal
     meal_hours = {
-       "breakfast": all_closed(weekday, now),
-       "lunch": all_closed(weekday, now),
-       "dinner": all_closed(weekday, now),
-       "latenight": all_closed(weekday, now)
+       "breakfast": breakfast_hours(weekday, now),
+       "lunch": lunch_hours(weekday, now),
+       "dinner": dinner_hours(weekday, now),
+       "latenight": latenight_hours(weekday, now)
     }
     """   # uncomment after summer break
         "breakfast": breakfast_hours(weekday, now),
