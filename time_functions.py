@@ -222,11 +222,5 @@ def latenight_hours(weekday, now):
     if weekday >= 3 and weekday < 6:  # Thu-Sat
         ln_hours["Johnny's"] = "7:00 PM to 11:00 PM"
     
-    # Special holiday closures
-    if now.month == 1 and now.day < 21:  # Christmas break
-        ln_hours["JJ's"] = "Closed for late night"
-        ln_hours["Diana"] = "Closed for late night"
-        ln_hours["Fac Shack"] = "Closed for late night"
-        ln_hours["Johnny's"] = "Closed for late night"
     
     return ln_hours
