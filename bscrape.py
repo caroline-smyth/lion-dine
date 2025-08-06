@@ -6,7 +6,7 @@ import requests
 # Barnard scraper setup
 scraper = cloudscraper.create_scraper()
 
-location_ids = {"5d27a0461ca48e0aca2a104c": "Hewitt", "5d794b63c4b7ff15288ba3da": "Hewitt Kosher", "5d8775484198d40d7a0b8078": "Diana"}
+location_ids = {"5d27a0461ca48e0aca2a104c": "Hewitt Dining", "5d794b63c4b7ff15288ba3da": "Hewitt Kosher", "5d8775484198d40d7a0b8078": "Diana"}
 dining_hall_data = {}
 date = datetime.now().date().isoformat()
 base = "https://api.dineoncampus.com/v1/location"
