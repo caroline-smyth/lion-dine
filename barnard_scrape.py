@@ -21,9 +21,6 @@ import undetected_chromedriver as uc
 def get_driver():
     options = uc.ChromeOptions()
     options.headless = True 
-    options.add_argument("--disable-blink-features=AutomationControlled")
-    options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    options.add_experimental_option("useAutomationExtension", False) 
     driver = uc.Chrome(options=options)
     return driver
 
