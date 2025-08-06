@@ -128,4 +128,4 @@ def scrape_barnard_inside(driver, wait):
 
   return dining_hall
 
-scrape_barnard()
+#scrape_barnard()

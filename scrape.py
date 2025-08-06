@@ -21,6 +21,7 @@ import boto3
 from barnard_scrape import scrape_barnard
 from diana_scrape import scrape_diana
 from kosher_scrape import scrape_kosher
+from bscrape import bscrape
 
 #dining hall URLs and names 
 
@@ -220,10 +221,12 @@ def scrape_all():
     hall_data = scrape_columbia(hall)
     dict.update(hall_data)
   
-  barnard_data = scrape_barnard()
+  """barnard_data = scrape_barnard()
   dict.update(barnard_data)
   diana_data = scrape_diana()
-  dict.update(diana_data)
+  dict.update(diana_data)"""
+  barnard_data = bscrape()
+  dict.update(barnard_data)
   print(dict)
   return dict
 
