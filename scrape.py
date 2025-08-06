@@ -18,9 +18,6 @@ import os
 import platform
 import json
 import boto3
-from barnard_scrape import scrape_barnard
-from diana_scrape import scrape_diana
-from kosher_scrape import scrape_kosher
 from bscrape import bscrape
 
 #dining hall URLs and names 
