@@ -16,7 +16,18 @@ from kosher_scrape import scrape_kosher
 from selenium.webdriver.common.action_chains import ActionChains
 import platform
 
+import undetected_chromedriver as uc
+
 def get_driver():
+    options = uc.ChromeOptions()
+    options.headless = True 
+    options.add_argument("--disable-blink-features=AutomationControlled")
+    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_experimental_option("useAutomationExtension", False) 
+    driver = uc.Chrome(options=options)
+    return driver
+
+def get_driver_old():
   chrome_options = Options()
   #chrome_options.add_argument("--headless=new")  # Run headless for efficiency
   chrome_options.add_argument("--headless=chrome")
@@ -42,6 +53,7 @@ def scrape_barnard():
   for hall_name in barnard_hall_names:
     driver.get(url)
     driver.save_screenshot("b1.png")
+    
     dropdown = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn")))
     driver.save_screenshot("b2.png")
 
@@ -54,7 +66,6 @@ def scrape_barnard():
     driver.save_screenshot("barnardproblem.png")
 
     dropdown_menu = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "dropdown-menu.show")))
-
 
     items = dropdown_menu.find_elements(By.TAG_NAME, "button")
     for item in items:
@@ -120,4 +131,4 @@ def scrape_barnard_inside(driver, wait):
 
   return dining_hall
 
-#scrape_barnard()
+scrape_barnard()
