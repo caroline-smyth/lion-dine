@@ -220,11 +220,6 @@ def scrape_all():
       continue
     hall_data = scrape_columbia(hall)
     dict.update(hall_data)
-  
-  """barnard_data = scrape_barnard()
-  dict.update(barnard_data)
-  diana_data = scrape_diana()
-  dict.update(diana_data)"""
   barnard_data = bscrape()
   dict.update(barnard_data)
   print(dict)
