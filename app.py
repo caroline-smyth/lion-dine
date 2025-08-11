@@ -39,16 +39,6 @@ def get_dining_data():
     return {}
 
 def open_at_meal(now, meal):
-    """
-    Filter dining halls to only include those open at the given meal time.
-
-    Args:
-        now: Current datetime object
-        meal: Meal period ("breakfast", "lunch", "dinner", "latenight")
-    
-    Returns:
-        Dictionary of filtered dining halls with their status, hours, and stations
-    """
     halls = get_dining_data()
     filtered_halls = {}
     weekday = now.weekday()
@@ -66,7 +56,6 @@ def open_at_meal(now, meal):
        "dinner": all_closed(weekday, now),
        "latenight": all_closed(weekday, now)
         """
-    
     
     # Initialize all halls as closed
     for hall_name in dining_halls:

@@ -18,7 +18,7 @@ import os
 import platform
 import json
 import boto3
-from bscrape import bscrape
+from bscrape import bscrape, normalize_meals
 
 #dining hall URLs and names 
 
@@ -217,7 +217,10 @@ def scrape_all():
     hall_data = scrape_columbia(hall)
     dict.update(hall_data)
   barnard_data = bscrape()
-  dict.update(barnard_data)
+  normalized_barnard = normalize_meals(barnard_data)
+  dict.update(normalized_barnard)
+  if "Hewitt Kosher" in barnard_data:
+    barnard_data["Kosher"] = barnard_data.pop("Hewitt Kosher")
   print(dict)
   return dict
 
