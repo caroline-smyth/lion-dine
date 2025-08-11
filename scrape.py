@@ -206,7 +206,6 @@ def scrape_columbia(hall_name):
     #print(dining_hall)
 
     return {hall_name : dining_hall}
-
 #combines the columbia and barnard scrapes into one dictionary
 def scrape_all():
   dict = {}

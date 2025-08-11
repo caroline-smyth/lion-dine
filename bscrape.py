@@ -67,5 +67,16 @@ def bscrape(max_retries=3, retry_delay=2):
               print(f"All {max_retries} attempts failed. Unable to scrape Barnard data.")
               return {hall_name: {} for hall_name in location_ids.values()}
 
+def normalize_meals(halls):
+    fixed = {}
+    for hall, meals in halls.items():
+        if not isinstance(meals, dict):
+            fixed[hall] = meals
+            continue
+        fixed[hall] = { (m.strip().lower()): v for m, v in meals.items() }
+    return fixed
+
 if __name__ == '__main__':
-  bscrape()
+  data = bscrape()
+  normalized = normalize_meals(data)
+  print(normalized)
