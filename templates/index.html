@@ -11,10 +11,9 @@
     <!-- Apple touch icon (for iOS home-screen bookmarks) -->
     <link rel="apple-touch-icon" sizes="180x180" href="../static/logo.png">
     <title>Lion Dine</title>
-    <link rel="stylesheet" href="..\static\header.css">
-    <link rel="stylesheet" href="..\static\general.css">
-    <link rel="stylesheet" href="../static/swipemarket.css">
-    <link rel="stylesheet" href="../static/ripple.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='general.css') }}">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
@@ -30,8 +29,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-D26R1LF247"></script>
   
   <!--<script src="https://accounts.google.com/gsi/client" async defer></script>
-  <div id="g_id_onload" data-client_id="362313378422-s5g6ki5lkph6vaeoad93lfirrtugvnfl.apps.googleusercontent.com" data-callback="handleCredentialResponse">-->
-  </div>
+  <div id="g_id_onload" data-client_id="362313378422-s5g6ki5lkph6vaeoad93lfirrtugvnfl.apps.googleusercontent.com" data-callback="handleCredentialResponse"> </div>-->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}

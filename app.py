@@ -15,6 +15,7 @@ from dining_config import (
     is_hall_open, get_station_mapping, get_hardcoded_menu, 
     get_all_hall_names, DINING_SCHEDULES
 )
+from time_functions import nsop_hours
 
 app = Flask(__name__) #sets up a flask application
 app.secret_key = os.environ.get('SECRET_KEY','fallback-secret-key') 
@@ -45,10 +46,10 @@ def open_at_meal(now, meal):
     
     # Get hours for the current meal
     meal_hours = {
-      "breakfast": breakfast_hours(weekday, now),
-      "lunch": lunch_hours(weekday, now),
-      "dinner": dinner_hours(weekday, now),
-      "latenight": latenight_hours(weekday, now)
+      "breakfast": nsop_hours(weekday, now),
+      "lunch": nsop_hours(weekday, now),
+      "dinner": nsop_hours(weekday, now),
+      "latenight": all_closed(weekday, now)
     }
     """   # uncomment after summer break
     meal_hours = {  
@@ -56,6 +57,11 @@ def open_at_meal(now, meal):
       "lunch": all_closed(weekday, now),
       "dinner": all_closed(weekday, now),
       "latenight": all_closed(weekday, now)
+
+      "breakfast": breakfast_hours(weekday, now),
+      "lunch": lunch_hours(weekday, now),
+      "dinner": dinner_hours(weekday, now),
+      "latenight": latenight_hours(weekday, now)
         """
     
     # Initialize all halls as closed
