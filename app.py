@@ -46,16 +46,16 @@ def open_at_meal(now, meal):
     
     # Get hours for the current meal
     meal_hours = {
-      "breakfast": nsop_hours(weekday, now),
-      "lunch": nsop_hours(weekday, now),
-      "dinner": nsop_hours(weekday, now),
+      "breakfast": all_closed  (weekday, now),
+      "lunch": all_closed(weekday, now),
+      "dinner": all_closed(weekday, now),
       "latenight": all_closed(weekday, now)
     }
     """   # uncomment after summer break
     meal_hours = {  
-       "breakfast": all_closed  (weekday, now),
-      "lunch": all_closed(weekday, now),
-      "dinner": all_closed(weekday, now),
+    "breakfast": nsop_hours(weekday, now),
+      "lunch": nsop_hours(weekday, now),
+      "dinner": nsop_hours(weekday, now),
       "latenight": all_closed(weekday, now)
 
       "breakfast": breakfast_hours(weekday, now),
