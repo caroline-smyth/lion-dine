@@ -9,16 +9,11 @@ def nsop_hours(weekday, now):
     for hall in all_halls:
         hours[hall] = "Closed for summer"
     
-    if weekday in [0, 1, 2, 3, 4]: 
-        hours["Hewitt Dining"] = "8:00 AM to 7:00 PM"
-        hours["Ferris"] = "7:30 AM to 7:00 PM"
-    else: 
-        hours["Hewitt Dining"] = "10:30 AM to 3:00 PM"
-        if weekday == 5:  
-            hours["Ferris"] = "9:00 AM to 11:00 AM"
-        elif weekday == 6:  
-            hours["Ferris"] = "10:00 AM to 2:00 PM"
-            hours["Hewitt Dining"] = "11:00 AM to 7:00 PM"
+
+    hours["Hewitt Dining"] = "9:00 AM to 8:00 PM"
+    hours["Ferris"] = "9:00 AM to 8:00 PM"
+    hours["Chef Mike's"] = "11:00 AM to 8:00 PM"
+    hours["JJ's"] = "12:00 PM to 8:00 PM"
     
     return hours
 
