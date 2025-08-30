@@ -183,7 +183,8 @@ def scrape_columbia(hall_name):
               station_name = s.find_element(By.CLASS_NAME, "station-title").text.strip()
               meal_items = s.find_elements(By.CLASS_NAME, "meal-title")
               meal_items_text = [item.text.strip() for item in meal_items]
-
+          elif "Pasta/Quesadilla/Rice" in station_name:
+            station_name = "Pasta Quesadilla Rice Bowl Station"
         if "chef mike's" in actual_name:
           meal_descriptions = s.find_elements(By.CLASS_NAME, "meal-description")
           meal_descriptions_text = [desc.text.strip() for desc in meal_descriptions]
