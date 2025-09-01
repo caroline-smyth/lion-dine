@@ -10,9 +10,9 @@ def nsop_hours(weekday, now):
         hours[hall] = "Closed for summer"
     hours["John Jay"] = "9:30 AM to 9:00 PM"
     hours["Ferris"] = "9:00 AM to 8:00 PM"
-    hours["Chef Mike's"] = "11:00 AM to 8:00 PM"
+    hours["Johnny's"] = "11:00 AM to 2:30 PM"
     hours["JJ's"] = "12:00 PM to 8:00 PM"
-
+    hours["Hewitt Dining"] = "11:00 AM to 8:00 PM"
     
     return hours
 
