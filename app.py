@@ -46,13 +46,18 @@ def open_at_meal(now, meal):
     
     # Get hours for the current meal
     meal_hours = {
-      "breakfast": nsop_hours(weekday, now),
-      "lunch": nsop_hours(weekday, now),
-      "dinner": nsop_hours(weekday, now),
-      "latenight": nsop_hours(weekday, now)
+      "breakfast": breakfast_hours(weekday, now),
+      "lunch": lunch_hours(weekday, now),
+      "dinner": dinner_hours(weekday, now),
+      "latenight": latenight_hours(weekday, now)
     }
     """   # uncomment after summer break
     meal_hours = {  
+
+    "breakfast": nsop_hours(weekday, now),
+      "lunch": nsop_hours(weekday, now),
+      "dinner": nsop_hours(weekday, now),
+      "latenight": nsop_hours(weekday, now)
 
     "breakfast": all_closed  (weekday, now),
       "lunch": all_closed(weekday, now),
@@ -62,11 +67,6 @@ def open_at_meal(now, meal):
       "lunch": nsop_hours(weekday, now),
       "dinner": nsop_hours(weekday, now),
       "latenight": all_closed(weekday, now)
-
-      "breakfast": breakfast_hours(weekday, now),
-      "lunch": lunch_hours(weekday, now),
-      "dinner": dinner_hours(weekday, now),
-      "latenight": latenight_hours(weekday, now)
         """
     
     # Initialize all halls as closed
