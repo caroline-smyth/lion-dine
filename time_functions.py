@@ -81,7 +81,7 @@ def lunch_hours(weekday, now):
             l_hours["Diana"] = "12:00 PM to 8:00 PM"
     
     if weekday in [0, 1, 2, 3]:  # Mon-Thu
-        l_hours["Fac Shack"] = "11:30 AM to 7:00 PM"
+        l_hours["Fac Shack"] = "11:00 AM to 4:00 PM"
         l_hours["Grace Dodge"] = "11:00 AM to 7:00 PM"
         l_hours["Johnny's"] = "11:00 AM to 2:30 PM"
         l_hours["Faculty House"] = "11:00 AM to 2:30 PM"
@@ -115,7 +115,7 @@ def dinner_hours(weekday, now):
     if weekday in [0, 1, 2, 3]:  # Mon-Thu
         d_hours["Grace Dodge"] = "11:00 AM to 7:00 PM"
         d_hours["Diana"] = "5:00 PM to 12:00 AM"
-        d_hours["Fac Shack"] = "4:00 PM to 7:00 PM"
+        d_hours["Fac Shack"] = "4:00 PM to 8:00 PM"
     elif weekday == 6:  # Sunday
         d_hours["Diana"] = "12:00 PM to 8:00 PM"
         d_hours["Fac Shack"] = "3:00 PM to 8:00 PM"
