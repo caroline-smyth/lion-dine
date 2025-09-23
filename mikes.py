@@ -23,28 +23,13 @@ from bscrape import bscrape, normalize_meals
 #dining hall URLs and names 
 
 cu_urls = {
-  "John Jay" : "https://dining.columbia.edu/content/john-jay-dining-hall",
-  "JJ's" : "https://dining.columbia.edu/content/jjs-place-0", 
-  "Ferris" : "https://dining.columbia.edu/content/ferris-booth-commons-0",
-  "Faculty House" : "https://dining.columbia.edu/content/faculty-house-0", 
+
   "Chef Mike's" : "https://dining.columbia.edu/chef-mikes",
-  "Chef Don's" : "https://dining.columbia.edu/content/chef-dons-pizza-pi",
-  "Grace Dodge" : "https://dining.columbia.edu/content/grace-dodge-dining-hall-0", 
-  "Fac Shack" : "https://dining.columbia.edu/content/fac-shack-0",
-  "Johnny's": "https://dining.columbia.edu/johnnys"  
+
 }
 hall_names = [
-  "John Jay", 
-  "JJ's", 
-  "Ferris", 
-  "Faculty House", 
-  "Chef Mike's", 
-  "Chef Don's", 
-  "Grace Dodge", 
-  "Fac Shack", 
-  "Hewitt Dining", 
-  "Diana",
-  "Johnny's"
+
+  "Chef Mike's"
   ]
 """
 cu_urls = {"Johnny's": "https://dining.columbia.edu/johnnys" }
@@ -189,14 +174,16 @@ def scrape_columbia(hall_name):
         if "john jay" in actual_name:
           if "Pasta/Quesadilla/Rice" in station_name:
             station_name = "Pasta, Quesadilla & Rice Bowl Station"
-          """ if "chef mike's" in actual_name:
+        """ if "chef mike's" in actual_name:
           meal_descriptions = s.find_elements(By.CLASS_NAME, "meal-description")
+          print("meal descriptions", meal_descriptions)
           meal_descriptions_text = [desc.text.strip() for desc in meal_descriptions]
+          print("meal descriptions text", meal_descriptions_text)
           combined_items = [element for pair in zip(meal_items_text, meal_descriptions_text) for element in pair]
-
+          print("combined items", combined_items)
           meal_dictionary[station_name] = combined_items"""
-
-        elif "johnny" in actual_name:
+          
+        if "johnny" in actual_name:
           meal_descriptions = s.find_elements(By.CLASS_NAME, "meal-description")
           meal_descriptions_text = [desc.text.strip() for desc in meal_descriptions]
           combined_items = [element for pair in zip(meal_items_text, meal_descriptions_text) for element in pair]
@@ -208,7 +195,7 @@ def scrape_columbia(hall_name):
           
       dining_hall[meal] = meal_dictionary
 
-    #print(dining_hall)
+    print(dining_hall)
 
     return {hall_name : dining_hall}
 #combines the columbia and barnard scrapes into one dictionary
@@ -235,7 +222,7 @@ def scrape_and_save():
   data = scrape_all()
   with open('dining_data.json', 'w') as f:
     json.dump(data, f, indent=4)
-  upload_to_s3('dining_data.json', 'liondine-data')
+  #upload_to_s3('dining_data.json', 'liondine-data')
 
 
 def upload_to_s3(file_path, bucket_name, object_name=None):
@@ -250,6 +237,7 @@ def upload_to_s3(file_path, bucket_name, object_name=None):
      print(f"Failed to upload to S3: {e}")
 
 if __name__ == '__main__':
-   scrape_and_save()
-   print("scraping and upload completed")
+   #scrape_and_save()
+   scrape_columbia("Chef Mike's")
+   #print("scraping and upload completed")
 
