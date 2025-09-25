@@ -24,12 +24,11 @@ from bscrape import bscrape, normalize_meals
 
 cu_urls = {
 
-  "Chef Mike's" : "https://dining.columbia.edu/chef-mikes",
+  "John Jay" : "https://dining.columbia.edu/content/john-jay-dining-hall",
 
 }
 hall_names = [
-
-  "Chef Mike's"
+  "John Jay"
   ]
 """
 cu_urls = {"Johnny's": "https://dining.columbia.edu/johnnys" }
@@ -174,14 +173,7 @@ def scrape_columbia(hall_name):
         if "john jay" in actual_name:
           if "Pasta/Quesadilla/Rice" in station_name:
             station_name = "Pasta, Quesadilla & Rice Bowl Station"
-        """ if "chef mike's" in actual_name:
-          meal_descriptions = s.find_elements(By.CLASS_NAME, "meal-description")
-          print("meal descriptions", meal_descriptions)
-          meal_descriptions_text = [desc.text.strip() for desc in meal_descriptions]
-          print("meal descriptions text", meal_descriptions_text)
-          combined_items = [element for pair in zip(meal_items_text, meal_descriptions_text) for element in pair]
-          print("combined items", combined_items)
-          meal_dictionary[station_name] = combined_items"""
+          print(meal_items_text)
           
         if "johnny" in actual_name:
           meal_descriptions = s.find_elements(By.CLASS_NAME, "meal-description")
@@ -238,6 +230,6 @@ def upload_to_s3(file_path, bucket_name, object_name=None):
 
 if __name__ == '__main__':
    #scrape_and_save()
-   scrape_columbia("Chef Mike's")
+   scrape_columbia("John Jay")
    #print("scraping and upload completed")
 

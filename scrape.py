@@ -151,7 +151,7 @@ def scrape_columbia(hall_name):
       print(f"Unexpected error while handling privacy notice: {e}")
 
     #continue with scraping 
-    buttons = driver.find_elements(By.TAG_NAME, "button")
+    buttons = driver.find_elements(By.CSS_SELECTOR, "button")
     meal_buttons = []
 
     for b in buttons:
@@ -189,12 +189,7 @@ def scrape_columbia(hall_name):
         if "john jay" in actual_name:
           if "Pasta/Quesadilla/Rice" in station_name:
             station_name = "Pasta, Quesadilla & Rice Bowl Station"
-          """ if "chef mike's" in actual_name:
-          meal_descriptions = s.find_elements(By.CLASS_NAME, "meal-description")
-          meal_descriptions_text = [desc.text.strip() for desc in meal_descriptions]
-          combined_items = [element for pair in zip(meal_items_text, meal_descriptions_text) for element in pair]
-
-          meal_dictionary[station_name] = combined_items"""
+          meal_dictionary[station_name] = meal_items_text
 
         elif "johnny" in actual_name:
           meal_descriptions = s.find_elements(By.CLASS_NAME, "meal-description")
@@ -209,7 +204,6 @@ def scrape_columbia(hall_name):
       dining_hall[meal] = meal_dictionary
 
     #print(dining_hall)
-
     return {hall_name : dining_hall}
 #combines the columbia and barnard scrapes into one dictionary
 def scrape_all():
