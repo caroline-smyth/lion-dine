@@ -24,11 +24,10 @@ from bscrape import bscrape, normalize_meals
 
 cu_urls = {
 
-  "John Jay" : "https://dining.columbia.edu/content/john-jay-dining-hall",
-
+  "Faculty House" : "https://dining.columbia.edu/content/faculty-house-0"
 }
 hall_names = [
-  "John Jay"
+  "Faculty House"
   ]
 """
 cu_urls = {"Johnny's": "https://dining.columbia.edu/johnnys" }
@@ -230,6 +229,5 @@ def upload_to_s3(file_path, bucket_name, object_name=None):
 
 if __name__ == '__main__':
    #scrape_and_save()
-   scrape_columbia("John Jay")
+   scrape_columbia("Faculty House")
    #print("scraping and upload completed")
-

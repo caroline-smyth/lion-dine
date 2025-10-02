@@ -110,9 +110,9 @@ DINING_SCHEDULES = {
     "Faculty House": {
         "schedule": {
             0: ["lunch"],  # Monday
-            1: ["lunch", "dinner"],  # Tuesday
+            1: ["lunch"],  # Tuesday
             2: ["lunch"],  # Wednesday
-            3: [],  # Thursday
+            3: ["lunch"],  # Thursday
             4: [],  # Friday
             5: [],  # Saturday
             6: [],  # Sunday
