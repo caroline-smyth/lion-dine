@@ -119,7 +119,7 @@ DINING_SCHEDULES = {
         },
         "station_mapping": {
             "breakfast": [],
-            "lunch": ["lunch"],
+            "lunch": ["lunch", "lunch & dinner"],
             "dinner": [],
             "latenight": []
         }
