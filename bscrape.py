@@ -14,7 +14,7 @@ HALL_ID_TO_NAME = {
     # Diana Center Cafe
     "5d8775484198d40d7a0b8078": "Diana",
     # Hewitt
-    "5d27a0461ca48e0aca2a104c": "Hewitt",
+    "5d27a0461ca48e0aca2a104c": "Hewitt Dining",
     # Hewitt Kosher
     #5d794b63c4b7ff15288ba3da": "Hewitt Kosher",
 }
