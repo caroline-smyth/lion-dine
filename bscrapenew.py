@@ -2,6 +2,7 @@ import cloudscraper
 from datetime import datetime
 import time
 import requests
+import json
 
 # Barnard scraper setup
 scraper = cloudscraper.create_scraper()
@@ -25,6 +26,10 @@ resp = scraper.get(URL, params=params, headers=headers, timeout=30)
 resp.raise_for_status()
 data = resp.json()
 print(data)
+
+# Save JSON data to file
+with open('barnard_dining_data.json', 'w', encoding='utf-8') as f:
+    json.dump(data, f, indent=2, ensure_ascii=False)
 
 """import re
 from collections import defaultdict
