@@ -1,82 +1,106 @@
-import cloudscraper
-from datetime import datetime
-import time
+import json
+from typing import Dict, List, Any
+try:
+    import cloudscraper
+except Exception:
+    cloudscraper = None
 import requests
 
-# Barnard scraper setup
-scraper = cloudscraper.create_scraper()
+BARNARD_SITE_ID = "5cb77d6e4198d40babbc28b5"
+API_URL = "https://apiv4.dineoncampus.com/sites/todays_menu"
 
-location_ids = {"5d27a0461ca48e0aca2a104c": "Hewitt Dining", "5d794b63c4b7ff15288ba3da": "Hewitt Kosher", "5d8775484198d40d7a0b8078": "Diana"}
-dining_hall_data = {}
-date = datetime.now().date().isoformat()
-base = "https://api.dineoncampus.com/v1/location"
-dining_hall_data = {}
+#  location ids -> display names
+HALL_ID_TO_NAME = {
+    # Diana Center Cafe
+    "5d8775484198d40d7a0b8078": "Diana",
+    # Hewitt
+    "5d27a0461ca48e0aca2a104c": "Hewitt",
+    # Hewitt Kosher
+    #5d794b63c4b7ff15288ba3da": "Hewitt Kosher",
+}
 
-# extract meal periods and menu items with retry functionality
-def bscrape(max_retries=3, retry_delay=2):
-    for attempt in range(max_retries):
-      try:
-        # reset dining hall data for each attempt
-        dining_hall_data = {}
-        
-        for location_id in location_ids:
-            periods_url = f"{base}/{location_id}/periods"
-            params = {"platform": 0, "date": date}
-            resp = scraper.get(periods_url, params=params, timeout=30)
-            resp.raise_for_status()
-            periods = resp.json().get("periods", [])
-            hall_name = location_ids[location_id]
-            # populate hall data with hall name
-            dining_hall_data[hall_name] = {}
-            # check if dining hall is closed this day (not hour specific)
-            closed = resp.json().get("closed", False)
-            if closed:
-                print(f"{hall_name} is closed")
-                continue
+# map API period names to our keys
+PERIOD_NAME_MAP = {
+    "Breakfast": "breakfast",
+    "Brunch": "brunch",
+    "Lunch": "lunch",
+    "Dinner": "dinner",
+    "Late Night": "late night",
+    "Daily": "every day",
+}
 
-            for p in periods:
-                pid, pname = p["id"], p["name"]
-                # populate hall data with meal period name
-                dining_hall_data[hall_name][pname] = {}
-                menu_url = f"{base}/{location_id}/periods/{pid}"
-                menu = scraper.get(menu_url, params=params, timeout=30).json()
-                cats = menu["menu"]["periods"]["categories"]
-                for station in cats:
-                    # populate meal period data with station name
-                    dining_hall_data[hall_name][pname][station["name"]] = []
-                    for item in station["items"]:
-                        # populate station data with item name
-                        dining_hall_data[hall_name][pname][station["name"]].append(item["name"])
+def _get_session():
+    # cloudscraper handles Cloudflare; fall back to requests if unavailable
+    if cloudscraper is not None:
+        return cloudscraper.create_scraper()
+    return requests.Session()
 
-        print("Barnard scraping completed successfully")
-        return dining_hall_data
-        
-      except (requests.exceptions.RequestException, 
-              requests.exceptions.Timeout, 
-              requests.exceptions.ConnectionError, 
-              cloudscraper.exceptions.CloudflareChallengeError,
-              KeyError, 
-              ValueError) as e:
-          print(f"Attempt {attempt + 1} failed: {str(e)}")
-          
-          if attempt < max_retries - 1:
-              print(f"Retrying in {retry_delay} seconds...")
-              time.sleep(retry_delay)
-              retry_delay *= 2
-          else:
-              print(f"All {max_retries} attempts failed. Unable to scrape Barnard data.")
-              return {hall_name: {} for hall_name in location_ids.values()}
+def _fetch_barnard_raw() -> Dict[str, Any]:
+    sess = _get_session()
+    resp = sess.get(API_URL, params={"siteId": BARNARD_SITE_ID}, timeout=30)
+    resp.raise_for_status()
+    return resp.json()
 
-def normalize_meals(halls):
-    fixed = {}
-    for hall, meals in halls.items():
-        if not isinstance(meals, dict):
-            fixed[hall] = meals
+def _extract_items(station: Dict[str, Any]) -> List[str]:
+    # convert a station's "items" list of dicts -> list[str] of names
+    items = station.get("items") or []
+    out: List[str] = []
+    for it in items:
+        name = (it.get("name") or "").strip()
+        if name:
+            out.append(name)
+    return out
+
+def parse_barnard_to_columbia_shape(data: Dict[str, Any]) -> Dict[str, Dict[str, Dict[str, List[str]]]]:
+    """
+    Parse the DineOnCampus payload into the Lion Dine shape used for Columbia halls.
+    """
+    result: Dict[str, Dict[str, Dict[str, List[str]]]] = {}
+    for loc in data.get("locations", []):
+        hall_id = loc.get("id")
+        hall_name = HALL_ID_TO_NAME.get(hall_id)
+        if not hall_name:
+            # skip locations we don't display
             continue
-        fixed[hall] = { (m.strip().lower()): v for m, v in meals.items() }
-    return fixed
 
-if __name__ == '__main__':
-  data = bscrape()
-  normalized = normalize_meals(data)
-  print(normalized)
+        hall_periods: Dict[str, Dict[str, List[str]]] = {}
+        for period in (loc.get("periods") or []):
+            period_name_raw: str = (period.get("name") or "").strip()
+            if not period_name_raw:
+                continue
+            period_key = PERIOD_NAME_MAP.get(period_name_raw, period_name_raw.lower())
+
+            stations_out: Dict[str, List[str]] = {}
+            for st in (period.get("stations") or []):
+                station_name = (st.get("name") or "").strip()
+                if not station_name:
+                    continue
+                items = _extract_items(st)
+                if items:  # only add stations with items
+                    stations_out[station_name] = items
+
+            if stations_out:  # only add periods with stations
+                hall_periods[period_key] = stations_out
+
+        if hall_periods:  # only add halls with periods
+            result[hall_name] = hall_periods
+
+    return result
+
+def normalize_meals(barnard_dict: Dict[str, Dict[str, Dict[str, List[str]]]]
+                    ) -> Dict[str, Dict[str, Dict[str, List[str]]]]:
+    """
+    Hook for later tweaks (e.g., merging lunch & dinner → 'lunch & dinner' if you want).
+    Currently pass-through because Barnard exposes separate periods already.
+    """
+    return barnard_dict
+
+def bscrape() -> Dict[str, Dict[str, Dict[str, List[str]]]]:
+    """Public entry point imported by scrape.py"""
+    payload = _fetch_barnard_raw()
+    return parse_barnard_to_columbia_shape(payload)
+
+if __name__ == "__main__":
+    data = _fetch_barnard_raw()
+    parsed = parse_barnard_to_columbia_shape(data)
+    print(json.dumps(parsed, indent=2, ensure_ascii=False))
