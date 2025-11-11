@@ -9,6 +9,13 @@ import requests
 BARNARD_SITE_ID = "5cb77d6e4198d40babbc28b5"
 API_URL = "https://apiv4.dineoncampus.com/sites/todays_menu"
 
+DEFAULT_HEADERS = {
+    "Accept": "application/json, text/plain, */*",
+    "Accept-Language": "en-US,en;q=0.9",
+    # Use the Barnard frontend pages as origin/referer (these match how real browsers hit the API)
+    "Origin": "https://new.dineoncampus.com",
+    "Referer": "https://new.dineoncampus.com/barnard",
+}
 #  location ids -> display names
 HALL_ID_TO_NAME = {
     # Diana Center Cafe
@@ -32,7 +39,9 @@ PERIOD_NAME_MAP = {
 def _get_session():
     # cloudscraper handles Cloudflare; fall back to requests if unavailable
     if cloudscraper is not None:
-        return cloudscraper.create_scraper()
+        return cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'linux', 'mobile': False}, headers=DEFAULT_HEADERS)
+
+        #return cloudscraper.create_scraper()
     return requests.Session()
 
 def _fetch_barnard_raw() -> Dict[str, Any]:
