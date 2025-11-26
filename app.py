@@ -6,7 +6,7 @@ import os
 import requests
 import json
 import boto3
-from time_functions import breakfast_hours, lunch_hours, dinner_hours, latenight_hours, all_closed
+from time_functions import breakfast_hours, lunch_hours, dinner_hours, latenight_hours, all_closed, thanksgiving_hours
 import string
 import pytz
 from  flask_sqlalchemy import SQLAlchemy
@@ -15,7 +15,7 @@ from dining_config import (
     is_hall_open, get_station_mapping, get_hardcoded_menu, 
     get_all_hall_names, DINING_SCHEDULES
 )
-from time_functions import nsop_hours
+from time_functions import nsop_hours, thanksgiving_hours
 
 app = Flask(__name__) #sets up a flask application
 app.secret_key = os.environ.get('SECRET_KEY','fallback-secret-key') 
@@ -46,27 +46,24 @@ def open_at_meal(now, meal):
     
     # Get hours for the current meal
     meal_hours = {
-      "breakfast": breakfast_hours(weekday, now),
+      "breakfast": thanksgiving_hours(weekday, now),
+      "lunch": thanksgiving_hours(weekday, now),
+      "dinner": thanksgiving_hours(weekday, now),
+      "latenight": thanksgiving_hours(weekday, now)
+    }
+    
+    """   # uncomment after summer break
+    meal_hours = {  
+    "breakfast": breakfast_hours(weekday, now), 
       "lunch": lunch_hours(weekday, now),
       "dinner": dinner_hours(weekday, now),
       "latenight": latenight_hours(weekday, now)
-    }
-    """   # uncomment after summer break
-    meal_hours = {  
+    "breakfast": thanksgiving_hours(weekday, now),
+      "lunch": thanksgiving_hours(weekday, now),
+      "dinner": thanksgiving_hours(weekday, now),
+      "latenight": thanksgiving_hours(weekday, now)
 
-    "breakfast": nsop_hours(weekday, now),
-      "lunch": nsop_hours(weekday, now),
-      "dinner": nsop_hours(weekday, now),
-      "latenight": nsop_hours(weekday, now)
-
-    "breakfast": all_closed  (weekday, now),
-      "lunch": all_closed(weekday, now),
-      "dinner": all_closed(weekday, now),
-      "latenight": all_closed(weekday, now)
-    "breakfast": nsop_hours(weekday, now),
-      "lunch": nsop_hours(weekday, now),
-      "dinner": nsop_hours(weekday, now),
-      "latenight": all_closed(weekday, now)
+   
         """
     
     # Initialize all halls as closed
