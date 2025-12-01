@@ -46,18 +46,15 @@ def open_at_meal(now, meal):
     
     # Get hours for the current meal
     meal_hours = {
-      "breakfast": thanksgiving_hours(weekday, now),
-      "lunch": thanksgiving_hours(weekday, now),
-      "dinner": thanksgiving_hours(weekday, now),
-      "latenight": thanksgiving_hours(weekday, now)
+      "breakfast": breakfast_hours(weekday, now), 
+      "lunch": lunch_hours(weekday, now),
+      "dinner": dinner_hours(weekday, now),
+      "latenight": latenight_hours(weekday, now)
     }
     
     """   # uncomment after summer break
     meal_hours = {  
-    "breakfast": breakfast_hours(weekday, now), 
-      "lunch": lunch_hours(weekday, now),
-      "dinner": dinner_hours(weekday, now),
-      "latenight": latenight_hours(weekday, now)
+  
     "breakfast": thanksgiving_hours(weekday, now),
       "lunch": thanksgiving_hours(weekday, now),
       "dinner": thanksgiving_hours(weekday, now),
