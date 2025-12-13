@@ -21,7 +21,7 @@ import boto3
 from bscrape import bscrape, normalize_meals
 
 #dining hall URLs and names 
-
+"""
 cu_urls = {
 
   "Faculty House" : "https://dining.columbia.edu/content/faculty-house-0"
@@ -32,7 +32,7 @@ hall_names = [
 """
 cu_urls = {"Johnny's": "https://dining.columbia.edu/johnnys" }
 hall_names = ["Johnny's"]
-"""
+
 
 #configures webdriver for a headless environment 
 @contextmanager
@@ -229,5 +229,5 @@ def upload_to_s3(file_path, bucket_name, object_name=None):
 
 if __name__ == '__main__':
    #scrape_and_save()
-   scrape_columbia("Faculty House")
+   scrape_columbia("Johnny's")
    #print("scraping and upload completed")
