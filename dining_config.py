@@ -183,7 +183,7 @@ DINING_SCHEDULES = {
             3: ["lunch", "dinner"],  # Thursday
             4: [],  # Friday
             5: [],  # Saturday
-            6: [],  # Sunday
+            6: ["dinner"],  # Sunday
         },
         "station_mapping": {
             "breakfast": [],
