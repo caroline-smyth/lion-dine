@@ -108,6 +108,8 @@ def lunch_hours(weekday, now):
     
     if weekday in [6, 0, 1, 2, 3]:  # Sun-Thu
         l_hours["John Jay"] = "11:00 AM to 2:30 PM"
+
+    l_hours["Johnny's"] = "Closed for lunch"
     
     return l_hours
 
@@ -147,6 +149,7 @@ def dinner_hours(weekday, now):
     if weekday >= 3 and weekday < 6:  # Thu-Sat
         d_hours["Johnny's"] = "7:00 PM to 11:00 PM"
     
+    d_hours["Johnny's"] = "Closed for dinner"
     return d_hours
 
 def latenight_hours(weekday, now):
