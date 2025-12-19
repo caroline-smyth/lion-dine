@@ -16,24 +16,11 @@ def nsop_hours(weekday, now):
     
     return hours
 
-def thanksgiving_hours(weekday, now):
+def winter_hours(weekday, now):
     hours = {}
     all_halls = get_all_hall_names()
     for hall in all_halls:
-        hours[hall] = "Closed for Thanksgiving"
-
-    if weekday == 2:
-        hours["JJ's"] = "10:00 AM to 12:00 PM"
-        hours["Ferris"] = "7:30 AM to 7:00 PM"
-        hours["Hewitt Dining"] = "7:30 AM to 2:00 PM"
-    elif weekday == 3:
-        hours[hall] = "Closed for Thanksgiving"
-    elif weekday in [4,5]:
-        hours["JJ's"] = "10:00 AM to 7:00 PM"
-        hours["Hewitt Dining"] = "10:30 AM to 8:00 PM"
-    elif weekday == 6:
-        hours["JJ's"] = "10:00 AM to 7:00 PM"
-        hours["John Jay"] = "10:00 AM to 7:00 PM"
+        hours[hall] = "Closed for winter break"
     return hours
 
 def all_closed(weekday, now):
