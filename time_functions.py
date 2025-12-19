@@ -21,6 +21,17 @@ def winter_hours(weekday, now):
     all_halls = get_all_hall_names()
     for hall in all_halls:
         hours[hall] = "Closed for winter break"
+
+    if datetime.now().month == 12:
+        if datetime.now().day <= 31 and datetime.now().day >= 20 and datetime.now().day != 4 and datetime.now().day != 25:
+            hours["John Jay"] = "11:00 AM to 2:30 PM, 4:00 PM to 7:00 PM"
+    if datetime.now().month == 1:
+        if datetime.now().day <= 10 and datetime.now().day >= 2:
+            hours["John Jay"] = "11:00 AM to 2:30 PM, 4:00 PM to 7:00 PM"
+        elif datetime.now().day <= 15 and datetime.now().day >= 11:
+            hours["JJ's"] = "11:00 AM to 7:00 PM"
+        elif datetime.now().day <= 19 and datetime.now().day >= 16:
+            hours["Ferris"] = "11:00 AM to 7:00 PM"
     return hours
 
 def all_closed(weekday, now):
