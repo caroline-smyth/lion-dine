@@ -229,7 +229,7 @@ def scrape_and_save():
   data = scrape_all()
   with open('dining_data.json', 'w') as f:
     json.dump(data, f, indent=4)
-  upload_to_s3('dining_data.json', 'liondine-data')
+  upload_to_s3('dining_data.json', 'lion-dine-data')
 
 
 def upload_to_s3(file_path, bucket_name, object_name=None):

@@ -26,7 +26,7 @@ dining_halls = get_all_hall_names()
 
 #gets dining data from aws s3 json file
 def get_dining_data():
-  bucket_name = 'liondine-data'
+  bucket_name = 'lion-dine-data'
   object_name = 'dining_data.json'
   s3_client = boto3.client('s3')
   #boto3 automatically looks for credentials stored locally
