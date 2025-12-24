@@ -23,7 +23,7 @@ def winter_hours(weekday, now):
         hours[hall] = "Closed for winter break"
 
     if datetime.now().month == 12:
-        if datetime.now().day <= 31 and datetime.now().day >= 20 and datetime.now().day != 4 and datetime.now().day != 25:
+        if datetime.now().day <= 31 and datetime.now().day >= 20 and datetime.now().day != 4 and datetime.now().day != 25 and datetime.now().day != 24:
             hours["John Jay"] = "11:00 AM to 2:30 PM, 4:00 PM to 7:00 PM"
     if datetime.now().month == 1:
         if datetime.now().day <= 10 and datetime.now().day >= 2:
