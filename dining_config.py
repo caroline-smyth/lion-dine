@@ -12,7 +12,7 @@ DINING_SCHEDULES = {
             2: ["breakfast", "lunch", "dinner"],  # Wednesday
             3: ["breakfast", "lunch", "dinner"],  # Thursday
             4: ["breakfast", "lunch", "dinner"],  # Friday
-            5: [],  # Saturday - closed
+            5: ["lunch", "dinner"],  # Saturday - closed TEMPORARY OPEN FOR WINTER BREAK
             6: ["breakfast", "lunch", "dinner"],  # Sunday
         },
         "station_mapping": {
