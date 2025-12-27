@@ -4,6 +4,6 @@
 
 # How it works
 
-- Scrape menu data from Columbia and Barnard dining websites using Python and Selenium. Upload a json file with all dining data to an AWS S3 bucket. The scraping file is automated through GitHub Actions to run multiple times per day.
+- Scrape menu data from Columbia and Barnard dining websites using Python and Selenium. Upload a json file with all dining data to an AWS S3 bucket. The scraping file is automated through AWS Lightsail
 - Flask app pulls the json file from the S3 bucket and processes it to determine which items to display based on the operating hours of the dining halls and their stations.
 - Hosted on a Render Web Service.

@@ -33,8 +33,7 @@ a:hover{
   min-width: 0;
   flex: 1 1 calc(16% - 2rem); /* 20% width for 5 items per row, minus gap */
   max-width: calc(20% - 2rem); /*Ensures max width does not exceed 20% */
-  box-sizing: border-box; /* Includes padding/border in element's width and height 
-  margin: 0.5rem; Adds spacing around items */
+  box-sizing: border-box; 
 }
 .menu {
   display: flex;
