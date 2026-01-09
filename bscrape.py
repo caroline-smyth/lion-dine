@@ -1,3 +1,7 @@
+"""
+For scraping the Barnard dining hall menu data using the Barnard What's On The Menu API endpoint.
+"""
+
 import json
 from typing import Dict, List, Any
 try:
