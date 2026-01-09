@@ -1,21 +1,18 @@
-from flask import Flask, render_template, request, redirect, url_for, session
-from datetime import datetime, time 
-import time as time_module
-import random
+from flask import Flask, render_template, g
+from datetime import datetime
 import os
-import requests
 import json
 import boto3
-from time_functions import breakfast_hours, lunch_hours, dinner_hours, latenight_hours, all_closed, winter_hours
-import string
 import pytz
-from  flask_sqlalchemy import SQLAlchemy
-from flask import make_response, g, render_template, flash
+
 from dining_config import (
     is_hall_open, get_station_mapping, get_hardcoded_menu, 
-    get_all_hall_names, DINING_SCHEDULES
+    get_all_hall_names, get_hours_for_meal
 )
-from time_functions import nsop_hours
+# Break schedule overrides - uncomment the one you need:
+from time_functions import winter_hours  # Current: winter break
+# from time_functions import nsop_hours  # For orientation
+# from time_functions import all_closed  # For summer
 
 app = Flask(__name__) #sets up a flask application
 app.secret_key = os.environ.get('SECRET_KEY','fallback-secret-key') 
@@ -24,7 +21,7 @@ ny_tz = pytz.timezone('America/New_York')
 
 dining_halls = get_all_hall_names()
 
-#gets dining data from aws s3 json file
+# Gets dining data from AWS S3, with local file fallback for development
 def get_dining_data():
   bucket_name = 'lion-dine-data'
   object_name = 'dining_data.json'
@@ -44,37 +41,38 @@ def open_at_meal(now, meal):
     filtered_halls = {}
     weekday = now.weekday()
     
-    # Get hours for the current meal
-    meal_hours = {
-      "breakfast": winter_hours(weekday, now), 
-      "lunch": winter_hours(weekday, now),
-      "dinner": winter_hours(weekday, now),
-      "latenight": winter_hours(weekday, now)
-    }
+    # ==========================================================================
+    # SCHEDULE MODE: Toggle between regular semester and break schedules
+    # ==========================================================================
+    # For regular semester, use get_hours_for_meal (pulls from dining_config.py)
+    # For breaks, use the override function (winter_hours, nsop_hours, etc.)
     
-    """   # uncomment after summer break
-    meal_hours = {  
-  
-    "breakfast": thanksgiving_hours(weekday, now),
-      "lunch": thanksgiving_hours(weekday, now),
-      "dinner": thanksgiving_hours(weekday, now),
-      "latenight": thanksgiving_hours(weekday, now)
-
-   
-        """
+    USE_BREAK_SCHEDULE = True  # Set to False for regular semester
     
-    # Initialize all halls as closed
+    if USE_BREAK_SCHEDULE:
+        # Break mode: use override hours (same hours dict for all meals)
+        hours_for_meal = winter_hours(weekday, now)
+    else:
+        # Regular semester: pull hours from dining_config.py
+        hours_for_meal = get_hours_for_meal(weekday, meal)
+    
+    # Initialize all halls and determine open/closed status
     for hall_name in dining_halls:
+        hall_hours = hours_for_meal.get(hall_name, "Hours not available")
+        
+        # Determine if hall is open based on schedule mode
+        if USE_BREAK_SCHEDULE:
+            # During breaks: open if hours don't say "Closed"
+            is_open = not hall_hours.startswith("Closed")
+        else:
+            # Regular semester: use the schedule from dining_config.py
+            is_open = is_hall_open(hall_name, weekday, meal)
+        
         filtered_halls[hall_name] = {
-            'status': f'Closed for {meal}',
-            'hours': meal_hours[meal].get(hall_name, "Hours not available"),
+            'status': "Open" if is_open else f'Closed for {meal}',
+            'hours': hall_hours,
             'stations': {},
         }
-    
-    # Check which halls are open for this meal
-    for hall_name in dining_halls:
-        if is_hall_open(hall_name, weekday, meal):
-            filtered_halls[hall_name]["status"] = "Open"
     
     # Process stations for open halls
     for hall_name, stations in halls.items():

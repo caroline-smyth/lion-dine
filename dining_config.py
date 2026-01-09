@@ -11,9 +11,14 @@ DINING_SCHEDULES = {
             1: ["breakfast", "lunch", "dinner"],  # Tuesday
             2: ["breakfast", "lunch", "dinner"],  # Wednesday
             3: ["breakfast", "lunch", "dinner"],  # Thursday
-            4: ["breakfast", "lunch", "dinner"],  # Friday
-            5: ["lunch", "dinner"],  # Saturday - closed TEMPORARY OPEN FOR WINTER BREAK
+            4: [],  # Friday - closed
+            5: [],  # Saturday - closed
             6: ["breakfast", "lunch", "dinner"],  # Sunday
+        },
+        "hours": {
+            "breakfast": "9:30 AM to 11:00 AM",
+            "lunch": "11:00 AM to 2:30 PM",
+            "dinner": "5:00 PM to 9:00 PM",
         },
         "station_mapping": {
             "breakfast": ["breakfast", "brunch"],
@@ -32,6 +37,21 @@ DINING_SCHEDULES = {
             5: ["breakfast", "lunch", "dinner"],  # Saturday
             6: ["breakfast", "lunch", "dinner"],  # Sunday
         },
+        "hours": {
+            "breakfast": {
+                "default": "7:30 AM to 11:00 AM",
+                5: "9:00 AM to 11:00 AM",  # Saturday
+                6: "10:00 AM to 2:00 PM",  # Sunday 
+            },
+            "lunch": {
+                "default": "11:00 AM to 5:00 PM",
+                6: "10:00 AM to 2:00 PM",  # Sunday 
+            },
+            "dinner": {
+                "default": "5:00 PM to 8:00 PM",
+                6: "4:00 PM to 8:00 PM",  # Sunday
+            },
+        },
         "station_mapping": {
             "breakfast": ["breakfast", "brunch"],
             "lunch": ["lunch", "lunch & dinner"],
@@ -49,6 +69,12 @@ DINING_SCHEDULES = {
             5: ["breakfast", "lunch", "dinner", "latenight"],  # Saturday
             6: ["breakfast", "lunch", "dinner", "latenight"],  # Sunday
         },
+        "hours": {
+            "breakfast": "12:00 AM to 10:00 AM",
+            "lunch": "12:00 PM to midnight",
+            "dinner": "12:00 PM to midnight",
+            "latenight": "Midnight to 10:00 AM",
+        },
         "station_mapping": {
             "breakfast": ["breakfast", "daily"],
             "lunch": ["lunch & dinner", "daily"],
@@ -62,9 +88,20 @@ DINING_SCHEDULES = {
             1: ["lunch"],  # Tuesday
             2: ["lunch"],  # Wednesday
             3: ["lunch", "dinner", "latenight"],  # Thursday
-            4: ["dinner", "latenight"],  # Friday
+            4: ["lunch", "dinner", "latenight"],  # Friday
             5: ["dinner", "latenight"],  # Saturday
-            6: [],  # Sunday
+            6: ["dinner", "latenight"],  # Sunday
+        },
+        "hours": {
+            "lunch": "11:00 AM to 2:30 PM",
+            "dinner": {
+                "default": "7:00 PM to 11:00 PM",
+                6: "6:00 PM to 10:00 PM",  # Sunday
+            },
+            "latenight": {
+                "default": "7:00 PM to 11:00 PM",
+                6: "6:00 PM to 10:00 PM",  # Sunday
+            },
         },
         "station_mapping": {
             "breakfast": [],
@@ -83,6 +120,19 @@ DINING_SCHEDULES = {
             5: ["breakfast", "lunch", "dinner"],  # Saturday
             6: ["breakfast", "lunch", "dinner"],  # Sunday
         },
+        "hours": {
+            "breakfast": {
+                "default": "7:30 AM to 10:00 AM",
+                5: "10:30 AM to 3:00 PM",  # Saturday (brunch)
+                6: "10:30 AM to 3:00 PM",  # Sunday (brunch)
+            },
+            "lunch": {
+                "default": "11:00 AM to 2:30 PM",
+                5: "10:30 AM to 3:00 PM",  # Saturday (brunch)
+                6: "10:30 AM to 3:00 PM",  # Sunday (brunch)
+            },
+            "dinner": "4:30 PM to 8:00 PM",
+        },
         "station_mapping": {
             "breakfast": ["breakfast", "brunch", "every day"],
             "lunch": ["lunch", "brunch", "every day"],
@@ -99,6 +149,10 @@ DINING_SCHEDULES = {
             4: ["breakfast", "lunch"],  # Friday - no dinner
             5: [],  # Saturday - closed
             6: ["breakfast", "lunch", "dinner"],  # Sunday
+        },
+        "hours": {
+            # TODO: Add Kosher hours when implemented
+            "dinner": "4:30 PM to 8:00 PM",
         },
         "station_mapping": {
             "breakfast": ["breakfast"],
@@ -117,6 +171,9 @@ DINING_SCHEDULES = {
             5: [],  # Saturday
             6: [],  # Sunday
         },
+        "hours": {
+            "lunch": "11:00 AM to 2:30 PM",
+        },
         "station_mapping": {
             "breakfast": [],
             "lunch": ["lunch", "lunch & dinner"],
@@ -133,6 +190,10 @@ DINING_SCHEDULES = {
             4: ["lunch", "dinner"],  # Friday
             5: [],  # Saturday
             6: [],  # Sunday
+        },
+        "hours": {
+            "lunch": "10:30 AM to 10:00 PM",
+            "dinner": "10:30 AM to 10:00 PM",
         },
         "station_mapping": {
             "breakfast": [],
@@ -151,6 +212,11 @@ DINING_SCHEDULES = {
             5: [],  # Saturday
             6: [],  # Sunday
         },
+        "hours": {
+            "breakfast": "8:00 AM to 11:00 AM",
+            "lunch": "11:00 AM to 6:00 PM",
+            "dinner": "11:00 AM to 6:00 PM",
+        },
         "station_mapping": {
             "breakfast": ["hardcoded_breakfast"],
             "lunch": ["hardcoded_lunch_dinner"],
@@ -167,6 +233,10 @@ DINING_SCHEDULES = {
             4: [],  # Friday
             5: [],  # Saturday
             6: [],  # Sunday
+        },
+        "hours": {
+            "lunch": "11:00 AM to 7:00 PM",
+            "dinner": "11:00 AM to 7:00 PM",
         },
         "station_mapping": {
             "breakfast": [],
@@ -185,6 +255,13 @@ DINING_SCHEDULES = {
             5: [],  # Saturday
             6: ["dinner"],  # Sunday
         },
+        "hours": {
+            "lunch": "12:00 PM to 4:00 PM",
+            "dinner": {
+                "default": "4:00 PM to 8:00 PM",
+                6: "3:00 PM to 8:00 PM",  # Sunday
+            },
+        },
         "station_mapping": {
             "breakfast": [],
             "lunch": ["lunch & dinner"],
@@ -201,6 +278,18 @@ DINING_SCHEDULES = {
             4: ["breakfast", "lunch"],  # Friday - no dinner/latenight
             5: [],  # Saturday
             6: ["lunch", "dinner"],  # Sunday
+        },
+        "hours": {
+            "breakfast": "9:00 AM to 3:00 PM",
+            "lunch": {
+                "default": "12:00 PM to 3:00 PM",
+                6: "12:00 PM to 8:00 PM",  # Sunday
+            },
+            "dinner": {
+                "default": "5:00 PM to 12:00 AM",
+                6: "12:00 PM to 8:00 PM",  # Sunday
+            },
+            "latenight": "8:00 PM to midnight",
         },
         "station_mapping": {
             "breakfast": ["breakfast"],
@@ -291,29 +380,58 @@ def get_all_hall_names() -> List[str]:
     """Get list of all dining hall names."""
     return list(DINING_SCHEDULES.keys())
 
-def update_hall_schedule(hall_name: str, weekday: int, meals: List[str]):
+def get_hall_hours(hall_name: str, meal: str, weekday: int) -> str:
     """
-    Update the schedule for a specific hall and weekday.
+    Get the display hours for a specific hall, meal, and day.
     
     Args:
         hall_name: Name of the dining hall
+        meal: Meal period ("breakfast", "lunch", "dinner", "latenight")
         weekday: Day of week (0=Monday, 6=Sunday)
-        meals: List of meals the hall is open for
+    
+    Returns:
+        Hours string like "11:00 AM to 2:30 PM" or "Hours not available"
     """
-    if hall_name in DINING_SCHEDULES:
-        DINING_SCHEDULES[hall_name]["schedule"][weekday] = meals
+    if hall_name not in DINING_SCHEDULES:
+        return "Hours not available"
+    
+    hours_config = DINING_SCHEDULES[hall_name].get("hours", {})
+    meal_hours = hours_config.get(meal)
+    
+    if meal_hours is None:
+        return "Hours not available"
+    
+    # Simple case: same hours every day
+    if isinstance(meal_hours, str):
+        return meal_hours
+    
+    # Complex case: day-specific hours
+    if isinstance(meal_hours, dict):
+        return meal_hours.get(weekday, meal_hours.get("default", "Hours not available"))
+    
+    return "Hours not available"
 
-def add_hall_config(hall_name: str, schedule: Dict[int, List[str]], 
-                   station_mapping: Dict[str, List[str]]):
+def get_hours_for_meal(weekday: int, meal: str) -> Dict[str, str]:
     """
-    Add a new dining hall configuration.
+    Get display hours for all halls for a given meal and weekday.
+    
+    Main function used by app.py to get hours to display.
     
     Args:
-        hall_name: Name of the dining hall
-        schedule: Schedule dict with weekday as keys and meal lists as values
-        station_mapping: Mapping of meals to station types
+        weekday: Day of week (0=Monday, 6=Sunday)
+        meal: Meal period ("breakfast", "lunch", "dinner", "latenight")
+    
+    Returns:
+        Dictionary mapping hall names to their hours strings
     """
-    DINING_SCHEDULES[hall_name] = {
-        "schedule": schedule,
-        "station_mapping": station_mapping
-    } 
+    hours = {}
+    for hall_name in DINING_SCHEDULES:
+        schedule = DINING_SCHEDULES[hall_name]["schedule"]
+        
+        # Check if hall is open for this meal on this day
+        if meal not in schedule.get(weekday, []):
+            hours[hall_name] = f"Closed for {meal}"
+        else:
+            hours[hall_name] = get_hall_hours(hall_name, meal, weekday)
+    
+    return hours

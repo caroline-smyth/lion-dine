@@ -21,7 +21,6 @@ a:hover{
   margin: 0 auto;
   column-gap: 2rem;
   max-width: 1200px;
-  /*color: rgb(247,95,28);  halloween */
 }
 
 .col {
@@ -48,8 +47,6 @@ a:hover{
 
 button {
   border: none;
-  /*background-color: rgb(105, 179, 231); */
-  /*color: rgb(247,95,28);  halloween */
   color: rgb(105, 179, 231); 
   color: white;
   font-weight: medium;
@@ -77,13 +74,12 @@ h3 {
   margin-top: 0px;
   margin-bottom: 10px;
   font-size: 2rem;
-  /*color: rgb(247,95,28);  halloween */
 }
 
 .food-type {
   font-weight: bold;
   font-size: 1.5rem;
-  margin-top: 0.625rem; /*0.625rem*/
+  margin-top: 0.625rem;
 }
 
 .meal-name.italicized {
