@@ -1,4 +1,12 @@
-#hello
+"""
+This file is for scraping the nutritional information from the 
+Columbia dining halls - haven't implemented this for Barnard or
+incorporated it into the display, so it's not actually being used but could be. 
+
+Did this in Jan 2025, so might be outdated.
+"""
+
+
 from selenium import webdriver 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service as ChromeService 
@@ -17,8 +25,7 @@ import os
 import platform
 import json
 import boto3
-from barnard_scrape import scrape_barnard
-from diana_scrape import scrape_diana
+from bscrape import bscrape
 
 #dining hall URLs and names 
 
@@ -220,10 +227,8 @@ def scrape_all():
     hall_data = scrape_columbia(hall)
     dict.update(hall_data)
   
-  barnard_data = scrape_barnard()
+  barnard_data = bscrape()
   dict.update(barnard_data)
-  diana_data = scrape_diana()
-  dict.update(diana_data)
   print(dict)
   return dict
 
